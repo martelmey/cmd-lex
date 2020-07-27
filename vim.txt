@@ -1,0 +1,5 @@
+set number
+
+42G
+42gg
+:42<CR>
