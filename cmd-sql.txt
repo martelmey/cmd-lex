@@ -1,0 +1,3 @@
+=== LA DB ===
+SELECT table_name FROM all_tables;
+SELECT * FROM LA_ALERT_TRANSACTION_STATE;

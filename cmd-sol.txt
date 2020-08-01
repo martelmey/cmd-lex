@@ -1,0 +1,93 @@
+###==
+####===
+--------= PERMITS
+####===
+###==
+
+groups <user>
+usermod -G splunk,root,wheel,oinstall splunk
+su - oracle -c ''
+
+###==
+####===
+--------= DEV
+####===
+###==
+
+ldd /opt/csw/lib/collectd/write_splunk.so
+cat /etc/release
+uname -a
+
+###==
+####===
+--------= PKG
+####===
+###==
+
+pkg search -l -p /usr/bin/curl
+pkgchk -L CSWcollectd # list files
+
+###==
+####===
+--------= NET
+####===
+###==
+
+route add 10.10.10.0/24 192.168.1.1
+echo "pass all from any to any port = 8088" >> /etc/firewall/pf.conf
+netstat -s (all status)
+netstat -P tcp
+netstat -i (interfaces)
+netstat -a (sockets)
+netstat -f inet (ipv4 packet transmission)
+netstat -r (routes)
+svccfg -s ipfilter:default listprop   | grep file
+svcs -x ipfilter:default
+ipfstat -io
+/etc/ipf/ipf.conf
+
+###==
+####===
+--------= STORAGE / DEVICES
+####===
+###==
+
+find / -name 'collectd.log' -print
+find /opt -name 'collectd' -print
+more /var/adm/messages
+dmesg
+
+###==
+####===
+--------= PROCESSES
+####===
+###==
+
+atop
+htop
+pgrep
+pstree
+pidof mysqld
+ps -T -p 3692
+top -Hbn1 -p 3692
+
+###==
+####===
+--------= SMF
+####===
+###==
+
+svcs
+svcs -a
+svcs -Ho inst identity
+svcs -l net-snmp
+svcs -p net-snmp
+svcadm refresh network/firewall
+svcs -x vbiosd
+svcs -xL vbiosd
+view `svcs -L vbiosd`
+svccfg -s pkg/server describe network/restart_on
+svccfg -s pkg/server describe -v network/restart_on
+svcprop svc:/system/identity
+svcprop svc:/system/identity:domain
+svcprop -p config/prop1 example

@@ -3,3 +3,5 @@ set number
 42G
 42gg
 :42<CR>
+
+:%s/eth1/br1/g

@@ -1,0 +1,47 @@
+display \
+	deploy-client
+	deploy-server
+	listen
+	local-index
+	dist-search
+
+enable \
+	boot-start
+	deply-client
+	deploy-server
+	dist-search
+	index
+	listen
+	local-index
+
+add \
+	foward-server
+	index
+	search-server
+	user
+
+edit \
+	search-server
+
+list \
+	deploy-clients
+	forward-server
+	index
+	inputstatus
+	licenses
+	monitor
+	search-server
+	user
+
+reload \
+	deploy-server
+	listen
+
+set \
+	deploy-poll host:port
+	default-index
+
+show \
+	config
+	deploy-poll
+
