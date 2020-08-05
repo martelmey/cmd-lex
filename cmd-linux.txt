@@ -22,18 +22,6 @@ sar -P ALL -f /var/log/sa/sa21
 
 ###==
 ####===
---------= TEXT/STEAM/FILTER
-####===
-###==
-
-grep -lR outputs.conf /opt/splunk/etc/deployment-apps/
-
-grep -r "opt/./.../wlserver_10.3/common/nodemanager" /opt/splunk/etc/deployment-apps/*
-
-grep "/opt/./.../user_projects/domains/*/servers/*/logs/*.log" ~/inputstatus
-
-###==
-####===
 --------= PERFORMANCE
 ####===
 ###==

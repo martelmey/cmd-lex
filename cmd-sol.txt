@@ -77,17 +77,19 @@ top -Hbn1 -p 3692
 ####===
 ###==
 
-svcs
 svcs -a
 svcs -Ho inst identity
 svcs -l net-snmp
 svcs -p net-snmp
-svcadm refresh network/firewall
 svcs -x vbiosd
 svcs -xL vbiosd
 view `svcs -L vbiosd`
+
 svccfg -s pkg/server describe network/restart_on
 svccfg -s pkg/server describe -v network/restart_on
+
 svcprop svc:/system/identity
 svcprop svc:/system/identity:domain
 svcprop -p config/prop1 example
+
+svcadm refresh network/firewall
