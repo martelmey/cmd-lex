@@ -1,1 +1,19 @@
 Get-FileHash <filepath> -Algorithm MD5
+net stop sppsvc && net start sppsvc
+
+DISM /Online /Set-Edition:ServerStandard /ProductKey:CBMKB-NXX43-DJQBY-VDX7W-GVMMQ /AcceptEula
+
+DISM /Online /Set-Edition:ServerStandard /ProductKey:N69G4-B89J2-4G8F4-WWYCC-J464C /AcceptEula
+
+slmgr.vbs /sprt 1688
+/dli
+/cpky clear
+/rilc reinstall
+/rearm reset license status
+/upk uninstall product key
+/sdns enable dns publishing
+/act-type 2 <activation-id>
+/ato
+/dli
+/dlv
+/ipk N69G4-B89J2-4G8F4-WWYCC-J464C
