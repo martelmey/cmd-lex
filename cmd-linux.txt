@@ -7,6 +7,7 @@
 usermod -G a,b,c splunk
 id  -u
 	-G
+hostnamectl set-hostname cutlprdtsc01
 
 ###==
 ####===
@@ -47,7 +48,14 @@ sudo dmidecode -t 4 | egrep -i 'core (count|enabled)|thread count|Version'
 ###==
 
 df -Tha
+	--total
+	-h, --human-readable
+	-H powers of 1000 not 1024
+	-l --local only local fs
+	-T --print-type show fs type
 du -h .
+	--total
+	-h, --human-readableqq
 sudo dmesg
 sudo dmesg | more
 sudo fdisk -l /dev/sdb
@@ -70,7 +78,12 @@ uuidgen eth0
 qemu-img resize /vms/kutlprdsplunk01 +40G
 virsh blockresize kutlprdsplunk01 /vms/kutlprdsplunk01 80G
 lsblk
-qemu-img info/snapshot
+qemu-img info
+	snapshot
+		-a applies
+		-c creates
+		-d deletes
+		-l lists
 virsh # vol-info kutlprdsplunk01 --pool vms
 
 ###==
@@ -93,6 +106,9 @@ ifdown em1
 ifup em
 ip link set em1 down
 ip link set em1 up
+firewall-cmd --list-all
+brctl addbr
+	addif
 
 ###==
 ####===
@@ -100,5 +116,16 @@ ip link set em1 up
 ####===
 ###==
 
-rpm -qa
+rpm -q, --query
+		--configfiles
+		--i, info
+		--filesbypkg
+		-l, --list
+		-R, --requires
+
+		-f, --file
+		-p, --package
+	-v, --verify
+	-i, --install
+	-U, upgrade
 yum list installed
