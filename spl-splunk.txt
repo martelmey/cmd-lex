@@ -1,26 +1,47 @@
-counter= | stats count as errors
+counter= 
+| stats count as errors
 | stats avg(CPUTime)
 | eval PercentProcessorTime=(100-mvindex(pctIdle,0))
 
-Use following (faster) for source
+###Use following (faster) for source
 
- | metadata type=hosts index=* OR index=_*
+| metadata type=hosts index=* OR index=_*
 
-for sourcetypes
+###for sourcetypes
 
- | metadata type=sourcetypes index=* OR index=_*
+metadata type=sourcetypes index=* OR index=_*
 
- to view all sources : index= |chart count by source
-to view all sourcetypes: index= |chart count by sourcetype
+###to view all sources : 
 
-source=* sourcetype=* [| eventcount summarize=false index=* | table index | format "(" "" "" "" "OR" ")"] |
-  fillnull value="N/A" Customer 
- | stats count by index, source, sourcetype, Customer 
- | sort index, source, sourcetype, Customer
+index= 
+|chart count by source
+
+###to view all sourcetypes: 
+
+index= 
+|chart count by sourcetype
+
+source=* sourcetype=* 
+[| eventcount summarize=false index=* 
+| table index 
+| format "(" "" "" "" "OR" ")"] 
+| fillnull value="N/A" Customer 
+| stats count by index, source, sourcetype, Customer 
+| sort index, source, sourcetype, Customer
+
+index=si_conf fieldalias OR rename
+| stats count by text
+| table text
+
+###One-time extraction:
+
+index=router source=udp:1514 host=192.168.0.1 sourctype=syslog node
+| rex "\]:\s+(?P<test>\w+),"
 
 ######################
 METRICS
 ######################
+
 | mcatalog values(host) WHERE index=metrics_linux
 
 | mcatalog values(host) WHERE index=metrics_linux AND metric_name=df.free
