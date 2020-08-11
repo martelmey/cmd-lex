@@ -1,0 +1,89 @@
+====FM/AM stations:
+CIOC-FM
+98.5 MHz FM
+98500.00 kHz
+hardware_freq: 95.178000 MHz
+
+CJZN-FM
+91.3 MHz FM
+91300.00 kHz
+hardware_freq: 87.978000 MHz
+
+CKKQ-FM
+100.3 MHz FM : 94.7 MHz FM (Sooke)
+100300.000 kHz
+hardware_freq: 97.677000 MHz
+
+CFAX-AM
+
+====replay: 60-4148 Street Comber
+ISC: RSS-210
+Industry Canada Radio Equipment Certification
+
+27 MHz
+27147000khz
+433000000 (example)
+(int(1.0/0.000550)) (example)
+
+Reverse:
+(111)010101010101010(111)
+(111)0 : 1010 : 1010 :1010 : 10(111)
+(11)01 : 0101 : 0101 : 0101 : 0111
+{1101:0101}:{0101:0101}:0111
+{1101}{0101}{0101}{0101}0111
+{1010}{1010}{1010}{1010} = aa
+Drate:
+(int(1.0/0.00047))
+("\xAA\xAA\xAA\xAA\xAA\xAA\xAA\xAA\x00\x00\x00" * 40)
+
+Forward:
+
+
+====notes:
+Convert binary bits to hex:
+printf '%x\n' "$((2#10101010))"
+
+===info: 60-4292 Big Bite
+FCC Registration Number (FRN): 	0007380363
+Alphanumeric FCC ID: 	AAO6004292TX49
+Grantee Code: 	AAO
+Product Code: 	6004292TX49
+Part 15 Low Power Communication Device Transmitter
+RC Car
+
+===info: RadioShack RC cars
+60-0xxxx (model, ie. 4148)
+AAO-600xxx
+
+===info: inspectrum
+every pulse is either short or long
+two durations
+pulse-width modulated on-off keying
+osmocom_fft
+
+short pulse= one unit
+gap of 2 units
+long pulse = 2 units
+gap of 1 unit
+
+3-time units
+
+110=long
+100=short
+
+1.) frequency
+2.) modulation
+3.) data rate
+2450 time units per second
+
+===firmware updates
+
+dfu-util --device 1fc9:000c --download hackrf_usb.dfu --reset
+
+cd /root/mayhem_v1.1.1_FIRMWARE
+
+hackrf_spiflash -w portapack-h1_h2-mayhem.bin
+
+cd /root/portapack-h1-firmware-20190405
+
+hackrf_spiflash -w portapack-h1-firmware.bin
