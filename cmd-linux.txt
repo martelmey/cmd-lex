@@ -86,29 +86,52 @@ qemu-img info
 		-l lists
 virsh # vol-info kutlprdsplunk01 --pool vms
 
+virsh undefine
+
+lsmod | grep -i kvm
+lscpu | grep Virtualization
+
 ###==
 ####===
 --------= NETWORK
 ####===
 ###==
 
-sudo lsof -i -P -n | grep LISTEN
-sudo netstat -tulpn | grep LISTEN
-sudo lsof -i:22 ## see a specific port such as 22 ##
-sudo nmap -sTU -O IP-address-Here
+lsof -i -P -n | grep LISTEN
+lsof -i:22 ## see a specific port such as 22 ##
+
+nmap -sTU -O IP-address-Here
 nmcli device status
+
+systemctl restart network.service
+
+ifdown em1
+ifup em
+
+firewall-cmd --list-all
+
+brctl addbr
+	addif
+	delif
+
+ip ro add default via 192.168.160.254 dev br0
+ip ro add 192.168.60.0/24 via 192.168.160.254 dev br0
+	  del
+	  change
+	  replace
+	  append
+	  show
+	  flush
+	  	-statistics
+
 ip addr show
 ip addr show dev em1
 ip addr add 10.1.1.1/24 dev em2
+
 ip link set em2 up
-systemctl restart network
-ifdown em1
-ifup em
 ip link set em1 down
-ip link set em1 up
-firewall-cmd --list-all
-brctl addbr
-	addif
+
+netstat -tulpn | grep LISTEN
 
 ###==
 ####===

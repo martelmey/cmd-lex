@@ -46,6 +46,15 @@ svcs -x ipfilter:default
 ipfstat -io
 /etc/ipf/ipf.conf
 
+chown -R nobody: /export/ops-tools
+chmod -R 777 /export/ops-tools
+systemctl restart nfs-utils.service
+echo "/export/ops-tools       192.168.160.192(rw,sync,no_all_squash,root_squash)" >> /etc/exports
+exportfs -arv
+firewall-cmd --permanent --add-service=nfs
+firewall-cmd --permanent --add-service=rpc-bind
+firewall-cmd --permanent --add-service=mountd
+
 ###==
 ####===
 --------= STORAGE / DEVICES
