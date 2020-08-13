@@ -152,3 +152,154 @@ rpm -q, --query
 	-i, --install
 	-U, upgrade
 yum list installed
+
+###KDC:
+/var/OSimages/ol7_6_x86_64
+/etc/yum.repos.d/OL76-local.repo
+###Root32:
+
+
+###KDC:
+/root/reposync
+###Root32:
+
+###KDC:
+/root/repotrack
+###Root32:
+/repotrack-pkgs
+
+###KDC:
+/root/yumdownloader-libvirt
+/root/yumdownloader-virt-viewer
+###Root32:
+/offline-pkgs/yumdownloader-libvirt
+/offline-pkgs/yumdownloader-virt-viewer
+
+###KDC:
+/root/libvirt
+/root/libvirt-installroot
+/root/virt-viewer
+/root/virt-viewer-installroot
+###Root32:
+/repos/libvirt
+/repos/virt-viewer
+
+repotrack -a x86_64 -p /root/repotrack-boost boost-iostreams
+
+###KDC Jump1:
+cd /var/OSimages
+tar -zcvf KDClocalrepo.tar.gz ol7_6_x86_64
+mv KDClocalrepo.tar.gz /home/martel.meyers
+chown martel.meyers:wheel KDClocalrepo.tar.gz
+###Local:
+scp -P 2022 martel.meyers@65.110.171.190:/home/martel.meyers/KDClocalrepo.tar.gz .
+scp -P 2022 KDClocalrepo.tar.gz martel.meyers@98.158.92.147:/home/martel.meyers
+###CDC Jump:
+scp KDClocalrepo.tar.gz martel.meyers@192.168.160.195:/home/martel.meyers
+###CDC Root32:
+
+###KDC Jump 1:
+mkdir /root/reposync
+reposync -g -l -n -a x86_64 -r ol7_x86_64_latest --download_path=/root/reposync -m --download-metadata
+
+###KDC Jump 1:
+mkdir /root/repotrack
+repotrack -a x86_64 -p /root/repotrack libvirt virt-viewer boost-iostreams gnutls-dane gnutls-utils
+tar -zcvf repotrack-libvirt-virt-viewer.tar.gz repotrack
+mv /root/repotrack-libvirt-virt-viewer.tar.gz /home/martel.meyers
+chown martel.meyers:wheel /home/martel.meyers/repotrack-libvirt-virt-viewer.tar.gz
+###Local:
+scp -P 2022 martel.meyers@65.110.171.190:/home/martel.meyers/repotrack-libvirt-virt-viewer.tar.gz .
+scp -P 2022 repotrack-libvirt-virt-viewer.tar.gz martel.meyers@98.158.92.147:/home/martel.meyers
+###CDC Jump:
+scp repotrack-libvirt-virt-viewer.tar.gz martel.meyers@192.168.160.195:/home/martel.meyers
+###CDC Root32:
+mkdir /repotrack-pkgs
+tar -zxvf /home/martel.meyers/repotrack-libvirt-virt-viewer.tar.gz -C /repotrack-pkgs
+cd /repotrack-pkgs
+yum install ./*rpm
+
+###KDC Jump 1:
+mkdir /root/yumdownloader-libvirt
+mkdir /root/yumdownloader-virt-viewer
+yumdownloader --destdir=/root/yumdownloader-libvirt --resolve libvirt
+yumdownloader --destdir=/root/yumdownloader-virt-viewer --resolve virt-viewer
+tar -zcvf yumdownloader-libvirt.tar.gz /root/yumdownloader-libvirt
+tar -zcvf yumdownloader-virt-viewer.tar.gz /root/yumdownloader-virt-viewer
+mv /root/yumdownloader-libvirt.tar.gz /home/martel.meyers
+mv /root/yumdownloader-virt-viewer.tar.gz /home/martel.meyers
+chown martel.meyers:wheel /home/martel.meyers/yumdownloader-libvirt.tar.gz
+chown martel.meyers:wheel /home/martel.meyers/yumdownloader-virt-viewer.tar.gz
+###Local:
+scp -P 2022 martel.meyers@65.110.171.190:/home/martel.meyers/yumdownloader-libvirt.tar.gz .
+scp -P 2022 martel.meyers@65.110.171.190:/home/martel.meyers/yumdownloader-virt-viewer.tar.gz .
+scp -P 2022 yumdownloader-libvirt.tar.gz martel.meyers@98.158.92.147:/home/martel.meyers
+scp -P 2022 yumdownloader-virt-viewer.tar.gz martel.meyers@98.158.92.147:/home/martel.meyers
+###CDC Jump:
+scp yumdownloader-libvirt.tar.gz martel.meyers@192.168.160.195:/home/martel.meyers
+scp yumdownloader-virt-viewer.tar.gz martel.meyers@192.168.160.195:/home/martel.meyers
+###CDC Root32:
+mkdir /offline-pkgs
+tar -zxvf /home/martel.meyers/yumdownloader-libvirt.tar.gz -C /offline-pkgs
+tar -zxvf /home/martel.meyers/yumdownloader-virt-viewer.tar.gz -C /offline-pkgs
+cd /offline-pkgs/yumdownloader-libvirt
+yum install ./*rpm
+
+###KDC Jump 1:
+mkdir /root/libvirt && mkdir /root/libvirt-installroot
+yum install --downloadonly --installroot=/root/libvirt-installroot --downloaddir=/root/libvirt libvirt
+mkdir /root/virt-viewer && mkdir /root/virt-viewer-installroot
+yum install --downloadonly --installroot=/root/virt-viewer-installroot --releasever=7 --downloaddir=/root/virt-viewer virt-viewer
+createrepo --database /root/libvirt
+rm -rf /root/libvirt-installroot
+createrepo --database /root/virt-viewer
+rm -rf /root/virt-viewer-installroot
+vi /etc/yum.repos.d/offline-libvirt.repo
+vi /etc/yum.repos.d/offline-virt-viewer.repo
+repoclosure --repoid=offline-libvirt
+repoclosure --repoid=offline-virt-viewer
+tar -zcvf /root/libvirt.tar.gz /root/libvirt
+tar -zcvf /root/virt-viewer.tar.gz /root/virt-viewer
+mv /root/libvirt.tar.gz /home/martel.meyers && mv /etc/yum.repos.d/offline-libvirt.repo /home/martel.meyers
+mv /root/virt-viewer.tar.gz /home/martel.meyers && mv /etc/yum.repos.d/offline-virt-viewer.repo /home/martel.meyers
+chown martel.meyers:wheel /home/martel.meyers/libvirt.tar.gz
+chown martel.meyers:wheel /home/martel.meyers/offline-libvirt.repo
+chown martel.meyers:wheel /home/martel.meyers/virt-viewer.tar.gz
+chown martel.meyers:wheel /home/martel.meyers/offline-virt-viewer.repo
+###Locally:
+scp -P 2022 martel.meyers@65.110.171.190:/home/martel.meyers/libvirt.tar.gz .
+scp -P 2022 martel.meyers@65.110.171.190:/home/martel.meyers/virt-viewer.tar.gz .
+scp -P 2022 martel.meyers@65.110.171.190:/home/martel.meyers/offline-libvirt.repo .
+scp -P 2022 martel.meyers@65.110.171.190:/home/martel.meyers/offline-virt-viewer.repo .
+scp -P 2022 libvirt.tar.gz martel.meyers@98.158.95.147:/home/martel.meyers
+scp -P 2022 virt-viewer.tar.gz martel.meyers@98.158.95.147:/home/martel.meyers
+scp -P 2022 offline-libvirt.repo martel.meyers@98.158.95.147:/home/martel.meyers
+scp -P 2022 offline-virt-viewer.repo martel.meyers@98.158.95.147:/home/martel.meyers
+###CDC Jump:
+scp libvirt.tar.gz martel.meyers@192.168.160.195:/home/martel.meyers
+scp virt-viewer.tar.gz martel.meyers@192.168.160.195:/home/martel.meyers
+scp offline-libvirt.repo martel.meyers@192.168.160.195:/home/martel.meyers
+scp offline-virt-viewer.repo martel.meyers@192.168.160.195:/home/martel.meyers
+###CDC Root32:
+cp /home/martel.meyers/offline-libvirt.repo /etc/yum.repos.d/
+cp /home/martel.meyers/offline-virt-viewer.repo /etc/yum.repos.d/
+mkdir /repos
+tar -zxvf /home/martel.meyers/libvirt.tar.gz -C /repos
+tar -zxvf /home/martel.meyers/virt-viewer.tar.gz -C /repos
+yum --enablerepo=offline-libvirt install libvirt
+yum --enablerepo=offline-virt-viewer install virt-viewer
+
+[offline-libvirt]
+name=Oracle Linux-$releasever - libvirt
+baseurl=file:///repos/libvirt
+enabled=0
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-oracle
+
+[offline-virt-viewer]
+name=Oracle Linux-$releasever - virt-viewer
+baseurl=file:///repos/virt-viewer
+enabled=0
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-oracle
+
