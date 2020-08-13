@@ -21,6 +21,10 @@ iostat -xdm
 iostat -xdm -p sda
 sar -P ALL -f /var/log/sa/sa21
 
+systemctl get-default
+systemctl set-default multi-user.target
+systemctl set-default graphical.target
+
 ###==
 ####===
 --------= PERFORMANCE
