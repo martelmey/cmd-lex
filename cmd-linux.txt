@@ -51,6 +51,19 @@ sudo dmidecode -t 4 | egrep -i 'core (count|enabled)|thread count|Version'
 ####===
 ###==
 
+du -a /var | sort -n -r | head -n 10
+$ cd /path/to/some/where
+$ du -hsx * | sort -rh | head -10
+$ du -hsx -- * | sort -rh | head -10
+find /path/to/dir/ -printf '%s %p\n'| sort -nr | head -10
+find . -printf '%s %p\n'| sort -nr | head -10
+
+## shell alias ##  
+alias ducks='du -cks * | sort -rn | head'
+## deal with special files names ##
+alias ducks='du -cks -- * | sort -rn | head'
+ducks
+
 df -Tha
 	--total
 	-h, --human-readable
