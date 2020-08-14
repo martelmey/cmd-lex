@@ -17,3 +17,6 @@ slmgr.vbs /sprt 1688
 /dli
 /dlv
 /ipk N69G4-B89J2-4G8F4-WWYCC-J464C
+
+netstat -rn
+route print

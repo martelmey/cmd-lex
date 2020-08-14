@@ -17,6 +17,19 @@ systemctl restart nfs-utils
 exportfs -s
 		 -arv
 
+ls --human-readable, -h
+	-L, --dereference
+	-R --recursive
+	-S (sort by size)
+	-lH, --dereference-command-line
+	--dereference-command-line-symlink-to-dir
+
+[root@kutlnpcmdb01 cmdbuild]# ls -l /etc/alternatives/java
+lrwxrwxrwx. 1 root root 37 Aug 14 14:05 /etc/alternatives/java -> /usr/java/jdk1.8.0_261-amd64/bin/java
+
+mkdir cmdbuild-resources
+unzip -d cmdbuild-resources
+
 ###==
 ####===
 --------= PERMITS
@@ -188,7 +201,9 @@ rpm -q, --query
 	-v, --verify
 	-i, --install
 	-U, upgrade
+
 yum list installed
+	search --showduplicates
 
 ###KDC:
 /var/OSimages/ol7_6_x86_64
