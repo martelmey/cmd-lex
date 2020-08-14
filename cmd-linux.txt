@@ -1,5 +1,24 @@
 ###==
 ####===
+--------= FS
+####===
+###==
+
+firewall-cmd --permanent --add-service=nfs
+firewall-cmd --permanent --add-service=rpc-bind
+firewall-cmd --permanent --add-service=mountd
+firewall-cmd --reload
+/export/ops-tools       192.168.60.192(rw,sync,no_all_squash,root_squash) >> /etc/exports
+/export/ops-tools       192.168.63.197(rw,sync,no_all_squash,root_squash) >> /etc/exports
+chown -R nobody: /export/ops-tools
+chmod -R 777 /export/ops-tools
+systemctl restart nfs-server
+systemctl restart nfs-utils
+exportfs -s
+		 -arv
+
+###==
+####===
 --------= PERMITS
 ####===
 ###==
@@ -118,6 +137,7 @@ brctl addbr
 	addif
 	delif
 
+ip ro change default via 192.168.63.254 dev br0
 ip ro add default via 192.168.160.254 dev br0
 ip ro add 192.168.60.0/24 via 192.168.160.254 dev br0
 	  del
