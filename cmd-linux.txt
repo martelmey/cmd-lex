@@ -118,6 +118,9 @@ cat /proc/pci
 hwinfo --netcard --short
 uuidgen eth0
 
+lspci | grep -i vga
+lspci -s 01:00.0 -v
+
 ###==
 ####===
 --------= LIBVIRT
