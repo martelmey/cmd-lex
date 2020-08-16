@@ -1,0 +1,7 @@
+https://wireless.wiki.kernel.org/en/users/documentation/wpa_supplicant
+
+https://wireless.wiki.kernel.org/en/developers/documentation/nl80211
+
+https://wireless.wiki.kernel.org/en/users/documentation/iw
+
+https://www.shellvoide.com/wifi/setup-wireless-access-point-hostapd-dnsmasq-linux/
