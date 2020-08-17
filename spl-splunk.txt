@@ -11,6 +11,11 @@ counter=
 
 metadata type=sourcetypes index=* OR index=_*
 
+###to view all hosts :
+
+index="os_evt_ps"
+| chart count by host
+
 ###to view all sources : 
 
 index= 
