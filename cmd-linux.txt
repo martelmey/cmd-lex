@@ -4,6 +4,13 @@
 ####===
 ###==
 
+fdisk -l
+dd if=kali-linux-2020.2-installer-amd64.iso of=/dev/sdb bs=4M status=progress
+
+md5sum
+sha1sum
+sha256sum <file>
+
 firewall-cmd --permanent --add-service=nfs
 firewall-cmd --permanent --add-service=rpc-bind
 firewall-cmd --permanent --add-service=mountd
@@ -117,6 +124,9 @@ lspci -tv
 cat /proc/pci
 hwinfo --netcard --short
 uuidgen eth0
+
+lspci | grep -i vga
+lspci -s 01:00.0 -v
 
 ###==
 ####===

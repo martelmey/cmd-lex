@@ -1,0 +1,15 @@
+https://wireless.wiki.kernel.org/en/users/documentation/wpa_supplicant
+http://w1.fi/wpa_supplicant/
+
+https://wireless.wiki.kernel.org/en/developers/documentation/nl80211
+
+https://wireless.wiki.kernel.org/en/users/documentation/iw
+
+https://www.shellvoide.com/wifi/setup-wireless-access-point-hostapd-dnsmasq-linux/
+
+http://ict.siit.tu.ac.th/help/iw
+
+https://kali.training/topic/configuring-the-network/
+https://support.qacafe.com/knowledge-base/how-do-i-prevent-network-manager-from-controlling-an-interface/
+
+https://www.kali.org/docs/usb/kali-linux-live-usb-install-linux/

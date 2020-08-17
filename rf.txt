@@ -1,3 +1,15 @@
+===firmware updates
+
+dfu-util --device 1fc9:000c --download hackrf_usb.dfu --reset
+
+cd /root/mayhem_v1.1.1_FIRMWARE
+
+hackrf_spiflash -w portapack-h1_h2-mayhem.bin
+
+cd /root/portapack-h1-firmware-20190405
+
+hackrf_spiflash -w portapack-h1-firmware.bin
+
 ====FM/AM stations:
 CIOC-FM
 98.5 MHz FM
@@ -75,15 +87,3 @@ gap of 1 unit
 2.) modulation
 3.) data rate
 2450 time units per second
-
-===firmware updates
-
-dfu-util --device 1fc9:000c --download hackrf_usb.dfu --reset
-
-cd /root/mayhem_v1.1.1_FIRMWARE
-
-hackrf_spiflash -w portapack-h1_h2-mayhem.bin
-
-cd /root/portapack-h1-firmware-20190405
-
-hackrf_spiflash -w portapack-h1-firmware.bin
