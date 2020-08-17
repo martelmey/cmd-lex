@@ -11,3 +11,5 @@ http://ict.siit.tu.ac.th/help/iw
 
 https://kali.training/topic/configuring-the-network/
 https://support.qacafe.com/knowledge-base/how-do-i-prevent-network-manager-from-controlling-an-interface/
+
+https://www.kali.org/docs/usb/kali-linux-live-usb-install-linux/
