@@ -20,3 +20,6 @@ firmware-bnx2
 firmware-bnx2x
 broadcom-sta-common
 broadcom-sta-dkms
+dnsmasq
+hostapd
+iw

@@ -5,7 +5,7 @@
 ###==
 
 fdisk -l
-dd if=kali-linux-2020.2-installer-amd64.iso of=/dev/sdb bs=4M status=progress
+dd if=kali-linux-2020.2-live-amd64.iso of=/dev/sdb bs=4M status=progress
 
 md5sum
 sha1sum
@@ -90,7 +90,7 @@ sudo dmidecode -t 4 | egrep -i 'core (count|enabled)|thread count|Version'
 ####===
 ###==
 
-du -a /var | sort -n -r | head -n 10
+du -a / | sort -n -r | head -n 10
 $ cd /path/to/some/where
 $ du -hsx * | sort -rh | head -10
 $ du -hsx -- * | sort -rh | head -10
