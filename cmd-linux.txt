@@ -4,6 +4,8 @@
 ####===
 ###==
 
+ln -s /usr/pgsql-9.5/bin psql95
+
 fdisk -l
 dd if=kali-linux-2020.2-live-amd64.iso of=/dev/sdb bs=4M status=progress
 
@@ -21,6 +23,7 @@ chown -R nobody: /export/ops-tools
 chmod -R 777 /export/ops-tools
 systemctl restart nfs-server
 systemctl restart nfs-utils
+systemctl show postgresql-9.5
 exportfs -s
 		 -arv
 
@@ -47,6 +50,17 @@ usermod -G a,b,c splunk
 id  -u
 	-G
 hostnamectl set-hostname cutlprdtsc01
+
+env JAVA_HOME=/.../.../ tomcat.sh --options
+printenv JAVA_HOME, CATALINA_HOME/BASE (will not show shell vars)
+setenv
+set (shows env & shell vars, & shell functions) | less
+export JAVA_HOME="/.../.../"
+export -n JAVA_HOME (convert back to shell var from env. var)
+unset JAVA_HOME (completely unset shell & env vars)
+
+/etc/environment (system-wide env. vars)
+/etc/profile (vars loaded when a bash login shell is entered)
 
 ###==
 ####===
@@ -103,6 +117,8 @@ alias ducks='du -cks * | sort -rn | head'
 alias ducks='du -cks -- * | sort -rn | head'
 ducks
 
+true >| ./thefile.trc
+
 df -Tha
 	--total
 	-h, --human-readable
@@ -116,9 +132,14 @@ sudo dmesg
 sudo dmesg | more
 sudo fdisk -l /dev/sdb
 sudo lsblk
+
 df -HT
 df -HT | grep /backup1
 df -HT | grep /dev/sdb1
+df -h
+df -l (local only)
+df -t (full w/ totals)
+
 sudo file -s /dev/sdb*
 lspci -tv
 cat /proc/pci
@@ -158,6 +179,9 @@ lscpu | grep Virtualization
 
 lsof -i -P -n | grep LISTEN
 lsof -i:22 ## see a specific port such as 22 ##
+ss -lntu
+
+telnet 192.168.63.234:8080
 
 nmap -sTU -O IP-address-Here
 nmcli device status

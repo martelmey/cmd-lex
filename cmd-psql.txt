@@ -1,0 +1,73 @@
+:: Alter role
+https://www.postgresql.org/docs/9.5/sql-alterrole.html
+:: Roles & attributes
+https://www.postgresql.org/docs/9.5/role-attributes.html
+:: List dbs & tables
+https://chartio.com/resources/tutorials/how-to-list-databases-and-tables-in-postgresql-using-psql/
+:: Create database
+https://www.postgresql.org/docs/9.0/sql-createdatabase.html
+:: Client Authentication
+https://www.postgresql.org/docs/9.5/client-authentication.html
+https://www.postgresql.org/docs/9.5/client-authentication-problems.html
+https://stackoverflow.com/questions/18664074/getting-error-peer-authentication-failed-for-user-postgres-when-trying-to-ge
+:: Allow remote
+https://blog.bigbinary.com/2016/01/23/configure-postgresql-to-allow-remote-connection.html
+:: General PGSQL
+https://www.postgresqltutorial.com/psql-commands/
+
+PGHOST=localhost
+PGPORT=5432
+PGSETUP_INITDB_OPTIONS
+
+/usr/local/pgsql/bin/createdb <name>
+createuser martel.meyers
+dropuser
+
+SELECT rolname FROM pg_roles;
+CREATE ROLE name;
+DROP ROLE name;
+\list \l (list databases)
+\du (list roles & their attributes)
+\c \connect
+\dt (listing tables)
+\q (quit)
+\conninfo
+
+sudo netstat -plunt |grep postgres
+sudo netstat -plunt |grep postmaster
+
+ALTER ROLE martel.meyers RENAME TO mmeyers;
+ALTER ROLE mmeyers WITH CREATEDB;
+ALTER ROLE mmeyers WITH CREATEROLE;
+ALTER ROLE mmeyers WITH LOGIN;
+ALTER ROLE mmeyers WITH PASSWORD 'hialplis_N95';
+
+CREATE DATABASE cmdbuild
+WITH OWNER cmdbuild
+ENCODING UTF8
+LC_COLLATE 'en_US.UTF-8'
+LC_CTYPE 'en_US.UTF-8';
+
+psql --dbname=cmdbuild --username=cmdbuild
+
+SELECT *
+FROM pg_settings
+WHERE name = 'port';
+
+show data_directory;
+show all;
+show hba_file;
+show ident_file;
+show listen_addresses;
+show log_directory;
+show log_filename;
+show server_encoding;
+show port;
+show server_version;
+
+local	cmdbuild	cmdbuild	trust
+
+./postgresql95-setup
+					initdb
+					check_upgrade
+					upgrade
