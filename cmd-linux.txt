@@ -47,6 +47,7 @@ unzip -d cmdbuild-resources
 ###==
 
 usermod -G a,b,c splunk
+		-d /home/postgres
 id  -u
 	-G
 hostnamectl set-hostname cutlprdtsc01

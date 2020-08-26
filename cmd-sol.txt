@@ -66,6 +66,12 @@ find /opt -name 'collectd' -print
 more /var/adm/messages
 dmesg
 
+zfs list [-rH|-d max][-o property[,...]] [-t type[,...]] [-I state,..]
+[-s property] ... [-S property] ...
+[filesystem|volume|snapshot|share|path] ...
+
+zfs list -r rpool/
+
 ###==
 ####===
 --------= PROCESSES

@@ -1,3 +1,6 @@
+https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.localaccounts/add-localgroupmember?view=powershell-5.1#examples
+https://docs.microsoft.com/en-us/powershell/scripting/learn/deep-dives/everything-about-arrays?view=powershell-7
+
 Get-FileHash <filepath> -Algorithm MD5
 net stop sppsvc && net start sppsvc
 
@@ -20,3 +23,6 @@ slmgr.vbs /sprt 1688
 
 netstat -rn
 route print
+
+New-LocalUser -Name "" -Password "" -FullName "" -AccountNeverExpires -PasswordNeverExpires (-WhatIf)
+Add-LocalGroupMember -Group "Remote Desktop Users" -Member "","",""
