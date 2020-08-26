@@ -1,3 +1,19 @@
+https://linuxhint.com/bash_operator_examples
+
+###==
+####===
+--------= 
+####===
+###==
+
+2>&1
+send stderr to (&=file descriptor) stdout
+-gt (greater than)
+$# (no. of arguments)
+-n string is not null
+-z string is null, has zero length
+-s file size is greater than zero
+
 ###==
 ####===
 --------= FS

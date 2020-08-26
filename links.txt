@@ -25,3 +25,5 @@ https://registry.terraform.io/providers/hashicorp/aws/latest/docs
 https://gitlab.com/kalilinux/recipes/kali-preseed-examples
 
 https://linoxide.com/linux-how-to/how-to-set-environment-variables-in-linux
+
+https://www.cyberciti.biz/faq/bash-while-loop/
