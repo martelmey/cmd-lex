@@ -72,6 +72,14 @@ zfs list [-rH|-d max][-o property[,...]] [-t type[,...]] [-I state,..]
 
 zfs list -r rpool/
 
+format (list physical disks)
+
+df -g (print entire statvfs)
+df -h (print allocation)
+df -l (show local only)
+df -n (print only FSType name)
+df -t (full listing w/ totals)
+
 ###==
 ####===
 --------= PROCESSES

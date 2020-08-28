@@ -156,6 +156,8 @@ df -HT | grep /dev/sdb1
 df -h
 df -l (local only)
 df -t (full w/ totals)
+df -n (only FSType name)
+df -T, --print-type (print fs type)
 
 sudo file -s /dev/sdb*
 lspci -tv
