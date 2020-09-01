@@ -13,6 +13,7 @@ $# (no. of arguments)
 -n string is not null
 -z string is null, has zero length
 -s file size is greater than zero
+-a AND && within 2 or more conditions
 
 ###==
 ####===

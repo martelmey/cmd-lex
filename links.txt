@@ -27,3 +27,7 @@ https://gitlab.com/kalilinux/recipes/kali-preseed-examples
 https://linoxide.com/linux-how-to/how-to-set-environment-variables-in-linux
 
 https://www.cyberciti.biz/faq/bash-while-loop/
+
+https://ostechnix.com/find-oldest-file-directory-tree-linux/
+
+https://linuxhint.com/bash_operator_examples/#o54
