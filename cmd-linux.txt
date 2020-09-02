@@ -178,12 +178,14 @@ lspci -s 01:00.0 -v
 qemu-img resize /vms/kutlprdsplunk01 +40G
 virsh blockresize kutlprdsplunk01 /vms/kutlprdsplunk01 80G
 lsblk
-qemu-img info
+qemu-img
+	qemuinfo
 	snapshot
 		-a applies
 		-c creates
 		-d deletes
 		-l lists
+	check
 virsh # vol-info kutlprdsplunk01 --pool vms
 
 virsh undefine

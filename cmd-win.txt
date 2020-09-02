@@ -21,8 +21,13 @@ slmgr.vbs /sprt 1688
 /dlv
 /ipk N69G4-B89J2-4G8F4-WWYCC-J464C
 
+shutdown /s
+
 netstat -rn
 route print
+New-NetRoute -DestinationPrefix "192.168.61.0/24" -InterfaceAlias Ethernet -NextHop 192.168.61.254
+route ADD 192.168.61.0 MASK 255.255.255.0 192.168.61.254
+route DELETE 192.168.61.0
 
 New-LocalUser -Name "" -Password "" -FullName "" -AccountNeverExpires -PasswordNeverExpires (-WhatIf)
 Add-LocalGroupMember -Group "Remote Desktop Users" -Member "","",""
