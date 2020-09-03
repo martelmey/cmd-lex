@@ -1,11 +1,60 @@
 https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.localaccounts/add-localgroupmember?view=powershell-5.1#examples
 https://docs.microsoft.com/en-us/powershell/scripting/learn/deep-dives/everything-about-arrays?view=powershell-7
 
+###==
+####===
+--------= fileprops
+####===
+###==
+
 Get-FileHash <filepath> -Algorithm MD5
+
+###==
+####===
+--------= sysops
+####===
+###==
+
+shutdown /s
+
+New-LocalUser -Name "" -Password "" -FullName "" -AccountNeverExpires -PasswordNeverExpires (-WhatIf)
+Add-LocalGroupMember -Group "Remote Desktop Users" -Member "","",""
+Add-Computer -WorkGroupName MyWorkGroup
+
+query user
+
+Install-WindowsFeature IncludeManagementTools
+Add-WindowsCapability -Online -Name OpenSSH.Server~~~~0.0.1.0
+
+Start-Service sshd
+Set-Service -Name sshd -StartupType 'Automatic'
+Restart-Service
+
+Get-WmiObject Win32_ComputerSystem
+(Get-WmiObject Win32_ComputerSystem).Name
+(Get-WmiObject Win32_ComputerSystem).Domain
+
+###==
+####===
+--------= net
+####===
+###==
+
 net stop sppsvc && net start sppsvc
 
-DISM /Online /Set-Edition:ServerStandard /ProductKey:CBMKB-NXX43-DJQBY-VDX7W-GVMMQ /AcceptEula
+netstat -rn
+route print
+New-NetRoute -DestinationPrefix "192.168.61.0/24" -InterfaceAlias Ethernet -NextHop 192.168.61.254
+route ADD 192.168.61.0 MASK 255.255.255.0 192.168.61.254
+route DELETE 192.168.61.0
 
+###==
+####===
+--------= licensing
+####===
+###==
+
+DISM /Online /Set-Edition:ServerStandard /ProductKey:CBMKB-NXX43-DJQBY-VDX7W-GVMMQ /AcceptEula
 DISM /Online /Set-Edition:ServerStandard /ProductKey:N69G4-B89J2-4G8F4-WWYCC-J464C /AcceptEula
 
 slmgr.vbs /sprt 1688
@@ -20,27 +69,3 @@ slmgr.vbs /sprt 1688
 /dli
 /dlv
 /ipk N69G4-B89J2-4G8F4-WWYCC-J464C
-
-shutdown /s
-
-netstat -rn
-route print
-New-NetRoute -DestinationPrefix "192.168.61.0/24" -InterfaceAlias Ethernet -NextHop 192.168.61.254
-route ADD 192.168.61.0 MASK 255.255.255.0 192.168.61.254
-route DELETE 192.168.61.0
-
-New-LocalUser -Name "" -Password "" -FullName "" -AccountNeverExpires -PasswordNeverExpires (-WhatIf)
-Add-LocalGroupMember -Group "Remote Desktop Users" -Member "","",""
-Add-Computer -WorkGroupName MyWorkGroup
-
-query user
-
-Install-WindowsFeature IncludeManagementTools
-Add-WindowsCapability -Online -Name OpenSSH.Server~~~~0.0.1.0
-Start-Service sshd
-Set-Service -Name sshd -StartupType 'Automatic'
-Restart-Service
-
-Get-WmiObject Win32_ComputerSystem
-(Get-WmiObject Win32_ComputerSystem).Name
-(Get-WmiObject Win32_ComputerSystem).Domain

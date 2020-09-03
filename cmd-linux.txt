@@ -22,6 +22,7 @@ $# (no. of arguments)
 ###==
 
 ln -s /usr/pgsql-9.5/bin psql95
+unlink expanions
 
 fdisk -l
 dd if=kali-linux-2020.2-live-amd64.iso of=/dev/sdb bs=4M status=progress
@@ -186,6 +187,8 @@ qemu-img
 		-d deletes
 		-l lists
 	check
+	create
+		
 virsh # vol-info kutlprdsplunk01 --pool vms
 
 virsh undefine
