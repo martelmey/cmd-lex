@@ -54,6 +54,12 @@ route ADD 192.168.61.0 MASK 255.255.255.0 192.168.61.254
 route DELETE 192.168.61.0
 
 Resolve-DnsName 10.0.10.28
+Resolve-DnsName  _ldap._tcp.dc._msdcs.kdcwin.local
+
+Get-DnsClient
+Get-DnsClientCache
+Get-DnsClientGlobalSetting
+{*} Get-DnsClientServerAddress
 
 New-NetIPAddress –InterfaceAlias “Ethernet”\
  –IPAddress “192.168.60.192” \

@@ -81,6 +81,8 @@ unset JAVA_HOME (completely unset shell & env vars)
 /etc/environment (system-wide env. vars)
 /etc/profile (vars loaded when a bash login shell is entered)
 
+sudo cat /etc/nslcd.conf (ldap check)
+
 ###==
 ####===
 --------= PROCESSES
