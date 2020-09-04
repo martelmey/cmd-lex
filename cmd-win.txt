@@ -17,8 +17,11 @@ Get-FileHash <filepath> -Algorithm MD5
 
 shutdown /s
 
+get-command *dns*
+
 New-LocalUser -Name "" -Password "" -FullName "" -AccountNeverExpires -PasswordNeverExpires (-WhatIf)
 Add-LocalGroupMember -Group "Remote Desktop Users" -Member "","",""
+
 Add-Computer -WorkGroupName MyWorkGroup
 
 query user
@@ -45,8 +48,22 @@ net stop sppsvc && net start sppsvc
 netstat -rn
 route print
 New-NetRoute -DestinationPrefix "192.168.61.0/24" -InterfaceAlias Ethernet -NextHop 192.168.61.254
+
 route ADD 192.168.61.0 MASK 255.255.255.0 192.168.61.254
+	-p (persistent)
 route DELETE 192.168.61.0
+
+Resolve-DnsName 10.0.10.28
+
+New-NetIPAddress –InterfaceAlias “Ethernet”\
+ –IPAddress “192.168.60.192” \
+ –PrefixLength 24 \
+ -DefaultGateway 192.168.60.254
+
+winrm e winrm/config/listener
+
+gpupdate /force
+	/Sync
 
 ###==
 ####===
