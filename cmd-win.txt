@@ -1,5 +1,9 @@
+PS Add-LocalGroupMember
 https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.localaccounts/add-localgroupmember?view=powershell-5.1#examples
+PS Arrays
 https://docs.microsoft.com/en-us/powershell/scripting/learn/deep-dives/everything-about-arrays?view=powershell-7
+PS Set-Item
+https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/set-item?view=powershell-7
 
 ###==
 ####===
@@ -37,6 +41,50 @@ Get-WmiObject Win32_ComputerSystem
 (Get-WmiObject Win32_ComputerSystem).Name
 (Get-WmiObject Win32_ComputerSystem).Domain
 
+get-winevent -listlog *winrm* | % {wevtutil.exe cl $_.LogName} (dump log)
+Get-WinEvent -ListLog *winrm* | % {echo y | wevtutil.exe sl $_.LogName /e:true}
+Get-WinEvent -ListLog *winrm*  | fl *
+Get-EventLog -list
+Get-WinEvent -ListLog * | where {$_.RecordCount -gt 0}
+Get-EventLog application -newest 1 | Get-Member (filter)
+Get-EventLog security -newest 1 | Get-Member
+Get-EventLog system -newest 1 | Get-Member
+
+Microsoft-Windows-WinRM/Operational
+Windows Logs:
+Security
+	Audit Success
+		Logon
+		Logoff
+		Special Logon
+		System Integrity
+		Other System Events
+		Security Group Management
+		Credential Validation
+
+Applications and Services Logs
+	Microsoft
+		Windows
+			Windows Remote Management
+
+wevutil
+	cl clear-log
+	el enum-logs (display names of all logs)
+	gl get-log (display config info)
+	sl set-log (modify log config)
+	qe query-events
+		/lf:<logfile>
+		/sq:<Structquery>
+		/q:<Query>
+	epl export-log
+
+	/f:<Format>XML/Text
+	/e:<Enabled>
+	/c:<Count> (max evts to read)
+	/rd:<Direction> true=most recent returned first
+
+wevtutil qe Application /c:3 /rd:true /f:text
+
 ###==
 ####===
 --------= net
@@ -66,7 +114,33 @@ New-NetIPAddress –InterfaceAlias “Ethernet”\
  –PrefixLength 24 \
  -DefaultGateway 192.168.60.254
 
-winrm e winrm/config/listener
+winrm g (retrieve info)
+		winrm/config
+		winrm/client
+		winrm/service
+		winrm/service/allowunencrypted
+	  s (set info)
+	  	winrm/config/client/auth @{Basic="true"}
+	  	winrm/config/service/auth @{Basic="true"}
+	  c (create new instance of mgmt resources)
+	  	winrm/config/listener?Address=*+Transport=HTTP
+	  d (delete an instance)
+	  e (list all instances of mgmt resource)
+	  	winrm/config/resource
+	  	winrm/config/listener
+	  		*
+	  		IP:192.168.60.201
+	  		MAC:...
+	  		HTTP:5985
+	  	winrm/config/plugin
+	  	winrm/config/service/certmapping
+	  i (execute method on a mgmt resource)
+	  id (is a ws-mgmt implementation running on a remote machine)
+	  quickconfig (quickly allow mgmt from other machines)
+
+Get-Item WSMan:\localhost\Client\TrustedHosts
+Set-Item WSMan:\localhost\Client\TrustedHosts -Value '<ComputerName>,'
+Set-Item WSMan:\localhost\Client\TrustedHosts -Value '10.10.10.1,'
 
 gpupdate /force
 	/Sync
