@@ -15,31 +15,26 @@ Get-FileHash <filepath> -Algorithm MD5
 
 ###==
 ####===
---------= sysops
+--------= users
 ####===
 ###==
-
-shutdown /s
-
-get-command *dns*
 
 New-LocalUser -Name "" -Password "" -FullName "" -AccountNeverExpires -PasswordNeverExpires (-WhatIf)
 Add-LocalGroupMember -Group "Remote Desktop Users" -Member "","",""
 
-Add-Computer -WorkGroupName MyWorkGroup
+$Password = Read-Host -AsSecureString
+$UserAccount = Get-LocalUser -Name "emmanuel.comia"
+$UserAccount | Set-LocalUser -Password $Password
+
+get-localgroupmember -group "Remote Desktop Users"
 
 query user
 
-Install-WindowsFeature IncludeManagementTools
-Add-WindowsCapability -Online -Name OpenSSH.Server~~~~0.0.1.0
-
-Start-Service sshd
-Set-Service -Name sshd -StartupType 'Automatic'
-Restart-Service
-
-Get-WmiObject Win32_ComputerSystem
-(Get-WmiObject Win32_ComputerSystem).Name
-(Get-WmiObject Win32_ComputerSystem).Domain
+###==
+####===
+--------= events
+####===
+###==
 
 get-winevent -listlog *winrm* | % {wevtutil.exe cl $_.LogName} (dump log)
 Get-WinEvent -ListLog *winrm* | % {echo y | wevtutil.exe sl $_.LogName /e:true}
@@ -84,6 +79,49 @@ wevutil
 	/rd:<Direction> true=most recent returned first
 
 wevtutil qe Application /c:3 /rd:true /f:text
+
+###==
+####===
+--------= services
+####===
+###==
+
+get-service -name "WinRM"
+
+Start-Service sshd
+Set-Service -Name sshd -StartupType 'Automatic'
+Restart-Service
+
+###==
+####===
+--------= registry
+####===
+###==
+
+HKLM (HKEY_LOCAL_MACHINE)
+HKCU (HKEY_CURRENT_USER)
+
+Set-ItemProperty -Path HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters -Name 'NV Domain' -Value srv.domain.com
+Set-ItemProperty -Path HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters -Name SyncDomainWithMembership -Value 0
+
+###==
+####===
+--------= sysops
+####===
+###==
+
+shutdown /s
+
+get-command *dns*
+
+Add-Computer -WorkGroupName MyWorkGroup
+
+Install-WindowsFeature IncludeManagementTools
+Add-WindowsCapability -Online -Name OpenSSH.Server~~~~0.0.1.0
+
+Get-WmiObject Win32_ComputerSystem
+(Get-WmiObject Win32_ComputerSystem).Name
+(Get-WmiObject Win32_ComputerSystem).Domain
 
 ###==
 ####===
@@ -141,6 +179,7 @@ winrm g (retrieve info)
 Get-Item WSMan:\localhost\Client\TrustedHosts
 Set-Item WSMan:\localhost\Client\TrustedHosts -Value '<ComputerName>,'
 Set-Item WSMan:\localhost\Client\TrustedHosts -Value '10.10.10.1,'
+Get-Item wsman:\localhost\Service\RootSDDL
 
 gpupdate /force
 	/Sync
