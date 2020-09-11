@@ -1,0 +1,25 @@
+====replay: 60-4148 Street Comber
+ISC: RSS-210
+Industry Canada Radio Equipment Certification
+
+27 MHz
+27147000khz
+433000000 (example)
+(int(1.0/0.000550)) (example)
+
+Reverse:
+(111)010101010101010(111)
+(111)0 : 1010 : 1010 :1010 : 10(111)
+(11)01 : 0101 : 0101 : 0101 : 0111
+{1101:0101}:{0101:0101}:0111
+{1101}{0101}{0101}{0101}0111
+{1010}{1010}{1010}{1010} = aa
+Drate:
+(int(1.0/0.00047))
+("\xAA\xAA\xAA\xAA\xAA\xAA\xAA\xAA\x00\x00\x00" * 40)
+
+Forward:
+
+===info: RadioShack RC cars
+60-0xxxx (model, ie. 4148)
+AAO-600xxx

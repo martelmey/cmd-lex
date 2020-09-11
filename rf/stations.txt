@@ -1,0 +1,17 @@
+====FM/AM stations:
+CIOC-FM
+98.5 MHz FM
+98500.00 kHz
+hardware_freq: 95.178000 MHz
+
+CJZN-FM
+91.3 MHz FM
+91300.00 kHz
+hardware_freq: 87.978000 MHz
+
+CKKQ-FM
+100.3 MHz FM : 94.7 MHz FM (Sooke)
+100300.000 kHz
+hardware_freq: 97.677000 MHz
+
+CFAX-AM

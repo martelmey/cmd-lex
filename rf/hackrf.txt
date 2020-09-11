@@ -1,0 +1,11 @@
+===firmware updates
+
+dfu-util --device 1fc9:000c --download hackrf_usb.dfu --reset
+
+cd /root/mayhem_v1.1.1_FIRMWARE
+
+hackrf_spiflash -w portapack-h1_h2-mayhem.bin
+
+cd /root/portapack-h1-firmware-20190405
+
+hackrf_spiflash -w portapack-h1-firmware.bin
