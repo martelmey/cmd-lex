@@ -82,6 +82,9 @@ unzip -d cmdbuild-resources
 ####===
 ###==
 
+getfacl -e /home/murlock
+setfacl -m u:libvirt-qemu:rx /home/murlock
+
 usermod -G a,b,c splunk
 		-d /home/postgres
 id  -u
