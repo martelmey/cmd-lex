@@ -110,6 +110,10 @@ Set-ItemProperty -Path HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters 
 ####===
 ###==
 
+Set-ItemProperty -Path HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters -Name 'NV Domain' -Value cdc.health.local
+Set-ItemProperty -Path HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters -Name SyncDomainWithMembership -Value 0
+Rename-Computer -NewName "cutlprdsolsql01" -Restart
+
 shutdown /s
 
 get-command *dns*
@@ -118,6 +122,8 @@ Add-Computer -WorkGroupName MyWorkGroup
 
 Install-WindowsFeature IncludeManagementTools
 Add-WindowsCapability -Online -Name OpenSSH.Server~~~~0.0.1.0
+Get-WindowsFeature
+Get-WindowsCapability -Online | ? Name -like 'OpenSSH*'
 
 Get-WmiObject Win32_ComputerSystem
 (Get-WmiObject Win32_ComputerSystem).Name

@@ -49,10 +49,6 @@ md5sum
 sha1sum
 sha256sum <file>
 
-firewall-cmd --permanent --add-service=nfs
-firewall-cmd --permanent --add-service=rpc-bind
-firewall-cmd --permanent --add-service=mountd
-firewall-cmd --reload
 /export/ops-tools       192.168.60.192(rw,sync,no_all_squash,root_squash) >> /etc/exports
 /export/ops-tools       192.168.63.197(rw,sync,no_all_squash,root_squash) >> /etc/exports
 chown -R nobody: /export/ops-tools
@@ -240,6 +236,18 @@ ifdown em1
 ifup em
 
 firewall-cmd --list-all
+firewall-cmd --list-all-zones
+firewall-cmd --get-default-zone
+firewall-cmd --list-services
+firewall-cmd --list-ports
+
+firewall-cmd --zone=public --list-services/ports
+
+firewall-cmd --permanent --zone=public --add-service=nfs
+firewall-cmd --permanent --add-service=rpc-bind
+firewall-cmd --permanent --add-service=mountd
+firewall-cmd --permanent --add-port=8008/tcp
+firewall-cmd --reload
 
 brctl addbr
 	addif
@@ -329,6 +337,16 @@ repoclosure --repoid=offline-libvirt
 repoclosure --repoid=offline-virt-viewer
 
 reposync -g -l -n -a x86_64 -r ol7_x86_64_latest --download_path=/root/reposync -m --download-metadata
+reposync \
+--arch=x86_64 \
+--repoid=ol7_x86_64_latest \
+--cachedir=/root/yumrepo/yumcache \
+--download_path=/root/yumrepo \
+--gpgcheck \
+--plugins \
+--downloadcomps \
+--download-metadata \
+--newest-only 
 
 createrepo --database /root/virt-viewer
 
