@@ -39,3 +39,6 @@ https://itp.nyu.edu/physcomp/lessons/electronics/
 https://itp.nyu.edu/physcomp/lessons/sensors-the-basics/
 https://itp.nyu.edu/physcomp/lessons/serial-communication/
 https://itp.nyu.edu/physcomp/lessons/dc-motors/
+
+Sound
+arduino.cc/frequencies
