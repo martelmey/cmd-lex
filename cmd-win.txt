@@ -12,6 +12,8 @@ https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.manageme
 ###==
 
 Get-FileHash <filepath> -Algorithm MD5
+Expand-Archive -LiteralPath <PathToZipFile> -DestinationPath <PathToDestination>
+Compress-Archive -Path C:\path\to\file\* -DestinationPath C:\path\to\archive.zip
 
 ###==
 ####===
@@ -114,6 +116,28 @@ Set-ItemProperty -Path HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters 
 Set-ItemProperty -Path HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters -Name SyncDomainWithMembership -Value 0
 Rename-Computer -NewName "cutlprdsolsql01" -Restart
 
+Get-PSProvider -PSProvider Environment
+Get-ChildItem -Path Env:\
+Get-ChildItem -Path Env:\Path
+Set-Location -Path Env:\
+Get-ChildItem -Path COMPUTERNAME
+[System.Environment]::GetEnvironmentVariable('PATH','machine')
+$ENV:PATH="$ENV:PATH;c:\path\to\folder"
+Get-ItemProperty -Path 'Registry::HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\Environment' -Name PATH 
+(Get-ItemProperty -Path 'Registry::HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\Environment' -Name PATH).path
+$oldpath = (Get-ItemProperty -Path 'Registry::HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\Environment' -Name PATH).path
+$newpath = “$oldpath;C:\apache-maven-3.6.1\bin”
+Set-ItemProperty -Path 'Registry::HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\Environment' -Name PATH -Value $newPath
+
+function set-shortcut {
+param ( [string]$SourceLnk, [string]$DestinationPath )
+    $WshShell = New-Object -comObject WScript.Shell
+    $Shortcut = $WshShell.CreateShortcut($SourceLnk)
+    $Shortcut.TargetPath = $DestinationPath
+    $Shortcut.Save()
+    }
+set-shortcut "\\Where_This_Shortcut_is_Placed\Shortcut_Name.lnk" "\\Destination_Of_this_shortcut\app.exe"
+
 shutdown /s
 
 get-command *dns*
@@ -152,6 +176,8 @@ Get-DnsClient
 Get-DnsClientCache
 Get-DnsClientGlobalSetting
 {*} Get-DnsClientServerAddress
+Set-DnsClientServerAddress -InterfaceAlias "Ethernet" -ServerAddresses ("10.0.0.1","10.0.0.2")
+Set-DnsClientServerAddress -InterfaceIndex 12 -ServerAddresses ("10.0.0.1","10.0.0.2")
 
 New-NetIPAddress –InterfaceAlias “Ethernet”\
  –IPAddress “192.168.60.192” \
