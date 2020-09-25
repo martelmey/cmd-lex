@@ -1,44 +1,93 @@
-Code ref.
-https://www.arduino.cc/reference/en/
-https://www.arduino.cc/en/Reference/HomePage
-https://www.arduino.cc/en/Tutorial/Variables
-https://www.arduino.cc/en/Reference/FunctionDeclaration
-https://www.arduino.cc/en/Guide/Libraries
+RaspPi & Arduino {
+    Comparison
+        https://diyi0t.com/raspberry-pi-vs-arduino-comparison/
+    Serial communication
+        https://diyi0t.com/arduino-to-raspberry-pi-serial-communication/
+    Pi Headless
+        https://diyi0t.com/raspberry-pi-headless-setup-tutorial/
+}
 
-IDE ref.
-https://www.arduino.cc/en/Guide/Environment
+Projects {
+    Arduino Grove Greenhouse
+        https://www.instructables.com/id/Arduino-Grove-Greenhouse/
+    Seeed Grove Smart Plant Care Kit
+        https://www.seeedstudio.com/Grove-Smart-Plant-Care-Kit-for-Arduino.html
+}
 
-Libs
-https://www.arduino.cc/en/Reference/Libraries
-https://www.arduino.cc/en/Guide/Libraries
-https://www.arduino.cc/en/Hacking/LibraryTutorial
+Beginnner Seeed lessons {
+    https://wiki.seeedstudio.com/Grove-Beginner-Kit-For-Arduino/
+    Seeed
+        https://wiki.seeedstudio.com/
+        https://github.com/Seeed-Studio
+}
 
-Interfacing
-*** https://playground.arduino.cc/Main/InterfacingWithHardware/
-https://playground.arduino.cc/Main/InterfacingWithSoftware/
+Code ref. {
+    https://www.arduino.cc/reference/en/
+    https://www.arduino.cc/en/Reference/HomePage
+    https://www.arduino.cc/en/Tutorial/Variables
+    https://www.arduino.cc/en/Reference/FunctionDeclaration
+    https://www.arduino.cc/en/Guide/Libraries
+}
 
-Forums
-https://arduino.stackexchange.com/
+12C {
+    12C
+        https://wiki.seeedstudio.com/Arduino_Software_I2C_user_guide/
+    Arduino Software I2C
+        https://github.com/Seeed-Studio/Arduino_Software_I2C   
+}
 
-Shields
-https://playground.arduino.cc/Main/ArduinoCoreHardware/#Shields
-https://playground.arduino.cc/Main/ShieldPinUsage/
+IDE ref. {
+    https://www.arduino.cc/en/Guide/Environment 
+}
 
-Pins
-https://playground.arduino.cc/Main/ArduinoPinCurrentLimitations/
-https://www.arduino.cc/en/Tutorial/DigitalPins
-https://www.arduino.cc/en/Tutorial/AnalogInputPins
-https://www.arduino.cc/en/Tutorial/PWM
-https://www.arduino.cc/en/Tutorial/Memory
+Libs {
+    https://www.arduino.cc/en/Reference/Libraries
+    https://www.arduino.cc/en/Guide/Libraries
+    https://www.arduino.cc/en/Hacking/LibraryTutorial
+    u8g2
+        https://github.com/olikraus/u8g2
+    Grove LCD RGB Backlight
+        https://github.com/SeeedDocument/Grove_LCD_RGB_Backlight
+}
 
-Seeed
-https://wiki.seeedstudio.com/
+Grove Hardware {
+    OLED SSD1315
+        https://wiki.seeedstudio.com/Grove-OLED-Display-0.96-SSD1315/
+    LCD RGB Backlight
+        https://wiki.seeedstudio.com/Grove-LCD_RGB_Backlight/
+    SHT31
+        https://wiki.seeedstudio.com/Grove-TempAndHumi_Sensor-SHT31/
+}
 
-ITP electronics guides
-https://itp.nyu.edu/physcomp/lessons/electronics/
-https://itp.nyu.edu/physcomp/lessons/sensors-the-basics/
-https://itp.nyu.edu/physcomp/lessons/serial-communication/
-https://itp.nyu.edu/physcomp/lessons/dc-motors/
+Interfacing {
+    *** https://playground.arduino.cc/Main/InterfacingWithHardware/
+    https://playground.arduino.cc/Main/InterfacingWithSoftware/
+}
 
-Sound
-arduino.cc/frequencies
+Forums {
+    https://arduino.stackexchange.com/
+}
+
+Shields {
+    https://playground.arduino.cc/Main/ArduinoCoreHardware/#Shields
+    https://playground.arduino.cc/Main/ShieldPinUsage/
+}
+
+Pins {
+    https://playground.arduino.cc/Main/ArduinoPinCurrentLimitations/
+    https://www.arduino.cc/en/Tutorial/DigitalPins
+    https://www.arduino.cc/en/Tutorial/AnalogInputPins
+    https://www.arduino.cc/en/Tutorial/PWM
+    https://www.arduino.cc/en/Tutorial/Memory
+}
+
+ITP electronics guides {
+    https://itp.nyu.edu/physcomp/lessons/electronics/
+    https://itp.nyu.edu/physcomp/lessons/sensors-the-basics/
+    https://itp.nyu.edu/physcomp/lessons/serial-communication/
+    https://itp.nyu.edu/physcomp/lessons/dc-motors/
+}
+
+Sound {
+    arduino.cc/frequencies
+}
