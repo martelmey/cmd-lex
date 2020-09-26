@@ -5,6 +5,9 @@ RaspPi & Arduino {
         https://diyi0t.com/arduino-to-raspberry-pi-serial-communication/
     Pi Headless
         https://diyi0t.com/raspberry-pi-headless-setup-tutorial/
+    wpa_supplicant.conf
+        https://www.systutorials.com/docs/linux/man/5-wpa_supplicant.conf/
+        https://raspberrytips.com/raspberry-pi-wifi-setup/
 }
 
 Projects {

@@ -222,6 +222,13 @@ lscpu | grep Virtualization
 ####===
 ###==
 
+to disable iptables:
+iptables -F
+iptables -X
+iptables -P INPUT ACCEPT
+iptables -P OUTPUT ACCEPT
+iptables -P FORWARD ACCEPT
+
 lsof -i -P -n | grep LISTEN
 lsof -i:22 ## see a specific port such as 22 ##
 ss -lntu
