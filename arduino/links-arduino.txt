@@ -15,6 +15,8 @@ Projects {
         https://www.instructables.com/id/Arduino-Grove-Greenhouse/
     Seeed Grove Smart Plant Care Kit
         https://www.seeedstudio.com/Grove-Smart-Plant-Care-Kit-for-Arduino.html
+    TFT LCD Touch Screen
+        https://howtomechatronics.com/tutorials/arduino/arduino-tft-lcd-touch-screen-tutorial/
 }
 
 Beginnner Seeed lessons {
@@ -24,12 +26,27 @@ Beginnner Seeed lessons {
         https://github.com/Seeed-Studio
 }
 
+Python {
+    File write
+        https://www.w3schools.com/python/python_file_write.asp
+    pySerial
+        https://pythonhosted.org/pyserial/
+    datetime
+        https://www.tutorialspoint.com/How-to-print-current-date-and-time-using-Python
+    open
+        https://www.programiz.com/python-programming/methods/built-in/open
+    string matches
+        https://stackoverflow.com/questions/19300020/python-match-a-string-with-regex
+}
+
 Code ref. {
     https://www.arduino.cc/reference/en/
     https://www.arduino.cc/en/Reference/HomePage
     https://www.arduino.cc/en/Tutorial/Variables
     https://www.arduino.cc/en/Reference/FunctionDeclaration
     https://www.arduino.cc/en/Guide/Libraries
+    Color hex
+        https://www.color-hex.com/color/800080
 }
 
 12C {
@@ -62,9 +79,8 @@ Grove Hardware {
         https://wiki.seeedstudio.com/Grove-TempAndHumi_Sensor-SHT31/
 }
 
-Interfacing {
-    *** https://playground.arduino.cc/Main/InterfacingWithHardware/
-    https://playground.arduino.cc/Main/InterfacingWithSoftware/
+IoT Cxn {
+    https://blynk.io/en/getting-started
 }
 
 Forums {
