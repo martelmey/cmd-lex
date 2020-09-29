@@ -159,6 +159,9 @@ Get-WmiObject Win32_ComputerSystem
 ####===
 ###==
 
+Hosts file location:
+C:\Windows\System32\drivers\etc\
+
 net stop sppsvc && net start sppsvc
 
 netstat -rn
