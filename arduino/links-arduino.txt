@@ -79,6 +79,13 @@ Grove Hardware {
         https://wiki.seeedstudio.com/Grove-TempAndHumi_Sensor-SHT31/
 }
 
+Other hardware {
+    VTX 400
+        http://vortexpowerfans.com/vtx-400
+    Vicks humidifer
+        https://www.vickshumidifiers.com/vicks/shop/humidifiers/vicks-mini-filter-free-cool-mist-humidifier
+}
+
 IoT Cxn {
     https://blynk.io/en/getting-started
 }
