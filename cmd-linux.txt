@@ -238,6 +238,11 @@ iptables -X
 iptables -P INPUT ACCEPT
 iptables -P OUTPUT ACCEPT
 iptables -P FORWARD ACCEPT
+other iptables cmds:
+iptables -L -v -n
+iptables -L / -S (list ruleset)
+iptables -A INPUT -p tcp --dport 8000 -j ACCEPT
+netfilter-persistent save
 
 lsof -i -P -n | grep LISTEN
 lsof -i:22 ## see a specific port such as 22 ##

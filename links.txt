@@ -30,3 +30,6 @@ https://ostechnix.com/find-oldest-file-directory-tree-linux/
 
 LXC
 https://linuxcontainers.org/lxc/manpages/
+
+iptables
+https://www.digitalocean.com/community/tutorials/iptables-essentials-common-firewall-rules-and-commands
