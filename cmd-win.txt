@@ -112,6 +112,11 @@ Set-ItemProperty -Path HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters 
 ####===
 ###==
 
+Empty all recycle bins
+rd /s c:\$Recycle.Bin
+
+New-Item -ItemType SymbolicLink -Path "C:\Users\Public\Desktop" -Name "eclipse.lnk" -Value "C:\eclipse\jee-2020-092\eclipse\eclipse.exe"
+
 Set-ItemProperty -Path HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters -Name 'NV Domain' -Value cdc.health.local
 Set-ItemProperty -Path HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters -Name SyncDomainWithMembership -Value 0
 Rename-Computer -NewName "cutlprdsolsql01" -Restart
@@ -139,6 +144,7 @@ param ( [string]$SourceLnk, [string]$DestinationPath )
 set-shortcut "\\Where_This_Shortcut_is_Placed\Shortcut_Name.lnk" "\\Destination_Of_this_shortcut\app.exe"
 
 shutdown /s
+shutdown /l (logoff)
 
 get-command *dns*
 
