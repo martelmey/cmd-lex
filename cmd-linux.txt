@@ -2,6 +2,14 @@ https://linuxhint.com/bash_operator_examples
 
 ###==
 ####===
+--------= java
+####===
+###==
+
+jar -xvf *.war
+
+###==
+####===
 --------= python
 ####===
 ###==
@@ -28,6 +36,24 @@ ram total:
 free -g -t
 less /proc/meminfo
 vmstat -s
+
+find largest files in system:
+du -a /var | sort -n -r | head -n 10
+du -a / | sort -n -r | head -n 10
+du -hsx -- * | sort -rh | head -10 (cd /path/to/some/where)
+du -hsx * | sort -rh | head -10 (cd /path/to/some/where)
+for i in G M K
+do 
+  du -ah | grep [0-9]$i | sort -nr -k 1
+done | head -n 11
+find /path/to/dir/ -printf '%s %p\n'| sort -nr | head -10
+find . -printf '%s %p\n'| sort -nr | head -10
+find /path/to/search/ -type f -printf '%s %p\n'| sort -nr | head -10 (skip dirs, only display files)
+## shell alias ##  
+alias ducks='du -cks * | sort -rn | head'
+## deal with special files names ##
+alias ducks='du -cks -- * | sort -rn | head'
+ducks
 
 ###==
 ####===
@@ -217,7 +243,13 @@ lspci -s 01:00.0 -v
 ####===
 ###==
 
+rmmod kvm_intel
+rmmod kvm
+modprobe kvm
+modprobe kvm_intel
+
 qemu-img resize /vms/kutlprdsplunk01 +40G
+qemu-img create -f raw kutlprdops01-expansion 50G
 virsh blockresize kutlprdsplunk01 /vms/kutlprdsplunk01 80G
 lsblk
 qemu-img
@@ -265,7 +297,13 @@ other iptables cmds:
 iptables -L -v -n
 iptables -L / -S (list ruleset)
 iptables -A INPUT -p tcp --dport 8000 -j ACCEPT
-netfilter-persistent save
+netfilter-persistent save (apt install netfilter-persistent iptables-persistent)
+iptables-save > /etc/sysconfig/iptables
+iptables-save > /etc/iptables/rules.v4
+cat /etc/sysconfig/iptables
+cat /etc/iptables/rules.v4
+iptables-save < /etc/sysconfig/iptables
+iptables-restore < /etc/iptables/rules.v4
 
 lsof -i -P -n | grep LISTEN
 lsof -i:22 ## see a specific port such as 22 ##
