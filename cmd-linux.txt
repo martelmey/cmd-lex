@@ -127,7 +127,7 @@ unzip -d cmdbuild-resources
 ###==
 
 getfacl -e /home/murlock
-setfacl -m u:libvirt-qemu:rx /home/murlock
+setfacl -m u:qemu:rx /dev-kvm
 
 usermod -G a,b,c splunk
 		-d /home/postgres
@@ -242,6 +242,14 @@ lspci -s 01:00.0 -v
 --------= LIBVIRT
 ####===
 ###==
+
+PERMIT FIX
+usermod -G qemu,kvm,root qemu
+chmod --recursive g+rwx /var
+setfacl --recursive --modify u:qemu:rwx /var
+chmod --recursive g-rwx /var/empty
+setfacl --recursive --remove u:qemu:rwx /var/empty
+#use /var/log/dev-kvm-expansion (true location, no symlinks)
 
 rmmod kvm_intel
 rmmod kvm
