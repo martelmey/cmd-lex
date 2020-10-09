@@ -7,6 +7,17 @@ https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.manageme
 
 ###==
 ####===
+--------= active directory
+####===
+###==
+
+Get-ADDomainController
+Get-ADDomain sws.health.local
+Get-ADForest sws.health.local
+Get-SMBShare SYSVOL
+
+###==
+####===
 --------= fileprops
 ####===
 ###==
