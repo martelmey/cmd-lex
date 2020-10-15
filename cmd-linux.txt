@@ -64,6 +64,7 @@ ducks
 sed -i 's/SEARCH_REGEX/REPLACEMENT/g' INPUTFILE
 sed -i '1 a site = site1' /opt/splunk/etc/system/local/server.conf
 sed '/PATTERN/ a site = kdc' $SERVER_CONF #append after certain line
+sed '/splunk/d' /var/spool/cron/crontabs/root #delete matching line
 
 ###==
 ####===
@@ -104,8 +105,14 @@ chmod -R 777 /export/ops-tools
 systemctl restart nfs-server
 systemctl restart nfs-utils
 systemctl show postgresql-9.5
+
 exportfs -s
 		 -arv
+/etc/exports:
+/export/ops-tools       192.168.160.0/24(rw,sync,no_all_squash,root_squash)
+/export/ops-tools       192.168.60.0/24(rw,sync,no_all_squash,root_squash)
+/export/spk-sws-pkgs       192.168.160.0/24(rw,sync,no_all_squash,root_squash)
+/export/spk-sws-pkgs       192.168.161.0/24(rw,sync,no_all_squash,root_squash)
 
 ls --human-readable, -h
 	-L, --dereference
