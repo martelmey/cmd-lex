@@ -204,6 +204,38 @@ New-NetIPAddress –InterfaceAlias “Ethernet”\
  –PrefixLength 24 \
  -DefaultGateway 192.168.60.254
 
+###==
+####===
+--------= WINRM
+####===
+###==
+
+#
+##
+### FIX IT:
+##
+#
+
+On kutlprdsolsql01:
+Setup AD DS
+Create 60.168.192 & 160.168.192 reverse-lookup zones
+Create sws.health.local forward lookup zone
+Create "Enable WinRM" GPO, distribute
+netsh winhttp reset proxy
+winrm s winrm/config/client/auth @{Basic="true"}
+winrm s winrm/config/service/auth @{Basic="true"}
+winrm s winrm/config/client @{AllowUnencrypted="true"}
+winrm s winrm/config/service @{AllowUnencrypted="true"}
+Set-Item WSMan:\localhost\Client\TrustedHosts -Value *
+
+On cutlprdsolsql01:
+winrm s winrm/config/client/auth @{Basic="true"}
+winrm s winrm/config/service/auth @{Basic="true"}
+winrm s winrm/config/client @{AllowUnencrypted="true"}
+winrm s winrm/config/service @{AllowUnencrypted="true"}
+Set-Item WSMan:\localhost\Client\TrustedHosts -Value *
+netsh winhttp reset proxy
+
 winrm g (retrieve info)
 		winrm/config
 		winrm/client
@@ -212,6 +244,7 @@ winrm g (retrieve info)
 	  s (set info)
 	  	winrm/config/client/auth @{Basic="true"}
 	  	winrm/config/service/auth @{Basic="true"}
+	  	winrm/config/client @{AllowUnencrypted="true"}
 	  c (create new instance of mgmt resources)
 	  	winrm/config/listener?Address=*+Transport=HTTP
 	  d (delete an instance)
