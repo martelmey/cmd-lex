@@ -4,6 +4,8 @@ PS Arrays
 https://docs.microsoft.com/en-us/powershell/scripting/learn/deep-dives/everything-about-arrays?view=powershell-7
 PS Set-Item
 https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/set-item?view=powershell-7
+Add-DnsServerPrimaryZone
+https://docs.microsoft.com/en-us/powershell/module/dnsserver/add-dnsserverprimaryzone?view=win10-ps#parameters
 
 ###==
 ####===
@@ -15,6 +17,10 @@ Get-ADDomainController
 Get-ADDomain sws.health.local
 Get-ADForest sws.health.local
 Get-SMBShare SYSVOL
+
+New-GPO -Name "Enable WinRM" | New-GPLink -Target "dc=sws,dc=health,dc=local"
+Add-DnsServerPrimaryZone -NetworkId "192.168.60.0/24" -ReplicationScope Domain -DynamicUpdate NonsecureAndSecure -PassThry
+Sync-DnsServerZone -passthru
 
 ###==
 ####===
@@ -156,6 +162,10 @@ set-shortcut "\\Where_This_Shortcut_is_Placed\Shortcut_Name.lnk" "\\Destination_
 
 shutdown /s
 shutdown /l (logoff)
+shutdown /r /f /t 0 (reboot now)
+Restart-Computer -ComputerName REMOTE_COMPUTER_NAME -Force
+Stop-Computer -ComputerName REMOTE_COMPUTER_NAME -Force
+shutdown /r /m \\REMOTE_COMPUTER_NAME /t 0
 
 get-command *dns*
 
@@ -163,7 +173,7 @@ Add-Computer -WorkGroupName MyWorkGroup
 
 Install-WindowsFeature IncludeManagementTools
 Add-WindowsCapability -Online -Name OpenSSH.Server~~~~0.0.1.0
-Get-WindowsFeature
+Get-WindowsFeature dns* || dhcp*
 Get-WindowsCapability -Online | ? Name -like 'OpenSSH*'
 
 Get-WmiObject Win32_ComputerSystem
@@ -209,6 +219,15 @@ New-NetIPAddress –InterfaceAlias “Ethernet”\
 --------= WINRM
 ####===
 ###==
+
+#
+##
+### TEST IT:
+##
+#
+
+PS> $cred = New-Object System.Management.Automation.PSCredential -ArgumentList @(‘USERNAME’,(ConvertTo-SecureString -String ‘PASSWORD’ -AsPlainText -Force))
+PS> Invoke-Command -ComputerName vscope-demo2 -ScriptBlock {ipconfig /all} -Credential $cred
 
 #
 ##
