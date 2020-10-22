@@ -330,7 +330,7 @@ setfacl --recursive --remove u:qemu:rwx /var/empty
 #use /var/log/dev-kvm-expansion (true location, no symlinks)
 
 OR
-chmod --recursive g+rwx /varlog/
+chmod --recursive g+rwx /var/log/
 chown qemu:qemu /var/log/audit/vms/cutlprdsplunkfd01
 
 rmmod kvm_intel

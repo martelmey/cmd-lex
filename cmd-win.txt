@@ -18,9 +18,27 @@ Get-ADDomain sws.health.local
 Get-ADForest sws.health.local
 Get-SMBShare SYSVOL
 
+New-ADOrganizationalUnit -Name "WSFC" -Path "OU=WSFC,DC=sws,DC=health,DC=local"
+New-ADComputer -Name "SQLServer" -SamAccountName "SQLServer" -Path "OU=WSFC,DC=sws,DC=health,DC=local"
+New-ADGroup -Name "ClusterAdmins" -SamAccountName "ClusterAdmins" -GroupCategory Security -GroupScope Global -DisplayName "ClusterAdmins" -Path "OU=WSFC,DC=sws,DC=health,DC=local"
+Add-ADGroupMember -Identity "ClusterAdmins" -Members "sws.health.local/Users/Administrator","sws.health.local/Computers/KUTLPRDSOLSQL01","sws.health.local/Computers/CUTLPRDSOLSQL01","sws.health.local/WSFC/SWSKDCCDC"
+Get-ADObject -Filter * | Where{($_.ObjectClass -eq “container”) -or ($_.ObjectClass -eq “organizationalunit”) -or ($_.ObjectClass -eq “user”) -or ($_.ObjectClass -eq “group”) -or ($_.ObjectClass -eq “computer”)} | Set-ADObject -ProtectedFromAccidentalDeletion $true
+
 New-GPO -Name "Enable WinRM" | New-GPLink -Target "dc=sws,dc=health,dc=local"
-Add-DnsServerPrimaryZone -NetworkId "192.168.60.0/24" -ReplicationScope Domain -DynamicUpdate NonsecureAndSecure -PassThry
+Set-GPRegistryValue -Name "Enable WinRM" -Key "HKLM\SYSTEM\CurrentControlSet\Services\WinRM" -ValueName Type -Type DWORD -Value 32
+Set-GPRegistryValue -Name "Enable WinRM" -Key "HKLM\Software\Policies\Microsoft\WindowsFirewall\FirewallRules" `
+-ValueName WINRM-HTTP-In-TCP -Type SZ `
+-Value "v2.28|Action=Allow|Active=TRUE|Dir=In|Protocol=6|Profile=Domain|Profile=Private|LPort=5985|App=System|Name=@FirewallAPI.dll,-30253|Desc=@FirewallAPI.dll,-30256|EmbedCtxt=@FirewallAPI.dll,-30267|"
+Set-GPRegistryValue -Name "Enable WinRM" -Key "HKLM\Software\Policies\Microsoft\WindowsFirewall\FirewallRules" `
+Set-GPRegistryValue -Name "Enable WinRM" -Key "HKLM\Software\Policies\Microsoft\Windows\WinRM\Client" -ValueName TrustedHostsList -Type SZ -Value *
+
+Add-DnsServerPrimaryZone -NetworkId "192.168.60.0/24" -ReplicationScope Domain -DynamicUpdate NonsecureAndSecure -PassThru
+Set-DnsServerScavenging -ScavengingState $true -RefreshInterval 7.00:00:00 -NoRefreshInterval 7.00:00:00 -ApplyOnAllZones
+
 Sync-DnsServerZone -passthru
+
+New-ClusterNameAccount -Name "SWSKDCCDC" -Domain "sws.health.local" -Enabled false
+Remove-Cluster -Force -CleanupAD
 
 ###==
 ####===
@@ -202,12 +220,19 @@ route DELETE 192.168.61.0
 Resolve-DnsName 10.0.10.28
 Resolve-DnsName  _ldap._tcp.dc._msdcs.kdcwin.local
 
+ipconfig /displaydns
+ipconfig /flushdns
+ipconfig /registerdns
+Clear-DnsClientCache
+
 Get-DnsClient
 Get-DnsClientCache
 Get-DnsClientGlobalSetting
 {*} Get-DnsClientServerAddress
 Set-DnsClientServerAddress -InterfaceAlias "Ethernet" -ServerAddresses ("10.0.0.1","10.0.0.2")
 Set-DnsClientServerAddress -InterfaceIndex 12 -ServerAddresses ("10.0.0.1","10.0.0.2")
+
+Get-NetIPInterface
 
 New-NetIPAddress –InterfaceAlias “Ethernet”\
  –IPAddress “192.168.60.192” \
