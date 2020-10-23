@@ -1,0 +1,29 @@
+groups {
+    <user>
+}
+
+usermod {
+    -G splunk,root,wheel,oinstall splunk
+}
+
+su {
+    - oracle -c ''
+}
+
+passwd {
+	-h change home dir
+	-s show for name
+	-d delete pass for name & unlock account
+	-f force user to change pass @ next login
+	-u unlock
+}
+
+ldapclient {
+    list (ldap check)
+}
+
+change {
+    chown
+        -R nobody: /export/ops-tools
+            777 /export/ops-tools
+}

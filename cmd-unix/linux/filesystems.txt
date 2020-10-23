@@ -1,0 +1,57 @@
+symbolic links {
+    ln -s /usr/pgsql-9.5/bin psql95
+    unlink expanions
+}
+
+storage {
+    find /path/to/dir/ -printf '%s %p\n'| sort -nr | head -10
+    find . -printf '%s %p\n'| sort -nr | head -10
+
+    true >| ./thefile.trc
+
+    df -Tha
+        --total
+        -h, --human-readable
+        -H powers of 1000 not 1024
+        -l --local only local fs
+        -T --print-type show fs type
+        -n (only FSType name)
+        -t (full w/ totals)
+
+    du -h .
+        --total
+        -h, --human-readable
+
+    lsblk
+}
+
+format disks {
+    fdisk -l
+        -l /dev/sdb
+    dd if=kali-linux-2020.2-live-amd64.iso of=/dev/sdb bs=4M status=progress
+}
+
+checksums {
+    md5sum
+    sha1sum
+    sha256sum <file>
+}
+
+fstab {
+    /export/ops-tools       192.168.60.192(rw,sync,no_all_squash,root_squash) >> /etc/exports
+    /export/ops-tools       192.168.63.197(rw,sync,no_all_squash,root_squash) >> /etc/exports 
+}
+
+exports {
+    exportfs -s
+             -arv
+    /etc/exports:
+        /export/ops-tools       192.168.160.0/24(rw,sync,no_all_squash,root_squash)
+        /export/ops-tools       192.168.60.0/24(rw,sync,no_all_squash,root_squash)
+        /export/spk-sws-pkgs       192.168.160.0/24(rw,sync,no_all_squash,root_squash)
+        /export/spk-sws-pkgs       192.168.161.0/24(rw,sync,no_all_squash,root_squash)
+}
+
+archives {
+    unzip -d cmdbuild-resources
+}

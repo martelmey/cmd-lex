@@ -48,3 +48,9 @@ show \
 	config
 	deploy-poll
 
+https://docs.splunk.com/Documentation/Splunk/8.0.6/admin/Indexesconf
+splunk add index autobox \
+-homePath /splunk-indexes/autobox/db \
+-coldPath /splunk-indexes/autobox/colddb \
+-thawedPath /splunk-indexes/autobox/thawedDb \
+-maxTotalDataSizeMB = 20000

@@ -1,0 +1,3 @@
+ldd {
+    /opt/csw/lib/collectd/write_splunk.so
+}

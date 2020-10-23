@@ -1,0 +1,42 @@
+exportfs {
+    -arv
+    -s
+}
+
+echo "/export/ops-tools       192.168.160.192(rw,sync,no_all_squash,root_squash)" >> /etc/exports
+
+storage {
+    df
+        -g (print entire statvfs)
+        -h (print allocation)
+        -l (show local only)
+        -n (print only FSType name)
+        -t (full listing w/ totals)
+        
+    find / -name 'collectd.log' -print
+        /opt -name 'collectd' -print
+        -prune (Does not examine any directories or files in the directory structure below the pattern just matched.)
+        -mtime (True if the file's data was modified n days ago.)
+        -exec (True  if the executed command returns a zero value as
+                exit status. The end of command must be punctuated by
+                an  escaped  semicolon  (;). A command argument {} is
+                replaced by the current pathname. If the  last  argu-
+                ment to -exec is {} and you specify + rather than the
+                semicolon (;), the command is  invoked  fewer  times,
+                with {} replaced by groups of pathnames. If any invo-
+                cation of the command returns  a  non-zero  value  as
+                exit status, find returns a non-zero exit status.)
+        2>&1	send stderr to (&=file descriptor) stdout
+}
+
+zfs {
+    list [-rH|-d max][-o property[,...]]
+        [-t type[,...]] [-I state,..]
+        [-s property] ... [-S property] ...
+        [filesystem|volume|snapshot|share|path] ..
+        -r rpool/
+}
+
+format {
+    (list physical drives)
+}

@@ -1,0 +1,8 @@
+pkg {
+    search
+        -l -p /usr/bin/curl
+}
+
+pkgchk {
+    -L CSWcollectd # list files
+}

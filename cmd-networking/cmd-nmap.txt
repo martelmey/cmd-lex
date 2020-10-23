@@ -1,0 +1,2 @@
+nmap -v -A -iL <listofhosts/networks> 10.0.<0-255>.<1-254>
+nmap -sTU -O IP-address-Here

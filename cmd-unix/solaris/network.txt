@@ -1,0 +1,21 @@
+route {
+    add 10.10.10.0/24 192.168.1.1
+}
+
+firewall {
+    echo "pass all from any to any port = 8088" >> /etc/firewall/pf.conf
+    /etc/ipf/ipf.conf
+}
+
+netstat {
+    -s (all status)
+    -P tcp
+    -i (interfaces)
+    -a (sockets)
+    -f inet (ipv4 packet transmission)
+    -r (routes)
+}
+
+ipstat {
+    -io
+}

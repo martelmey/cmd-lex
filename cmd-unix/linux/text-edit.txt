@@ -1,0 +1,4 @@
+sed -i 's/SEARCH_REGEX/REPLACEMENT/g' INPUTFILE
+sed -i '1 a site = site1' /opt/splunk/etc/system/local/server.conf
+sed '/PATTERN/ a site = kdc' $SERVER_CONF #append after certain line
+sed '/splunk/d' /var/spool/cron/crontabs/root #delete matching line

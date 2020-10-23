@@ -1,0 +1,79 @@
+control {
+    systemctl start NetworkManager
+    systemctl restart nfs-server
+    systemctl restart nfs-utils
+    systemctl restart network.service
+    systemctl restart wpa_supplicant
+    systemctl show postgresql-9.5
+    # console/gui startup:
+        systemctl get-default
+        systemctl set-default multi-user.target
+        systemctl set-default graphical.target
+}
+
+messages {
+    dmesg
+        | more
+}
+
+performance {
+    less /proc/meminfo
+    free -g -t -o
+    vmstat -s
+    htop
+    atop
+    sudo dmidecode --type memory
+    lscpu -p
+    more /proc/cpuinfo
+    htop
+    echo "Threads/core: $(nproc --all)"
+    getconf _NPROCESSORS_ONLN
+    sudo dmidecode -t 4 | egrep -i 'core (count|enabled)|thread count|Version'
+}
+
+hardware {
+    lspci -tv
+        | grep -i vga
+        -s 01:00.0 -v
+    cat /proc/pci
+    hwinfo --cpu --short
+        --netcard --short
+    uuidgen eth0
+    file -s /dev/sdb*
+}
+
+listing {
+    ls --human-readable, -h
+        -L, --dereference
+        -R --recursive
+        -S (sort by size)
+        -lH, --dereference-command-line
+        --dereference-command-line-symlink-to-dir
+    ls -l /etc/alternatives/java
+}
+
+processes {
+    iotop -o
+    ps aux | awk '$8 ~ /^D/{print}'
+    iostat -xdm
+    iostat -xdm -p sda
+    sar -P ALL -f /var/log/sa/sa21
+}
+
+domain {
+    hostnamectl set-hostname cutlprdtsc01
+}
+
+env {
+    env JAVA_HOME=/.../.../ tomcat.sh --options
+    printenv JAVA_HOME, CATALINA_HOME/BASE (will not show shell vars)
+    setenv
+    set (shows env & shell vars, & shell functions) | less
+    export JAVA_HOME="/.../.../"
+    export -n JAVA_HOME (convert back to shell var from env. var)
+    unset JAVA_HOME (completely unset shell & env vars)
+    
+    /etc/environment (system-wide env. vars)
+    /etc/profile (vars loaded when a bash login shell is entered)
+}
+

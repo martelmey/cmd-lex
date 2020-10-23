@@ -1,0 +1,48 @@
+lxc container {
+    lxc-ls
+    lxc-config -l
+    lxc-console -n KUTLLDOMSEC
+    lxc-info -n KUTLLDOMSEC
+    lxc-monitor
+    lxc-top
+    lxc-attach -n KUTLLDOMSEC 
+        --u, --uid
+        --f, --gid
+}
+
+libvirt permit fix {
+    usermod -G qemu,kvm,root qemu
+    chmod --recursive g+rwx /var
+    setfacl --recursive --modify u:qemu:rwx /var
+    chmod --recursive g-rwx /var/empty
+    setfacl --recursive --remove u:qemu:rwx /var/empty
+    #use /var/log/dev-kvm-expansion (true location, no symlinks)
+}
+
+libvirt kernel fix {
+    rmmod kvm_intel
+    rmmod kvm
+    modprobe kvm
+    modprobe kvm_intel
+    #lsmod | grep -i kvm
+}
+
+qemu {
+    qemu-img resize /vms/kutlprdsplunk01 +40G
+    qemu-img create -f raw kutlprdops01-expansion 50G
+    qemu-img
+	qemuinfo
+	snapshot
+		-a applies
+		-c creates
+		-d deletes
+		-l lists
+	check
+	create
+}
+
+virsh {
+    virsh blockresize kutlprdsplunk01 /vms/kutlprdsplunk01 80G
+    virsh vol-info kutlprdsplunk01 --pool vms
+    virsh undefine
+}

@@ -1,0 +1,21 @@
+uname {
+    -a
+    cat /etc/release
+}
+
+svccfg {
+    -s ipfilter:default listprop   | grep file
+}
+
+svcs {
+    -x ipfilter:default
+}
+
+grep {
+    -v (Prints all lines except those that contain the pattern.)
+}
+
+messages {
+    more /var/adm/messages
+    dmesg
+}

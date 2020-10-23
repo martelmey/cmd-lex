@@ -1,0 +1,94 @@
+rpm {
+    rpm -q, --query
+        --configfiles
+        --i, info
+        --filesbypkg
+        -l, --list
+        -R, --requires
+        -f, --file
+        -p, --package
+        -v, --verify
+        -i, --install
+        -U, upgrade
+}
+
+yum {
+	install
+		--downloadonly
+		--installroot
+		--downloaddir
+        ./*rpm
+        --downloadonly --installroot=/root/libvirt-installroot --downloaddir=/root/libvirt libvirt
+	list
+		installed
+	info
+	groups
+		group list
+		group info
+		group summary
+	search
+		--showduplicates
+	resolvedep
+	deplist
+		--showduplicates
+		--verbose
+	repolist
+		-v
+	repoinfo
+	history
+	--enablerepo
+        --enablerepo=offline-libvirt install libvirt
+        --enablerepo=offline-virt-viewer install virt-viewer
+}
+
+yumdownloader {
+	--destdir
+	--resolve
+	--source
+	--archlist=x86_64
+    
+    --destdir=/root/yumdownloader-libvirt --resolve libvirt
+    --destdir=/root/yumdownloader-virt-viewer --resolve virt-viewer
+}
+
+repotrack {
+    -a x86_64 -p /root/repotrack-boost boost-iostreams
+    -a x86_64 -p /root/repotrack libvirt virt-viewer boost-iostreams gnutls-dane gnutls-utils
+}
+
+repoclosure {
+    --repoid=offline-libvirt
+    --repoid=offline-virt-viewer
+}
+
+reposync {
+    -g -l -n -a x86_64 -r ol7_x86_64_latest --download_path=/root/reposync -m --download-metadata
+
+    --arch=x86_64 \
+    --repoid=ol7_x86_64_latest \
+    --cachedir=/root/yumrepo/yumcache \
+    --download_path=/root/yumrepo \
+    --gpgcheck \
+    --plugins \
+    --downloadcomps \
+    --download-metadata \
+    --newest-only 
+}
+
+repo {
+    createrepo --database /root/virt-viewer
+}
+
+[offline-libvirt]
+name=Oracle Linux-$releasever - libvirt
+baseurl=file:///repos/libvirt
+enabled=0
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-oracle
+
+[offline-virt-viewer]
+name=Oracle Linux-$releasever - virt-viewer
+baseurl=file:///repos/virt-viewer
+enabled=0
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-oracle
