@@ -1,0 +1,7 @@
+# Powershell loops - connection / dns tests
+https://stackoverflow.com/questions/29493414/ping-a-list-of-host-names-and-output-the-results-to-a-csv-in-powershell
+https://sid-500.com/2018/02/02/powershell-test-open-tcp-ports-with-test-openport-multiple-hosts-multiple-port-numbers/
+https://techibee.com/powershell/powershell-query-dns-server-for-a-ptr-mx-ns-and-other-records/2570
+
+# GPO x Registry lookups
+https://gpsearch.azurewebsites.net

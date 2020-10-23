@@ -1,0 +1,61 @@
+ldapsearch {
+	ldapsearch -x -b "uid=test.user,ou=people,dc=health,dc=local" -h ldap1.kdc.health.local
+		-n (dry run, useful w/ -v)
+		-v (verbose)
+		-c (continue, no exit on errors, useful w/ -f)
+		-u (include user-friendly name of DN)
+		-t (writes non-printable values to set of temp files)
+		-tt (write all values to files)
+		-T (write temp files to this <path>)
+		-A (attributes only, no values)
+		-b (use <searchbase> as starting point for search)
+		-f (read file, perform ldap search per line)
+		-x (use simple authentication, not SASL)
+		-W (prompt simple authentication)
+		-w (use password for simple authentication)
+		-y (use password file for simple authentication)
+}
+
+example returns {
+	1 (
+		# extended LDIF
+		#
+		# LDAPv3
+		# base <uid=test.user,ou=people,dc=health,dc=local> with scope subtree
+		# filter: (objectclass=*)
+		# requesting: ALL
+		#
+
+		# test.user, people, health.local
+		dn: uid=test.user,ou=people,dc=health,dc=local
+		uid: test.user
+		homeDirectory: /home/test.user
+		givenName: Ian Watts Test User
+		gidNumber: 10501
+		sn: Watts
+		cn: Ian
+		objectClass: person
+		objectClass: organizationalPerson
+		objectClass: inetOrgPerson
+		objectClass: shadowAccount
+		objectClass: posixAccount
+		objectClass: top
+		objectClass: ldapPublicKey
+		loginShell: /bin/bash
+		uidNumber: 10098
+		sshPublicKey: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCzJ52m+t/dXa54XrZm1j5rG96g
+		 9ip+XKOOrDjcoSJ1xQkFqcSxIgIW6WAD0CW/YIiLjTR5/rf+zsKTMGRhTo7nl1pzpsb0Ta0YB1MNg
+		 ke0Z1rcKcIBJ1JaD966go1FesslIGjzRkQpm3uw2UQ8WuTuj90Vk9L78jhc0FvuxxHmRQ7z4/FRuu
+		 5prMlKJtcb7+X7XVLhvAH7hUaMatd3/TZma+m/pTbt7yQPBYseWvthEit7i5S1nNb8Ro2GBWRd/SC
+		 pP2jLVfhf8NMfbcPkUFevPzL65yK6/T51v1sXvCGTDebIMzJ/xxh9+vJBIZFnoTGCm1BpZUG538Bd
+		 1TgA/JyF ian.watts@KDC-R1-18-MGMT-JUMP-A
+		mail: i.watts@cgi.com
+
+		# search result
+		search: 2
+		result: 0 Success
+
+		# numResponses: 2
+		# numEntries: 1
+	)
+}

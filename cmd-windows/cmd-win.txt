@@ -6,6 +6,10 @@ PS Set-Item
 https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/set-item?view=powershell-7
 Add-DnsServerPrimaryZone
 https://docs.microsoft.com/en-us/powershell/module/dnsserver/add-dnsserverprimaryzone?view=win10-ps#parameters
+Test-NetConnection
+https://docs.microsoft.com/en-us/powershell/module/nettcpip/test-netconnection?view=win10-ps#syntax
+Test-Connection
+https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/test-connection?view=powershell-7#outputs
 
 ###==
 ####===

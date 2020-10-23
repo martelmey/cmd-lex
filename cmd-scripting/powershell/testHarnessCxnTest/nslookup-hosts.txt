@@ -1,0 +1,6 @@
+igf.ps.hial.healthbc.org
+kdcps-posia-wls1.ps.hial.healthbc.org
+posia-wls1.ps.hial.healthbc.org
+cd.ps.hial.healthbc.org
+db.ps.hial.healthbc.org
+psm.ps.hial.healthbc.org
