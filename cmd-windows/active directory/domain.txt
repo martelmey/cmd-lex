@@ -1,0 +1,48 @@
+Get-ADDomainController {
+    https://docs.microsoft.com/en-us/powershell/module/activedirectory/get-addomaincontroller?view=winserver2012-ps
+}
+
+Get-ADDomain {
+    https://docs.microsoft.com/en-us/powershell/module/activedirectory/get-addomain?view=winserver2012-ps
+    sws.health.local
+}
+
+Get-ADForest {
+    https://docs.microsoft.com/en-us/powershell/module/activedirectory/get-adforest?view=winserver2012-ps
+    sws.health.local
+}
+
+New-ADOrganizationalUnit {
+    https://docs.microsoft.com/en-us/powershell/module/addsadministration/new-adorganizationalunit?view=win10-ps
+    -Name "WSFC"
+    -Path "OU=WSFC,DC=sws,DC=health,DC=local"
+}
+
+New-ADComputer {
+    https://docs.microsoft.com/en-us/powershell/module/addsadministration/new-adcomputer?view=win10-ps
+    -Name "SQLServer"
+    -SamAccountName "SQLServer"
+    -Path "OU=WSFC,DC=sws,DC=health,DC=local"
+}
+
+New-ADGroup {
+    https://docs.microsoft.com/en-us/powershell/module/addsadministration/new-adgroup?view=win10-ps
+    -Name "ClusterAdmins"
+    -SamAccountName "ClusterAdmins"
+    -GroupCategory Security
+    -GroupScope Global
+    -DisplayName "ClusterAdmins"
+    -Path "OU=WSFC,DC=sws,DC=health,DC=local"
+}
+
+Add-ADGroupMember {
+    https://docs.microsoft.com/en-us/powershell/module/addsadministration/add-adgroupmember?view=win10-ps
+    -Identity "ClusterAdmins"
+    -Members "sws.health.local/Users/Administrator","sws.health.local/Computers/KUTLPRDSOLSQL01","sws.health.local/Computers/CUTLPRDSOLSQL01","sws.health.local/WSFC/SWSKDCCDC"
+}
+
+Get-ADObject {
+    https://docs.microsoft.com/en-us/powershell/module/addsadministration/get-adobject?view=win10-ps
+    -Filter * | Where{($_.ObjectClass -eq “container”) -or ($_.ObjectClass -eq “organizationalunit”) -or ($_.ObjectClass -eq “user”) -or ($_.ObjectClass -eq “group”) -or ($_.ObjectClass -eq “computer”)}
+    | Set-ADObject -ProtectedFromAccidentalDeletion $true
+}

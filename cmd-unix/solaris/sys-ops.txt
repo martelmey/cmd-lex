@@ -5,10 +5,29 @@ uname {
 
 svccfg {
     -s ipfilter:default listprop   | grep file
+    -s pkg/server describe network/restart_on
+    -s pkg/server describe -v network/restart_on
+}
+
+svcprop {
+    svc:/system/identity
+    svc:/system/identity:domain
+    -p config/prop1 example
+}
+
+svcadm {
+    refresh network/firewall
 }
 
 svcs {
-    -x ipfilter:default
+    -x <ipfilter:default>
+        <vbiosd>
+        -L <vbiosd>
+    -a
+    -Ho inst identity
+    -l <net-snmp>
+    -p <net-snmp>
+    view `svcs -L <vbiosd>`
 }
 
 grep {
@@ -18,4 +37,17 @@ grep {
 messages {
     more /var/adm/messages
     dmesg
+}
+
+top {
+    -Hbn1 -p 3692
+    atop
+    htop
+}
+
+processes {
+    pgrep
+    pstree
+    pidof <mysqld>
+    ps -T -p 3692
 }

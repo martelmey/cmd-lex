@@ -1,0 +1,10 @@
+New-ClusterNameAccount {
+    -Name "SWSKDCCDC"
+    -Domain "sws.health.local"
+    -Enabled false
+}
+
+Remove-Cluster {
+    -Force
+    -CleanupAD
+}

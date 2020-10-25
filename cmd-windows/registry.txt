@@ -1,0 +1,17 @@
+HKLM (HKEY_LOCAL_MACHINE)
+HKCU (HKEY_CURRENT_USER)
+
+Set-ItemProperty {
+    https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/set-itemproperty?view=powershell-7
+    -Path HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters
+        HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters
+    -Name 'NV Domain'
+        SyncDomainWithMembership
+    -Value srv.domain.com
+}
+
+Get-ItemProperty {
+    https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/get-itemproperty?view=powershell-7
+    -Path 'Registry::HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\Environment'
+    -Name PATH 
+}

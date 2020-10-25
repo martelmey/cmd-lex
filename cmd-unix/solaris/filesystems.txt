@@ -40,3 +40,5 @@ zfs {
 format {
     (list physical drives)
 }
+
+true >| ./thefile.trc

@@ -1,0 +1,124 @@
+Hosts file location:
+C:\Windows\System32\drivers\etc\
+
+Test-NetConnection {
+    https://docs.microsoft.com/en-us/powershell/module/nettcpip/test-netconnection?view=win10-ps#syntax
+}
+
+Test-Connection {
+    https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/test-connection?view=powershell-7#outputs
+}
+
+Resolve-DnsName {
+    https://docs.microsoft.com/en-us/powershell/module/dnsclient/resolve-dnsname?view=win10-ps
+}
+
+Clear-DnsClientCache {
+    https://docs.microsoft.com/en-us/powershell/module/dnsclient/clear-dnsclientcache?view=win10-ps
+}
+
+Get-DnsClient {
+    https://docs.microsoft.com/en-us/powershell/module/dnsclient/get-dnsclient?view=win10-ps
+}
+
+Get-DnsClientCache {
+    https://docs.microsoft.com/en-us/powershell/module/dnsclient/get-dnsclientcache?view=win10-ps
+}
+
+Get-DnsClientGlobalSetting {
+    https://docs.microsoft.com/en-us/powershell/module/dnsclient/get-dnsclientglobalsetting?view=win10-ps
+}
+
+Get-DnsClientServerAddress {
+    https://docs.microsoft.com/en-us/powershell/module/dnsclient/get-dnsclientserveraddress?view=win10-ps
+    -InterfaceAlias "Ethernet"
+    -ServerAddresses ("10.0.0.1","10.0.0.2")
+}
+
+Get-NetIPInterface {
+    https://docs.microsoft.com/en-us/powershell/module/nettcpip/get-netipinterface?view=win10-ps
+}
+
+New-NetIPAddress {
+    https://docs.microsoft.com/en-us/powershell/module/nettcpip/new-netipaddress?view=win10-ps
+    –InterfaceAlias “Ethernet”
+    –IPAddress “192.168.60.192”
+    –PrefixLength 24
+    -DefaultGateway 192.168.60.254
+}
+
+Set-DnsClientServerAddress {
+    https://docs.microsoft.com/en-us/powershell/module/dnsclient/set-dnsclientserveraddress?view=win10-ps
+}
+
+New-NetRoute {
+    https://docs.microsoft.com/en-us/powershell/module/nettcpip/new-netroute?view=win10-ps
+    -DestinationPrefix "192.168.61.0/24"
+    -InterfaceAlias Ethernet
+    -NextHop 192.168.61.254
+}
+
+ipconfig {
+    https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/ipconfig
+    /displaydns
+    /flushdns
+    /registerdns
+}
+
+net {
+    https://www.lifewire.com/net-command-2618094
+    stop sppsvc
+    start sppsvc
+}
+
+netsh {
+    https://docs.microsoft.com/en-us/windows-server/networking/technologies/netsh/netsh-contexts
+    winhttp reset proxy
+}
+
+netstat {
+    https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/netstat
+    -rn
+}
+
+winrm {
+    test {
+        $cred = New-Object System.Management.Automation.PSCredential -ArgumentList @(‘USERNAME’,(ConvertTo-SecureString -String ‘PASSWORD’ -AsPlainText -Force))
+        Invoke-Command -ComputerName vscope-demo2 -ScriptBlock {ipconfig /all} -Credential $cred
+    }
+    g (retrieve info)
+    winrm/config
+    winrm/client
+    winrm/service
+    winrm/service/allowunencrypted
+    s (set info)
+    winrm/config/client/auth @{Basic="true"}
+    winrm/config/service/auth @{Basic="true"}
+    winrm/config/client @{AllowUnencrypted="true"}
+    c (create new instance of mgmt resources)
+    winrm/config/listener?Address=*+Transport=HTTP
+    d (delete an instance)
+    e (list all instances of mgmt resource)
+    winrm/config/resource
+    winrm/config/listener
+        *
+        IP:192.168.60.201
+        MAC:...
+        HTTP:5985
+    winrm/config/plugin
+    winrm/config/service/certmapping
+    i (execute method on a mgmt resource)
+    id (is a ws-mgmt implementation running on a remote machine)
+    quickconfig (quickly allow mgmt from other machines)   
+}
+
+route {
+    https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/route_ws2008
+    print
+    ADD 192.168.61.0
+        MASK 255.255.255.0
+        192.168.61.254
+        -p (persistent)
+    DELETE 192.168.61.0
+}
+
