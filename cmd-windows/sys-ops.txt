@@ -11,6 +11,10 @@ shutdown {
     /m (REMOTE_COMPUTER_NAME)
 }
 
+logoff {
+    <ID>
+}
+
 Restart-Computer {
     https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/restart-computer?view=powershell-7
     -ComputerName REMOTE_COMPUTER_NAME

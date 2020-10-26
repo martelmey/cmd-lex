@@ -1,0 +1,46 @@
+######################
+aggregate functions
+######################
+
+avg()
+count()
+distinct_count()
+estdc()
+estdc_error()
+exactperc<num>()
+max()
+median()
+min()
+mode()
+perc<num>()
+range()
+stdev()
+stdevp()
+sum()
+sumsq()
+upperperc<num>()
+var()
+varp()
+
+######################
+event order functions
+######################
+
+first()
+last()
+
+######################
+multivalue stats & chart functions
+######################
+
+list()
+values()
+
+######################
+time functions
+######################
+
+earliest()
+earliest_time()
+latest()
+latest_time()

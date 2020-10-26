@@ -1,0 +1,40 @@
+* Generating commands use a leading pipe character and should be the first command in a search.
+
+| makeresults {
+	* https://docs.splunk.com/Documentation/Splunk/latest/SearchReference/Makeresults
+	* Generates the specified number of search results in temporary memory.
+	<SYNTAX>
+		<count>
+			Syntax: count=<num>
+			Description: The number of results to generate. If you do not specify the annotate argument, the results have only the _time field.
+			Default: 1
+		<annotate>
+			Syntax: annotate=<bool>
+			Description: If annotate=true, generates results with the fields shown in the table below.
+			If annotate=false, generates results with only the _time field.
+			Default: false
+			Field	Value
+			_raw	None.
+			_time	Date and time that you run the makeresults command.
+			host	None.
+			source	None.
+			sourcetype	None.
+			splunk_server	The name of the server that the makeresults command is run on.
+			splunk_server_group	None.
+		<splunk-server>
+			Syntax: splunk_server=<string>
+			Description: Use to generate results on one specific server. Use 'local' to refer to the search head.
+			Default: local.
+		<splunk-server-group>
+			Syntax: (splunk_server_group=<string>)...
+			Description: Use to generate results on a specific server group or groups. You can specify more than one <splunk_server_group>.
+			Default: none.
+	<EXAMPLES>
+		* Create a result as an input into the eval command
+		| makeresults | eval newfield="some value"
+
+		* Create daily results for testing
+		| makeresults count=5 
+		| streamstats count
+		| eval _time=_time-(count*86400)
+}
