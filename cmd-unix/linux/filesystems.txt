@@ -3,9 +3,18 @@ symbolic links {
     unlink expanions
 }
 
+find {
+    <path to files><*>
+    -mtime (days old of file)(+5=files older than 5 days)
+    -exec <command>
+    {} \; (ends command)
+    examples {
+        find /path/to/dir/ -printf '%s %p\n'| sort -nr | head -10
+        find . -printf '%s %p\n'| sort -nr | head -10
+    }
+}
+
 storage {
-    find /path/to/dir/ -printf '%s %p\n'| sort -nr | head -10
-    find . -printf '%s %p\n'| sort -nr | head -10
 
     true >| ./thefile.trc
 

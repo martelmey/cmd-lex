@@ -1,0 +1,5 @@
+* Bash handbook
+https://www.gnu.org/savannah-checkouts/gnu/bash/manual/bash.html
+
+* While loops
+https://www.cyberciti.biz/faq/bash-while-loop/
