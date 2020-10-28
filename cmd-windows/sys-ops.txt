@@ -41,11 +41,16 @@ Add-Computer {
 Install-WindowsFeature {
     https://docs.microsoft.com/en-us/powershell/module/servermanager/install-windowsfeature?view=winserver2012r2-ps
     -IncludeManagementTools
+    -Restart
+    -IncludeAllSubFeature
+    examples {
+        Install-WindowsFeature NET-Framework-Features -IncludeAllSubFeature
+    }
 }
 
 Get-WindowsFeature {
     https://docs.microsoft.com/en-us/powershell/module/servermanager/get-windowsfeature?view=winserver2012r2-ps
-    dns* || dhcp*
+    dns* || dhcp* || *net*
 }
 
 Add-WindowsCapability {

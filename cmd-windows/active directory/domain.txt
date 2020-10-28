@@ -37,12 +37,49 @@ New-ADGroup {
 
 Add-ADGroupMember {
     https://docs.microsoft.com/en-us/powershell/module/addsadministration/add-adgroupmember?view=win10-ps
-    -Identity "ClusterAdmins"
-    -Members "sws.health.local/Users/Administrator","sws.health.local/Computers/KUTLPRDSOLSQL01","sws.health.local/Computers/CUTLPRDSOLSQL01","sws.health.local/WSFC/SWSKDCCDC"
+    -Identity
+    -Members
+    examples {
+        Add-ADGroupMember -Identity "ClusterAdmins" -Members "sws.health.local/Users/Administrator","sws.health.local/Computers/KUTLPRDSOLSQL01","sws.health.local/Computers/CUTLPRDSOLSQL01","sws.health.local/WSFC/SWSKDCCDC"
+
+        Add-ADGroupMember -Identity "Administrators" -Members "sws.health.local/Users/neil.frain"
+        Add-ADGroupMember -Identity "Remote Desktop Users" -Members "sws.health.local/Users/neil.frain"
+    }
+}
+
+New-ADUser {
+    https://docs.microsoft.com/en-us/powershell/module/addsadministration/new-aduser?view=win10-ps
+    -Name
+    -Path "CN=Users,DC=SWS,DC=HEALTH,DC=LOCAL"
+    -AccountPassword <SecureString>
+    -PasswordNeverExpires
+    examples {
+        $SecurePassword = Read-Host -AsSecureString
+        New-ADUser -Name "neil.frain" -Path "CN=Users,DC=SWS,DC=HEALTH,DC=LOCAL" -AccountPassword $SecurePassword -PasswordNeverExpires $true -Enabled $true
+    }
+}
+
+Enable-ADAccount {
+    https://docs.microsoft.com/en-us/powershell/module/addsadministration/enable-adaccount?view=win10-ps#examples
+    -Identity
+}
+
+Get-ADUser {
+    https://docs.microsoft.com/en-us/powershell/module/addsadministration/Get-ADUser?view=win10-ps
+    examples {
+        Get-ADUser -Filter * -SearchBase "CN=Users,DC=SWS,DC=HEALTH,DC=LOCAL"
+    }
 }
 
 Get-ADObject {
     https://docs.microsoft.com/en-us/powershell/module/addsadministration/get-adobject?view=win10-ps
-    -Filter * | Where{($_.ObjectClass -eq “container”) -or ($_.ObjectClass -eq “organizationalunit”) -or ($_.ObjectClass -eq “user”) -or ($_.ObjectClass -eq “group”) -or ($_.ObjectClass -eq “computer”)}
-    | Set-ADObject -ProtectedFromAccidentalDeletion $true
+    examples {
+        -Filter * | Where{($_.ObjectClass -eq “container”) -or ($_.ObjectClass -eq “organizationalunit”) -or ($_.ObjectClass -eq “user”) -or ($_.ObjectClass -eq “group”) -or ($_.ObjectClass -eq “computer”)}
+
+        | Set-ADObject -ProtectedFromAccidentalDeletion $true
+
+        #Get all users:
+        Get-ADObject -Filter * | Where{($_.ObjectClass -eq "user")}
+    }
+
 }
