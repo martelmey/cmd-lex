@@ -1,3 +1,9 @@
+ConvertTo-SecureString {
+    https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.security/convertto-securestring?view=powershell-7#examples
+    -String <string>
+    -SecureKey <securestring>
+}
+
 rd {
     /s c:\$Recycle.Bin
 }
@@ -95,6 +101,27 @@ Get-Item {
 
 Set-Item {
     https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/set-item?view=powershell-7
+}
+
+Move-Item {
+    https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/move-item?view=powershell-7
+    -Path <string>
+    -Destination <string>
+    -Filter <string>
+    -Include <string>
+    -Exclude <string>
+    -WhatIf
+    -Confirm
+    examples {
+        * Move dir
+        Move-Item -Path C:\Temp -Destination C:\Logs
+
+        * All of specific extension
+        Move-Item -Path .\*.txt -Destination C:\Logs
+
+        * Recursive
+        Get-ChildItem -Path ".\*.txt" -Recurse | Move-Item -Destination "C:\TextFiles"
+    }
 }
 
 Get-ChildItem {
