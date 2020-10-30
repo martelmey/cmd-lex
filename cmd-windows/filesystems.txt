@@ -20,3 +20,11 @@ Compress-Archive {
     -Path C:\path\to\file\*
     -DestinationPath C:\path\to\archive.zip
 }
+
+Mount-DiskImage {
+    https://docs.microsoft.com/en-us/powershell/module/storage/mount-diskimage?view=win10-ps
+    -ImagePath <string>
+    -StorageType <StorageType>
+    -Access <Access>
+    -NoDriveLetter
+}

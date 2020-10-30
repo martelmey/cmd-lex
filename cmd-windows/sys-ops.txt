@@ -54,6 +54,14 @@ Install-WindowsFeature {
     }
 }
 
+Uninstall-WindowsFeature {
+    https://docs.microsoft.com/en-us/powershell/module/servermanager/uninstall-windowsfeature?view=winserver2012r2-ps
+    -Name
+    -IncludeManagementTools
+    -Remove
+    -Restart
+}
+
 Get-WindowsFeature {
     https://docs.microsoft.com/en-us/powershell/module/servermanager/get-windowsfeature?view=winserver2012r2-ps
     dns* || dhcp* || *net*
@@ -143,6 +151,10 @@ DISM {
     /Set-Edition:ServerStandard
     /ProductKey:xxx
     /AcceptEula
+    examples {
+        # Fix missing Windows Feature sources
+        DISM /Online /Cleanup-Image /RestoreHealth
+    }
 }
 
 slmgr.vbs {

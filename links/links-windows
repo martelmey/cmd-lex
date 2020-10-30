@@ -5,3 +5,11 @@ https://techibee.com/powershell/powershell-query-dns-server-for-a-ptr-mx-ns-and-
 
 # GPO x Registry lookups
 https://gpsearch.azurewebsites.net
+
+# Fix Windows Features sources
+http://woshub.com/how-to-install-net-framework-3-5-in-windows-server-2012-r2/
+
+# Fix WSUS snap-in
+https://social.technet.microsoft.com/Forums/windows/en-US/715f42b1-197e-428a-a2a6-73589823fc0d/mmc-this-snapin-is-not-responding
+https://support.microsoft.com/en-us/help/929135/how-to-perform-a-clean-boot-in-windows
+https://www.prajwaldesai.com/install-configure-wsus-on-windows-server-2019/#Configure_Windows_Server_Update_Services_(WSUS)
