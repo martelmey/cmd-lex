@@ -60,9 +60,27 @@ New-NetRoute {
 
 ipconfig {
     https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/ipconfig
+    /all
     /displaydns
     /flushdns
     /registerdns
+    /release (all IPv4 addresses)
+    /renew (get a new IP from dhcp)
+}
+
+nslookup {
+    interactive/or not
+    -querytype=
+        MX (mail server)
+        MG (email group member)
+        MB (mailbox domain name)
+        UINFO (user information)
+        HINFO (hardware information)
+}
+
+tracert {
+    <address>
+    -d (don't resolve DNS)
 }
 
 net {
@@ -79,6 +97,10 @@ netsh {
 netstat {
     https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/netstat
     -rn
+    -an (see all net cxns)
+    -sp IP (ipv4 stats)
+    -sp UDP (udp for ipv4 stats)
+    -nao (protocol, local/foreign addresses, state, PIDs)
 }
 
 winrm {
@@ -122,3 +144,11 @@ route {
     DELETE 192.168.61.0
 }
 
+ping {
+    -t (until stopped)
+    -a (resolve address to hostname)
+    -n <count>
+    -r <count> (records route for <count> hops)
+    -s <count> (timestamp for count hops)
+    -i <ttl> (max 255)
+}
