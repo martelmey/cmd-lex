@@ -46,3 +46,10 @@ virsh {
     virsh vol-info kutlprdsplunk01 --pool vms
     virsh undefine
 }
+
+<os>
+  <type>hvm</type>
+  <boot dev='cdrom'/>
+  <boot dev='hd'/>
+  <bootmenu enable='yes'/>
+</os>

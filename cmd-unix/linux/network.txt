@@ -86,26 +86,28 @@ bridge {
 }
 
 ip {
-    ip ro change default via 192.168.63.254 dev br0
-    ip ro add default via 192.168.160.254 dev br0
-    ip ro add 192.168.60.0/24 via 192.168.160.254 dev br0
-        del
-        change
-        replace
-        append
-        show
-        flush
-            -statistics
+    del
+    change
+    replace
+    append
+    show
+    flush
+        -statistics
+    examples {
+        ip ro change default via 192.168.63.254 dev br0
+        ip ro add default via 192.168.160.254 dev br0
+        ip ro add 192.168.60.0/24 via 192.168.160.254 dev br0
+        
+        ip addr show
+        ip addr show dev em1
+        ip addr add 10.1.1.1/24 dev em2
+        ip addr show wlan1
 
-    ip addr show
-    ip addr show dev em1
-    ip addr add 10.1.1.1/24 dev em2
-    ip addr show wlan1
-
-    ip link set em2 up
-    ip link set em1 down
-    ip link
-    ip link show wlan1
+        ip link set em2 up
+        ip link set em1 down
+        ip link
+        ip link show wlan1
+    }
 }
 
 dns {

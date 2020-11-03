@@ -152,3 +152,15 @@ ping {
     -s <count> (timestamp for count hops)
     -i <ttl> (max 255)
 }
+
+pathping {
+    -g <host_list> (loose source route among host-list)
+    -h <maximum_hops> (max hops to search for target)
+    -i <address>
+    -n (no address resolution)
+    -p <period> (wait milliseconds between pings)
+    -q <num_queries> (number of queries per hop)
+    -w <timeout> (wait milliseconds for each reply)
+    -4 (force ipv4)
+    -6 (force ipv6)
+}
