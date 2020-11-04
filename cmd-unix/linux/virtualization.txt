@@ -53,3 +53,12 @@ virsh {
   <boot dev='hd'/>
   <bootmenu enable='yes'/>
 </os>
+
+<disk type='file' device='cdrom'>
+  <driver name='qemu' type='raw'/>
+  <source file='/iso-kvm/server19eval.iso'/>
+  <target dev='hdd' bus='ide'/>
+  <readonly/>
+</disk>
+
+/iso-kvm/server19eval.iso

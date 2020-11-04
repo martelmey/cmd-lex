@@ -13,3 +13,10 @@ http://woshub.com/how-to-install-net-framework-3-5-in-windows-server-2012-r2/
 https://social.technet.microsoft.com/Forums/windows/en-US/715f42b1-197e-428a-a2a6-73589823fc0d/mmc-this-snapin-is-not-responding
 https://support.microsoft.com/en-us/help/929135/how-to-perform-a-clean-boot-in-windows
 https://www.prajwaldesai.com/install-configure-wsus-on-windows-server-2019/#Configure_Windows_Server_Update_Services_(WSUS)
+
+* WSFC: DNS Registration with the Network Name Resource
+https://techcommunity.microsoft.com/t5/failover-clustering/dns-registration-with-the-network-name-resource/ba-p/371482
+* WSFC: RPC
+https://social.technet.microsoft.com/wiki/contents/articles/4494.windows-server-troubleshooting-rpc-server-is-unavailable.aspx#The_RPC_Server
+* WSFC: Distributed Management Point Network Type
+https://blogs.windows.com/windows-insider/2018/08/14/announcing-windows-server-2019-insider-preview-build-17733/#W0YAxO8BfwBRbkzG.97
