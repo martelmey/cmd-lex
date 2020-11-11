@@ -1,3 +1,21 @@
+dnssec-keygen {
+    https://bind.isc.org/doc/arm/9.11/man.dnssec-keygen.html
+    https://docs.oracle.com/cd/E36784_01/html/E36871/dnssec-keygen-1m.html
+    -a (algorithm)
+    -b (keysize)
+    -n (nametype)
+        for a key associated with a host(KEY) ZONE, HOST, ENTITY
+        for a key associated with a user(KEY) USER
+        (DNSKEY) OTHER
+    -K (where to write key files)
+}
+
+rndc {
+    https://linux.die.net/man/8/rndc
+    tsig-list
+    reconfig
+}
+
 proxy {
     echo "http_proxy=http://192.168.60.250:8008/" > /etc/environment
     echo "export http_proxy=http://192.168.60.250:8008" > /etc/profile.d/http_proxy.sh

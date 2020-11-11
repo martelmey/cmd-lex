@@ -20,3 +20,6 @@ https://techcommunity.microsoft.com/t5/failover-clustering/dns-registration-with
 https://social.technet.microsoft.com/wiki/contents/articles/4494.windows-server-troubleshooting-rpc-server-is-unavailable.aspx#The_RPC_Server
 * WSFC: Distributed Management Point Network Type
 https://blogs.windows.com/windows-insider/2018/08/14/announcing-windows-server-2019-insider-preview-build-17733/#W0YAxO8BfwBRbkzG.97
+
+### Enable ADMIN$ share
+https://martinsblog.dk/windows-10-admin-share-not-enabled-in-workgroup/
