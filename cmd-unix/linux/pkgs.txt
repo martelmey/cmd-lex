@@ -13,6 +13,11 @@ rpm {
 }
 
 yum {
+    clean
+        packages
+        metadata
+        headers
+        all
 	install
 		--downloadonly
 		--installroot

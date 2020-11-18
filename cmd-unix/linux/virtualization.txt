@@ -28,9 +28,11 @@ libvirt kernel fix {
 }
 
 qemu {
-    qemu-img resize /vms/kutlprdsplunk01 +40G
-    qemu-img create -f raw kutlprdops01-expansion 50G
-    qemu-img
+  qemu-img
+    resize /vms/kutlprdsplunk01 +40G
+    create -f raw kutlprdops01-expansion 50G
+    check
+    info
 	qemuinfo
 	snapshot
 		-a applies

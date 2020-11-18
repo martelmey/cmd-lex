@@ -4,8 +4,9 @@ change {
 }
 
 users, groups {
+    su - root -c "command"
     usermod -G a,b,c splunk
-		-d /home/postgres
+		  -d /home/postgres
     id  -u
         -G
     #ldap check:
