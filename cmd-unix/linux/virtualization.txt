@@ -41,6 +41,12 @@ qemu {
 		-l lists
 	check
 	create
+  format & mount, linux {
+    fdisk /dev/vdb (g,n,1,2048,+50G,p,w)
+    mkfs.ext4 -F /dev/vdb1
+    mkdir /disk2
+    mount /dev/vdb1 /disk2
+  }
 }
 
 virsh {
