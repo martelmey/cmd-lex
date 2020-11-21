@@ -17,6 +17,19 @@ Tags.conf:
 
 ###==
 ####===
+--------= ms sql
+####===
+###==
+
+Transact-SQL
+   https://docs.microsoft.com/en-us/sql/t-sql/language-reference?view=sql-server-ver15
+Add-on for Microsoft SQL Server installation overview
+   https://docs.splunk.com/Documentation/AddOns/released/MSSQLServer/Installationsteps
+Monitoring MS SQL server
+   https://community.splunk.com/t5/Getting-Data-In/How-to-monitor-Microsoft-SQL-server-using-the-Splunk-Add-on-for/m-p/297120
+
+###==
+####===
 --------= dispatch
 ####===
 ###==

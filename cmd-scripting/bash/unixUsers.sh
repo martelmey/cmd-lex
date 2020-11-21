@@ -7,7 +7,6 @@ if [ $? -gt 0 ]; then
     useradd -d /export/home/$USER $USER
     groupadd $USER
     usermod -G +$USER $USER
-    usermod -G +cgistaff $USER
     usermod -G +wheel $USER
     mkdir -p /export/home/$USER
     chown --recursive $USER:$USER /export/home/$USER

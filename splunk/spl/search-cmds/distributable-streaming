@@ -200,3 +200,25 @@
 		* Specify a calculation in the where command expression
 		sourcetype=physicsjobs | where distance/time > 100
 }
+
+| fields {
+	* https://docs.splunk.com/Documentation/Splunk/8.1.0/SearchReference/Fields#Usage
+	* Keeps or removes fields from search results based on the field list criteria.
+
+	<SYNTAX>
+
+	fields [+|-] <wc-field-list>
+		<wc-field-list>
+		Syntax: <string>, <string>, ...
+		Description: Comma-delimited list of fields to keep or remove. You can use wild card characters in the field names.
+
+	<EXAMPLES>
+	* Remove the host and ip fields from the results
+	... | fields - host, ip
+
+	* Keep only the host and ip fields. Remove all of the internal fields.
+	... | fields host, ip | fields - _*
+
+	* Remove unwanted internal fields from the output CSV file.
+	index=_internal sourcetype="splunkd" | head 5 | fields - _raw _indextime _sourcetype _subsecond _serial | outputcsv MyTestCsvfile
+}
