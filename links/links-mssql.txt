@@ -1,0 +1,4 @@
+Transact-SQL
+	https://docs.microsoft.com/en-us/sql/t-sql/language-reference?view=sql-server-ver15
+Restore a SQL Server BACKUP Using Transact-SQL
+	https://www.c-sharpcorner.com/UploadFile/c1f7d5/restore-a-sql-server-backup-using-transact-sql/

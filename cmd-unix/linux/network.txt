@@ -1,3 +1,13 @@
+post{
+    postconf
+    postfix
+        check
+}
+
+mailx{
+    -s (subject) "subject" <e@mail.address>
+}
+
 dnssec-keygen {
     https://bind.isc.org/doc/arm/9.11/man.dnssec-keygen.html
     https://docs.oracle.com/cd/E36784_01/html/E36871/dnssec-keygen-1m.html

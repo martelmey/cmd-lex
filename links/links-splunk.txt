@@ -1,5 +1,16 @@
 ###==
 ####===
+--------= alerts
+####===
+###==
+
+Convert a script alert action to a custom alert action
+   https://docs.splunk.com/Documentation/Splunk/8.0.3/AdvancedDev/CustomAlertConvertScripted?ref=hk
+Create a custom alert action script
+   https://docs.splunk.com/Documentation/Splunk/8.1.0/AdvancedDev/CustomAlertScript
+
+###==
+####===
 --------= syntax ref
 ####===
 ###==
@@ -21,8 +32,6 @@ Tags.conf:
 ####===
 ###==
 
-Transact-SQL
-   https://docs.microsoft.com/en-us/sql/t-sql/language-reference?view=sql-server-ver15
 Add-on for Microsoft SQL Server installation overview
    https://docs.splunk.com/Documentation/AddOns/released/MSSQLServer/Installationsteps
 Monitoring MS SQL server

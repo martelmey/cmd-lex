@@ -37,3 +37,30 @@ Get-LocalGroupMember {
 Query {
     User
 }
+
+wmic {
+    useraccount
+        get
+        where
+    example {
+        wmic useraccount get name,sid
+        wmic useraccount where name="USER" get sid
+        wmic useraccount where sid="" get name
+        HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\ProfileList
+    }
+}
+
+identity-mapping {
+    C:\windows\system32\drivers\etc\passwd
+    C:\windows\system32\drivers\etc\group
+    syntax {
+        passwd: [domain]\<UnixUser>:x:<UnixUID>:<UnixGID>:Description:C:\Users\<UnixUser>
+        group: [domain]\<UnixGroup>:x:<UnixGID>:<UnixUID>
+        example {
+            type C:\Windows\System32\drivers\etc\passwd
+                mechanic:x:1000:100:Windows User,,,:c:\users\mechanic
+            type C:\Windows\System32\drivers\etc\group
+                wheel:x:0:0
+        }
+    }
+}
