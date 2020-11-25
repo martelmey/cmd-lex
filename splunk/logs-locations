@@ -3,3 +3,6 @@ C:\Program Files(x86)\Syslogd\Logs
 
 TNS Listener
 /u01/app/oracle/diag/tnslsnr/knpdb11/listener_kdctst/alert/log.xml
+
+Solaris Named
+/var/named/data/named.run

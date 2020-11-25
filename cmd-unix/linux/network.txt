@@ -8,6 +8,25 @@ mailx{
     -s (subject) "subject" <e@mail.address>
 }
 
+named-checkconf
+named-checkzone
+
+rndc {
+    https://linux.die.net/man/8/rndc
+    tsig-list
+    reconfig
+    reload
+}
+
+dig {
+    @<nameserver> <record>
+    example {
+        dig @ns2.kdc.health.local. testing.uat.health.local.
+        dig @ns1.kdc.health.local. kutlprdops01.kdc.health.local.
+    }
+}
+
+
 dnssec-keygen {
     https://bind.isc.org/doc/arm/9.11/man.dnssec-keygen.html
     https://docs.oracle.com/cd/E36784_01/html/E36871/dnssec-keygen-1m.html
@@ -18,12 +37,6 @@ dnssec-keygen {
         for a key associated with a user(KEY) USER
         (DNSKEY) OTHER
     -K (where to write key files)
-}
-
-rndc {
-    https://linux.die.net/man/8/rndc
-    tsig-list
-    reconfig
 }
 
 proxy {
@@ -117,6 +130,9 @@ ip {
     del
     change
     replace
+    route
+        add
+        change
     append
     show
     flush
