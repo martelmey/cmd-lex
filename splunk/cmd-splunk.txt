@@ -39,6 +39,8 @@ list \
 reload \
 	deploy-server
 	listen
+	exec (script input config)
+	monitor (monitor input config)
 
 set \
 	deploy-poll host:port
