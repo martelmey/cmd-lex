@@ -11,6 +11,10 @@ control {
         systemctl set-default graphical.target
 }
 
+ntpq {
+    -p
+}
+
 journalctl {
     -u (user)
     -l (long listing)

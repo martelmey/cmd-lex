@@ -4,6 +4,28 @@ post{
         check
 }
 
+ldapsearch {
+    -x (simple auth)
+    -b (searchbase as the starting point for the search instead of the default)
+    examples {
+        ldapsearch -x -b "ou=groups,dc=health,dc=local"
+        ldapsearch -x -b "ou=people,dc=health,dc=local"
+        ldapsearch -x -b "cn=dba-prod,ou=groups,dc=health,dc=local"
+        ldapsearch -x -b "uid=test,ou=people,dc=health,dc=local"
+    }
+}
+
+ldapclient {
+    list
+}
+
+ldapmodify {
+    -x (simple auth)`
+    -W (prompt for password)
+    -D (place to apply change)
+    -f (file to apply)
+}
+
 mailx{
     -s (subject) "subject" <e@mail.address>
 }

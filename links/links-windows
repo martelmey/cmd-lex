@@ -26,3 +26,11 @@ https://martinsblog.dk/windows-10-admin-share-not-enabled-in-workgroup/
 
 # NFS Anonymous UID & GID fix
 https://blog.edie.io/2018/06/16/mounting-nfs-shares-in-windows-using-identity-mapping/
+
+# Set NTP server
+https://www.server-world.info/en/note?os=Windows_Server_2019&p=ntp&f=2
+https://kb.meinbergglobal.com/kb/time_sync/timekeeping_on_windows/configuring_w32time_as_ntp_client
+
+# Configure WSUS servers/clients
+https://www.prajwaldesai.com/install-configure-wsus-on-windows-server-2019/
+https://www.action1.com/kb/install-and-configure-WSUS-on-Windows-Server-2019.html
