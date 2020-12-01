@@ -6,3 +6,7 @@ TNS Listener
 
 Solaris Named
 /var/named/data/named.run
+
+Apache Subversion
+/etc/httpd/logs/access_log
+	/error_log

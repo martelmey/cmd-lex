@@ -34,3 +34,6 @@ https://kb.meinbergglobal.com/kb/time_sync/timekeeping_on_windows/configuring_w3
 # Configure WSUS servers/clients
 https://www.prajwaldesai.com/install-configure-wsus-on-windows-server-2019/
 https://www.action1.com/kb/install-and-configure-WSUS-on-Windows-Server-2019.html
+
+# Schedule PowerShell Tasks with Task Scheduler On Windows Server
+http://www.ntweekly.com/2020/06/28/schedule-powershell-tasks-with-task-scheduler-on-windows-server/

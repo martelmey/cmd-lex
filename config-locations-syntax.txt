@@ -8,3 +8,6 @@ YUM CONF
 Syntax:
 https://linux.die.net/man/5/yum.conf
 /etc/yum.conf
+
+APACHE SUBVERSION
+/etc/httpd/conf.d/subversion.conf
