@@ -58,6 +58,13 @@ New-NetRoute {
     -NextHop 192.168.61.254
 }
 
+New-PSDrive {
+    https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/new-psdrive?view=powershell-7.1
+    -Name "KDCPKGSMSSQL"
+    -PSProvider "FileSystem"
+    -Root "\\192.168.61.132\export\utilities-kdcprd\pkgs\MSSQL-SSO-TESTING"
+}
+
 ipconfig {
     https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/ipconfig
     /all
@@ -87,6 +94,9 @@ net {
     https://www.lifewire.com/net-command-2618094
     stop sppsvc
     start sppsvc
+    use
+        Z: \\192.168.61.132\
+        * \\192.168.61.132\ (first available drive will be used)
 }
 
 netsh {
@@ -142,6 +152,9 @@ route {
         192.168.61.254
         -p (persistent)
     DELETE 192.168.61.0
+    examples {
+        route ADD 192.168.156.0 MASK 255.255.254.0 192.168.157.254 IF 20
+    }
 }
 
 ping {

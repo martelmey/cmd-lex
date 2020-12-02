@@ -12,8 +12,22 @@ Scheduled Automatic SQL Database Backup using SSMS
 SQL Server Script to Create Windows Directories
 	https://www.mssqltips.com/sqlservertip/1460/sql-server-script-to-create-windows-directories/
 
+What is SQL Server database mirroring?
+	https://www.sqlshack.com/sql-server-database-mirroring/
+
+### auto restore related:
+
+Giving file system access to the SQLSERVERAGENT virtual account
+	https://dba.stackexchange.com/questions/70069/giving-file-system-access-to-the-sqlserveragent-virtual-account#125638
+
+Configure File System Permissions for Database Engine Access
+	https://docs.microsoft.com/en-us/sql/database-engine/configure-windows/configure-file-system-permissions-for-database-engine-access?view=sql-server-ver15
+
+Configure Windows Service Accounts and Permissions
+	https://docs.microsoft.com/en-us/sql/database-engine/configure-windows/configure-windows-service-accounts-and-permissions?view=sql-server-ver15
+
 Fully automated SQL Server Restore Script
 	https://social.technet.microsoft.com/wiki/contents/articles/23800.fully-automated-sql-server-restore-script.aspx
 
-What is SQL Server database mirroring?
-	https://www.sqlshack.com/sql-server-database-mirroring/
+How to schedule automatically restore sql server database from .bak file in FTP server
+	https://social.msdn.microsoft.com/Forums/sqlserver/en-US/080894c3-51d0-4ec9-b35c-d3f17e78a758/how-to-schedule-automatically-restore-sql-server-database-from-bak-file-in-ftp-server

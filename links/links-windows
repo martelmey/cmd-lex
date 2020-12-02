@@ -1,39 +1,48 @@
 # Powershell loops - connection / dns tests
-https://stackoverflow.com/questions/29493414/ping-a-list-of-host-names-and-output-the-results-to-a-csv-in-powershell
-https://sid-500.com/2018/02/02/powershell-test-open-tcp-ports-with-test-openport-multiple-hosts-multiple-port-numbers/
-https://techibee.com/powershell/powershell-query-dns-server-for-a-ptr-mx-ns-and-other-records/2570
+	https://stackoverflow.com/questions/29493414/ping-a-list-of-host-names-and-output-the-results-to-a-csv-in-powershell
+	https://sid-500.com/2018/02/02/powershell-test-open-tcp-ports-with-test-openport-multiple-hosts-multiple-port-numbers/
+	https://techibee.com/powershell/powershell-query-dns-server-for-a-ptr-mx-ns-and-other-records/2570
 
 # GPO x Registry lookups
-https://gpsearch.azurewebsites.net
+	https://gpsearch.azurewebsites.net
 
 # Fix Windows Features sources
-http://woshub.com/how-to-install-net-framework-3-5-in-windows-server-2012-r2/
+	http://woshub.com/how-to-install-net-framework-3-5-in-windows-server-2012-r2/
 
 # Fix WSUS snap-in
-https://social.technet.microsoft.com/Forums/windows/en-US/715f42b1-197e-428a-a2a6-73589823fc0d/mmc-this-snapin-is-not-responding
-https://support.microsoft.com/en-us/help/929135/how-to-perform-a-clean-boot-in-windows
-https://www.prajwaldesai.com/install-configure-wsus-on-windows-server-2019/#Configure_Windows_Server_Update_Services_(WSUS)
+	https://social.technet.microsoft.com/Forums/windows/en-US/715f42b1-197e-428a-a2a6-73589823fc0d/mmc-this-snapin-is-not-responding
+	https://support.microsoft.com/en-us/help/929135/how-to-perform-a-clean-boot-in-windows
+	https://www.prajwaldesai.com/install-configure-wsus-on-windows-server-2019/#Configure_Windows_Server_Update_Services_(WSUS)
 
 * WSFC: DNS Registration with the Network Name Resource
-https://techcommunity.microsoft.com/t5/failover-clustering/dns-registration-with-the-network-name-resource/ba-p/371482
+	https://techcommunity.microsoft.com/t5/failover-clustering/dns-registration-with-the-network-name-resource/ba-p/371482
 * WSFC: RPC
-https://social.technet.microsoft.com/wiki/contents/articles/4494.windows-server-troubleshooting-rpc-server-is-unavailable.aspx#The_RPC_Server
+	https://social.technet.microsoft.com/wiki/contents/articles/4494.windows-server-troubleshooting-rpc-server-is-unavailable.aspx#The_RPC_Server
 * WSFC: Distributed Management Point Network Type
-https://blogs.windows.com/windows-insider/2018/08/14/announcing-windows-server-2019-insider-preview-build-17733/#W0YAxO8BfwBRbkzG.97
+	https://blogs.windows.com/windows-insider/2018/08/14/announcing-windows-server-2019-insider-preview-build-17733/#W0YAxO8BfwBRbkzG.97
 
 # Enable ADMIN$ share
-https://martinsblog.dk/windows-10-admin-share-not-enabled-in-workgroup/
+	https://martinsblog.dk/windows-10-admin-share-not-enabled-in-workgroup/
 
 # NFS Anonymous UID & GID fix
-https://blog.edie.io/2018/06/16/mounting-nfs-shares-in-windows-using-identity-mapping/
+	https://blog.edie.io/2018/06/16/mounting-nfs-shares-in-windows-using-identity-mapping/
 
 # Set NTP server
-https://www.server-world.info/en/note?os=Windows_Server_2019&p=ntp&f=2
-https://kb.meinbergglobal.com/kb/time_sync/timekeeping_on_windows/configuring_w32time_as_ntp_client
+	https://www.server-world.info/en/note?os=Windows_Server_2019&p=ntp&f=2
+	https://kb.meinbergglobal.com/kb/time_sync/timekeeping_on_windows/configuring_w32time_as_ntp_client
 
 # Configure WSUS servers/clients
-https://www.prajwaldesai.com/install-configure-wsus-on-windows-server-2019/
-https://www.action1.com/kb/install-and-configure-WSUS-on-Windows-Server-2019.html
+	https://www.prajwaldesai.com/install-configure-wsus-on-windows-server-2019/
+	https://www.action1.com/kb/install-and-configure-WSUS-on-Windows-Server-2019.html
 
 # Schedule PowerShell Tasks with Task Scheduler On Windows Server
-http://www.ntweekly.com/2020/06/28/schedule-powershell-tasks-with-task-scheduler-on-windows-server/
+	http://www.ntweekly.com/2020/06/28/schedule-powershell-tasks-with-task-scheduler-on-windows-server/
+
+Windows NFS client re-connect to NFS target on reboot
+	https://social.technet.microsoft.com/Forums/en-US/44445dc3-0185-407f-b8ad-711f22cd4ec6/windows-nfs-client-reconnect-to-nfs-target-on-reboot?forum=winserverfiles
+
+Hard Mount vs Soft Mount in NFS
+	https://linoxide.com/file-system/difference-soft-hard-nfs-mount/
+
+PsExec v2.2
+	https://docs.microsoft.com/en-us/sysinternals/downloads/psexec

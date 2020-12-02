@@ -19,3 +19,18 @@ Copy-Item {
 
     Copy-Item -Path "C:\Logfiles\*" -Destination "C:\Drawings" -Recurse
 }
+
+Test-Path {
+    https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/test-path?view=powershell-7.1
+
+    [-Path] <String[]>
+    [-Filter <String>]
+    [-Include <String[]>]
+    [-Exclude <String[]>]
+    [-PathType <TestPathType>]
+    [-IsValid]
+    [-Credential <PSCredential>]
+    [-OlderThan <DateTime>]
+    [-NewerThan <DateTime>]
+    [<CommonParameters>]
+}
