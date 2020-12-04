@@ -1,0 +1,20 @@
+PS C:\Users\MXANA> nmap -sn 10.0.0.0/24
+                                                            Sta
+Nmap scan report for 10.0.0.1
+Host is up (0.0085s latency).
+MAC Address: 38:3F:B3:E5:6C:C3 (Unknown)
+Nmap scan report for 10.0.0.13
+Host is up (0.034s latency).
+MAC Address: 84:57:33:CA:44:1D (Microsoft)
+Nmap scan report for 10.0.0.203
+Host is up (0.0090s latency).
+MAC Address: 64:16:66:D7:40:2E (Nest Labs)
+Nmap scan report for 10.0.0.216
+Host is up (0.019s latency).
+MAC Address: B8:B7:F1:74:2B:BF (Wistron Neweb)
+Nmap scan report for 10.0.0.220
+Host is up (0.093s latency).
+MAC Address: 64:16:66:DA:91:99 (Nest Labs)
+Nmap scan report for 10.0.0.126
+Host is up.
+Nmap done: 256 IP addresses (6 hosts up) scanned in 15.81 seconds

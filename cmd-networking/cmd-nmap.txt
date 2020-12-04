@@ -1,2 +1,20 @@
 nmap -v -A -iL <listofhosts/networks> 10.0.<0-255>.<1-254>
 nmap -sTU -O IP-address-Here
+
+nmap -sn <target addresses>
+Results = all responding active hosts
+-sn disables port scanning {
+	nmap -sn 10.0.0.0/24
+}
+
+nmap {
+	-V (services)
+	-O (OS detection)
+	-S (port scan)
+}
+
+examples {
+	nmap -sS 10.0.0.0/24 (hosts up)
+	nmap -sV 10.0.0.0/24 (services)
+	nmap -O 10.0.0.0/24 (OS detection)
+}

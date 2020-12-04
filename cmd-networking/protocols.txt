@@ -1,0 +1,35 @@
+ICMP {
+	echo request
+	timestamp request
+}
+
+TCP {
+	Transport Control Protocol
+	
+	20 FTP-data (moving files)
+	21 FTP-control (control info for moving files)
+	22 SSH
+	23 Telnet (obsolete, unencrypted)
+	25 SMTP (send, route email)
+	53 DNS
+	80 HTTP
+	110 POP3 (download email to host)
+	123 NTP
+	143 IMAP (no mail download, view anywhere)
+	161 SNMP (collects info, configures network devices)
+	443 HTTPS
+	445 Microsoft DS (SMB over IP; Windows file sharing)
+	465 SMTPS (secure SMPTY, SSL)
+	1433 MSSQL
+	3389 RDP
+}
+
+ARP {
+	Address Resolution Protocol
+	Map IP to MAC
+	ARP request = ARP cache (table)
+}
+
+MAC {
+	Media Access Control
+}
