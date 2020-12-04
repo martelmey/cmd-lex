@@ -10,9 +10,15 @@ rpm {
         -v, --verify
         -i, --install
         -U, upgrade
+        -h, --hash (print 50 hash marks while pkg is unpacked)
 }
 
 yum {
+    clean
+        packages
+        metadata
+        headers
+        all
 	install
 		--downloadonly
 		--installroot

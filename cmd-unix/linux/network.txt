@@ -1,3 +1,66 @@
+post{
+    postconf
+    postfix
+        check
+}
+
+ldapsearch {
+    -x (simple auth)
+    -b (searchbase as the starting point for the search instead of the default)
+    examples {
+        ldapsearch -x -b "ou=groups,dc=health,dc=local"
+        ldapsearch -x -b "ou=people,dc=health,dc=local"
+        ldapsearch -x -b "cn=dba-prod,ou=groups,dc=health,dc=local"
+        ldapsearch -x -b "uid=test,ou=people,dc=health,dc=local"
+    }
+}
+
+ldapclient {
+    list
+}
+
+ldapmodify {
+    -x (simple auth)`
+    -W (prompt for password)
+    -D (place to apply change)
+    -f (file to apply)
+}
+
+mailx{
+    -s (subject) "subject" <e@mail.address>
+}
+
+named-checkconf
+named-checkzone
+
+rndc {
+    https://linux.die.net/man/8/rndc
+    tsig-list
+    reconfig
+    reload
+}
+
+dig {
+    @<nameserver> <record>
+    example {
+        dig @ns2.kdc.health.local. testing.uat.health.local.
+        dig @ns1.kdc.health.local. kutlprdops01.kdc.health.local.
+    }
+}
+
+
+dnssec-keygen {
+    https://bind.isc.org/doc/arm/9.11/man.dnssec-keygen.html
+    https://docs.oracle.com/cd/E36784_01/html/E36871/dnssec-keygen-1m.html
+    -a (algorithm)
+    -b (keysize)
+    -n (nametype)
+        for a key associated with a host(KEY) ZONE, HOST, ENTITY
+        for a key associated with a user(KEY) USER
+        (DNSKEY) OTHER
+    -K (where to write key files)
+}
+
 proxy {
     echo "http_proxy=http://192.168.60.250:8008/" > /etc/environment
     echo "export http_proxy=http://192.168.60.250:8008" > /etc/profile.d/http_proxy.sh
@@ -86,26 +149,31 @@ bridge {
 }
 
 ip {
-    ip ro change default via 192.168.63.254 dev br0
-    ip ro add default via 192.168.160.254 dev br0
-    ip ro add 192.168.60.0/24 via 192.168.160.254 dev br0
-        del
+    del
+    change
+    replace
+    route
+        add
         change
-        replace
-        append
-        show
-        flush
-            -statistics
+    append
+    show
+    flush
+        -statistics
+    examples {
+        ip ro change default via 192.168.63.254 dev br0
+        ip ro add default via 192.168.160.254 dev br0
+        ip ro add 192.168.60.0/24 via 192.168.160.254 dev br0
+        
+        ip addr show
+        ip addr show dev em1
+        ip addr add 10.1.1.1/24 dev em2
+        ip addr show wlan1
 
-    ip addr show
-    ip addr show dev em1
-    ip addr add 10.1.1.1/24 dev em2
-    ip addr show wlan1
-
-    ip link set em2 up
-    ip link set em1 down
-    ip link
-    ip link show wlan1
+        ip link set em2 up
+        ip link set em1 down
+        ip link
+        ip link show wlan1
+    }
 }
 
 dns {

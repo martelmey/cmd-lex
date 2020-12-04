@@ -8,6 +8,8 @@ file_descriptors {
         send stderr to stdout
     3<&0
         send stdin to file descriptor 3
+    > /dev/null 2>&1
+        send to the void
 }
 
 positional parameter vars {

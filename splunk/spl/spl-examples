@@ -1,4 +1,11 @@
 ######################
+which hosts USERNAME has accessed past 24 hours
+###################### {
+	index=os_evt_* sourcetype=who USERNAME=emmanuel.comia
+	| chart count by host
+}
+
+######################
 Sizes of indexes over time
 ###################### {
 	[ | makeresults

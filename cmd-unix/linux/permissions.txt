@@ -1,11 +1,25 @@
 change {
     chown -R nobody: /export/ops-tools
+}
+
+chmod {
+  [ugoa]*([-+=]([rwxXst]*|[ugo]))+|[-+=][0-7]+
+
+  ---(owner)---(group)---(world)
+
+  -c, --changes (report only changes)
+  -R, --recursive
+
+  examples {
     chmod -R 777 /export/ops-tools
+    chmod -R u+rw,g-rwx,o-rwx /var/empty
+  }
 }
 
 users, groups {
+    su - root -c "command"
     usermod -G a,b,c splunk
-		-d /home/postgres
+		  -d /home/postgres
     id  -u
         -G
     #ldap check:

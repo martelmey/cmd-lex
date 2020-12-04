@@ -28,9 +28,11 @@ libvirt kernel fix {
 }
 
 qemu {
-    qemu-img resize /vms/kutlprdsplunk01 +40G
-    qemu-img create -f raw kutlprdops01-expansion 50G
-    qemu-img
+  qemu-img
+    resize /vms/kutlprdsplunk01 +40G
+    create -f raw kutlprdops01-expansion 50G
+    check
+    info
 	qemuinfo
 	snapshot
 		-a applies
@@ -39,6 +41,12 @@ qemu {
 		-l lists
 	check
 	create
+  format & mount, linux {
+    fdisk /dev/vdb (g,n,1,2048,+50G,p,w)
+    mkfs.ext4 -F /dev/vdb1
+    mkdir /disk2
+    mount /dev/vdb1 /disk2
+  }
 }
 
 virsh {
@@ -46,3 +54,19 @@ virsh {
     virsh vol-info kutlprdsplunk01 --pool vms
     virsh undefine
 }
+
+<os>
+  <type>hvm</type>
+  <boot dev='cdrom'/>
+  <boot dev='hd'/>
+  <bootmenu enable='yes'/>
+</os>
+
+<disk type='file' device='cdrom'>
+  <driver name='qemu' type='raw'/>
+  <source file='/iso-kvm/server19eval.iso'/>
+  <target dev='hdd' bus='ide'/>
+  <readonly/>
+</disk>
+
+/iso-kvm/server19eval.iso

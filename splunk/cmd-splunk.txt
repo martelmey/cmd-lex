@@ -39,6 +39,8 @@ list \
 reload \
 	deploy-server
 	listen
+	exec (script input config)
+	monitor (monitor input config)
 
 set \
 	deploy-poll host:port
@@ -47,6 +49,9 @@ set \
 show \
 	config
 	deploy-poll
+
+diag \
+	--basename=dir (where to drop tar)
 
 https://docs.splunk.com/Documentation/Splunk/8.0.6/admin/Indexesconf
 splunk add index autobox \

@@ -7,6 +7,17 @@ ConvertTo-SecureString {
     -SecureKey <securestring>
 }
 
+w32tm {
+    /query
+        /peers
+        /source
+        /status
+    /config
+        /manualpeerlist:[server],0x8
+        /syncfromflags:MANUAL
+        /update
+}
+
 rd {
     /s c:\$Recycle.Bin
 }

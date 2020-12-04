@@ -1,0 +1,2 @@
+* ifconfig interface flags
+https://docs.oracle.com/cd/E19253-01/816-5166/ifconfig-1m/index.html#INTERFACE%20FLAGS

@@ -1,0 +1,3 @@
+* SQLPlus commands
+https://docs.oracle.com/cd/B10501_01/server.920/a90842/qstart.htm#970667
+https://docs.oracle.com/cd/B10501_01/server.920/a90842/ch13.htm

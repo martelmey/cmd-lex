@@ -5,6 +5,7 @@ route {
 firewall {
     echo "pass all from any to any port = 8088" >> /etc/firewall/pf.conf
     /etc/ipf/ipf.conf
+    svcs -l firewall (check status)
 }
 
 netstat {

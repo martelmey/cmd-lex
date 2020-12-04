@@ -9,3 +9,6 @@
 move to beginning of line:
 ^ or 0
 Shift+i
+
+### Delete matching lines
+:g/Disabled = 1/d
