@@ -23,14 +23,47 @@ Compress-Archive {
 
 Mount-DiskImage {
     https://docs.microsoft.com/en-us/powershell/module/storage/mount-diskimage?view=win10-ps
+
     -ImagePath <string>
     -StorageType <StorageType>
     -Access <Access>
     -NoDriveLetter
 }
 
+New-PSDrive {
+    https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/new-psdrive?view=powershell-7.1
+
+    -Name "KDCPKGSMSSQL"
+    -PSProvider "FileSystem"
+    -Root "\\192.168.61.132\export\utilities-kdcprd\pkgs\MSSQL-SSO-TESTING"
+}
+
 mount {
-    -o noclock
+    https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/mount
+
+    mount [-o <option>[...]] [-u:<username>] [-p:{<password> | *}] {\\<computername>\<sharename> | <computername>:/<sharename>} {<devicename> | *}
+
+    -o
+        nolock (default = enabled)
+        rsize=<buffersize> (read buffer size)
+        wsize=<buffersize> (write buffer size)
+        timeout=<seconds> (RPC timeout)
+        retry=<number> (for soft mount)
+        mtype=<soft|hard> (default = soft)
+        anon (as anon user)
+        casesensitive (force file lookups to be)
+        fileaccess=<mode> (of new files)
+            ogw (owner, group, world)
+            0: No access
+            1: x (execute access)
+            2: w (write access)
+            3: wx (write and execute access)
+            4: r (read access)
+            5: rx (read and execute access)
+            6: rw (read and write access)
+            7: rwx (read, write, and execute access)
+    -u:<username> (if not preceded by \, treated as UNIX username)
+    -p:<password> (use * to prompt)
 }
 
 nfs-anon-fix {

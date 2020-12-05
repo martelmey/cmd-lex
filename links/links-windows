@@ -38,11 +38,17 @@
 # Schedule PowerShell Tasks with Task Scheduler On Windows Server
 	http://www.ntweekly.com/2020/06/28/schedule-powershell-tasks-with-task-scheduler-on-windows-server/
 
-Windows NFS client re-connect to NFS target on reboot
+# Windows NFS client re-connect to NFS target on reboot
 	https://social.technet.microsoft.com/Forums/en-US/44445dc3-0185-407f-b8ad-711f22cd4ec6/windows-nfs-client-reconnect-to-nfs-target-on-reboot?forum=winserverfiles
 
-Hard Mount vs Soft Mount in NFS
+# Hard Mount vs Soft Mount in NFS
 	https://linoxide.com/file-system/difference-soft-hard-nfs-mount/
 
-PsExec v2.2
+# PsExec v2.2
 	https://docs.microsoft.com/en-us/sysinternals/downloads/psexec
+
+# Disabling UAC on the Windows Server 2019
+	https://asvignesh.in/disabling-uac-on-the-windows-server-2019/
+
+# How to Automatically Create System Restore Points in Windows 7 and 8
+	https://www.sevenforums.com/tutorials/67114-system-restore-point-create-system-startup.html
