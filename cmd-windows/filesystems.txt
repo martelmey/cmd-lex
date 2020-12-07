@@ -3,6 +3,29 @@ Get-SMBShare {
     SWSVOL
 }
 
+xcopy {
+    examples {
+        xcopy F:\*.* E:\ /s /e /f
+    }
+}
+
+diskpart {
+    list
+        disk
+    select
+        disk x
+        partition x
+    clean
+    create
+        partition primary
+    format
+        fs=
+            ntfs
+            fat32
+        quick
+    active
+}
+
 Get-FileHash {
     https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/get-filehash?view=powershell-7
     <filepath>
