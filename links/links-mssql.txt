@@ -9,6 +9,9 @@ How to fix the “Agent XPs disabled” error
 SQL Server Script to Create Windows Directories
 	https://www.mssqltips.com/sqlservertip/1460/sql-server-script-to-create-windows-directories/
 
+Install SQL Server from the Command Prompt
+	https://docs.microsoft.com/en-us/sql/database-engine/install-windows/install-sql-server-from-the-command-prompt?view=sql-server-ver15#Install
+
 ### agent
 
 Agent Properties
@@ -63,3 +66,8 @@ How do I change the instance root directory?
 
 Change SQL Data Root Directory
 	https://www.sqlservercentral.com/forums/topic/change-sql-data-root-directory
+
+### installation on SMB
+
+Install SQL Server with SMB fileshare storage
+	https://docs.microsoft.com/en-us/sql/database-engine/install-windows/install-sql-server-with-smb-fileshare-as-a-storage-option?view=sql-server-ver15

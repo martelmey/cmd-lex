@@ -55,3 +55,12 @@
 
 # Copy Windows Server 2019 ISO to USB in Simple Steps
 	https://www.diskpart.com/server-2019/windows-server-2019-iso-to-usb-1984.html
+
+# Mounting NFS Shares in Windows Using Identity Mapping
+	https://blog.edie.io/2018/06/16/mounting-nfs-shares-in-windows-using-identity-mapping/
+
+# Windows Server 2019 SMB Share
+	https://social.technet.microsoft.com/Forums/en-US/e63f1d76-3913-4b33-85b5-e04581d59f8b/windows-server-2019-smb-share
+
+# How to detect, enable and disable SMBv1, SMBv2, and SMBv3 in Windows
+	https://docs.microsoft.com/en-us/windows-server/storage/file-server/troubleshoot/detect-enable-and-disable-smbv1-v2-v3#how-to-detect-status-enable-and-disable-smb-protocols-on-the-smb-client

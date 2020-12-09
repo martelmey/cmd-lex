@@ -2,9 +2,69 @@
     [System.IO.Ports.SerialPort]::getportnames()
 
 ConvertTo-SecureString {
-    https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.security/convertto-securestring?view=powershell-7#examples
+    * https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.security/convertto-securestring?view=powershell-7#examples
+
     -String <string>
     -SecureKey <securestring>
+}
+
+sc.exe {
+    * https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-R2-and-2012/cc754599(v=ws.11)
+
+    boot
+        Indicates whether the last boot should be saved as the last-known good boot configuration.
+    config
+        Modifies the value of a service's entries in the registry and in the Service Control Manager database.
+    continue
+        Sends a CONTINUE control request to a paused service.
+    control
+        Sends a control to a service.
+    create
+        Creates a subkey and entries for the service in the registry and in the Service Control Manager database.
+    delete
+       Deletes a service subkey from the registry.
+    description
+        Sets the description string for a service.
+    enumdepend
+        Lists the services that cannot run unless the specified service is running.
+    failure
+        Specifies one or more actions to be taken if a particular service fails.
+    failureflag
+        Specifies whether to trigger recovery actions when a service stops as the result of an error.
+    getdisplayname
+        Gets the display name associated with a particular service.
+    getkeyname
+        Gets the key name associated with a particular service, using the display name as input.
+    interrogate
+        Sends an INTERROGATE control request to a service.
+    lock
+        Locks the Service Control Manager's database.
+    pause
+        Sends a PAUSE control request to a service.
+    qc
+        Queries the configuration information for a service.
+    qdescription
+        Displays a service's description string.
+    qfailure
+        Displays the actions that will be performed if the specified service fails.
+    query
+        Obtains and displays information about the specified service, driver, type of service, or type of driver.
+    queryex
+        Obtains and displays detailed information about the specified service, driver, type of service, or type of driver.
+    querylock
+        Queries and displays the lock status for the Service Control Manager database.
+    sdset
+        Sets a service's security descriptor, using Security Descriptor Definition Language (SDDL).
+    sdshow
+        Displays a service's security descriptor, using SDDL.
+    start
+        Starts a service.
+    stop
+        Sends a STOP control request to a service.
+
+    examples {
+        sc.exe qc lanmanworkstation
+    }
 }
 
 w32tm {

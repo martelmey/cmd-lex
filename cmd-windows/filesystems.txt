@@ -3,6 +3,59 @@ Get-SMBShare {
     SWSVOL
 }
 
+New-NfsMappedIdentity {
+    * https://docs.microsoft.com/en-us/powershell/module/nfs/new-nfsmappedidentity?view=win10-ps
+
+    [-MappingStore <MappingStoreType>]
+    [-Server <String>]
+    [-LdapNamingContext <String>]
+    -UserName <String>
+    [-Password <SecureString>]
+    -UserIdentifier <Int32>
+    -GroupIdentifier <Int32>
+    [-PrimaryGroup <String>]
+    [-SupplementaryGroups <String>]
+    [-WhatIf]
+    [-Confirm]
+    [<CommonParameters>]
+
+    examples {
+        New-NfsMappedIdentity -MappingStore "Mapfiles" -Server "KUTLPRDSOLSQL01" -UserName "swssqlsa" -UserIdentifier 1216 -GroupIdentifier 1216
+    }
+}
+
+Get-NfsMappedIdentity {
+    * https://docs.microsoft.com/en-us/powershell/module/nfs/get-nfsmappedidentity?view=win10-ps
+
+    [-MappingStore <MappingStoreType>]
+    [-UserIdentifier <Int32>]
+    [-GroupIdentifier <Int32>]
+    [-AccountName <String>]
+    -AccountType <AccountType>
+    [<CommonParameters>]
+
+    examples {
+        get-nfsmappedidentity -accounttype "User"
+    }    
+}
+
+Get-NfsClientConfiguration {
+    * https://docs.microsoft.com/en-us/powershell/module/nfs/get-nfsclientconfiguration?view=win10-ps
+
+    [-CimSession <CimSession[]>]
+    [-ThrottleLimit <Int32>]
+    [-AsJob]
+    [<CommonParameters>]
+}
+
+Get-NfsMappingStore {
+    * https://docs.microsoft.com/en-us/powershell/module/nfs/get-nfsmappingstore?view=win10-ps  
+}
+
+Get-NfsMountedClient {
+    * https://docs.microsoft.com/en-us/powershell/module/nfs/get-nfsmountedclient?view=win10-ps
+}
+
 xcopy {
     examples {
         xcopy F:\*.* E:\ /s /e /f
@@ -56,9 +109,21 @@ Mount-DiskImage {
 New-PSDrive {
     https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/new-psdrive?view=powershell-7.1
 
-    -Name "KDCPKGSMSSQL"
-    -PSProvider "FileSystem"
-    -Root "\\192.168.61.132\export\utilities-kdcprd\pkgs\MSSQL-SSO-TESTING"
+    [-Name] <String>
+    [-PSProvider] <String>
+    [-Root] <String>
+    [-Description <String>]
+    [-Scope <String>]
+    [-Persist]
+    [-Credential <PSCredential>]
+    [-WhatIf]
+    [-Confirm]
+    [<CommonParameters>]
+
+    examples {
+        -Name "KDCPKGSMSSQL" -PSProvider "FileSystem" -Root "\\192.168.61.132\export\utilities-kdcprd\pkgs\MSSQL-SSO-TESTING"
+    }
+    
 }
 
 mount {
