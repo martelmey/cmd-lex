@@ -123,7 +123,56 @@ New-PSDrive {
     examples {
         -Name "KDCPKGSMSSQL" -PSProvider "FileSystem" -Root "\\192.168.61.132\export\utilities-kdcprd\pkgs\MSSQL-SSO-TESTING"
     }
-    
+}
+
+Get-PSDrive {
+    * https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/get-psdrive?view=powershell-7.1
+
+    [[-Name] <String[]>]
+    [-Scope <String>]
+    [-PSProvider <String[]>]
+    [<CommonParameters>] 
+}
+
+New-SmbMapping {
+    * https://docs.microsoft.com/en-us/powershell/module/smbshare/new-smbmapping?view=win10-ps
+
+    [[-LocalPath] <String>]
+    [[-RemotePath] <String>]
+    [-UserName <String>]
+    [-Password <String>]
+    [-Persistent <Boolean>]
+    [-SaveCredentials]
+    [-HomeFolder]
+    [-CimSession <CimSession[]>]
+    [-ThrottleLimit <Int32>]
+    [-AsJob]
+    [-WhatIf]
+    [-Confirm]
+    [<CommonParameters>]
+}
+
+Get-SmbMapping {
+    * https://docs.microsoft.com/en-us/powershell/module/smbshare/get-smbmapping?view=win10-ps
+
+    [[-LocalPath] <String[]>]
+    [[-RemotePath] <String[]>]
+    [-CimSession <CimSession[]>]
+    [-ThrottleLimit <Int32>]
+    [-AsJob]
+    [<CommonParameters>]
+}
+
+Get-SmbConnection {
+    * https://docs.microsoft.com/en-us/powershell/module/smbshare/get-smbconnection?view=win10-ps
+
+    [[-ServerName] <String[]>]
+    [[-UserName] <String[]>]
+    [-SmbInstance <SmbInstance>]
+    [-CimSession <CimSession[]>]
+    [-ThrottleLimit <Int32>]
+    [-AsJob]
+    [<CommonParameters>]
 }
 
 mount {
@@ -152,6 +201,10 @@ mount {
             7: rwx (read, write, and execute access)
     -u:<username> (if not preceded by \, treated as UNIX username)
     -p:<password> (use * to prompt)
+
+    examples {
+        mount -o nolock -u:swssqlsa -p:hialplis_N95 192.168.56.73:/export/sol-ms_sql/db01 A:
+    }
 }
 
 nfs-anon-fix {
