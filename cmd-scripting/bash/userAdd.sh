@@ -4,12 +4,10 @@ read -p "Type username to add: " USER
 
 which adduser > /dev/null
 if [ $? -gt 0 ]; then
+    mkdir -p /export/home/$USER
     useradd -d /export/home/$USER $USER
     groupadd $USER
-    usermod -G +$USER $USER
-    usermod -G +cgistaff $USER
-    usermod -G +wheel $USER
-    mkdir -p /export/home/$USER
+    usermod -G $USER,cgistaff $USER
     chown --recursive $USER:$USER /export/home/$USER
 else
     adduser -m $USER
@@ -18,9 +16,9 @@ fi
 
 passwd $USER
 
-passwd expire > /dev/null
+passwd -e user.name > /dev/null
 if [ $? -gt 0 ]; then
-    passwd -f $USER
+    passwd -e $USER
 else
     passwd expire $USER
 fi

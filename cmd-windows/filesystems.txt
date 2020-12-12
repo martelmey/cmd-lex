@@ -131,7 +131,29 @@ Get-PSDrive {
     [[-Name] <String[]>]
     [-Scope <String>]
     [-PSProvider <String[]>]
-    [<CommonParameters>] 
+    [<CommonParameters>]
+
+    examples {
+        get-psdrive -name SOLMSSQLDB01
+    } 
+}
+
+Remove-PSDrive {
+    * https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/remove-psdrive?view=powershell-7.1
+
+    [-Name] <String[]>
+    [-PSProvider <String[]>]
+    [-Scope <String>]
+    [-Force]
+    [-WhatIf]
+    [-Confirm]
+    [<CommonParameters>]
+
+    examples {
+        Get-PSDrive X, S | Remove-PSDrive
+
+        Remove-PSDrive -Name SOLMSSQLDB01        
+    }  
 }
 
 New-SmbMapping {
@@ -160,6 +182,22 @@ Get-SmbMapping {
     [-CimSession <CimSession[]>]
     [-ThrottleLimit <Int32>]
     [-AsJob]
+    [<CommonParameters>]
+}
+
+Remove-SmbMapping {
+    * https://docs.microsoft.com/en-us/powershell/module/smbshare/remove-smbmapping?view=win10-ps
+
+    [[-LocalPath] <String[]>]
+    [[-RemotePath] <String[]>]
+    [-UpdateProfile]
+    [-Force]
+    [-CimSession <CimSession[]>]
+    [-ThrottleLimit <Int32>]
+    [-AsJob]
+    [-PassThru]
+    [-WhatIf]
+    [-Confirm]
     [<CommonParameters>]
 }
 
