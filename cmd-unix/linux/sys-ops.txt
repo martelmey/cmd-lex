@@ -68,6 +68,7 @@ processes {
     iostat -xdm
     iostat -xdm -p sda
     sar -P ALL -f /var/log/sa/sa21
+    ps -ef | grep collectdmon | grep -v status | grep -v grep
 }
 
 domain {

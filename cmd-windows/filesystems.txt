@@ -1,5 +1,25 @@
 Get-SMBShare {
-    https://docs.microsoft.com/en-us/powershell/module/smbshare/get-smbshare?view=win10-ps
+    * https://docs.microsoft.com/en-us/powershell/module/smbshare/get-smbshare?view=win10-ps
+
+    [[-Name] <String[]>]
+    [[-ScopeName] <String[]>]
+    [-Scoped <Boolean[]>]
+    [-Special <Boolean[]>]
+    [-ContinuouslyAvailable <Boolean[]>]
+    [-ShareState <ShareState[]>]
+    [-FolderEnumerationMode <FolderEnumerationMode[]>]
+    [-CachingMode <CachingMode[]>]
+    [-ConcurrentUserLimit <UInt32[]>]
+    [-AvailabilityType <AvailabilityType[]>]
+    [-CaTimeout <UInt32[]>]
+    [-EncryptData <Boolean[]>]
+    [-IncludeHidden]
+    [-SmbInstance <SmbInstance>]
+    [-CimSession <CimSession[]>]
+    [-ThrottleLimit <Int32>]
+    [-AsJob]
+    [<CommonParameters>]
+
     SWSVOL
 }
 
