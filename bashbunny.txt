@@ -1,0 +1,2 @@
+# list serial devices
+    [System.IO.Ports.SerialPort]::getportnames()
