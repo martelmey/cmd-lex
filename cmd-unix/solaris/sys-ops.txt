@@ -3,16 +3,59 @@ uname {
     cat /etc/release
 }
 
+ntpdate {
+    <DC_hostname>
+    <ntp_server>
+}
+
 svccfg {
+    # https://docs.oracle.com/cd/E26502_01/html/E29031/svccfg-1m.html#REFMAN1Msvccfg-1m
+    
     -s ipfilter:default listprop   | grep file
     -s pkg/server describe network/restart_on
     -s pkg/server describe -v network/restart_on
 }
 
 svcprop {
-    svc:/system/identity
-    svc:/system/identity:domain
-    -p config/prop1 example
+    # https://docs.oracle.com/cd/E36784_01/html/E36870/svcprop-1.html
+
+    svcprop [-afqtv] [-C | -c | -s snapshot] [-p [name/]name]... 
+        [ -g pgtype]... -l layer[,...] {FMRI | pattern}...
+
+    svcprop -w [-fqtv] [-p [name/]name] {FMRI | pattern}
+
+    –a
+    Display all properties, including those in SMF template definition property groups.
+
+    –C
+    Uses the directly attached properties, without composition.
+
+    –c
+    For service instances, uses the composed view of their directly attached properties.
+
+    –f
+    Selects the multi-property output format, with full FMRIs as designators.
+
+    –g pgtype
+    Display only the selected properties belonging to property groups of type pgtype. Multiple –g options will display properties from multiple properties group types. This option implies multi-property output format (–t).
+
+    –l layer[,...]
+    Display only the properties defined at the selected layers. Available layers are manifest, system-profile, site-profile, and admin. The alias all is available to select all layers. Properties that belong to non-persistent property groups will not be displayed when this option is used.
+
+    –p name
+    For each service or service instance specified by the operands, selects all properties in the name property group. For property groups specified by the operands, selects the name property. If used with –g, selects the name property for all matching property group types.
+
+    –p pg/prop
+    Selects property prop in property group pg for each of the services or service instances specified by the operands.
+
+    –q
+    Quiet. Produces no output.
+
+    examples {
+        svc:/system/identity
+        svc:/system/identity:domain
+        -p config/prop1 example   
+    }
 }
 
 svcadm {

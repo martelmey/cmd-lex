@@ -3,6 +3,50 @@ exportfs {
     -s
 }
 
+sharectl {
+    # https://docs.oracle.com/cd/E36784_01/html/E36825/gntkq.html
+
+    subcommand [option] [protocol]
+
+    set
+        Defines the properties for a file-sharing protocol. For a list of properties and property values, see the parameters described in the nfs (4) man page.
+
+    get
+        Displays the properties and property values for the specified protocol.
+
+    status
+        Displays whether the specified protocol is enabled or disabled. If no protocol is specified, the status of all file-sharing protocols is displayed.
+}
+
+smbadm {
+    # https://docs.oracle.com/cd/E36784_01/html/E36871/smbadm-1m.html
+
+    add-key [-u username]
+    add-member -m member [[-m member] …] group
+    create-group [-d description] group
+    crypt
+    delete-group group
+    disable-user username
+    enable-user username
+    get-group [[-p property] …] group
+    join -u username [-o organizational-unit] domain
+    join -w workgroup
+    lookup-server //server
+    lookup-user [-u username] name | SID
+    print [-u username] //server/share {print_file|-}
+    remove-key [-u username]
+    remove-member -m member [[-m member] …] group
+    rename-group group new-group
+    set-group -p property=value [[-p property=value] …] group
+    show-connections [-t] [-u username] [-c computername | -s sharename]
+     server
+    show-domains
+    show-files [-t] [-u username] server
+    show-groups [-m] [-p] [group]
+    show-sessions [-t] [-u username] server
+    show-shares [-t] [-A | -u username] server
+}
+
 echo "/export/ops-tools       192.168.160.192(rw,sync,no_all_squash,root_squash)" >> /etc/exports
 
 storage {

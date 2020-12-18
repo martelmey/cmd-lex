@@ -27,3 +27,29 @@ change {
         -R nobody: /export/ops-tools
             777 /export/ops-tools
 }
+
+idmap {
+    # https://docs.oracle.com/cd/E36784_01/html/E36871/idmap-1m.html#scrolltoc
+
+    -f command-file
+    add [-d] name1 name2
+    dump [-n] [-v]
+    export [-f file] format
+    flush [-a]
+    get-namemap name
+    help
+    import [-F] [-f file] format
+    list
+    remove [-t|-f] name
+    remove -a
+    remove [-d] name1 name2
+    set-namemap [-a authenticationMethod] [-D bindDN]
+     [-j passwdfile] name1 name2
+    show [-c] [-v] [-V] identity [target-type]
+    unset-namemap [-a authenticationMethod] [-D bindDN]
+     [-j passwdfile] name [target-type]
+
+    examples {
+          idmap add 'winuser:swssqlsa@sws.health.local' 'unixuser:swssqlsa'
+    }
+}

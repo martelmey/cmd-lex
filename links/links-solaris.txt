@@ -1,2 +1,8 @@
 * ifconfig interface flags
 https://docs.oracle.com/cd/E19253-01/816-5166/ifconfig-1m/index.html#INTERFACE%20FLAGS
+
+# Configuring ZFS SMB Sharing
+	https://www.oracle.com/technical-resources/articles/it-infrastructure/admin-solaris-zfssmb-sharing.html
+
+# Managing SMB File Sharing and Windows Interoperability in Oracle® Solaris 11.4
+	https://docs.oracle.com/cd/E37838_01/html/E61013/index.html

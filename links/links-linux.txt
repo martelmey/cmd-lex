@@ -8,6 +8,8 @@ Oracle Linux: Install the VNC Remote Access Server
 	https://docs.oracle.com/en/operating-systems/oracle-linux/8/obe-vnc-install/#before-you-begin
 How To Configure VNC To Run Gnome/KDE Desktop on Oracle Linux
 	https://support.oracle.com/knowledge/Oracle%20Linux%20and%20Virtualization/2160543_1.html
+How To Take Snapshot Of a VM in KVM?
+	https://getlabsdone.com/how-to-take-snapshot-of-a-vm-in-kvm/
 
 ###==
 ####===
