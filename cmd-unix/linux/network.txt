@@ -248,15 +248,21 @@ ping {
     ping 8.8.8.8
 }
 
-protonvpn {
-    c --sc
-    -f
+protonvpn-cli {
+    login <username>
+    c (connect)
+        --sc (secure-core)
+        -f (fastest)
     r
-    d
-    s
+    d (disconnect)
+    s (status)
     refresh
     configure
     examples
+    ks (kill-switch)
+        --on
+        --always-on
+        --off
 }
 
 hostapd {
