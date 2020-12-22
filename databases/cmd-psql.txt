@@ -35,7 +35,10 @@
 createuser martel.meyers
 dropuser
 
-psql --dbname=cmdbuild --username=cmdbuild
+Connect {
+	psql --dbname=cmdbuild --username=cmdbuild
+	psql -U cmdb -d cmdb	
+}
 
 ./postgresql95-setup
 	initdb
