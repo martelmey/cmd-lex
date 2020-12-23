@@ -7,9 +7,13 @@ TNS Listener
 Solaris Named
 /var/named/data/named.run
 
-Apache Subversion
+Apache
+	Subversion
+	Forward-Proxy
 /etc/httpd/logs/access_log
 	/error_log
+	forward-proxy_access
+	ssl_access_log
 
 SolarWinds Orion
 C:\Program Files (x86)\SolarWinds\Orion\OLM

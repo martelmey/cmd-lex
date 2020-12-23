@@ -50,6 +50,8 @@ idmap {
      [-j passwdfile] name [target-type]
 
     examples {
-          idmap add 'winuser:swssqlsa@sws.health.local' 'unixuser:swssqlsa'
+        idmap add 'winuser:swssqlsa@sws.health.local' 'unixuser:swssqlsa'
+        svccfg -s idmap setprop debug/dns = 1
+        svccfg -s idmap setprop debug/discovery = 2
     }
 }

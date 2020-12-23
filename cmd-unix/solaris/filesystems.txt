@@ -6,6 +6,9 @@ exportfs {
 sharectl {
     # https://docs.oracle.com/cd/E36784_01/html/E36825/gntkq.html
 
+    share
+    cat /etc/dfs/sharetab  
+
     subcommand [option] [protocol]
 
     set
@@ -45,6 +48,10 @@ smbadm {
     show-groups [-m] [-p] [group]
     show-sessions [-t] [-u username] server
     show-shares [-t] [-A | -u username] server
+
+    examples {
+        smbadm show-shares -u vagrant localhost
+    }
 }
 
 echo "/export/ops-tools       192.168.160.192(rw,sync,no_all_squash,root_squash)" >> /etc/exports
@@ -79,6 +86,11 @@ zfs {
         [-s property] ... [-S property] ...
         [filesystem|volume|snapshot|share|path] ..
         -r rpool/
+
+    examples {
+        zfs get sharesmb rpool/db
+        zfs get share
+    }
 }
 
 format {

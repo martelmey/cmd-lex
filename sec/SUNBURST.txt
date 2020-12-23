@@ -1,0 +1,2 @@
+* Check for traffic to avsvmcloud:
+	Apache forward-proxy logs /etc/httpd/logs/forward-proxy_access*
