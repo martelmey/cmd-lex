@@ -11,3 +11,9 @@ aireplay-ng -a BC:2E:48:11:EC:E7 --deauth 0  -c 00:9D:6B:18:8C:6C wlan1mon
 airmon-ng check wlan0
 airmon-ng check kill
 airmon-ng start wlan0
+
+macchanger {
+	examples {
+		-s wlan1 (ensure correct MAC for airmon-ng cmds')
+	}
+}
