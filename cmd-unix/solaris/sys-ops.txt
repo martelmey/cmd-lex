@@ -83,9 +83,60 @@ messages {
 }
 
 top {
-    -Hbn1 -p 3692
+    -I, --idle-procs no idle procs
+    -S, --system-procs
+    -a, --all show procs for as long as possible
+    -b, --batch terminal input ignored
+    -c, --full-commands show full cmd ling for each proc
+    -i, --interactive
+    -q, --quick renice top to -20
+    -t, --threads show threads on separate lines
+    -U <username>, --user=<username> only for username
+    examples {
+        -Hbn1 -p 3692
+    }
     atop
     htop
+}
+
+ps {
+    -a most freq requested
+    -A all
+    -d all exept session leaders
+    -e every process now running
+    -f full listing
+    -j print session id and process group id
+    -P show # of processor to which process or lwp is bound
+    -t show processes associated with term
+    -z <zonelist> list processes of specified zones
+}
+
+zoneadm {
+    attach
+    boot
+    clone
+    detach
+    halt
+    install
+    list
+        -c all configured zones
+        -i all installed zones
+        -p parseable output
+        -v verbose
+    reboot
+    shutdown
+    suspend
+}
+
+zonecfg {
+}
+
+zonename {
+    Print name of current zone
+}
+
+zonestat {
+    
 }
 
 processes {
