@@ -149,21 +149,21 @@
 		<sort-field>
 			Syntax: <field> | auto(<field>) | str(<field>) | ip(<field>) | num(<field>)
 			Description: Options you can specify with <sort-field>.
-		<field>
-			Syntax: <string>
-			Description: The name of field to sort.
-		<auto>
-			Syntax: auto(<field>)
-			Description: Determine automatically how to sort the values of the field.
-		<ip>
-			Syntax: ip(<field>)
-			Description: Interpret the values of the field as IP addresses.
-		<num>
-			Syntax: num(<field>)
-			Description: Interpret the values of the field as numbers.
-		<str>
-			Syntax: str(<field>)
-			Description: Interpret the values of the field as strings and order the values alphabetically.
+			<field>
+				Syntax: <string>
+				Description: The name of field to sort.
+			<auto>
+				Syntax: auto(<field>)
+				Description: Determine automatically how to sort the values of the field.
+			<ip>
+				Syntax: ip(<field>)
+				Description: Interpret the values of the field as IP addresses.
+			<num>
+				Syntax: num(<field>)
+				Description: Interpret the values of the field as numbers.
+			<str>
+				Syntax: str(<field>)
+				Description: Interpret the values of the field as strings and order the values alphabetically.
 
 	<EXAMPLES>
 
@@ -221,4 +221,24 @@
 
 	* Remove unwanted internal fields from the output CSV file.
 	index=_internal sourcetype="splunkd" | head 5 | fields - _raw _indextime _sourcetype _subsecond _serial | outputcsv MyTestCsvfile
+}
+
+| rename {
+	* https://docs.splunk.com/Documentation/Splunk/8.1.1/SearchReference/Rename
+	* Use the rename command to rename one or more fields.
+
+	<SYNTAX>
+
+	rename <wc-field> AS <wc-field>...
+		wc-field
+		Syntax: <string>
+		Description: The name of a field and the name to replace it. You can use wild card characters in the field names. Names with spaces must be enclosed in quotation marks.
+
+	<EXAMPLES>
+
+	* Use quotation marks when you rename a field with a phrase.
+	... | rename SESSIONID AS "The session ID"
+
+	* Use wildcards to rename multiple fields.
+	... | rename *ip AS *IPaddress
 }

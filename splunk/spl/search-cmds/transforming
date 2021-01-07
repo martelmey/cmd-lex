@@ -1,4 +1,4 @@
-|stats {
+| stats {
 	* https://docs.splunk.com/Documentation/Splunk/8.1.0/SearchReference/Stats
 	* Calculates aggregate statistics, such as average, count, and sum, over the results set. This is similar to SQL aggregation.
 	<SYNTAX>
@@ -271,4 +271,45 @@
 
 		* Change memory values to kilobytes
 		... | convert memk(virt)
+}
+
+| timechart {
+	* https://docs.splunk.com/Documentation/Splunk/8.1.0/SearchReference/Timechart#Description
+	* Creates a time series chart with corresponding table of statistics.
+
+	<SYNTAX>
+
+	[sep=<string>]
+	[format=<string>]
+	[partial=<bool>]
+	[cont=<bool>]
+	[limit=<chart-limit-opt>]
+	[agg=<stats-agg-term>]
+	[<bin-options>... ]
+	( (<single-agg> [BY <split-by-clause>] ) | (<eval-expression>) BY <split-by-clause> )
+	[<dedup_splitvals>]
+
+	eval-expression
+		Syntax: <math-exp> | <concat-exp> | <compare-exp> | <bool-exp> | <function-call>
+		Description: A combination of literals, fields, operators, and functions that represent the value of your destination field. For these evaluations to work, your values need to be valid for the type of operation. For example, with the exception of addition, arithmetic operations might not produce valid results if the values are not numerical. Additionally, the search can concatenate the two operands if they are both strings. When concatenating values with a period '.' the search treats both values as strings, regardless of their actual data type.
+	single-agg
+		Syntax: count | <stats-func>(<field>)
+		Description: A single aggregation applied to a single field, including an evaluated field. For <stats-func>, see Stats function options. No wildcards are allowed. The field must be specified, except when using the count function, which applies to events as a whole.
+	split-by-clause
+		Syntax: <field> (<tc-options>)... [<where-clause>]
+		Description: Specifies a field to split the results by. If field is numerical, default discretization is applied. Discretization is defined with the tc-options. Use the <where-clause> to specify the number of columns to include. See the tc options and the where clause sections in this topic.
+
+	<EXAMPLES>
+
+	* Chart the product of the average "CPU" and average "MEM" for each "host"
+	... | timechart span=1m eval(avg(CPU) * avg(MEM)) BY host
+
+	* Chart the average of cpu_seconds by processor
+	... | timechart eval(round(avg(cpu_seconds),2)) BY processor
+
+	* Chart the average of "CPU" for each "host"
+	... | timechart span=1m avg(CPU) BY host
+
+	* Chart the average "cpu_seconds" by "host" and remove outlier values
+	... | timechart avg(cpu_seconds) BY host | outlier action=tf
 }
