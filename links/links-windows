@@ -73,3 +73,8 @@
 
 # Windows Server 2019 RDS Installation And License Configuration
 	https://www.systemconf.com/2020/07/25/windows-server-2019-rds-installation-and-license-configuration/
+
+# RDS CAL Per-User: Workgroup: How to assign license to users
+	https://docs.microsoft.com/en-us/answers/questions/224336/rds-cal-per-user-workgroup-how-to-assign-license-t.html
+# Manage users in your RDS collection
+	https://docs.microsoft.com/en-us/windows-server/remote/remote-desktop-services/rds-user-management#assign-users-and-groups-to-collections

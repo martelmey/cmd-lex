@@ -152,3 +152,20 @@ Configure index storage
    https://docs.splunk.com/Documentation/Splunk/8.0.6/Indexer/Configureindexstorage
 Set a retirement and archiving policy
    https://docs.splunk.com/Documentation/Splunk/8.0.6/Indexer/Setaretirementandarchivingpolicy
+
+###==
+####===
+--------= api
+####===
+###==
+
+Specify time modifiers in your search
+   https://docs.splunk.com/Documentation/Splunk/8.1.1/Search/Specifytimemodifiersinyoursearch#Examples_of_searches_with_relative_time_modifiers
+Search endpoint descriptions
+   https://docs.splunk.com/Documentation/Splunk/8.1.1/RESTREF/RESTsearch#search.2Fjobs
+Creating searches using the REST API
+   https://docs.splunk.com/Documentation/Splunk/8.1.1/RESTTUT/RESTsearches
+Endpoints reference list
+   https://docs.splunk.com/Documentation/Splunk/8.1.1/RESTREF/RESTlist
+Splunk REST API is EASY to use
+   https://www.splunk.com/en_us/blog/tips-and-tricks/splunk-rest-api-is-easy-to-use.html
