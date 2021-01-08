@@ -313,3 +313,33 @@
 	* Chart the average "cpu_seconds" by "host" and remove outlier values
 	... | timechart avg(cpu_seconds) BY host | outlier action=tf
 }
+
+| mvcombine {
+	* https://docs.splunk.com/Documentation/Splunk/8.1.1/SearchReference/Mvcombine#Examples
+	* Takes a group of events that are identical except for the specified field, which contains a single value, and combines those events into a single event. The specified field becomes a multivalue field that contains all of the single values from the combined events.
+
+	<SYNTAX>
+
+	mvcombine [delim=<string>] <field>
+
+	field
+		Syntax: <field>
+		Description: The name of a field to merge on, generating a multivalue field.
+
+	delim
+		Syntax: delim=<string>
+		Description: Defines the string to use as the delimiter for the values that get combined into the multivalue field. For example, if the values of your field are "1", "2", and "3", and delim is "; " then the combined multivalue field is "1";"2";"3".
+		Default: a single space, (" ")
+
+	<EXAMPLES>
+
+	* Creating a multivalue field
+	index=* | stats max(bytes) AS max, min(bytes) AS min BY host
+	index=* host=www* | stats max(bytes) AS max, min(bytes) AS min BY host
+	index=* host=www* | stats max(bytes) AS max, min(bytes) AS min BY host | mvcombine host
+
+	* Returning the delimited values
+	index=* host=www* | stats max(bytes) AS max, min(bytes) AS min BY host | mvcombine delim="," host | nomv host
+	sourcetype="WMI:WinEventLog:Security" | fields EventCode, Category,RecordNumber | mvcombine delim="," RecordNumber | nomv RecordNumber
+	... | mvcombine delim=":" foo
+}

@@ -242,3 +242,98 @@
 	* Use wildcards to rename multiple fields.
 	... | rename *ip AS *IPaddress
 }
+
+| replace {
+	* https://docs.splunk.com/Documentation/Splunk/latest/SearchReference/Replace#Usage
+	* Replaces a single occurrence of the first string with another string in the specified fields.
+
+	<SYNTAX>
+
+	replace (<wc-string> WITH <wc-string>)... [IN <field-list>]
+
+	wc-string
+		Syntax: <string>
+		Description: Specify one or more field values and their replacements. You can use wildcard characters to match one or multiple terms.
+
+	field-list
+		Syntax: <string> ...
+		Description: Specify a comma or space delimited list of one or more field names for the field value replacements. To replace values on _internal fields, you must specify the field name with the IN <fieldname> clause.
+
+	<EXAMPLES>
+
+	* Replace a value in all fields
+	... | replace *localhost WITH localhost
+
+	* Replace a value in a specific field
+	... | replace 127.0.0.1 WITH localhost IN host
+
+	* Change the value of two fields
+	... | replace aug WITH August IN start_month end_month
+}
+
+| fieldformat {
+	* https://docs.splunk.com/Documentation/Splunk/8.1.0/SearchReference/Fieldformat#Basic_examples
+	* With the fieldformat command you can use an <eval-expression> to change the format of a field value when the results render.
+
+	<SYNTAX>
+
+	fieldformat <field>=<eval-expression>
+
+	<field>
+		Description: The name of a new or existing field, non-wildcarded, for the output of the eval expression.
+
+	<eval-expression>
+		Syntax: <string>
+		Description: A combination of values, variables, operators, and functions that represent the value of your destination field. You can specify only one <eval-expression> with the fieldformat command. To specify multiple formats you must use multiple fieldformat commands. See Examples.
+
+	<EXAMPLES>
+
+	* Format numeric values to display commas
+	| metadata type=sourcetypes 
+	| table sourcetype totalCount
+	| fieldformat totalCount=tostring(totalCount, "commas")
+
+	* Display UNIX time in a readable format
+	... | fieldformat start_time = strftime(start_time, "%H:%M:%S")
+
+	* Add currency symbols to numerical values
+	...| fieldformat totalSales="$".tostring(totalSales,"commas")
+
+	* Formatting multiple fields
+	| metadata type=sourcetypes 
+	| rename totalCount as Count firstTime as "First Event" lastTime as "Last Event" 
+	  recentTime as "Last Update" 
+	| table sourcetype Count "First Event" "Last Event" "Last Update" 
+	| fieldformat Count=tostring(Count, "commas") 
+	| fieldformat "First Event"=strftime('First Event', "%c") 
+	| fieldformat "Last Event"=strftime('Last Event', "%c") 
+	| fieldformat "Last Update"=strftime('Last Update', "%c")
+}
+
+| regex {
+	* https://docs.splunk.com/Documentation/Splunk/8.1.0/SearchReference/Regex
+	* Removes results that do not match the specified regular expression.
+
+	<SYNTAX>
+
+	regex
+	(<field>=<regex-expression> | <field>!=<regex-expression> | <regex-expression>)
+
+	<regex-expression>
+		Syntax: "<string>"
+		Description: An unanchored regular expression. The regular expression must be a Perl Compatible Regular Expression supported by the PCRE library. Quotation marks are required.
+
+	<field>
+		Syntax: <field>
+		Description: Specify the field name from which to match the values against the regular expression.
+		You can specify that the regex command keeps results that match the expression by using <field>=<regex-expression>. To keep results that do not match, specify <field>!=<regex-expression>.
+		Default: _raw
+
+	<EXAMPLES>
+
+	* Keep only search results whose "_raw" field contains IP addresses in the non-routable class A (10.0.0.0/8). This example uses a negative lookbehind assertion at the beginning of the expression.
+	... | regex _raw="(?<!\d)10\.\d{1,3}\.\d{1,3}\.\d{1,3}(?!\d)"
+
+	* Keep only the results that match a valid email address. For example, buttercup@example.com.
+	...| regex email="^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$"
+}
