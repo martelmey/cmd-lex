@@ -70,11 +70,11 @@
 
 # How to allow active directory users to remote desktop in?
 	https://serverfault.com/questions/419423/how-to-allow-active-directory-users-to-remote-desktop-in
-
 # Windows Server 2019 RDS Installation And License Configuration
 	https://www.systemconf.com/2020/07/25/windows-server-2019-rds-installation-and-license-configuration/
-
 # RDS CAL Per-User: Workgroup: How to assign license to users
 	https://docs.microsoft.com/en-us/answers/questions/224336/rds-cal-per-user-workgroup-how-to-assign-license-t.html
 # Manage users in your RDS collection
 	https://docs.microsoft.com/en-us/windows-server/remote/remote-desktop-services/rds-user-management#assign-users-and-groups-to-collections
+# Server 2019 Remote Desktop Licensing mode is not configured?
+	https://social.technet.microsoft.com/Forums/en-US/2bd96b3a-6b5a-40b8-bcf2-db6dedd9ef58/server-2019-remote-desktop-licensing-mode-is-not-configured
