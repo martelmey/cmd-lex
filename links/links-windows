@@ -83,3 +83,10 @@
 
 # How to configure a firewall for Active Directory domains and trusts
 	https://docs.microsoft.com/en-us/troubleshoot/windows-server/identity/config-firewall-for-ad-domains-and-trusts
+# Service overview and network port requirements for Windows
+	https://docs.microsoft.com/en-us/troubleshoot/windows-server/networking/service-overview-and-network-port-requirements
+
+# HOW TO TROUBLESHOOT THE ‘RPC SERVER IS UNAVAILABLE’ ERROR
+	http://techgenix.com/troubleshoot-rpc-server-unavailable/
+# Service Principal Names (SPN): SetSPN Syntax
+	https://social.technet.microsoft.com/wiki/contents/articles/717.service-principal-names-spn-setspn-syntax.aspx#Manually_Registering_SPNs

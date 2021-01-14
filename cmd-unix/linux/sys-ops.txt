@@ -11,6 +11,14 @@ control {
         systemctl set-default graphical.target
 }
 
+top {
+    z = add colour
+    t = ASCII cpu gauge
+    m = ASCII ram gauge
+
+    -i (hide all idle processes)
+}
+
 ntpq {
     -p
 }

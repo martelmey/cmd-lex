@@ -1,0 +1,3 @@
+ncpa.cpl (Network Connections)
+secpol.msc (Local security policy)
+gpedit.msc (Local group policy editor)
