@@ -19,3 +19,12 @@ How To Take Snapshot Of a VM in KVM?
 
 Configure NTP client
 	https://geek-university.com/linux/configure-ntp-client/
+
+###==
+####===
+--------= virt
+####===
+###==
+
+KVM startup - permission denied
+	https://www.dedoimedo.com/computers/kvm-permission-denied.html

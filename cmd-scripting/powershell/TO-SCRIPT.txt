@@ -1,0 +1,6 @@
+Local sec policy = users who can RDP-in
+Add SWS\Groups to local\Remote Desktop Users
+Create Operations & SolarWinds Admins groups SWS\Users
+Add existing users to SolarWinds Admins
+Create new users in Operations
+set licensing mode for RDS SH in gpedit.msc

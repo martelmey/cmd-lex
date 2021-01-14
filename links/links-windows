@@ -78,3 +78,8 @@
 	https://docs.microsoft.com/en-us/windows-server/remote/remote-desktop-services/rds-user-management#assign-users-and-groups-to-collections
 # Server 2019 Remote Desktop Licensing mode is not configured?
 	https://social.technet.microsoft.com/Forums/en-US/2bd96b3a-6b5a-40b8-bcf2-db6dedd9ef58/server-2019-remote-desktop-licensing-mode-is-not-configured
+# Remote Desktop Services architecture
+	https://docs.microsoft.com/en-us/windows-server/remote/remote-desktop-services/desktop-hosting-logical-architecture
+
+# How to configure a firewall for Active Directory domains and trusts
+	https://docs.microsoft.com/en-us/troubleshoot/windows-server/identity/config-firewall-for-ad-domains-and-trusts
