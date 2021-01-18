@@ -1,6 +1,7 @@
 sqlplus {
 	examples {
 		sqlplus CGIDEPLOY/PasswordAT123@LADEV
+		sqlplus SPLUNK/PasswordAT123@HLINT2
 	}
 }
 
@@ -8,6 +9,11 @@ lsnrctl {
 	status
 	start
 }
+
+SELECT table_name FROM dba_tables;
+SELECT table_name FROM all_tables;
+SELECT * FROM ALL_USERS;
+SELECT * FROM DBA_USERS;
 
 Listener Parameter File   /u01/app/18.0.0.0/grid/network/admin/listener.ora
 Listener Log File         /u01/app/grid/diag/tnslsnr/knpdb12/listener/alert/log.xml

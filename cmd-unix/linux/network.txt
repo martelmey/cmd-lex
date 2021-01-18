@@ -1,3 +1,14 @@
+curl {
+    -d, --data <data> (--data-ascii)
+        --data-binary (post data purely binary)
+            @filename
+        --data-urlencode (url encode the value of a form field)
+    -G, --get
+    -i, --include (include headers in output)
+    -k, --insecure 
+    -X, --request GET:HEAD:POST:PUT
+}
+
 post{
     postconf
     postfix
