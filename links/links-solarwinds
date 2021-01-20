@@ -1,7 +1,7 @@
-### BIND DNS TSIG
+# BIND DNS TSIG
 https://documentation.solarwinds.com/en/Success_Center/orionplatform/Content/HA_Transaction_Signatures.htm
 
-### HA Pool Setup
+# HA Pool Setup
 https://documentation.solarwinds.com/en/success_center/orionplatform/Content/HA_Set_Up_HA_Pools.htm
 
 # How to Configure a DNS Client in Oracle Solaris
@@ -9,3 +9,15 @@ https://documentation.solarwinds.com/en/success_center/orionplatform/Content/HA_
 
 # Full RabbitMQ Reset in Orion Platform products
 	https://support.solarwinds.com/SuccessCenter/s/article/Full-RabbitMQ-Reset-in-Orion-Platform-products?language=en_US
+
+# Management Information Base (MIB) in the Orion Platform
+	https://documentation.solarwinds.com/en/Success_Center/orionplatform/Content/Core-Management-Information-Base--MIB--sw1730.htm
+
+# Management Information Base (MIB) for the Simple Network Management Protocol (SNMP)
+	https://tools.ietf.org/html/rfc3418
+
+# Failed to determine MIBs database state error on Orion Platform
+	https://support.solarwinds.com/SuccessCenter/s/article/MIB-Management-status-shows-as-failed-to?language=en_US
+
+# Update the SolarWinds MIB Database for the Orion Platform
+	https://documentation.solarwinds.com/en/Success_Center/NPM/Content/Core-Downloading-the-SolarWinds-MIB-Database-sw3581.htm

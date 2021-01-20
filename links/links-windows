@@ -90,3 +90,6 @@
 	http://techgenix.com/troubleshoot-rpc-server-unavailable/
 # Service Principal Names (SPN): SetSPN Syntax
 	https://social.technet.microsoft.com/wiki/contents/articles/717.service-principal-names-spn-setspn-syntax.aspx#Manually_Registering_SPNs
+
+# Schedule PowerShell Tasks with Task Scheduler On Windows Server
+	http://www.ntweekly.com/2020/06/28/schedule-powershell-tasks-with-task-scheduler-on-windows-server/

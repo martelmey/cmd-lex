@@ -233,6 +233,22 @@ Get-SmbConnection {
     [<CommonParameters>]
 }
 
+Remove-Item {
+    * https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/remove-item?view=powershell-7.1#examples
+
+    [-Path] <String[]>
+    [-Filter <String>]
+    [-Include <String[]>]
+    [-Exclude <String[]>]
+    [-Recurse]
+    [-Force]
+    [-Credential <PSCredential>]
+    [-WhatIf]
+    [-Confirm]
+    [-Stream <String[]>]
+    [<CommonParameters>]
+}
+
 mount {
     https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/mount
 

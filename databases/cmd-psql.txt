@@ -1,29 +1,3 @@
-:: Alter role
-	https://www.postgresql.org/docs/9.5/sql-alterrole.html
-
-:: Roles & attributes
-	https://www.postgresql.org/docs/9.5/role-attributes.html
-
-:: List dbs & tables
-	https://chartio.com/resources/tutorials/how-to-list-databases-and-tables-in-postgresql-using-psql/
-
-:: Create database
-	https://www.postgresql.org/docs/9.0/sql-createdatabase.html
-
-:: Client Authentication
-	https://www.postgresql.org/docs/9.5/client-authentication.html
-	https://www.postgresql.org/docs/9.5/client-authentication-problems.html
-	https://stackoverflow.com/questions/18664074/getting-error-peer-authentication-failed-for-user-postgres-when-trying-to-ge
-
-:: Allow remote
-	https://blog.bigbinary.com/2016/01/23/configure-postgresql-to-allow-remote-connection.html
-
-:: General PGSQL
-	https://www.postgresqltutorial.com/psql-commands/
-
-:: PostgreSQL Copy Database Made Easy
-	https://www.postgresqltutorial.com/postgresql-copy-database/
-
 \list \l (list databases)
 \du (list roles & their attributes)
 \c \connect
@@ -40,10 +14,34 @@ Connect {
 	psql -U cmdb -d cmdb	
 }
 
-./postgresql95-setup
+./postgresql95-setup {
 	initdb
 	check_upgrade
 	upgrade
+}
+
+pg_dump {
+	-U (user)
+	-W (force pw prompt)
+	-F (output format)
+		c (custom archive)
+		d (directory archive)
+		t (tar)
+		p (plain test SQL script)
+	<dbname>
+	> <destination-path>
+	examples {
+		pg_dump -U cmdb -F t cmdb > /export/pkgs/cmdb-postgres-backups/"$date"_cmdb.tar
+	}
+}
+
+pg_dumpall {
+	-U (user)
+	> <destination-path>
+	--schema-only
+	--roles-only
+	--tablespaces-only
+}
 
 Clone database {
 	CREATE DATABASE dvdrental_test 

@@ -12,6 +12,9 @@ file_descriptors {
         send to the void
 }
 
+HOSTNAME=$(hostname)
+DATE=$(date)
+
 positional parameter vars {
     $# (no. of arguments)
     $0 is the name of the script itself (script.sh)
