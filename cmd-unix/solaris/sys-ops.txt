@@ -83,12 +83,16 @@ messages {
 }
 
 top {
+    -C, --color
     -I, --idle-procs no idle procs
     -S, --system-procs
     -a, --all show procs for as long as possible
     -b, --batch terminal input ignored
     -c, --full-commands show full cmd ling for each proc
     -i, --interactive
+        c colours
+        M sort by mem usage
+        P sort by CPU usage
     -q, --quick renice top to -20
     -t, --threads show threads on separate lines
     -U <username>, --user=<username> only for username

@@ -182,3 +182,28 @@ experimental
 	| stats count by text
 	| table text
 }
+
+index=os_evt_prd sourcetype=top host=kdcprd-db00
+[search index=os_evt_prd sourcetype=top host="kdcprd-db00" | regex VIRT="(\d+[K])" | convert rmunit(VIRT) as kRAM | fields kRAM]
+| rename COMMAND as Program
+| regex Program="(\w+[[:lower:]])"
+| replace *oracle WITH oracle
+| convert rmunit(VIRT) as mRAM
+| eval "Used GB Mem."=floor(VIRT*0.0009765625)
+| timechart avg("Used GB Mem.") BY Program
+
+index=os_evt_prd sourcetype=top host=kdcprd-db00
+| rename COMMAND as Program
+| regex Program="(\w+[[:lower:]])"
+| replace *oracle WITH oracle
+| convert rmunit(VIRT)
+| timechart avg(VIRT) BY Program
+
+index=os_evt_prd sourcetype=top host=kdcprd-db00
+| rename COMMAND as Program
+| regex Program="(\w+[[:lower:]])"
+| replace *oracle WITH oracle
+| eval isK=if(match(VIRT,"K"),1,0)
+| convert rmunit(VIRT)
+| eval VIRT=floor(if(isK=1,VIRT/1048576,VIRT/1024))
+| timechart avg(VIRT) BY Program

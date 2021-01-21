@@ -70,6 +70,8 @@ Configure an intermediate forwarder
 
 SPL:
    https://docs.splunk.com/Documentation/Splunk/8.0.5/SearchReference/CommonStatsFunctions
+Build a chart of multiple data series:
+   https://docs.splunk.com/Documentation/Splunk/8.1.1/Search/Chartmultipledataseries
 
 ###==
 ####===
