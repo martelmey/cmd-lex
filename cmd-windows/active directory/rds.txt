@@ -1,3 +1,10 @@
+certlm.msc
+
+See RDS-related certificates: {
+  Run > certlm.msc
+  Server Manager > RDS > Overview > Edit deployment properties
+}
+
 Invoke-Command {
     * https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/invoke-command?view=powershell-7.1
 

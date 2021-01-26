@@ -9,6 +9,15 @@ About the Splunk Add-on for Unix and Linux
 
 ###==
 ####===
+--------= jobs
+####===
+###==
+
+Extending job lifetimes
+   https://docs.splunk.com/Documentation/Splunk/latest/Search/Extendjoblifetimes
+
+###==
+####===
 --------= alerts
 ####===
 ###==

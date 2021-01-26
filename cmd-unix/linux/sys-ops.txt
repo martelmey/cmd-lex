@@ -11,6 +11,19 @@ control {
         systemctl set-default graphical.target
 }
 
+iostat {
+    -c CPU report
+    -d devive report
+    -h easier read
+    -k kb per sec
+    -m mb per sec
+    -t print time
+    -x extended stats
+    examples {
+        -c 2 (2 second intervals)
+    }
+}
+
 top {
     z = add colour
     t = ASCII cpu gauge

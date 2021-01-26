@@ -1,3 +1,4 @@
+
 # Powershell loops - connection / dns tests
 	https://stackoverflow.com/questions/29493414/ping-a-list-of-host-names-and-output-the-results-to-a-csv-in-powershell
 	https://sid-500.com/2018/02/02/powershell-test-open-tcp-ports-with-test-openport-multiple-hosts-multiple-port-numbers/
@@ -93,3 +94,6 @@
 
 # Schedule PowerShell Tasks with Task Scheduler On Windows Server
 	http://www.ntweekly.com/2020/06/28/schedule-powershell-tasks-with-task-scheduler-on-windows-server/
+
+# Deploy your Remote Desktop environment
+	https://docs.microsoft.com/en-us/windows-server/remote/remote-desktop-services/rds-deploy-infrastructure
