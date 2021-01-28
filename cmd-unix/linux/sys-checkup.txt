@@ -27,7 +27,7 @@ find largest files in system {
     do 
     du -ah | grep [0-9]$i | sort -nr -k 1
     done | head -n 11
-    find /path/to/dir/ -printf '%s %p\n'| sort -nr | head -10
+    find / -printf '%s %p\n'| sort -nr | head -10
     find . -printf '%s %p\n'| sort -nr | head -10
     find /path/to/search/ -type f -printf '%s %p\n'| sort -nr | head -10 (skip dirs, only display files)
     shell alias {

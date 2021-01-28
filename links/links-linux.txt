@@ -28,3 +28,14 @@ Configure NTP client
 
 KVM startup - permission denied
 	https://www.dedoimedo.com/computers/kvm-permission-denied.html
+How To extend/increase KVM Virtual Machine (VM) disk size
+	https://computingforgeeks.com/how-to-extend-increase-kvm-virtual-machine-disk-size/
+
+###==
+####===
+--------= filesystem
+####===
+###==
+
+How to extend root filesystem using LVM on Linux
+	https://computingforgeeks.com/extending-root-filesystem-using-lvm-linux/

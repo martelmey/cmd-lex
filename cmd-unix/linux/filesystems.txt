@@ -1,6 +1,64 @@
+true >| ./thefile.trc
+
 symbolic links {
     ln -s /usr/pgsql-9.5/bin psql95
     unlink expanions
+}
+
+xfs_growfs {
+    [  -dilnrx  ]  [ -D size ] [ -e rtextsize ] [ -L size ] [ -m maxpct ] [ -t mtab ] [ -R size ] mount-point
+
+    xfs_info [ -t mtab ] mount-point
+    xfs_info -V
+}
+
+lvextend {
+    lvextend option_args position_args
+        [ option_args ]
+        [ position_args ]
+
+Extend an LV by a specified size.
+    lvextend -L|--size [+]Size[m|UNIT] LV
+        [ -l|--extents [+]Number[PERCENT] ]
+        [ -r|--resizefs ]
+        [ -i|--stripes Number ]
+        [ -I|--stripesize Size[k|UNIT] ]
+        [    --poolmetadatasize [+]Size[m|UNIT] ]
+        [ COMMON_OPTIONS ]
+        [ PV ... ]
+}
+
+growpart {
+    [OPTIONS] DISK PARTITION-NUMBER
+    -N, --dry-run
+}
+
+pvs {
+    -a, --all
+    --foreign
+    --units r|R|h|H|b|B|s|S|k|K|m|M|g|G|t|T|p|P|e|E
+}
+
+vgs {
+    -a, --all
+    --foreign
+    --units r|R|h|H|b|B|s|S|k|K|m|M|g|G|t|T|p|P|e|E
+}
+
+pvresize {
+    PV ...
+       [    --setphysicalvolumesize Size[m|UNIT] ]
+       [    --reportformat basic|json ]
+       [ -d|--debug ]
+       [ -q|--quiet ]
+       [ -t|--test ]
+       [ -v|--verbose ]
+       [ -y|--yes ]
+       [    --commandprofile String ]
+       [    --config String ]
+       [    --driverloaded y|n ]
+       [    --lockopt String ]
+       [    --profile String ]
 }
 
 find {
@@ -14,24 +72,32 @@ find {
     }
 }
 
-storage {
+lsblk {
+    -a, --all (list empty)
+    -f, --fs (filesystem info)
+    -i, --ascii (tree formatting)
+    -l, --list
+    -p, --paths (full dev paths)
+}
 
-    true >| ./thefile.trc
+df {
+    -a, --all
+    --direct (file stats)
+    --total
+    -h, --human-readable
+    -l, --local
+    -t, --type=TYPE
+    -T, --print-type
+    -x, --exclude-type=TYPE
+}
 
-    df -Tha
-        --total
-        -h, --human-readable
-        -H powers of 1000 not 1024
-        -l --local only local fs
-        -T --print-type show fs type
-        -n (only FSType name)
-        -t (full w/ totals)
-
-    du -h .
-        --total
-        -h, --human-readable
-
-    lsblk
+du {
+    -a, --all (count for all files, not just dirs)
+    -c, --total
+    -h, --human-readable
+    -L, --dereference (deref symlinks)
+    -t, --threshold=SIZE (exclude entries smaller if SIZE negative, or greater if SIZE positive)
+    --time (show last modification)
 }
 
 format disks {
