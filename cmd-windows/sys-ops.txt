@@ -163,6 +163,16 @@ Get-WmiObject {
         (Get-WmiObject Win32_ComputerSystem).Name
         (Get-WmiObject Win32_ComputerSystem).Domain
     }
+    get mac address {
+        win32_networkadapterconfiguration | select description, macaddress
+    }
+}
+
+Get-CimInstance {
+    https://docs.microsoft.com/en-us/powershell/module/cimcmdlets/get-ciminstance?view=powershell-7.1
+    get mac address {
+        win32_networkadapterconfiguration | select description, macaddress 
+    }
 }
 
 New-Item {
