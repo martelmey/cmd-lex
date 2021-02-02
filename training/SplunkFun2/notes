@@ -1,0 +1,49 @@
+For SPL reporting conversions:
+* Implement usage of | fields
+index=os_evt_prd sourcetype=top
+| chart count over host by COMMAND
+
+Fast mode = selected fields only
+Verbose = everything
+Smart = curated
+
+Lab Mod 1:
+Q1: A: 2
+Q2: A: _time
+Q3: A: host, source, sourcetype
+
+Too many values: aggregated into OTHER
+Dimension/field is not in the top 10
+Change the limit or ignore
+useother=f
+limit=5 (see only top 5 values of product_name for each host)
+index=web sourcetype=access_combined product_name=*
+| chart count OVER host BY product_name useother=f limit=5
+
+Value: NULL
+Represents the absence of value for a field in an event
+Some events within index=web sourcetype=access_combined that do not contain a product_name field
+index=web sourcetype=access_combined product_name=*
+| chart count OVER host BY product_name useother=f limit=5 usenull=f
+
+index=sales sourcetype=vendor_sales
+| stats sum(price) as "Total Sales", values(price) as "Price" by product_name, VendorCountry
+
+Last 24 hours = per-hour buckets
+Last 30 days = per-day buckets
+Override default bucket config:
+| timechart span=15m sum(price) (bucket per 15 minute span)
+You can specify ranges for any number-based field value
+| chart count by status span=100 (bucket per 100 status code values)
+
+Trellis
+Chart for each of the values of the split field (action)
+index=web sourcetype=access_combined
+| timechart count by action
+
+earliest=-28@d (last 28 days, per-day buckets, snap-to day)
+
+Top failed logins per user by Country,Region,City
+index=security sourcetype=linux_secure fail* OR invalid
+| iplocation src_ip
+| geostats latfield=lat longfield=lon count by user globallimit=5

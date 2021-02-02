@@ -1,6 +1,12 @@
 dcdiag {
+    /v
     /test:
         checksecurityerror
+}
+
+repadmin {
+    /showrepl
+    /replsum
 }
 
 setspn {
