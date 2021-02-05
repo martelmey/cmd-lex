@@ -35,6 +35,21 @@ Get-DnsClientServerAddress {
     -ServerAddresses ("10.0.0.1","10.0.0.2")
 }
 
+Set-DnsClientServerAddress {
+    https://docs.microsoft.com/en-us/powershell/module/dnsclient/set-dnsclientserveraddress?view=win10-ps
+    [-InterfaceAlias] <String[]>
+    [-ServerAddresses <String[]>]
+    [-Validate]
+    [-ResetServerAddresses]
+    [-CimSession <CimSession[]>]
+    [-ThrottleLimit <Int32>]
+    [-AsJob]
+    [-PassThru]
+    [-WhatIf]
+    [-Confirm]
+    [<CommonParameters>]
+}
+
 Get-NetIPInterface {
     https://docs.microsoft.com/en-us/powershell/module/nettcpip/get-netipinterface?view=win10-ps
 }
@@ -45,10 +60,6 @@ New-NetIPAddress {
     –IPAddress “192.168.60.192”
     –PrefixLength 24
     -DefaultGateway 192.168.60.254
-}
-
-Set-DnsClientServerAddress {
-    https://docs.microsoft.com/en-us/powershell/module/dnsclient/set-dnsclientserveraddress?view=win10-ps
 }
 
 New-NetRoute {

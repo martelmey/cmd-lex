@@ -97,3 +97,6 @@
 
 # Deploy your Remote Desktop environment
 	https://docs.microsoft.com/en-us/windows-server/remote/remote-desktop-services/rds-deploy-infrastructure
+
+# RDS License Issue, logged out in 60 mins
+	https://social.technet.microsoft.com/Forums/office/en-US/fad1bdb9-5d0b-4aac-9159-7c57cf5ed829/remote-desktop-license-issue
