@@ -1,6 +1,10 @@
 # list serial devices
     [System.IO.Ports.SerialPort]::getportnames()
 
+set {
+    
+}
+
 ConvertTo-SecureString {
     * https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.security/convertto-securestring?view=powershell-7#examples
 

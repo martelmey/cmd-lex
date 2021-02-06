@@ -9,6 +9,10 @@ repadmin {
     /replsum
 }
 
+ntdsutil {
+    
+}
+
 setspn {
     * https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-R2-and-2012/cc731241(v=ws.11)
     * https://social.technet.microsoft.com/wiki/contents/articles/717.service-principal-names-spn-setspn-syntax.aspx
