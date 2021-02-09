@@ -1,5 +1,43 @@
 certlm.msc
 
+New-RDSessionDeployment {
+  https://docs.microsoft.com/en-us/powershell/module/remotedesktop/new-rdsessiondeployment?view=win10-ps
+  [-ConnectionBroker] <String>
+  [-SessionHost] <String[]>
+  [[-WebAccessServer] <String>]
+  [<CommonParameters>]
+}
+
+New-RDSessionCollection {
+  https://docs.microsoft.com/en-us/powershell/module/remotedesktop/new-rdsessioncollection?view=win10-ps
+  [-CollectionName] <String>
+  [-CollectionDescription <String>]
+  -SessionHost <String[]>
+  [-ConnectionBroker <String>]
+  [-PersonalUnmanaged]
+  [-AutoAssignUser]
+  [-GrantAdministrativePrivilege]
+  [<CommonParameters>]
+}
+
+Add-RDSessionHost {
+  https://docs.microsoft.com/en-us/powershell/module/remotedesktop/add-rdsessionhost?view=win10-ps
+  [-CollectionName] <String>
+  -SessionHost <String[]>
+  [-ConnectionBroker <String>]
+  [<CommonParameters>]
+}
+
+Add-RDServer {
+  https://docs.microsoft.com/en-us/powershell/module/remotedesktop/add-rdserver?view=win10-ps
+  [-Server] <String>
+  [-Role] <String>
+  [[-ConnectionBroker] <String>]
+  [[-GatewayExternalFqdn] <String>]
+  [-CreateVirtualSwitch]
+  [<CommonParameters>]
+}
+
 See RDS-related certificates: {
   Run > certlm.msc
   Server Manager > RDS > Overview > Edit deployment properties

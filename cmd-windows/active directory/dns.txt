@@ -1,3 +1,8 @@
+dnscmd {
+    https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/dnscmd
+    /resetlistenaddress 192.168.60.192
+}
+
 Add-DnsServerPrimaryZone {
     https://docs.microsoft.com/en-us/powershell/module/dnsserver/add-dnsserverprimaryzone?view=win10-ps
     -NetworkId "192.168.60.0/24"
@@ -15,4 +20,8 @@ Set-DnsServerScavenging {
 
 Sync-DnsServerZone {
     -passthru
+}
+
+Get-DnsServer {
+    https://docs.microsoft.com/en-us/powershell/module/dnsserver/get-dnsserver?view=win10-ps
 }

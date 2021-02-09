@@ -1,6 +1,17 @@
 Hosts file location:
 C:\Windows\System32\drivers\etc\
 
+Get-NetAdapter {
+    https://docs.microsoft.com/en-us/powershell/module/netadapter/get-netadapter?view=win10-ps
+    -InterfaceIndex <UInt32[]>
+    [-IncludeHidden]
+    [-Physical]
+    [-CimSession <CimSession[]>]
+    [-ThrottleLimit <Int32>]
+    [-AsJob]
+    [<CommonParameters>]
+}
+
 Test-NetConnection {
     https://docs.microsoft.com/en-us/powershell/module/nettcpip/test-netconnection?view=win10-ps#syntax
 }
@@ -19,6 +30,22 @@ Clear-DnsClientCache {
 
 Get-DnsClient {
     https://docs.microsoft.com/en-us/powershell/module/dnsclient/get-dnsclient?view=win10-ps
+}
+
+Set-DnsClient {
+    https://docs.microsoft.com/en-us/powershell/module/dnsclient/set-dnsclient?view=win10-ps
+    -InterfaceIndex <UInt32[]>
+    [-ConnectionSpecificSuffix <String>]
+    [-RegisterThisConnectionsAddress <Boolean>]
+    [-UseSuffixWhenRegistering <Boolean>]
+    [-ResetConnectionSpecificSuffix]
+    [-CimSession <CimSession[]>]
+    [-ThrottleLimit <Int32>]
+    [-AsJob]
+    [-PassThru]
+    [-WhatIf]
+    [-Confirm]
+    [<CommonParameters>]
 }
 
 Get-DnsClientCache {
