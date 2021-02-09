@@ -3,6 +3,14 @@
 ===terms
 DSP = digital signal processing
 
+===math
+10e6 = 10m
+10e3 = thousands
+
+===conf
+/etc/gnuradio/conf.d/
+	grc.conf
+
 ===summary
 * Install:
 	- gqrx
