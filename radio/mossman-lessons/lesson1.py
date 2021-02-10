@@ -5,7 +5,8 @@
 # SPDX-License-Identifier: GPL-3.0
 #
 # GNU Radio Python Flow Graph
-# Title: Not titled yet
+# Title: Dual Channel RX
+# Author: Martel Meyers
 # GNU Radio version: 3.8.2.0
 
 from distutils.version import StrictVersion
@@ -43,9 +44,9 @@ from gnuradio import qtgui
 class lesson1(gr.top_block, Qt.QWidget):
 
     def __init__(self):
-        gr.top_block.__init__(self, "Not titled yet")
+        gr.top_block.__init__(self, "Dual Channel RX")
         Qt.QWidget.__init__(self)
-        self.setWindowTitle("Not titled yet")
+        self.setWindowTitle("Dual Channel RX")
         qtgui.util.check_set_qss()
         try:
             self.setWindowIcon(Qt.QIcon.fromTheme('gnuradio-grc'))
@@ -78,16 +79,32 @@ class lesson1(gr.top_block, Qt.QWidget):
         ##################################################
         self.samp_rate = samp_rate = 10e6
         self.channel_width = channel_width = 200e3
-        self.channel_freq = channel_freq = 98.9e6
-        self.center_freq = center_freq = 100.3e6
-        self.audio_gain = audio_gain = 1
+        self.channel_freq2 = channel_freq2 = 100.3e6
+        self.channel_freq1 = channel_freq1 = 98.5e6
+        self.center_freq = center_freq = 97.9e6
+        self.audio_gain2 = audio_gain2 = 0
+        self.audio_gain1 = audio_gain1 = 1
 
         ##################################################
         # Blocks
         ##################################################
-        self._audio_gain_range = Range(0, 5, 1, 1, 200)
-        self._audio_gain_win = RangeWidget(self._audio_gain_range, self.set_audio_gain, 'audio_gain', "counter_slider", float)
-        self.top_grid_layout.addWidget(self._audio_gain_win)
+        self._channel_freq2_range = Range(87.9e6, 107.9e6, 00.1e6, 100.3e6, 200)
+        self._channel_freq2_win = RangeWidget(self._channel_freq2_range, self.set_channel_freq2, 'channel_freq2', "counter_slider", float)
+        self.top_grid_layout.addWidget(self._channel_freq2_win)
+        self._channel_freq1_range = Range(87.9e6, 107.9e6, 00.1e6, 98.5e6, 200)
+        self._channel_freq1_win = RangeWidget(self._channel_freq1_range, self.set_channel_freq1, 'channel_freq1', "counter_slider", float)
+        self.top_grid_layout.addWidget(self._channel_freq1_win)
+        self._audio_gain2_range = Range(0, 5, 00.1, 0, 200)
+        self._audio_gain2_win = RangeWidget(self._audio_gain2_range, self.set_audio_gain2, 'audio_gain2', "counter_slider", float)
+        self.top_grid_layout.addWidget(self._audio_gain2_win)
+        self._audio_gain1_range = Range(0, 5, 00.1, 1, 200)
+        self._audio_gain1_win = RangeWidget(self._audio_gain1_range, self.set_audio_gain1, 'audio_gain1', "counter_slider", float)
+        self.top_grid_layout.addWidget(self._audio_gain1_win)
+        self.rational_resampler_xxx_0_0 = filter.rational_resampler_ccc(
+                interpolation=12,
+                decimation=5,
+                taps=None,
+                fractional_bw=None)
         self.rational_resampler_xxx_0 = filter.rational_resampler_ccc(
                 interpolation=12,
                 decimation=5,
@@ -148,6 +165,15 @@ class lesson1(gr.top_block, Qt.QWidget):
         self.osmosdr_source_0.set_bb_gain(20, 0)
         self.osmosdr_source_0.set_antenna('', 0)
         self.osmosdr_source_0.set_bandwidth(0, 0)
+        self.low_pass_filter_0_0 = filter.fir_filter_ccf(
+            int(samp_rate/channel_width),
+            firdes.low_pass(
+                1,
+                samp_rate,
+                75e3,
+                25e3,
+                firdes.WIN_HAMMING,
+                6.76))
         self.low_pass_filter_0 = filter.fir_filter_ccf(
             int(samp_rate/channel_width),
             firdes.low_pass(
@@ -157,14 +183,22 @@ class lesson1(gr.top_block, Qt.QWidget):
                 25e3,
                 firdes.WIN_HAMMING,
                 6.76))
+        self.blocks_multiply_xx_0_0 = blocks.multiply_vcc(1)
         self.blocks_multiply_xx_0 = blocks.multiply_vcc(1)
-        self.blocks_multiply_const_vxx_0 = blocks.multiply_const_ff(audio_gain)
+        self.blocks_multiply_const_vxx_0_0 = blocks.multiply_const_ff(audio_gain2)
+        self.blocks_multiply_const_vxx_0 = blocks.multiply_const_ff(audio_gain1)
+        self.blocks_add_xx_0 = blocks.add_vff(1)
         self.audio_sink_0 = audio.sink(48000, '', True)
+        self.analog_wfm_rcv_0_0 = analog.wfm_rcv(
+        	quad_rate=480e3,
+        	audio_decimation=10,
+        )
         self.analog_wfm_rcv_0 = analog.wfm_rcv(
         	quad_rate=480e3,
         	audio_decimation=10,
         )
-        self.analog_sig_source_x_0 = analog.sig_source_c(samp_rate, analog.GR_COS_WAVE, center_freq - channel_freq, 1, 0, 0)
+        self.analog_sig_source_x_0_0 = analog.sig_source_c(samp_rate, analog.GR_COS_WAVE, center_freq - channel_freq2, 1, 0, 0)
+        self.analog_sig_source_x_0 = analog.sig_source_c(samp_rate, analog.GR_COS_WAVE, center_freq - channel_freq1, 1, 0, 0)
 
 
 
@@ -172,13 +206,21 @@ class lesson1(gr.top_block, Qt.QWidget):
         # Connections
         ##################################################
         self.connect((self.analog_sig_source_x_0, 0), (self.blocks_multiply_xx_0, 1))
+        self.connect((self.analog_sig_source_x_0_0, 0), (self.blocks_multiply_xx_0_0, 1))
         self.connect((self.analog_wfm_rcv_0, 0), (self.blocks_multiply_const_vxx_0, 0))
-        self.connect((self.blocks_multiply_const_vxx_0, 0), (self.audio_sink_0, 0))
+        self.connect((self.analog_wfm_rcv_0_0, 0), (self.blocks_multiply_const_vxx_0_0, 0))
+        self.connect((self.blocks_add_xx_0, 0), (self.audio_sink_0, 0))
+        self.connect((self.blocks_multiply_const_vxx_0, 0), (self.blocks_add_xx_0, 0))
+        self.connect((self.blocks_multiply_const_vxx_0_0, 0), (self.blocks_add_xx_0, 1))
         self.connect((self.blocks_multiply_xx_0, 0), (self.low_pass_filter_0, 0))
+        self.connect((self.blocks_multiply_xx_0_0, 0), (self.low_pass_filter_0_0, 0))
         self.connect((self.low_pass_filter_0, 0), (self.rational_resampler_xxx_0, 0))
+        self.connect((self.low_pass_filter_0_0, 0), (self.rational_resampler_xxx_0_0, 0))
         self.connect((self.osmosdr_source_0, 0), (self.blocks_multiply_xx_0, 0))
+        self.connect((self.osmosdr_source_0, 0), (self.blocks_multiply_xx_0_0, 0))
         self.connect((self.osmosdr_source_0, 0), (self.qtgui_freq_sink_x_0, 0))
         self.connect((self.rational_resampler_xxx_0, 0), (self.analog_wfm_rcv_0, 0))
+        self.connect((self.rational_resampler_xxx_0_0, 0), (self.analog_wfm_rcv_0_0, 0))
 
 
     def closeEvent(self, event):
@@ -192,7 +234,9 @@ class lesson1(gr.top_block, Qt.QWidget):
     def set_samp_rate(self, samp_rate):
         self.samp_rate = samp_rate
         self.analog_sig_source_x_0.set_sampling_freq(self.samp_rate)
+        self.analog_sig_source_x_0_0.set_sampling_freq(self.samp_rate)
         self.low_pass_filter_0.set_taps(firdes.low_pass(1, self.samp_rate, 75e3, 25e3, firdes.WIN_HAMMING, 6.76))
+        self.low_pass_filter_0_0.set_taps(firdes.low_pass(1, self.samp_rate, 75e3, 25e3, firdes.WIN_HAMMING, 6.76))
         self.osmosdr_source_0.set_sample_rate(self.samp_rate)
 
     def get_channel_width(self):
@@ -201,28 +245,43 @@ class lesson1(gr.top_block, Qt.QWidget):
     def set_channel_width(self, channel_width):
         self.channel_width = channel_width
 
-    def get_channel_freq(self):
-        return self.channel_freq
+    def get_channel_freq2(self):
+        return self.channel_freq2
 
-    def set_channel_freq(self, channel_freq):
-        self.channel_freq = channel_freq
-        self.analog_sig_source_x_0.set_frequency(self.center_freq - self.channel_freq)
+    def set_channel_freq2(self, channel_freq2):
+        self.channel_freq2 = channel_freq2
+        self.analog_sig_source_x_0_0.set_frequency(self.center_freq - self.channel_freq2)
+
+    def get_channel_freq1(self):
+        return self.channel_freq1
+
+    def set_channel_freq1(self, channel_freq1):
+        self.channel_freq1 = channel_freq1
+        self.analog_sig_source_x_0.set_frequency(self.center_freq - self.channel_freq1)
 
     def get_center_freq(self):
         return self.center_freq
 
     def set_center_freq(self, center_freq):
         self.center_freq = center_freq
-        self.analog_sig_source_x_0.set_frequency(self.center_freq - self.channel_freq)
+        self.analog_sig_source_x_0.set_frequency(self.center_freq - self.channel_freq1)
+        self.analog_sig_source_x_0_0.set_frequency(self.center_freq - self.channel_freq2)
         self.osmosdr_source_0.set_center_freq(self.center_freq, 0)
         self.qtgui_freq_sink_x_0.set_frequency_range(self.center_freq, self.center_freq)
 
-    def get_audio_gain(self):
-        return self.audio_gain
+    def get_audio_gain2(self):
+        return self.audio_gain2
 
-    def set_audio_gain(self, audio_gain):
-        self.audio_gain = audio_gain
-        self.blocks_multiply_const_vxx_0.set_k(self.audio_gain)
+    def set_audio_gain2(self, audio_gain2):
+        self.audio_gain2 = audio_gain2
+        self.blocks_multiply_const_vxx_0_0.set_k(self.audio_gain2)
+
+    def get_audio_gain1(self):
+        return self.audio_gain1
+
+    def set_audio_gain1(self, audio_gain1):
+        self.audio_gain1 = audio_gain1
+        self.blocks_multiply_const_vxx_0.set_k(self.audio_gain1)
 
 
 

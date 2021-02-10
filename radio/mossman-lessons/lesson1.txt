@@ -1,0 +1,3 @@
+https://wiki.gnuradio.org/index.php/QT_GUI_Frequency_Sink
+
+lesson1-homework tunes to 97.9, output is 98.5
