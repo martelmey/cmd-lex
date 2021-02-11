@@ -12,6 +12,9 @@ SQL Server Script to Create Windows Directories
 Install SQL Server from the Command Prompt
 	https://docs.microsoft.com/en-us/sql/database-engine/install-windows/install-sql-server-from-the-command-prompt?view=sql-server-ver15#Install
 
+Determine the version, edition, and update level of SQL Server and its components
+	https://docs.microsoft.com/en-us/troubleshoot/sql/general/determine-version-edition-update-level#determine-which-version-and-edition-of-sql-server-database-engine-is-running
+
 ### agent
 
 Agent Properties
