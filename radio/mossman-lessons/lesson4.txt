@@ -1,0 +1,5 @@
+only the throttle block controls the real time rate of the flow graph
+sample rate doesn't mean the same thing for every gnuradio block
+
+32e3 = 32k
+32e6 = 32m

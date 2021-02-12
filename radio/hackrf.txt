@@ -1,3 +1,5 @@
+https://medium.com/practical-coding/setting-up-a-c-python-project-with-pybind11-and-cmake-8de391494fca
+
 20210204_PEATT-KL
 
 ===terms
@@ -42,6 +44,32 @@ soapysdr-module-hackrf/kali-rolling 0.3.3-3 amd64
 
 ===setup
 apt install hackrf gnuradio gqrx
+
+===gnuradio 3.7
+#Option1
+pip3 install PyBOMBS
+cd ~/.local/bin/
+./pybombs recipes add gr-recipes git+https://github.com/gnuradio/gr-recipes.git  
+./pybombs recipes add gr-etcetera git+https://github.com/gnuradio/gr-etcetera.git
+./pybombs prefix init ~/prefix/default/
+./pybombs install gnuradio
+./pybombs run gnuradio-companion
+
+#Option2
+apt install -y gcc cmake fftw2
+pip3 install mako boost Cheetah3 numpy pygccxml pybind11
+# pybind11-config is installed in '/home/mxana/.local/bin'
+# -Dpybind11_ROOT=/home/mxana/.local/lib/python3.9/site-packages/pybind11/share/cmake/pybind11
+/home/mxana/Downloads/./Miniconda3-latest-Linux-x86_64.sh
+/root/miniconda3/bin/./conda install pybind11 -c conda-forge
+git clone https://github.com/gnuradio/gnuradio.git
+cd gnuradio
+mkdir build
+cd build
+cmake -DCMAKE_PREFIX_PATH=/home/mxana/.local/lib/python3.9/site-packages/pybind11/share/cmake/pybind11 ../
+make
+make test
+sudo make install
 
 ===qspectrumanalyzer installation
 https://github.com/xmikos/qspectrumanalyzer
