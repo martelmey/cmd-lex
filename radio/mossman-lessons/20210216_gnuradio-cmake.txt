@@ -1,0 +1,382 @@
+┌──(mxana㉿PEATT-KL)-[~/gnuradio/build]
+└─$ cmake -DCMAKE_PREFIX_PATH=/home/mxana/.local/lib/python3.9/site-packages/pybind11/share/cmake/pybind11 ../
+
+-- Build type not specified: defaulting to release.
+-- Build type set to Release.
+-- Build date set to Wed, 17 Feb 2021 04:57:13Z.
+-- 
+-- The build system will automatically enable all components.
+-- Use -DENABLE_DEFAULT=OFF to disable components by default.
+-- 
+-- Configuring testing-support support...
+--   Dependency Boost_unit_test_framework_FOUND = 1
+--   Enabling testing-support support.
+--   Override with -DENABLE_TESTING=ON/OFF
+-- Extracting version information from git describe...
+-- Compiler Version: cc (Debian 10.2.1-6) 10.2.1 20210110
+Copyright (C) 2020 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+-- Compiler Flags: /usr/bin/cc:::-O3 -DNDEBUG  -fvisibility=hidden -Wsign-compare -Wall -Wno-uninitialized
+/usr/bin/c++:::-O3 -DNDEBUG  -fvisibility=hidden -Wsign-compare -Wall -Wno-uninitialized
+-- ADDING PERF COUNTERS
+-- User set python executable /usr/bin/python3
+-- Found PythonInterp: /usr/bin/python3 (found suitable version "3.9.1", minimum required is "3.6.5") 
+-- Python checking for numpy - found
+-- Python checking for pygccxml - found
+CMake Warning (dev) at CMakeLists.txt:352 (find_package):
+  Policy CMP0074 is not set: find_package uses <PackageName>_ROOT variables.
+  Run "cmake --help-policy CMP0074" for policy details.  Use the cmake_policy
+  command to set the policy and suppress this warning.
+
+  CMake variable pybind11_ROOT is set to:
+
+    /home/mxana/.local/lib/python3.9/site-packages/pybind11/share/cmake/pybind11
+
+  For compatibility, CMake is ignoring the variable.
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+-- Found pybind11: /home/mxana/.local/lib/python3.9/site-packages/pybind11/include (found version "2.6.2" )
+-- 
+-- Configuring python-support support...
+--   Dependency PYTHONLIBS_FOUND = TRUE
+--   Dependency pybind11_FOUND = 1
+--   Dependency NUMPY_FOUND = TRUE
+--   Enabling python-support support.
+--   Override with -DENABLE_PYTHON=ON/OFF
+-- 
+-- Configuring VOLK support...
+--   Found VOLK:
+--   * Version: 2.4.1
+--   * Libraries: Volk::volk
+--   * Includes: /usr/include
+-- Not using additional GNU Radio native architecture optimizations.
+-- Checking for module 'mpir >= 3.0'
+--   No package 'mpir' found
+-- Could NOT find MPIR (missing: MPIRXX_LIBRARY MPIR_LIBRARY MPIR_INCLUDE_DIR) 
+-- 
+-- Configuring post-install support...
+--   Enabling post-install support.
+--   Override with -DENABLE_POSTINSTALL=ON/OFF
+-- Could NOT find Doxygen (missing: DOXYGEN_EXECUTABLE) 
+-- 
+-- Configuring doxygen support...
+--   Dependency DOXYGEN_FOUND = NO
+--   Disabling doxygen support.
+--   Override with -DENABLE_DOXYGEN=ON/OFF
+-- 
+-- Configuring man-pages support...
+--   Enabling man-pages support.
+--   Override with -DENABLE_MANPAGES=ON/OFF
+-- Checking for module 'mpir >= 3.0'
+--   No package 'mpir' found
+-- Could NOT find MPIR (missing: MPIRXX_LIBRARY MPIR_LIBRARY MPIR_INCLUDE_DIR) 
+-- 
+-- Configuring gnuradio-runtime support...
+--   Dependency Boost_FOUND = TRUE
+--   Dependency PYTHONINTERP_FOUND = TRUE
+--   Dependency MPLIB_FOUND = TRUE
+--   Dependency LOG4CPP_FOUND = TRUE
+--   Dependency pybind11_FOUND = 1
+--   Enabling gnuradio-runtime support.
+--   Override with -DENABLE_GNURADIO_RUNTIME=ON/OFF
+-- 
+-- Configuring gr-ctrlport support...
+--   Dependency Boost_FOUND = TRUE
+--   Dependency ENABLE_GNURADIO_RUNTIME = ON
+--   Enabling gr-ctrlport support.
+--   Override with -DENABLE_GR_CTRLPORT=ON/OFF
+-- Checking for module 'libunwind'
+--   No package 'libunwind' found
+-- Loading build date Wed, 17 Feb 2021 04:57:13Z into constants...
+-- Loading version v3.8.0.0-969-gce88621d into constants...
+-- Python checking for Thrift - found
+-- Found and enabling Thrift backend to ControlPort
+-- Running thrift to build C++ bindings
+-- TRY_SHM_VMCIRCBUF set to ON.
+-- 
+-- Python checking for PyYAML >= 3.10 - found
+-- Python checking for mako >= 1.0.7 - found
+-- Python checking for pygobject >= 2.28.6 - found
+-- Python checking for Gtk (GI) >= 3.10.8 - found
+-- Python checking for Cairo (GI) >= 1.0 - found
+-- Python checking for PangoCairo (GI) >= 1.0 - found
+-- Python checking for numpy - found
+-- 
+-- Configuring gnuradio-companion support...
+--   Dependency ENABLE_GNURADIO_RUNTIME = ON
+--   Dependency ENABLE_PYTHON = ON
+--   Dependency PYYAML_FOUND = TRUE
+--   Dependency MAKO_FOUND = TRUE
+--   Dependency PYGI_FOUND = TRUE
+--   Dependency GTK_GI_FOUND = TRUE
+--   Dependency CAIRO_GI_FOUND = TRUE
+--   Dependency PANGOCAIRO_GI_FOUND = TRUE
+--   Dependency NUMPY_FOUND = TRUE
+--   Enabling gnuradio-companion support.
+--   Override with -DENABLE_GRC=ON/OFF
+-- Python checking for pytest - found
+-- Checking for module 'sndfile'
+--   No package 'sndfile' found
+-- Could NOT find SNDFILE (missing: SNDFILE_LIBRARIES SNDFILE_INCLUDE_DIRS) 
+-- 
+-- ********************* WARNING!!! *********************
+-- libsndfile1-dev is required to compile wavfile blocks.
+-- Wav File Sink and Source blocks will not be available.
+-- ******************************************************
+-- 
+-- Configuring gr-blocks support...
+--   Dependency Boost_FOUND = TRUE
+--   Dependency ENABLE_GNURADIO_RUNTIME = ON
+--   Enabling gr-blocks support.
+--   Override with -DENABLE_GR_BLOCKS=ON/OFF
+-- Checking for module 'gsl >= 1.10'
+--   No package 'gsl' found
+-- FindGSL: gsl-config not found.
+-- Could NOT find GSL (missing: GSL_LIBRARIES GSL_INCLUDE_DIRS GSL_LIBRARY_DIRS) 
+-- 
+-- Configuring gr-fec support...
+--   Dependency Boost_FOUND = TRUE
+--   Dependency ENABLE_GNURADIO_RUNTIME = ON
+--   Dependency ENABLE_GR_BLOCKS = ON
+--   Enabling gr-fec support.
+--   Override with -DENABLE_GR_FEC=ON/OFF
+-- 
+-- Configuring gr-fft support...
+--   Dependency Boost_FOUND = TRUE
+--   Dependency ENABLE_GNURADIO_RUNTIME = ON
+--   Dependency ENABLE_GR_BLOCKS = ON
+--   Dependency FFTW3f_FOUND = TRUE
+--   Enabling gr-fft support.
+--   Override with -DENABLE_GR_FFT=ON/OFF
+-- 
+-- Configuring gr-filter support...
+--   Dependency Boost_FOUND = TRUE
+--   Dependency ENABLE_GNURADIO_RUNTIME = ON
+--   Dependency ENABLE_GR_FFT = ON
+--   Dependency ENABLE_GR_BLOCKS = ON
+--   Enabling gr-filter support.
+--   Override with -DENABLE_GR_FILTER=ON/OFF
+-- Python checking for pyqtgraph - found
+-- Python checking for scipy - found
+-- 
+-- Configuring gr-analog support...
+--   Dependency Boost_FOUND = TRUE
+--   Dependency ENABLE_GNURADIO_RUNTIME = ON
+--   Dependency ENABLE_GR_BLOCKS = ON
+--   Dependency ENABLE_GR_FFT = ON
+--   Dependency ENABLE_GR_FILTER = ON
+--   Enabling gr-analog support.
+--   Override with -DENABLE_GR_ANALOG=ON/OFF
+-- 
+-- Configuring gr-digital support...
+--   Dependency Boost_FOUND = TRUE
+--   Dependency ENABLE_GNURADIO_RUNTIME = ON
+--   Dependency ENABLE_GR_FFT = ON
+--   Dependency ENABLE_GR_FILTER = ON
+--   Dependency ENABLE_GR_BLOCKS = ON
+--   Dependency ENABLE_GR_ANALOG = ON
+--   Enabling gr-digital support.
+--   Override with -DENABLE_GR_DIGITAL=ON/OFF
+-- 
+-- Configuring gr-dtv support...
+--   Dependency Boost_FOUND = TRUE
+--   Dependency ENABLE_GNURADIO_RUNTIME = ON
+--   Dependency ENABLE_GR_ANALOG = ON
+--   Dependency ENABLE_GR_FILTER = ON
+--   Dependency ENABLE_GR_FEC = ON
+--   Enabling gr-dtv support.
+--   Override with -DENABLE_GR_DTV=ON/OFF
+-- 
+-- Configuring gr-audio support...
+--   Dependency Boost_FOUND = TRUE
+--   Dependency ENABLE_GNURADIO_RUNTIME = ON
+--   Enabling gr-audio support.
+--   Override with -DENABLE_GR_AUDIO=ON/OFF
+-- Checking for module 'alsa'
+--   No package 'alsa' found
+-- Checking for module 'jack'
+--   No package 'jack' found
+-- Checking for module 'portaudio-2.0'
+--   No package 'portaudio-2.0' found
+-- 
+-- Configuring gr-channels support...
+--   Dependency Boost_FOUND = TRUE
+--   Dependency ENABLE_GNURADIO_RUNTIME = ON
+--   Dependency ENABLE_GR_BLOCKS = ON
+--   Dependency ENABLE_GR_FFT = ON
+--   Dependency ENABLE_GR_FILTER = ON
+--   Dependency ENABLE_GR_ANALOG = ON
+--   Enabling gr-channels support.
+--   Override with -DENABLE_GR_CHANNELS=ON/OFF
+-- Python checking for PyQt5 - found
+-- Checking for module 'Qt5Qwt6'
+--   No package 'Qt5Qwt6' found
+-- 
+-- Configuring gr-qtgui support...
+--   Dependency Boost_FOUND = TRUE
+--   Dependency QT_FOUND = 0
+--   Dependency QWT_FOUND = FALSE
+--   Dependency ENABLE_GNURADIO_RUNTIME = ON
+--   Dependency ENABLE_GR_FFT = ON
+--   Dependency ENABLE_GR_FILTER = ON
+--   Dependency PYTHONLIBS_FOUND = TRUE
+--   Dependency PYQT5_FOUND = TRUE
+--   Disabling gr-qtgui support.
+--   Override with -DENABLE_GR_QTGUI=ON/OFF
+-- 
+-- Configuring gr-trellis support...
+--   Dependency Boost_FOUND = TRUE
+--   Dependency ENABLE_GNURADIO_RUNTIME = ON
+--   Dependency ENABLE_GR_ANALOG = ON
+--   Dependency ENABLE_GR_BLOCKS = ON
+--   Dependency ENABLE_GR_DIGITAL = ON
+--   Enabling gr-trellis support.
+--   Override with -DENABLE_GR_TRELLIS=ON/OFF
+-- Checking for module 'uhd'
+--   No package 'uhd' found
+-- 
+-- Configuring gr-uhd support...
+--   Dependency Boost_FOUND = TRUE
+--   Dependency UHD_FOUND = 0
+--   Dependency ENABLE_GNURADIO_RUNTIME = ON
+--   Dependency ENABLE_GR_FILTER = ON
+--   Dependency ENABLE_GR_BLOCKS = ON
+--   Dependency ENABLE_GR_ANALOG = ON
+--   Disabling gr-uhd support.
+--   Override with -DENABLE_GR_UHD=ON/OFF
+-- Python checking for Mako >= 1.0.7 - found
+-- Python checking for click - found
+-- Python checking for click-plugins - found
+-- 
+-- Configuring gr-utils support...
+--   Dependency ENABLE_GNURADIO_RUNTIME = ON
+--   Dependency ENABLE_PYTHON = ON
+--   Dependency MAKO_FOUND = TRUE
+--   Enabling gr-utils support.
+--   Override with -DENABLE_GR_UTILS=ON/OFF
+-- 
+-- Configuring gr_modtool support...
+--   Dependency ENABLE_GNURADIO_RUNTIME = ON
+--   Dependency ENABLE_PYTHON = ON
+--   Dependency CLICK_FOUND = TRUE
+--   Dependency CLICK_PLUGINS_FOUND = TRUE
+--   Enabling gr_modtool support.
+--   Override with -DENABLE_GR_MODTOOL=ON/OFF
+-- 
+-- Configuring gr_blocktool support...
+--   Dependency ENABLE_GNURADIO_RUNTIME = ON
+--   Dependency ENABLE_PYTHON = ON
+--   Enabling gr_blocktool support.
+--   Override with -DENABLE_GR_BLOCKTOOL=ON/OFF
+-- Could NOT find SDL (missing: SDL_LIBRARY SDL_INCLUDE_DIR) 
+-- 
+-- Configuring gr-video-sdl support...
+--   Dependency SDL_FOUND = FALSE
+--   Dependency Boost_FOUND = TRUE
+--   Dependency ENABLE_GNURADIO_RUNTIME = ON
+--   Disabling gr-video-sdl support.
+--   Override with -DENABLE_GR_VIDEO_SDL=ON/OFF
+-- 
+-- Configuring gr-vocoder support...
+--   Dependency Boost_FOUND = TRUE
+--   Dependency ENABLE_GNURADIO_RUNTIME = ON
+--   Dependency ENABLE_GR_FFT = ON
+--   Dependency ENABLE_GR_BLOCKS = ON
+--   Dependency ENABLE_GR_FILTER = ON
+--   Dependency ENABLE_GR_ANALOG = ON
+--   Enabling gr-vocoder support.
+--   Override with -DENABLE_GR_VOCODER=ON/OFF
+-- Could NOT find Codec2 (missing: LIBCODEC2_LIBRARIES LIBCODEC2_INCLUDE_DIRS) 
+-- Checking for module 'gsl >= 1.10'
+--   No package 'gsl' found
+-- FindGSL: gsl-config not found.
+-- Could NOT find GSL (missing: GSL_LIBRARIES GSL_INCLUDE_DIRS GSL_LIBRARY_DIRS) 
+-- 
+-- Configuring gr-wavelet support...
+--   Dependency Boost_FOUND = TRUE
+--   Dependency ENABLE_GNURADIO_RUNTIME = ON
+--   Dependency ENABLE_GR_BLOCKS = ON
+--   Dependency ENABLE_GR_ANALOG = ON
+--   Dependency GSL_FOUND = FALSE
+--   Disabling gr-wavelet support.
+--   Override with -DENABLE_GR_WAVELET=ON/OFF
+-- Checking for module 'libzmq'
+--   No package 'libzmq' found
+-- Could NOT find ZeroMQ (missing: ZEROMQ_LIBRARIES ZEROMQ_INCLUDE_DIRS) 
+-- 
+-- Configuring gr-zeromq support...
+--   Dependency Boost_FOUND = TRUE
+--   Dependency ENABLE_GNURADIO_RUNTIME = ON
+--   Dependency ZEROMQ_FOUND = FALSE
+--   Disabling gr-zeromq support.
+--   Override with -DENABLE_GR_ZEROMQ=ON/OFF
+-- 
+-- Configuring gr-network support...
+--   Dependency Boost_FOUND = TRUE
+--   Dependency ENABLE_GNURADIO_RUNTIME = ON
+--   Enabling gr-network support.
+--   Override with -DENABLE_GR_NETWORK=ON/OFF
+-- Using install prefix: /usr/local
+-- Building for version: v3.8.0.0-969-gce88621d / 3.10.0git
+-- No C++ unit tests... skipping
+-- 
+-- ######################################################
+-- # Gnuradio enabled components                         
+-- ######################################################
+--   * testing-support
+--   * python-support
+--   * post-install
+--   * man-pages
+--   * gnuradio-runtime
+--   * gr-ctrlport
+--   * * thrift
+--   * gnuradio-companion
+--   * gr-blocks
+--   * gr-fec
+--   * gr-fft
+--   * gr-filter
+--   * gr-analog
+--   * gr-digital
+--   * gr-dtv
+--   * gr-audio
+--   * * oss
+--   * gr-channels
+--   * gr-trellis
+--   * gr-utils
+--   * gr_modtool
+--   * gr_blocktool
+--   * gr-vocoder
+--   * * gsm
+--   * gr-network
+-- 
+-- ######################################################
+-- # Gnuradio disabled components                        
+-- ######################################################
+--   * doxygen
+--   * gr-qtgui
+--   * gr-uhd
+--   * gr-video-sdl
+--   * gr-wavelet
+--   * gr-zeromq
+-- 
+-- Using install prefix: /usr/local
+-- Building for version: v3.8.0.0-969-gce88621d / 3.10.0git
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/mxana/gnuradio/build
+
+
+
+
+98% tests passed, 4 tests failed out of 234
+
+Total Test time (real) = 163.47 sec
+
+The following tests FAILED:
+         40 - qa_cpp_py_binding (Failed)
+         41 - qa_cpp_py_binding_set (Failed)
+         42 - qa_ctrlport_probes (Failed)
+        200 - qa_header_payload_demux (Failed)
+Errors while running CTest
+make: *** [Makefile:149: test] Error 8

@@ -59,17 +59,37 @@ cd ~/.local/bin/
 apt install -y gcc cmake fftw2
 pip3 install mako boost Cheetah3 numpy pygccxml pybind11
 # pybind11-config is installed in '/home/mxana/.local/bin'
-# -Dpybind11_ROOT=/home/mxana/.local/lib/python3.9/site-packages/pybind11/share/cmake/pybind11
 /home/mxana/Downloads/./Miniconda3-latest-Linux-x86_64.sh
 /root/miniconda3/bin/./conda install pybind11 -c conda-forge
+cd
+git clone --recursive https://github.com/gnuradio/volk.git
+cd volk
+mkdir build
+cd build
+cmake -DCMAKE_BUILD_TYPE=Release -DPYTHON_EXECUTABLE=/usr/bin/python3 ../
+make
+make test
+sudo make install
+sudo ldconfig
+cd
 git clone https://github.com/gnuradio/gnuradio.git
 cd gnuradio
 mkdir build
 cd build
-cmake -DCMAKE_PREFIX_PATH=/home/mxana/.local/lib/python3.9/site-packages/pybind11/share/cmake/pybind11 ../
-make
+cmake -DCMAKE_BUILD_TYPE=Release -DPYTHON_EXECUTABLE=/usr/bin/python3 -DCMAKE_PREFIX_PATH=/home/mxana/.local/lib/python3.9/site-packages/pybind11/share/cmake/pybind11 ../
+make -j8
 make test
 sudo make install
+sudo ldconfig
+
+#Option3
+sudo apt-get install python3-pip
+sudo pip3 install pybombs
+pybombs auto-config
+pybombs recipes add-defaults
+pybombs prefix init ~/prefix-3.7 -R gnuradio-default
+source ~/prefix-3.8/setup_env.sh
+gnuradio-companion
 
 ===qspectrumanalyzer installation
 https://github.com/xmikos/qspectrumanalyzer
