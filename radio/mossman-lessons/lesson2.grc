@@ -1,6 +1,7 @@
 options:
   parameters:
     author: mxana
+    catch_exceptions: 'True'
     category: '[GRC Hier Blocks]'
     cmake_opt: ''
     comment: ''
@@ -22,7 +23,6 @@ options:
     sizing_mode: fixed
     thread_safe_setters: ''
     title: Not titled yet
-    window_size: ''
   states:
     bus_sink: false
     bus_source: false
@@ -56,7 +56,7 @@ blocks:
     minoutbuf: '0'
     offset: '0'
     phase: '0'
-    samp_rate: samp_rate
+    samp_rate: 16e3
     type: complex
     waveform: analog.GR_COS_WAVE
   states:
@@ -101,7 +101,7 @@ blocks:
     alpha8: '1.0'
     alpha9: '1.0'
     autoscale: 'False'
-    average: '1.0'
+    average: '0.2'
     axislabels: 'True'
     bw: 'samp_rate '
     color1: '"blue"'
@@ -115,11 +115,11 @@ blocks:
     color8: '"dark red"'
     color9: '"dark green"'
     comment: ''
-    ctrlpanel: 'False'
+    ctrlpanel: 'True'
     fc: '0'
     fftsize: '1024'
     freqhalf: 'True'
-    grid: 'False'
+    grid: 'True'
     gui_hint: ''
     label: Relative Gain
     label1: ''
@@ -155,7 +155,7 @@ blocks:
     width7: '1'
     width8: '1'
     width9: '1'
-    wintype: firdes.WIN_BLACKMAN_hARRIS
+    wintype: firdes.WIN_KAISER
     ymax: '10'
     ymin: '-140'
   states:
@@ -193,9 +193,9 @@ blocks:
     color8: dark red
     color9: dark green
     comment: ''
-    ctrlpanel: 'False'
+    ctrlpanel: 'True'
     entags: 'True'
-    grid: 'False'
+    grid: 'True'
     gui_hint: ''
     label1: Signal 1
     label10: Signal 10
@@ -208,9 +208,9 @@ blocks:
     label8: Signal 8
     label9: Signal 9
     legend: 'True'
-    marker1: '-1'
+    marker1: '0'
     marker10: '-1'
-    marker2: '-1'
+    marker2: '0'
     marker3: '-1'
     marker4: '-1'
     marker5: '-1'
@@ -218,14 +218,14 @@ blocks:
     marker7: '-1'
     marker8: '-1'
     marker9: '-1'
-    name: '""'
+    name: '"Scope Plot"'
     nconnections: '1'
     size: '1024'
     srate: samp_rate
     stemplot: 'False'
-    style1: '1'
+    style1: '3'
     style10: '1'
-    style2: '1'
+    style2: '3'
     style3: '1'
     style4: '1'
     style5: '1'
