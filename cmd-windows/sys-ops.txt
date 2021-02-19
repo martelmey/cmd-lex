@@ -80,6 +80,7 @@ w32tm {
         /manualpeerlist:[server],0x8
         /syncfromflags:MANUAL
         /update
+    /resync
 }
 
 rd {

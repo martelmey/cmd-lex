@@ -1,5 +1,5 @@
-Megabytes = Bytes ÷ 1,048,576
+Megabytes = Bytes ÷ 1048576
 Megabytes = Kilobytes ÷ 1024
 Gigabytes = Bytes ÷ 1073741824
 Gigabytes = Kilobytes ÷ 1048576
-Megabytes ÷ 1,024 = Gigabytes
+Gigabytes = Megabytes ÷ 1024

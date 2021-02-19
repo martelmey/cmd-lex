@@ -9,6 +9,12 @@ Temp. Profile Fix {
     HKEY_LOCAL_MACHINE\ SOFTWARE\ Microsoft\ Windows NT\ CurrentVersion\ ProfileList
 }
 
+Time {
+    Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\w32time\Parameters" -Name "NtpServer" -Value "192.168.1.201,0x8 192.168.101.201,0x8"
+    Restart-Service w32time
+    w32tm /resync
+}
+
 Set-ItemProperty {
     https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/set-itemproperty?view=powershell-7
     -Path HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters
