@@ -1,0 +1,67 @@
+TO_DATE {
+	* https://www.oracletutorial.com/oracle-date-functions/oracle-to_date/
+	* The Oracle TO_DATE() function converts a date literal to a DATE value.
+
+	<SYNTAX>
+
+		TO_DATE (string, format, nls_language)
+
+	<ARGUMENTS>
+
+		1) string
+		is a string value which is converted to a DATE value. It can be a value of any data type CHAR, VARCHAR2, NCHAR, or NVARCHAR2.
+
+		2) format
+		is the date and time format for the string.
+		The format argument is optional. If you omit the format, the string must be in the standard date format which is DD-MON-YY e.g., 31-DEC-2000
+		Noted that if format is J, which is for Julian, then the string must be an integer.
+		For the detailed information on how to construct the format, check it out the Oracle date format.
+
+		3) nls_language
+		is an expression that specifies the language for day and month names in the string. This nls_language argument has the following form:
+		NLS_DATE_LANGUAGE = language
+		This ls_language argument is optional. If you omit it, the TO_DATE() function will use the default language for your session.
+
+	<EXAMPLES>
+
+		To convert a string to date, you use the Oracle date format elements e.g., YYYY for the 4-digit year, MM for the 2-digit month, etc.
+
+		Suppose, you have the following date literal:
+
+		'5 Jan 2017'
+		To convert this string to a DATE value, first, you must construct the date format model for it. In this case, 5 is represented by DD, Jan is represented by Mon, and 2017 is represented by YYYY that results in the following format:
+
+		'DD Mon YYY'
+		Second, you pass both arguments, date literal and format model, to the TO_DATE() function as shown below:
+
+		SELECT
+		  TO_DATE( '5 Jan 2017', 'DD MON YYYY' )
+		FROM
+		  dual;
+		The following illustrates the output:
+
+		05-JAN-17
+}
+
+TO_TIMESTAMP {
+	* https://docs.oracle.com/en/database/oracle/oracle-database/21/sqlrf/TO_TIMESTAMP.html#GUID-57E09334-E3CC-4CA2-809E-F0909458BCFA
+	* https://www.oracletutorial.com/oracle-basics/oracle-timestamp/
+	* TO_TIMESTAMP converts char to a value of TIMESTAMP data type.
+
+	<EXAMPLES>
+
+	* The following example converts a character string to a timestamp. The character string is not in the default TIMESTAMP format, so the format mask must be specified:
+	SELECT TO_TIMESTAMP ('10-Sep-02 14:10:10.123000', 'DD-Mon-RR HH24:MI:SS.FF')
+	   FROM DUAL;
+
+	TO_TIMESTAMP('10-SEP-0214:10:10.123000','DD-MON-RRHH24:MI:SS.FF')
+	---------------------------------------------------------------------------
+	10-SEP-02 02.10.10.123000000 PM
+
+	* The following example returns the default value of NULL because the specified expression cannot be converted to a TIMESTAMP value, due to an invalid month specification:
+	SELECT TO_TIMESTAMP ('10-Sept-02 14:10:10.123000'
+		DEFAULT NULL ON CONVERSION ERROR,
+		'DD-Mon-RR HH24:MI:SS.FF',
+		'NLS_DATE_LANGUAGE = American') "Value"
+  	FROM DUAL;
+}

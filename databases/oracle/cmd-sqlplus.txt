@@ -1,0 +1,28 @@
+sqlplus {
+	examples {
+		sqlplus CGIDEPLOY/PasswordAT123@LADEV
+
+		sqlplus SPLUNK/PasswordAT123@HLINT2
+
+		sqlplus "SYSTEM/PasswordAT123@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=192.168.63.22)(PORT=1521))(CONNECT_DATA=(SID=MPINT2)))"
+
+		sqlplus CGIDEPLOY/PasswordAT123@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=kdcnp-scan)(PORT=1521))(CONNECT_DATA=(SID=MPINT2)))
+
+		sqlplus SPLUNK/PasswordAT123@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=kdcnp-scan)(PORT=1521))(CONNECT_DATA=(SERVICE_NAME=hlint2)))
+
+		sqlplus CGIDEPLOY/PasswordAT123@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=kdcprd-scan.prod.health.local)(PORT=1521))(CONNECT_DATA=(SERVICE_NAME=hldprdk)))
+	}
+}
+
+lsnrctl {
+	status
+	start
+}
+
+SELECT table_name FROM dba_tables;
+SELECT table_name FROM all_tables;
+SELECT * FROM ALL_USERS;
+SELECT * FROM DBA_USERS;
+
+Listener Parameter File   /u01/app/18.0.0.0/grid/network/admin/listener.ora
+Listener Log File         /u01/app/grid/diag/tnslsnr/knpdb12/listener/alert/log.xml
