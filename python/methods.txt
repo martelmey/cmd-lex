@@ -1,0 +1,48 @@
+.append(){
+	empty_list.append(1)
+	empty_list+[1]
+	list=[1,2]
+	list=list+[3,4]
+}
+.count(){
+	count_ms=letters.count('m')
+}
+.sort() #sort in place {
+	list.sort()
+}
+.pop{
+	item=list.pop()
+	new_list.append(item)
+}
+
+###
+STRINGS
+###
+
+.upper()
+.lower()
+.title()
+.split(delimiter){
+	defaults to splitting by spaces
+	delimiter should be a string itself
+	returns list of words
+	\n Newline \t Horizontal tab
+}
+.join(){
+	'delimiter'.join(list_you_want_to_join)
+	'\n'.join(verses)
+}
+.strip(){
+	default: remove all whitespace from beg. & end
+	user_name = "::::::::Eloise :::::::::::"
+	user_name_fixed=user_name.strip(":").strip()
+}
+.replace()
+.find(){
+	print("smooth".find('oo'))
+	# => '2'
+}
+.format(){
+	def favorite_song_statement(song, artist):
+		return "My favorite song is {} by {}.".format(song, artist)
+}

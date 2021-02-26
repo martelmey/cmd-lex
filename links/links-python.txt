@@ -10,3 +10,12 @@ Python {
     string matches
         https://stackoverflow.com/questions/19300020/python-match-a-string-with-regex
 }
+
+# Error ref
+    https://codecademy.github.io/codepedia/entries/errors/py
+
+# IPython
+    https://ipython.org/
+
+# Anaconda
+    https://www.anaconda.com/products/individual
