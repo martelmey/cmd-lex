@@ -1,3 +1,35 @@
+mailx {
+    -s <subject>
+    -a <file> # attach file
+    -d debug, no delivery
+    -e check sys inbox
+    -F save message to send
+    -H print header summaries, all msgs
+    -r set from address
+    -u <user>
+
+    .mailrc
+
+    echo "test for CMDB resports" | mailx -vvv -s "test CMDB" -S smtp="smtp.kdc.health.local" martel.meyers@cgi.com
+    echo "test for CMDB resports" | mailx -vvv -s "test CMDB" -S smtp="192.168.60.10" martel.meyers@cgi.com
+}
+
+post{
+    postconf
+    postfix
+        -d
+        check
+        start
+        stop
+        abort
+        flush
+        reload
+        status
+
+        $MAIL_CONFIG
+        $config_directory
+}
+
 curl {
     -d, --data <data> (--data-ascii)
         --data-binary (post data purely binary)
@@ -7,12 +39,6 @@ curl {
     -i, --include (include headers in output)
     -k, --insecure 
     -X, --request GET:HEAD:POST:PUT
-}
-
-post{
-    postconf
-    postfix
-        check
 }
 
 ldapsearch {

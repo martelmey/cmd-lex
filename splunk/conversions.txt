@@ -3,3 +3,4 @@ Megabytes = Kilobytes ÷ 1024
 Gigabytes = Bytes ÷ 1073741824
 Gigabytes = Kilobytes ÷ 1048576
 Gigabytes = Megabytes ÷ 1024
+Terabytes = Bytes ÷ 1099511627776

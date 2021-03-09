@@ -24,5 +24,8 @@ SELECT table_name FROM all_tables;
 SELECT * FROM ALL_USERS;
 SELECT * FROM DBA_USERS;
 
+# Get $ORACLE_SID:
+select * from global_name;
+
 Listener Parameter File   /u01/app/18.0.0.0/grid/network/admin/listener.ora
 Listener Log File         /u01/app/grid/diag/tnslsnr/knpdb12/listener/alert/log.xml
