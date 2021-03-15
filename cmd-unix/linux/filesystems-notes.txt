@@ -1,0 +1,22 @@
+It is conventional wisdom that a swap space double the size of your RAM should be created.
+
+I use two basic partition schemes. The first is for a desktop. I make 4 partitions, /, /home, /usr/local, and swap. This lets me re-install or upgrade the entire installation under / without wiping out my data files under /home or my custom compiled applications under /usr/local. For servers, I often replace the /usr/local partition with a /var partition. Many different servers store information on that partition and having it kept separate from / has certain performance benefits.
+
+type 82 (Linux swap)
+type 83 (Linux default)
+
+EF00 (EFI System Partition)
+8200 (Linux swap)
+8300 (Linux default)
+
+MBR systems (BIOS)
+GPT systems (UEFI) (GUID (Globally unique identifier) partition table)
+
+Filesystems:
+ext2 Standard Linux Ext2 Filesystem
+ext3 Ext3 Journaling Filesystem
+ect4 Ext4 Journaling Filesystem
+jfs IBM's Journaled Filesystem
+reiserfs ReiserFS Journaling Filesystem
+btrfs Btrfs Copy-on-Write B-tree (balanced) Filesystem
+xfs SGI's Journaling Filesystem

@@ -1,5 +1,9 @@
 input()
-random()
+random(){
+	.choice(list)
+	.randint(num1,num2)
+	.sample(range,num)
+}
 zip(){
 	zip(<list_one>,<list_two>) #Is now zip object
 	print(list(<list_name>)) #Convert to list object	

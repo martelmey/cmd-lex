@@ -1,5 +1,28 @@
 true >| ./thefile.trc
 
+gdisk {
+    -l /dev/sda
+}
+
+fdisk {
+    Manipulate disk partition table
+
+    fdish [options] device
+
+    Options:
+        -b, --sector-size sectorsize
+            Specify sector size of disk.
+            512, 1024, 2048, 4096
+        -B, --protect-boot
+            Don't erase the beginning of first disk sector.
+            For GPT and MBR.
+        -c, --compatibility[=mode]
+            dos, default=nondos
+        -l, --list
+            list part tables for specified devices.
+            default=/proc/partitions
+}
+
 symbolic links {
     ln -s /usr/pgsql-9.5/bin psql95
     unlink expanions

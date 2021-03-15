@@ -32,3 +32,9 @@ Cron {
 	Solaris:
 	/var/scron/log
 }
+
+/var/log/wtmp : all logins and logouts
+/var/log/lastlog : when each user last logged in
+/var/log/faillog : failed login attempts
+/var/log/btmp : records the bad login attempts.
+/run/utmp : records the users that are currently logged in

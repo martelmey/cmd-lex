@@ -1,0 +1,7 @@
+VIRTUAL CONSOLE NUMBER ONE = /dev/tty1
+	ALT-F1,F2,F3,F4 to switch
+
+Scroll console back:
+	Hold down R Shift + hit Pg Up
+Scroll console forward:
+	Hold down R Shift + hit Pg Down

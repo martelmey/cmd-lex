@@ -13,6 +13,19 @@ rpm {
         -h, --hash (print 50 hash marks while pkg is unpacked)
 }
 
+dpkg{
+    -i, --install <package_file>
+    -r, --remove package...|-a|--pending
+}
+
+dpkg-query{
+    -l, --list <pattern>
+    -s, --status <pkg_name>
+    -L, --listfiles <pkg_name>
+    -s, --search <filename_search_pattern>
+    -p, --print-avail <pkg_name>
+}
+
 yum {
     clean
         packages

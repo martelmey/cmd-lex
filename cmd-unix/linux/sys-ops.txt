@@ -1,3 +1,6 @@
+swapon{}
+swapoff{}
+
 htop {
     -d --delay=DELAY
         100=10 seconds
