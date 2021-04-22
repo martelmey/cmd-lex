@@ -1,3 +1,9 @@
+Find Domain Controller CMD {
+    nslookup \n
+    set type=all \n
+    _ldap._tcp.dc._msdcs.sws.health.local
+}
+
 dcdiag {
     /v
     /test:
@@ -11,6 +17,21 @@ repadmin {
 
 ntdsutil {
     
+}
+
+nltest {
+    * https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-R2-and-2012/cc731935(v=ws.11)
+
+    nltest [/server:<servername>] [<operation>[<parameter>]
+
+    examples {
+        nltest /dclist:sws.health.local
+        nltest /user:"test.user"
+        * Verify trust relationship with a specific server
+        nltest.exe /server:kutlprddc01.sws.health.local /sc_query:sws.health.local
+        nltest /domain_trusts
+        nltest /dsgetdc:[sws.health.local]
+    }
 }
 
 setspn {

@@ -1,0 +1,8 @@
+===: importing AD GPO templates
+
+Step 2: Open the ADM or ADMX template you downloaded
+Navigate to Start > Run: gpedit.msc. (Or run gpedit.msc in your terminal)
+Navigate to Local Computer Policy > Computer Configuration > Administrative Templates.
+Right-click Administrative Templates, and select Add/Remove Templates.
+Add the chrome.adm template via the dialog.
+Once complete, a Google / Google Chrome folder will appear under Administrative Templates if it's not already there. If you added the ADM template on Windows 7 or 10, it will appear under Classic Administrative Templates / Google / Google Chrome.

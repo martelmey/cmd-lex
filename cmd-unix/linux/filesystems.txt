@@ -1,5 +1,19 @@
 true >| ./thefile.trc
 
+ls {
+    -a, --all don't ignore .
+    --block-size=SIZE (K,M)
+    -h, --human-readable
+    -L, --dereference
+    -R, --recursive
+    -s, --size
+    --sort=WORD (size -S, time -t)
+
+    examples {
+        ls -la --block-size=M /export/pkgs/cmdb-postgres-backups/cmdb
+    }
+}
+
 gdisk {
     -l /dev/sda
 }
@@ -121,6 +135,9 @@ du {
     -L, --dereference (deref symlinks)
     -t, --threshold=SIZE (exclude entries smaller if SIZE negative, or greater if SIZE positive)
     --time (show last modification)
+    --exclude=PATTERN
+    -s, --summarize (display only a total for each argument)
+    -x, --one-file-system (skip directories on different file systems)
 }
 
 format disks {

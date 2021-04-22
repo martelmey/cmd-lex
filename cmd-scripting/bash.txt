@@ -170,3 +170,16 @@ exec {
     ARRAY+=('foo')
     ARRAY+=('bar')
 }
+
+###
+### FUNCTIONS
+### {
+    function usage {
+        echo ""
+        echo "Usage: $0 [solaris-domain|solaris-zone|linux|all] \"[commands]\" [env]"
+        echo ""
+        echo "Example: $0 solaris-zone \"sudo svcadm restart xyz\" int2"
+        echo ""
+        exit 1
+    }
+}

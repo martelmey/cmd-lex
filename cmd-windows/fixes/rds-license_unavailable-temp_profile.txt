@@ -1,0 +1,41 @@
+Issue:
+	We can't sign in to your account
+	This problem can often be fixed by signing out of your account and then signing back in.
+	If you don't sign out now, any files you create or changes you make will be lost.
+	No Remote Desktop license server is available.
+	Remove Desktop Services will stop working because this computer is past its grace period
+	and has not contacted at least a valid Windows Se...
+
+Diagnostics:
+	* Check for blockages in FW between SH and license server
+	* Ensure RDS licensing settings are correct on SH, as seen in solution below
+		- Use the specified Remote Desktop license servers: 192.168.60.201
+		- Set the Remote Desktop licensing mode: Per User
+	* On license server, ensure services are running:
+		- Remote Desktop Management (rdms) (Automatic, delayed start)
+			~ The Remote Desktop Management service on Local Computer started and then stopped.
+			Some services stop automatically if they are not in use by other services or programs.
+		- RD Connection Broker (tssdis) (Automatic)
+	* On license server, ensure RDS services are using same logon account:
+		- Remote Desktop Manager: Network Service
+		- RD Connection Broker: Network Service
+		- RemoteApp and Desktop Connection Management: Network Service
+	* On license server, try running Remote Desktop Manager as Local System account instead of Network Service
+	* On license server, try restarting "Windows internal database" service
+
+Microsoft-Windows-Remote-Desktop-Management-Service/Admin
+The Remote Desktop Management service failed to start. Error code: 0x88250001
+
+Solutions:
+	https://social.technet.microsoft.com/Forums/office/en-US/fad1bdb9-5d0b-4aac-9159-7c57cf5ed829/remote-desktop-license-issue
+
+	Launch Local Group      Policy Editor (gpedit.msc)
+	In the left pane, navigate      to Local Computer Policy->Computer Configuration->Administrative      Templates->Windows Components->Remote Desktop Services->Remote      Desktop Session Host->Licensing
+	In the right pane, right      click Use the specified Remote Desktop license servers and select Edit
+	In the group policy editor      dialog, select Enabled
+	Enter the local computer      name in the License servers to use: field.
+	Select OK
+	 In      the right pane, right click Set the Remote Desktop licensing mode      and select Edit
+	In the grou policy editor       dialog, select Enabled
+	Set the Licensing mode       to Per Device/Per User
+	Select       OK

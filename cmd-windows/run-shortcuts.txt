@@ -1,3 +1,5 @@
 ncpa.cpl (Network Connections)
 secpol.msc (Local security policy)
 gpedit.msc (Local group policy editor)
+gpmc.msc (Group Policy Management Console)
+ncpa.cpl (Network Connections)

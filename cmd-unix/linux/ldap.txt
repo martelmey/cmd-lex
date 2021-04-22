@@ -1,0 +1,46 @@
+https://www.openldap.org/doc/admin24/
+
+dn: cn=splunkViewNp,ou=groups,dc=health,dc=local
+uid=jagadesh.muchumarri,ou=people,dc=health,dc=local
+
+ls /home/ian.watts/ldap_updates/
+
+ldapadd{}
+
+ldapmodify{
+	-x Use simple authentication instead of SASL
+	-W Prompt for simple authentication. This is used instead of specifying the password on the command line
+	-D <binddn> Use the Distinguished Name binddn to bind to the LDAP directory.
+	-f <file> Read the entry modification information from file instead of from standard input.
+
+	remove_member.ldif{
+		dn: cn=cdc-temp,ou=groups,dc=health,dc=local
+		changetype: modify
+		delete: member
+		member: uid=saumil.surati,ou=people,dc=health,dc=local
+	}
+
+	modify_user.ldif{
+		dn: uid=carol.geisler,ou=people,dc=health,dc=local
+		changeType: modify
+		replace: uid
+		uid: carol.geisler
+	}
+
+	examples{
+		ldapmodify -x -W -D "cn=Manager,dc=health,dc=local" -f <name_of_your_ldif_file>
+	}
+}
+
+ldapsearch{
+	-b <searchbase> Use searchbase as the starting point for the search instead of the default.
+	-D <binddn> Use the Distinguished Name binddn to bind to the LDAP directory.
+	-W Prompt for simple authentication. This is used instead of specifying the password on the command line
+
+	examples{
+		# From master:
+		ldapsearch -x -b "dc=health,dc=local" | less
+		# From client:
+		ldapsearch -x -b "dc=health,dc=local" -h 192.168.160.10 | less
+	}
+}

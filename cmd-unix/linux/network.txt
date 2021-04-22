@@ -120,19 +120,35 @@ iptables {
         iptables -P FORWARD ACCEPT
 
     iptables
-        -L -v -n
-            / -S (list ruleset)
-        -A INPUT -p tcp --dport 8000 -j ACCEPT
-        --table nat --append POSTROUTING --out-interface wlan0 -j MASQUERADE
-        --append FORWARD --in-interface wlan1 -j ACCEPT
+        --flush, -F
+        --delete-chain, -X [chain]
+        --policy, -P [chain] [target]
+        --list, -L
+        --verbose, -v
+        --numeric, -n
+        --list-rules, -S
+        --append, -A INPUT
+        --protocol, -p tcp
+        --dport 8000
+        --jump, -j ACCEPT
+        --table nat
+        --out-interface wlan0
+        --in-interface wlan1
+
+    examples {
+        iptables --append INPUT --protocol tcp --dport 8000 --jump ACCEPT
+        iptables --table nat --append POSTROUTING --out-interface wlan0 -j MASQUERADE
+        iptables --append FORWARD --in-interface wlan1 -j ACCEPT
+    }
 
     echo 1 > /proc/sys/net/ipv4/ip_forward
 
-    iptables-save > /etc/sysconfig/iptables
-        > /etc/iptables/rules.v4
-        < /etc/sysconfig/iptables
-
-    iptables-restore < /etc/iptables/rules.v4
+    backup&restore {
+        iptables-save > /etc/sysconfig/iptables
+            > /etc/iptables/rules.v4
+            < /etc/sysconfig/iptables
+        iptables-restore < /etc/iptables/rules.v4    
+    }
 }
 
 ports {

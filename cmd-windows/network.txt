@@ -97,7 +97,7 @@ New-NetRoute {
 }
 
 ipconfig {
-    https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/ipconfig
+    * https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/ipconfig
     /all
     /displaydns
     /flushdns
@@ -107,6 +107,10 @@ ipconfig {
 }
 
 nslookup {
+    * https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/nslookup
+
+    nslookup [exit | finger | help | ls | lserver | root | server | set | view] [options]
+    
     interactive/or not
     -querytype=
         MX (mail server)

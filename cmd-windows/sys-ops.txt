@@ -2,7 +2,16 @@
     [System.IO.Ports.SerialPort]::getportnames()
 
 set {
-    
+    * https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/set_1
+
+    set [<variable>=[<string>]]
+    set [/p] <variable>=[<promptString>]
+    set /a <variable>=<expression>
+
+    /p  Sets the value of <variable> to a line of input entered by the user.
+    /a  Sets <string> to a numerical expression that is evaluated.
+    /?  Displays help at the command prompt.
+
 }
 
 ConvertTo-SecureString {

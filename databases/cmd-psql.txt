@@ -1,3 +1,6 @@
+Installation directory: /usr/pgsql-10
+DB data directory: /var/lib/pgsql/10/data
+
 \list \l (list databases)
 \du (list roles & their attributes)
 \c \connect
@@ -5,16 +8,37 @@
 \q (quit)
 \conninfo
 
-/usr/local/pgsql/bin/createdb <name>
-createuser martel.meyers
-dropuser
-
 Connect {
 	psql --dbname=cmdbuild --username=cmdbuild
 	psql -U cmdb -d cmdb	
 }
 
-./postgresql95-setup {
+Executables {
+	/usr/pgsql-10/bin
+}
+
+pg_isready {
+	examples {
+		/var/run/postgresql:5432 - no response
+	}
+}
+
+pg_ctl {
+	pg_ctl init[db] [-D DATADIR] [-s] [-o OPTIONS]
+	pg_ctl start    [-D DATADIR] [-l FILENAME] [-W] [-t SECS] [-s] [-o OPTIONS] [-p PATH] [-c]
+	pg_ctl stop     [-D DATADIR] [-m SHUTDOWN-MODE] [-W] [-t SECS] [-s]
+	pg_ctl restart  [-D DATADIR] [-m SHUTDOWN-MODE] [-W] [-t SECS] [-s] [-o OPTIONS] [-c]
+	pg_ctl reload   [-D DATADIR] [-s]
+	pg_ctl status   [-D DATADIR]
+	pg_ctl promote  [-D DATADIR] [-W] [-t SECS] [-s]
+	pg_ctl kill     SIGNALNAME PID
+
+	examples {
+		/usr/pgsql-10/bin/pg_ctl status -D /var/lib/pgsql/10/data
+	}
+}
+
+postgresql-10-setup {
 	initdb
 	check_upgrade
 	upgrade
@@ -30,6 +54,7 @@ pg_dump {
 		p (plain test SQL script)
 	<dbname>
 	> <destination-path>
+	
 	examples {
 		pg_dump -U cmdb -F t cmdb > /export/pkgs/cmdb-postgres-backups/"$date"_cmdb.tar
 	}
@@ -101,4 +126,14 @@ Show settings {
 	show server_encoding;
 	show port;
 	show server_version;	
+}
+
+Check service {
+	systemctl status postgresql-10
+}
+
+Examples {
+	/usr/local/pgsql/bin/createdb <name>
+	createuser martel.meyers
+	dropuser
 }

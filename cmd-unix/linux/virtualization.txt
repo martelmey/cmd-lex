@@ -27,6 +27,12 @@ libvirt kernel fix {
     #lsmod | grep -i kvm
 }
 
+libvirt binary fix {
+  <emulator>/usr/libexec/qemu-kvm</emulator>
+  <emulator>/usr/bin/qemu-system-x86_64</emulator>
+  ln -s /usr/libexec/qemu-kvm /usr/bin/qemu-system-x86_64
+}
+
 qemu {
   qemu-img
     resize /vms/kutlprdsplunk01 +40G

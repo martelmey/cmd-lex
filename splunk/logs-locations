@@ -7,6 +7,15 @@ TNS Listener
 Solaris Named
 /var/named/data/named.run
 
+Splunk {
+	audit.log (user activities)
+	conf.log (config replication re: SH clustering)
+	python.log (REST endpoints, splukd comms, PDFS, sendmail)
+	scheduler.log (scheduled search activity)
+	splunkd.log (primary log + stderr from scripted inputs, scripted search cmds)
+	splunkd_access.log (actions from splunkd through UI, CLI, POST & GET)
+}
+
 Apache {
 	Subversion
 	Forward-Proxy
@@ -23,6 +32,8 @@ SolarWinds Orion {
 		PollingService.log
 		Trapservice.log
 		Syslogservice.log
+	C:\ProgramData\SolarWinds\Logs\Orion
+		BusinessLayerHost (plugins)
 	C:\ProgramData\SolarWinds\Logs\high availability	
 }
 
