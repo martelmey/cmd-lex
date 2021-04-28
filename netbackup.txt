@@ -1,0 +1,63 @@
+MSDP = Media Server Deduplication Storage Pool
+	Disk that is attached to a media server where the backups reside and are deduplicated
+AIR = auto image replication (kdc prd <---> cdc prd)
+	Backup images are replicated to another NetBackup domain to provide a 2nd copy of a backup.
+Domain = Each Master server is a domain.
+SLP = Storage Lifecycle Policies
+	Manages lifecyle of backups which can include copying backups to tape and using
+	AIR to replicate to another domain.
+NDMP = Network Data Management Protocol
+	Used on NAS (network attached storage) devices for communication with backup software & devices.
+Unified Archive =
+	Backup of a zone that allows the OS admin to quickly, efficiently restore that zone.
+
+# Rename policy name:
+/opt/openv/netbackup/bin/admincmd/bppolicynew
+When client is assigned new policy, full backup is done (no longer incremental - no record of backups done)
+
+Standard = Unix
+
+# Schedule backup types:
+Differential incremental backup = changes since last backup (lessen backup time)
+Cumumlative incremental backup = changes since last full backup
+User backup = specify server, users there can start backups from there
+User archive = after backup, removed from originating server
+
+# Schedule types:
+Calendar
+Frequency
+
+# Include/Exclude dates:
+Manual backups ignore exclude lists (schedule it 5 minutes from now, etc.)
+
+# Rename policy name:
+/opt/openv/netbackup/bin/admincmd/bppolicynew
+When client is assigned new policy, full backup is done
+
+ping -s kutlnpnetb01-mgmt
+
+# Deploy to client
+install_client_files ssh knpapp23
+
+# Test client
+bptestbpcd -client knapp23
+
+# Client install dir
+/usr/openv/ (Solaris)
+
+# CMDs
+bp.kill_all (shutdown)
+bpps -a (check processes)
+bp.start_all (startup)
+bpsetconfig -e exclude_list -h knpapp23
+
+# Path
+/usr/openv/netbackup/bin
+	exclude_list
+
+# Repos / patch schedules
+EEB = emergency binary
+
+# Old names
+Backup Plus
+Open Vision
