@@ -9,6 +9,7 @@ SLP = Storage Lifecycle Policies
 NDMP = Network Data Management Protocol
 	Used on NAS (network attached storage) devices for communication with backup software & devices.
 Unified Archive =
+	https://docs.oracle.com/cd/E37838_01/html/E60984/gmrlo.html
 	Backup of a zone that allows the OS admin to quickly, efficiently restore that zone.
 
 # Rename policy name:
@@ -49,7 +50,9 @@ bptestbpcd -client knapp23
 bp.kill_all (shutdown)
 bpps -a (check processes)
 bp.start_all (startup)
-bpsetconfig -e exclude_list -h knpapp23
+bpsetconfig -e exclude_list -h knpapp23 (Push out configs)
+bpplclients -allunique > /tmp/NB_clients
+	 cat /tmp/NB_clients | awk '{print $3}' > /tmp/NB_clients (trim to just hostnames, to use in for loop, to push out exclude_list)
 
 # Path
 /usr/openv/netbackup/bin
