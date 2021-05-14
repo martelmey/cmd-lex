@@ -9,8 +9,13 @@ DB data directory: /var/lib/pgsql/10/data
 \conninfo
 
 Connect {
+	psql -U postgres -d postgres (default,global)
 	psql --dbname=cmdbuild --username=cmdbuild
 	psql -U cmdb -d cmdb	
+}
+
+Start the server {
+	/usr/pgsql-10/bin/pg_ctl start -D /var/lib/pgsql/10/data
 }
 
 Executables {
@@ -35,6 +40,7 @@ pg_ctl {
 
 	examples {
 		/usr/pgsql-10/bin/pg_ctl status -D /var/lib/pgsql/10/data
+		/usr/pgsql-10/bin/pg_ctl start -D /var/lib/pgsql/10/data
 	}
 }
 

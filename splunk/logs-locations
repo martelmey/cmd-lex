@@ -44,6 +44,11 @@ Cron {
 	/var/scron/log
 }
 
+Netbackup {
+	User operations:
+	/usr/openv/netbackup/logs/user_ops
+}
+
 /var/log/wtmp : all logins and logouts
 /var/log/lastlog : when each user last logged in
 /var/log/faillog : failed login attempts

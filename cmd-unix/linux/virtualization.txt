@@ -1,13 +1,35 @@
+https://wiki.debian.org/LXC/SimpleBridge
+https://bobcares.com/blog/lxc-container-network-configuration/
+https://linuxcontainers.org/lxc/documentation/
+
 lxc container {
-    lxc-ls
-    lxc-config -l
-    lxc-console -n KUTLLDOMSEC
+  lxc-ls
+  lxc-config -l
+  lxc-console -n KUTLLDOMSEC
+  lxc-info
+    -c, --config <KEY>
+    -s, --state
+    -p, --pid
+    -i, --ips
+    -S, --stats
+    -H, --no-humanize
+    -n, --name=<NAME>
+  lxc-monitor
+  lxc-top
+    -d, --delay <delay>
+    -s, --sort <sortby>
+    -r, --reverse
+  lxc-attach -n KUTLLDOMSEC 
+    --u, --uid
+    --f, --gid
+  lxc-usernet
+    
+  examples {
+    templates: /usr/share/lxc/templates/
     lxc-info -n KUTLLDOMSEC
-    lxc-monitor
-    lxc-top
-    lxc-attach -n KUTLLDOMSEC 
-        --u, --uid
-        --f, --gid
+    lxc-info -n kutlnpcmdb01 -c lxc.net.0.veth.pair
+    lxc-top --delay 1 --sort m
+  }
 }
 
 libvirt permit fix {

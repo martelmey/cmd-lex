@@ -17,3 +17,17 @@ Set-Service {
 Restart-Service {
     https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/restart-service?view=powershell-7
 }
+
+sshd {
+	* https://docs.microsoft.com/en-us/windows-server/administration/openssh/openssh_server_configuration?WT.mc_id=social-twitter-orthomas
+	* https://jeetblogs.org/post/sshing-into-a-windows-wsl-linux-subsystem/
+
+	examples {
+		Add-WindowsCapability -Online -Name OpenSSH.Server~~~~0.0.1.0
+		Set-Service -Name sshd -StartupType 'Automatic'
+		sed -i 's/#ClientAliveInterval 0/ClientAliveInterval 5m/g' C:\ProgramData\ssh\sshd_config
+		sed -i 's/#ClientAliveCountMax 3/ClientAliveCountMax 3/g' C:\ProgramData\ssh\sshd_config
+		New-ItemProperty -Path "HKLM:\SOFTWARE\OpenSSH" -Name DefaultShell -Value "C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe" -PropertyType String -Force
+		Start-Service sshd
+	}
+}

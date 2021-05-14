@@ -25,8 +25,8 @@ User backup = specify server, users there can start backups from there
 User archive = after backup, removed from originating server
 
 # Schedule types:
-Calendar
-Frequency
+Calendar (better)
+Frequency (worst)
 
 # Include/Exclude dates:
 Manual backups ignore exclude lists (schedule it 5 minutes from now, etc.)
@@ -46,21 +46,92 @@ bptestbpcd -client knapp23
 # Client install dir
 /usr/openv/ (Solaris)
 
-# CMDs
+# CMDs: (bring down media, then master; bring up master, then media)
 bp.kill_all (shutdown)
-bpps -a (check processes)
+	kill -9 1184
+bpps -a (check processes) (shortname: nbpem netbackup-policy-execution-manager) 
 bp.start_all (startup)
 bpsetconfig -e exclude_list -h knpapp23 (Push out configs)
 bpplclients -allunique > /tmp/NB_clients
 	 cat /tmp/NB_clients | awk '{print $3}' > /tmp/NB_clients (trim to just hostnames, to use in for loop, to push out exclude_list)
+jnbSA & (send to background)
+bpdbjobs (what you see in activity monitor)
+bpdbm (backup plus database manager)
+	bpdbm -ctime 1620328867 (convert from epoch time)
+nbrepo -a nbeeb.client_4013394.10_8.3.0.1_solaris_sparc.sja (patch repo add)
+	-l (patch repo listing)
+bpimagelist -help
+	bpimagelist -L -hoursago 4 -client kutlprdnetb01-mgmt | more
+bpexpdate
+	bpexpdate -backupid kutlprdnetb01-mgmt_1620328915 -d 0
+# Explanations:
+nbpem asks bpdm if there's jobs to run
+nbpem goes through nbproxy to talk to bpdm
+when you create a backup, you create an image; find out what the catalog's backup id is using bpimagelist(id=kutlprdnetb01-mgmt_1620328915)
+expire image
+# Examples
+use bpdbjobs to see if tasks are running, if Activity Monitor is stopped
 
 # Path
 /usr/openv/netbackup/bin
 	exclude_list
 
 # Repos / patch schedules
-EEB = emergency binary
+EEB = emergency engineering binary
 
 # Old names
 Backup Plus
 Open Vision
+
+bp.conf # config master & media servers (use bnpset?)
+
+# Add other trusted master servers
+Host properties > Master servers (trusted) > Servers > Trusted master servers > Add
+# This is where you config master server's retention period
+Create new token on NP, copy to clipboard, paste on PRD side when adding trusted host
+
+# Add replication (AIR) to other trusted masters
+Media and Device Management > Credentials > Storage Servers > Replication > Add
+
+Storage > Storage Lifecycle Policies
+# for moving data around
+Add Backup task, Add Replication task
+
+# Manual backup
+Backup, Archive, and Restore
+Browse to /
+Source client: np-comsrv1
+Destination client: knpapp23
+Select from backup history
+
+# User activity logs
+/usr/openv/netbackup/logs/user_ops
+
+# errors
+196 = queue is too full start window closed before they could start
+71  = file not found
+50  = client process aborted
+
+# before changing anything on the master server, backup the catalog
+Policies>Catalog_Backup>Manual Backup
+
+# add other GUI viewers
+Netbackup Management > Host Properties > Master Servers > Properties > Servers > Additional Servers +kutlnpops01,cutlmgtops01;
+
+# NDMP
+create service account on filer
+on filer, put in what type of dump you want to do (we chose=tar, dd)
+Media & Device Management > Credentials > NDMP Hosts > knp-zs7-h1-BUR
+put in filer service account (Use the following credentials for the NDMP host on all media servers)
+Policy=Test, Policy type=NDMP
+Backup selections: /export/np-comsrv1/np-comsrv1-test (pick share on filer)
+
+# netbackup blackouts: only on tuesdays, wednesdays, thursdays 8am-7pm
+
+# sanity check after reboot/upgrade
+Activity Monitor, Policies, Media and Device Management>Devices>Media Servers/Disk Pools;
+nbdevquery -listdv -stype PureDisk -dp kutlprdnetm01-mgmt -U # from master
+
+# all is good, if:
+3 emails, status code = 0
+only one client is failing

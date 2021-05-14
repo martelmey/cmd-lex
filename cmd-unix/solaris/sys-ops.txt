@@ -71,6 +71,7 @@ svcprop {
 
 svcadm {
     refresh network/firewall
+    restart svc:/network/ssh:default
 }
 
 svcs {
@@ -173,4 +174,18 @@ prtconf {
     -p (dev tree provided by firmware (PROM) on SPARC)
     -P (psuedo devices)
     -V (PROM or booting system version info)
+}
+
+psrinfo {
+    -pv
+    -v | more
+    | wc -l
+}
+
+kstat {
+    cpu_info | grep core_id | sort -u | wc -l (total cores)
+}
+
+prtdiag {
+    -v | more
 }

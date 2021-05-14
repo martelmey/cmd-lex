@@ -26,6 +26,25 @@ change {
     chown
         -R nobody: /export/ops-tools
             777 /export/ops-tools
+    chmod
+        [who] operator [permissions]
+        who: u=users, g=groups, o=others, a=all (user,group,other)
+        operator: +=adds, -=revoke
+        permissions: r=read, t=sticky, w=write, x=execute
+
+        1000 Turn on sticky bit. See chmod(2).
+        0400 Allow read by owner.
+        0200 Allow write by owner.
+        0100 Allow execute (search in directory) by owner.
+        0700 Allow read, write, and execute (search) by owner.
+        0040 Allow read by group.
+        0020 Allow write by group.
+        0010 Allow execute (search in directory) by group.
+        0070  Allow read, write, and execute (search) by group.
+        0004 Allow read by others.
+        0002 Allow write by others.
+        0001 Allow execute (search in directory) by others.
+        0007 Allow read, write, and execute (search) by others.
 }
 
 idmap {

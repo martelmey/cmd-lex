@@ -1,0 +1,41 @@
+https://www.thegeekdiary.com/how-to-find-number-of-physicallogical-cpus-cores-and-memory-in-solaris/
+
+kstat {
+    cpu_info | grep core_id | sort -u | wc -l (total cores)
+}
+
+psrinfo {
+    -pv
+    -v | more
+    | wc -l
+}
+
+uname {
+    -a
+    cat /etc/release
+}
+
+# from LDOM
+
+zoneadm {
+    attach
+    boot
+    clone
+    detach
+    halt
+    install
+    list
+        -c all configured zones
+        -i all installed zones
+        -p parseable output
+        -v verbose
+    reboot
+    shutdown
+    suspend
+}
+
+# from CDOM
+
+ldm {
+	ls (show ldom allocations)
+}

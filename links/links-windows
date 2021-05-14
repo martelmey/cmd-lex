@@ -6,6 +6,9 @@
 	https://sid-500.com/2018/02/02/powershell-test-open-tcp-ports-with-test-openport-multiple-hosts-multiple-port-numbers/
 	https://techibee.com/powershell/powershell-query-dns-server-for-a-ptr-mx-ns-and-other-records/2570
 
+# Powershell equivalents
+	https://devblogs.microsoft.com/scripting/table-of-basic-powershell-commands/
+
 # GPO x Registry lookups
 	https://gpsearch.azurewebsites.net
 
@@ -108,3 +111,7 @@
 
 # How to Check Which Domain Controller You Are Connected To
 	https://www.techwalla.com/articles/how-to-check-which-domain-controller-you-are-connected-to
+
+# SSH
+	https://jeetblogs.org/post/sshing-into-a-windows-wsl-linux-subsystem/ (with subsystem)
+	https://www.incredigeek.com/home/how-to-increase-session-timeout-for-ssh/ (timeout)
