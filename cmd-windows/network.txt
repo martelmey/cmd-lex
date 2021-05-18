@@ -136,6 +136,9 @@ net {
     use
         Z: \\192.168.61.132\
         * \\192.168.61.132\ (first available drive will be used)
+    examples {
+        net use * \\servername\sharefolder /persistent:no /user:domain\username *
+    }
 }
 
 netsh {
