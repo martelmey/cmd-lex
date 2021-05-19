@@ -202,6 +202,10 @@ bridge {
 }
 
 ip {
+    -h, -human, -human-readable
+    -s, -stats, -statistics
+    -d, -details
+
     del
     change
     replace
@@ -298,7 +302,14 @@ dh {
 }
 
 ping {
-    ping 8.8.8.8
+    -B # Do not change source address of probes. bound to one selected at start
+    -I interface
+
+    examples {
+        ping 8.8.8.8
+        ping -I br1 192.168.156.192
+        ping -I br1 192.168.57.254
+    }
 }
 
 protonvpn-cli {

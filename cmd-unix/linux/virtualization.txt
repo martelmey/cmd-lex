@@ -3,6 +3,15 @@ https://bobcares.com/blog/lxc-container-network-configuration/
 https://linuxcontainers.org/lxc/documentation/
 
 lxc container {
+  lxc-stop
+    -r, --reboot
+    -k, --kill
+    --nokill
+    --nolock
+    -W, --nowait
+  lxc-start
+    -P, --lxcpath=PATH # default /container
+    -n, --name=NAME
   lxc-ls
   lxc-config -l
   lxc-console -n KUTLLDOMSEC
@@ -22,13 +31,29 @@ lxc container {
   lxc-attach -n KUTLLDOMSEC 
     --u, --uid
     --f, --gid
-  lxc-usernet
+  lxc-usernet # unprivileged user network administration file
+  lxc-user-nic # Manage nics in another network namespace
+
+  lxc.conf {
+    /etc/lxc/default.conf # privileged container
+    ~/.config/lxc/default.conf # unprivileged container
+    /etc/lxc/lxc.conf  # privileged system
+    ~/.config/lxc/lxc.conf  # unprivileged system
+  }  
+
+  lxc.container.conf {
+    lxc.net.0
+      > lxc.net.0.type
+      > lxc.net.0.link
+      > lxc.net.0.ipv6.address
+  }
     
   examples {
     templates: /usr/share/lxc/templates/
     lxc-info -n KUTLLDOMSEC
     lxc-info -n kutlnpcmdb01 -c lxc.net.0.veth.pair
     lxc-top --delay 1 --sort m
+    lxc-stop -n ldap-test --reboot --nokill
   }
 }
 

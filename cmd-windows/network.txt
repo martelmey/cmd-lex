@@ -206,6 +206,11 @@ ping {
     -r <count> (records route for <count> hops)
     -s <count> (timestamp for count hops)
     -i <ttl> (max 255)
+    -S <srcaddr>
+
+    examples {
+        ping -S 192.168.156.192 192.168.57.240
+    }
 }
 
 pathping {
