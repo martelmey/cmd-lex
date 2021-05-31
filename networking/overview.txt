@@ -1,0 +1,1 @@
+Hash function = maps data of arbitrary size to fixed-sized values. Values returned are called hash values, hash codes, digests, or hases.

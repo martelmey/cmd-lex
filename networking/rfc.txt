@@ -1,0 +1,7 @@
+IETF = Internet Engineering Task Force
+ARIN = American Registry for Internet Numbers
+IANA  = Internet Assigned Numbers Authority
+
+1149 - IP over Avian Carriers
+1918 - Private ip addresses
+3927 - Dynamic Config for IPv4 Link-Local Addresses (Automatic Private IP Address APIPA by Microsoft)

@@ -1,0 +1,26 @@
+arp -a
+ipconfig /all
+
+> user mode
+# privilege mode
+
+en (privilege mode), disable (exit)
+? (cmd listing)
+show mac address-table
+erase startup-config
+show version
+configure terminal (go to global config)
+	hostname <name>
+	end
+copy running-config startup-config (save from memory to non-volatile ram)
+write/wr (write all changes)
+
+show ip int brief
+
+ip helper address
+
+sh run
+sh arp
+
+line vty 0 ?
+line console 0 ?

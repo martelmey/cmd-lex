@@ -1,0 +1,35 @@
+VTY lines = controls inbound telnet or ssh cxns. Virtual. Appears in config as line vty 0 4.
+
+Initial Config > Basic management setup
+Enter host name: S1
+Enter enable secret: cisco
+Enter enable password: cisco1
+Enter virtual terminal password: cisco
+Enter interface connecting to management network: GigabitEthernet1/0/1
+Do not configure IP on mgmt interface
+GigabitEthernet1/0/1 no shutdown, no ip address
+
+Tasks:
+1) Configure IP addresses as shown in the diagram
+2) Ensure routers can ping each other
+3) Configure an enable password of "cisco"
+4) Encrypt the enable password
+5) Configure a secret password of "cisco123"
+6) Configure the first 5 telnet lines and use a line password of cisco on them
+7) Make sure you can telnet from one device to the other
+8) Configure a console password of "cisco" and test 
+
+en
+conf t
+int g0/0/0
+ip address 10.1.1.1 255.255.255.0
+no shut
+hostname R1
+enable password cisco
+service password-encryption
+line vty 0 4
+password cisco
+line console 0
+password cisco
+end
+wr

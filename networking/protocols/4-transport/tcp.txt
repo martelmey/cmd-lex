@@ -1,0 +1,8 @@
+before connection, a 3-way handshake is established using synchronization bits & an acknowledgment, to agree on what port numbers to talk on
+
+PC: dest 80 src 1025, SERVER: dest 1025 src 80
+
+1 transmitter sends SYN to receiver
+2 receiver sends SYN Ack to transmitter
+3 transmitter sends Ack to receiver
+can re-transmit missing packets

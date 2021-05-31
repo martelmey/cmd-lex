@@ -1,0 +1,23 @@
+Method 1: Binary Method{
+	Network/Subnet address: fill host portion of address w/ binary 0's
+	Broadcast address: fill host portion of address w/ binary 1's
+	First host: fill host portion of address w/ binary 0's except for last bit = binary 1
+	Last host: fill host portion of address w/ binary 1's except for last bit = binary 0
+}
+Method 2: Quick Method
+
+Multiple subnets
+
+IP address{
+	From which determine:
+	- subnet address
+	- 1st host address
+	- last host address
+	- broadcast address
+}
+
+192.168.1.18/24{
+	Subnet = 192.168.1.00000000 = 192.168.1.0
+	1st host = 192.168.1.00000001 = 192.168.1.1
+	Broadcast = 192.168.1.11111110 = 192.168.1.254
+}

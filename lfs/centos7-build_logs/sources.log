@@ -1,0 +1,520 @@
+[root@localhost ~]# ln -sf bash /bin/sh
+[root@localhost ~]# ln -sf gawk /usr/bin/awk
+[root@localhost ~]# ln -sf bison /usr/bin/yacc
+[root@localhost ~]# vi version-check.sh
+[root@localhost ~]# chmod +x version-check.sh
+[root@localhost ~]# ./version-check.sh
+bash, version 4.2.46(2)-release
+/bin/sh -> /usr/bin/bash
+Binutils: version 2.27-44.base.el7
+bison (GNU Bison) 3.0.4
+/usr/bin/yacc -> /usr/bin/bison
+bzip2,  Version 1.0.6, 6-Sept-2010.
+Coreutils:  8.22
+diff (GNU diffutils) 3.3
+find (GNU findutils) 4.5.11
+GNU Awk 4.0.2
+/usr/bin/awk -> /usr/bin/gawk
+gcc (GCC) 4.8.5 20150623 (Red Hat 4.8.5-44)
+g++ (GCC) 4.8.5 20150623 (Red Hat 4.8.5-44)
+(GNU libc) 2.17
+grep (GNU grep) 2.20
+gzip 1.5
+Linux version 3.10.0-1160.el7.x86_64 (mockbuild@kbuilder.bsys.centos.org) (gcc version 4.8.5 20150623 (Red Hat 4.8.5-44) (GCC) ) #1 SMP Mon Oct 19 16:18:59 UTC 2020
+m4 (GNU M4) 1.4.16
+GNU Make 3.82
+GNU patch 2.7.1
+Perl version='5.16.3';
+Python 3.6.8
+sed (GNU sed) 4.2.2
+tar (GNU tar) 1.26
+makeinfo (GNU texinfo) 5.1
+xz (XZ Utils) 5.2.2
+g++ compilation OK
+[root@localhost ~]# export LFS=/lfs
+[root@localhost ~]# echo "export LFS=/lfs" >> /root/.profile && source /root/.profile
+[root@localhost ~]# echo "export LFS=/lfs" >> /root/.profile && source /root/.bash_profile
+[root@localhost ~]# tar -xvf lfs-sources.tar -C /lfs
+md5sums
+md5sums_patches
+sources/
+sources/patches/
+sources/patches/bzip2-1.0.8-install_docs-1.patch
+sources/patches/coreutils-8.32-i18n-1.patch
+sources/patches/glibc-2.33-fhs-1.patch
+sources/patches/kbd-2.4.0-backspace-1.patch
+sources/patches/systemd-247-upstream_fixes-1.patch
+sources/patches/sysvinit-2.98-consolidated-1.patch
+sources/acl-2.2.53.tar.gz
+sources/attr-2.4.48.tar.gz
+sources/autoconf-2.71.tar.xz
+sources/automake-1.16.3.tar.xz
+sources/bash-5.1.tar.gz
+sources/bc-3.3.0.tar.xz
+sources/binutils-2.36.1.tar.xz
+sources/bison-3.7.5.tar.xz
+sources/bzip2-1.0.8.tar.gz
+sources/check-0.15.2.tar.gz
+sources/coreutils-8.32.tar.xz
+sources/dbus-1.12.20.tar.gz
+sources/dejagnu-1.6.2.tar.gz
+sources/diffutils-3.7.tar.xz
+sources/e2fsprogs-1.46.1.tar.gz
+sources/elfutils-0.183.tar.bz2
+sources/eudev-3.2.10.tar.gz
+sources/expect5.45.4.tar.gz
+sources/file-5.39.tar.gz
+sources/findutils-4.8.0.tar.xz
+sources/flex-2.6.4.tar.gz
+sources/gawk-5.1.0.tar.xz
+sources/gcc-10.2.0.tar.xz
+sources/gdbm-1.19.tar.gz
+sources/gettext-0.21.tar.xz
+sources/glibc-2.33.tar.xz
+sources/gmp-6.2.1.tar.xz
+sources/gperf-3.1.tar.gz
+sources/grep-3.6.tar.xz
+sources/groff-1.22.4.tar.gz
+sources/grub-2.04.tar.xz
+sources/gzip-1.10.tar.xz
+sources/iana-etc-20210202.tar.gz
+sources/inetutils-2.0.tar.xz
+sources/intltool-0.51.0.tar.gz
+sources/iproute2-5.10.0.tar.xz
+sources/kbd-2.4.0.tar.xz
+sources/kmod-28.tar.xz
+sources/less-563.tar.gz
+sources/lfs-bootscripts-20210201.tar.xz
+sources/libcap-2.48.tar.xz
+sources/libffi-3.3.tar.gz
+sources/libpipeline-1.5.3.tar.gz
+sources/libtool-2.4.6.tar.xz
+sources/linux-5.10.17.tar.xz
+sources/m4-1.4.18.tar.xz
+sources/make-4.3.tar.gz
+sources/man-db-2.9.4.tar.xz
+sources/man-pages-5.10.tar.xz
+sources/meson-0.57.1.tar.gz
+sources/mpc-1.2.1.tar.gz
+sources/mpfr-4.1.0.tar.xz
+sources/ncurses-6.2.tar.gz
+sources/ninja-1.10.2.tar.gz
+sources/openssl-1.1.1j.tar.gz
+sources/patch-2.7.6.tar.xz
+sources/perl-5.32.1.tar.xz
+sources/pkg-config-0.29.2.tar.gz
+sources/procps-ng-3.3.17.tar.xz
+sources/psmisc-23.4.tar.xz
+sources/Python-3.9.2.tar.xz
+sources/python-3.9.2-docs-html.tar.bz2
+sources/readline-8.1.tar.gz
+sources/sed-4.8.tar.xz
+sources/shadow-4.8.1.tar.xz
+sources/sysklogd-1.5.1.tar.gz
+sources/systemd-247.tar.gz
+sources/systemd-man-pages-247.tar.xz
+sources/sysvinit-2.98.tar.xz
+sources/tar-1.34.tar.xz
+sources/tcl8.6.11-src.tar.gz
+sources/tcl8.6.11-html.tar.gz
+sources/texinfo-6.7.tar.xz
+sources/tzdata2021a.tar.gz
+sources/udev-lfs-20171102.tar.xz
+sources/util-linux-2.36.2.tar.xz
+sources/vim-8.2.2433.tar.gz
+sources/XML-Parser-2.46.tar.gz
+sources/xz-5.2.5.tar.xz
+sources/zlib-1.2.11.tar.xz
+sources/zstd-1.4.8.tar.gz
+sources/bzip2-1.0.8-install_docs-1.patch
+sources/coreutils-8.32-i18n-1.patch
+sources/glibc-2.33-fhs-1.patch
+sources/systemd-247-upstream_fixes-1.patch
+sources/expat-2.2.10.tar.xz
+sources/kbd-2.4.0-backspace-1.patch
+sources/sysvinit-2.98-consolidated-1.patch
+[root@localhost ~]# ./version-check.sh
+bash, version 4.2.46(2)-release
+/bin/sh -> /usr/bin/bash
+Binutils: version 2.27-44.base.el7
+bison (GNU Bison) 3.0.4
+/usr/bin/yacc -> /usr/bin/bison
+bzip2,  Version 1.0.6, 6-Sept-2010.
+Coreutils:  8.22
+diff (GNU diffutils) 3.3
+find (GNU findutils) 4.5.11
+GNU Awk 4.0.2
+/usr/bin/awk -> /usr/bin/gawk
+gcc (GCC) 4.8.5 20150623 (Red Hat 4.8.5-44)
+g++ (GCC) 4.8.5 20150623 (Red Hat 4.8.5-44)
+(GNU libc) 2.17
+grep (GNU grep) 2.20
+gzip 1.5
+Linux version 3.10.0-1160.el7.x86_64 (mockbuild@kbuilder.bsys.centos.org) (gcc version 4.8.5 20150623 (Red Hat 4.8.5-44) (GCC) ) #1 SMP Mon Oct 19 16:18:59 UTC 2020
+m4 (GNU M4) 1.4.16
+GNU Make 3.82
+GNU patch 2.7.1
+Perl version='5.16.3';
+Python 3.6.8
+sed (GNU sed) 4.2.2
+tar (GNU tar) 1.26
+makeinfo (GNU texinfo) 5.1
+xz (XZ Utils) 5.2.2
+g++ compilation OK
+[root@localhost ~]# chmod -vR a+wt /lfs
+mode of ‘/lfs’ retained as 1777 (rwxrwxrwt)
+chmod: getting new attributes of ‘md5sums’: No such file or directory
+mode of ‘/lfs/md5sums’ retained as 1666 (rw-rw-rwT)
+chmod: getting new attributes of ‘md5sums_patches’: No such file or directory
+mode of ‘/lfs/md5sums_patches’ retained as 1666 (rw-rw-rwT)
+chmod: getting new attributes of ‘sources’: No such file or directory
+mode of ‘/lfs/sources’ retained as 1777 (rwxrwxrwt)
+chmod: getting new attributes of ‘patches’: No such file or directory
+mode of ‘/lfs/sources/patches’ retained as 1777 (rwxrwxrwt)
+chmod: getting new attributes of ‘bzip2-1.0.8-install_docs-1.patch’: No such file or directory
+mode of ‘/lfs/sources/patches/bzip2-1.0.8-install_docs-1.patch’ retained as 1666 (rw-rw-rwT)
+chmod: getting new attributes of ‘coreutils-8.32-i18n-1.patch’: No such file or directory
+mode of ‘/lfs/sources/patches/coreutils-8.32-i18n-1.patch’ retained as 1666 (rw-rw-rwT)
+chmod: getting new attributes of ‘glibc-2.33-fhs-1.patch’: No such file or directory
+mode of ‘/lfs/sources/patches/glibc-2.33-fhs-1.patch’ retained as 1666 (rw-rw-rwT)
+chmod: getting new attributes of ‘kbd-2.4.0-backspace-1.patch’: No such file or directory
+mode of ‘/lfs/sources/patches/kbd-2.4.0-backspace-1.patch’ retained as 1666 (rw-rw-rwT)
+chmod: getting new attributes of ‘systemd-247-upstream_fixes-1.patch’: No such file or directory
+mode of ‘/lfs/sources/patches/systemd-247-upstream_fixes-1.patch’ retained as 1666 (rw-rw-rwT)
+chmod: getting new attributes of ‘sysvinit-2.98-consolidated-1.patch’: No such file or directory
+mode of ‘/lfs/sources/patches/sysvinit-2.98-consolidated-1.patch’ retained as 1666 (rw-rw-rwT)
+chmod: getting new attributes of ‘acl-2.2.53.tar.gz’: No such file or directory
+mode of ‘/lfs/sources/acl-2.2.53.tar.gz’ retained as 1666 (rw-rw-rwT)
+chmod: getting new attributes of ‘attr-2.4.48.tar.gz’: No such file or directory
+mode of ‘/lfs/sources/attr-2.4.48.tar.gz’ retained as 1666 (rw-rw-rwT)
+chmod: getting new attributes of ‘autoconf-2.71.tar.xz’: No such file or directory
+mode of ‘/lfs/sources/autoconf-2.71.tar.xz’ retained as 1666 (rw-rw-rwT)
+chmod: getting new attributes of ‘automake-1.16.3.tar.xz’: No such file or directory
+mode of ‘/lfs/sources/automake-1.16.3.tar.xz’ retained as 1666 (rw-rw-rwT)
+chmod: getting new attributes of ‘bash-5.1.tar.gz’: No such file or directory
+mode of ‘/lfs/sources/bash-5.1.tar.gz’ retained as 1666 (rw-rw-rwT)
+chmod: getting new attributes of ‘bc-3.3.0.tar.xz’: No such file or directory
+mode of ‘/lfs/sources/bc-3.3.0.tar.xz’ retained as 1666 (rw-rw-rwT)
+chmod: getting new attributes of ‘binutils-2.36.1.tar.xz’: No such file or directory
+mode of ‘/lfs/sources/binutils-2.36.1.tar.xz’ retained as 1666 (rw-rw-rwT)
+chmod: getting new attributes of ‘bison-3.7.5.tar.xz’: No such file or directory
+mode of ‘/lfs/sources/bison-3.7.5.tar.xz’ retained as 1666 (rw-rw-rwT)
+chmod: getting new attributes of ‘bzip2-1.0.8.tar.gz’: No such file or directory
+mode of ‘/lfs/sources/bzip2-1.0.8.tar.gz’ retained as 1666 (rw-rw-rwT)
+chmod: getting new attributes of ‘check-0.15.2.tar.gz’: No such file or directory
+mode of ‘/lfs/sources/check-0.15.2.tar.gz’ retained as 1666 (rw-rw-rwT)
+chmod: getting new attributes of ‘coreutils-8.32.tar.xz’: No such file or directory
+mode of ‘/lfs/sources/coreutils-8.32.tar.xz’ retained as 1666 (rw-rw-rwT)
+chmod: getting new attributes of ‘dbus-1.12.20.tar.gz’: No such file or directory
+mode of ‘/lfs/sources/dbus-1.12.20.tar.gz’ retained as 1666 (rw-rw-rwT)
+chmod: getting new attributes of ‘dejagnu-1.6.2.tar.gz’: No such file or directory
+mode of ‘/lfs/sources/dejagnu-1.6.2.tar.gz’ retained as 1666 (rw-rw-rwT)
+chmod: getting new attributes of ‘diffutils-3.7.tar.xz’: No such file or directory
+mode of ‘/lfs/sources/diffutils-3.7.tar.xz’ retained as 1666 (rw-rw-rwT)
+chmod: getting new attributes of ‘e2fsprogs-1.46.1.tar.gz’: No such file or directory
+mode of ‘/lfs/sources/e2fsprogs-1.46.1.tar.gz’ retained as 1666 (rw-rw-rwT)
+chmod: getting new attributes of ‘elfutils-0.183.tar.bz2’: No such file or directory
+mode of ‘/lfs/sources/elfutils-0.183.tar.bz2’ retained as 1666 (rw-rw-rwT)
+chmod: getting new attributes of ‘eudev-3.2.10.tar.gz’: No such file or directory
+mode of ‘/lfs/sources/eudev-3.2.10.tar.gz’ retained as 1666 (rw-rw-rwT)
+chmod: getting new attributes of ‘expect5.45.4.tar.gz’: No such file or directory
+mode of ‘/lfs/sources/expect5.45.4.tar.gz’ retained as 1666 (rw-rw-rwT)
+chmod: getting new attributes of ‘file-5.39.tar.gz’: No such file or directory
+mode of ‘/lfs/sources/file-5.39.tar.gz’ retained as 1666 (rw-rw-rwT)
+chmod: getting new attributes of ‘findutils-4.8.0.tar.xz’: No such file or directory
+mode of ‘/lfs/sources/findutils-4.8.0.tar.xz’ retained as 1666 (rw-rw-rwT)
+chmod: getting new attributes of ‘flex-2.6.4.tar.gz’: No such file or directory
+mode of ‘/lfs/sources/flex-2.6.4.tar.gz’ retained as 1666 (rw-rw-rwT)
+chmod: getting new attributes of ‘gawk-5.1.0.tar.xz’: No such file or directory
+mode of ‘/lfs/sources/gawk-5.1.0.tar.xz’ retained as 1666 (rw-rw-rwT)
+chmod: getting new attributes of ‘gcc-10.2.0.tar.xz’: No such file or directory
+mode of ‘/lfs/sources/gcc-10.2.0.tar.xz’ retained as 1666 (rw-rw-rwT)
+chmod: getting new attributes of ‘gdbm-1.19.tar.gz’: No such file or directory
+mode of ‘/lfs/sources/gdbm-1.19.tar.gz’ retained as 1666 (rw-rw-rwT)
+chmod: getting new attributes of ‘gettext-0.21.tar.xz’: No such file or directory
+mode of ‘/lfs/sources/gettext-0.21.tar.xz’ retained as 1666 (rw-rw-rwT)
+chmod: getting new attributes of ‘glibc-2.33.tar.xz’: No such file or directory
+mode of ‘/lfs/sources/glibc-2.33.tar.xz’ retained as 1666 (rw-rw-rwT)
+chmod: getting new attributes of ‘gmp-6.2.1.tar.xz’: No such file or directory
+mode of ‘/lfs/sources/gmp-6.2.1.tar.xz’ retained as 1666 (rw-rw-rwT)
+chmod: getting new attributes of ‘gperf-3.1.tar.gz’: No such file or directory
+mode of ‘/lfs/sources/gperf-3.1.tar.gz’ retained as 1666 (rw-rw-rwT)
+chmod: getting new attributes of ‘grep-3.6.tar.xz’: No such file or directory
+mode of ‘/lfs/sources/grep-3.6.tar.xz’ retained as 1666 (rw-rw-rwT)
+chmod: getting new attributes of ‘groff-1.22.4.tar.gz’: No such file or directory
+mode of ‘/lfs/sources/groff-1.22.4.tar.gz’ retained as 1666 (rw-rw-rwT)
+chmod: getting new attributes of ‘grub-2.04.tar.xz’: No such file or directory
+mode of ‘/lfs/sources/grub-2.04.tar.xz’ retained as 1666 (rw-rw-rwT)
+chmod: getting new attributes of ‘gzip-1.10.tar.xz’: No such file or directory
+mode of ‘/lfs/sources/gzip-1.10.tar.xz’ retained as 1666 (rw-rw-rwT)
+chmod: getting new attributes of ‘iana-etc-20210202.tar.gz’: No such file or directory
+mode of ‘/lfs/sources/iana-etc-20210202.tar.gz’ retained as 1666 (rw-rw-rwT)
+chmod: getting new attributes of ‘inetutils-2.0.tar.xz’: No such file or directory
+mode of ‘/lfs/sources/inetutils-2.0.tar.xz’ retained as 1666 (rw-rw-rwT)
+chmod: getting new attributes of ‘intltool-0.51.0.tar.gz’: No such file or directory
+mode of ‘/lfs/sources/intltool-0.51.0.tar.gz’ retained as 1666 (rw-rw-rwT)
+chmod: getting new attributes of ‘iproute2-5.10.0.tar.xz’: No such file or directory
+mode of ‘/lfs/sources/iproute2-5.10.0.tar.xz’ retained as 1666 (rw-rw-rwT)
+chmod: getting new attributes of ‘kbd-2.4.0.tar.xz’: No such file or directory
+mode of ‘/lfs/sources/kbd-2.4.0.tar.xz’ retained as 1666 (rw-rw-rwT)
+chmod: getting new attributes of ‘kmod-28.tar.xz’: No such file or directory
+mode of ‘/lfs/sources/kmod-28.tar.xz’ retained as 1666 (rw-rw-rwT)
+chmod: getting new attributes of ‘less-563.tar.gz’: No such file or directory
+mode of ‘/lfs/sources/less-563.tar.gz’ retained as 1666 (rw-rw-rwT)
+chmod: getting new attributes of ‘lfs-bootscripts-20210201.tar.xz’: No such file or directory
+mode of ‘/lfs/sources/lfs-bootscripts-20210201.tar.xz’ retained as 1666 (rw-rw-rwT)
+chmod: getting new attributes of ‘libcap-2.48.tar.xz’: No such file or directory
+mode of ‘/lfs/sources/libcap-2.48.tar.xz’ retained as 1666 (rw-rw-rwT)
+chmod: getting new attributes of ‘libffi-3.3.tar.gz’: No such file or directory
+mode of ‘/lfs/sources/libffi-3.3.tar.gz’ retained as 1666 (rw-rw-rwT)
+chmod: getting new attributes of ‘libpipeline-1.5.3.tar.gz’: No such file or directory
+mode of ‘/lfs/sources/libpipeline-1.5.3.tar.gz’ retained as 1666 (rw-rw-rwT)
+chmod: getting new attributes of ‘libtool-2.4.6.tar.xz’: No such file or directory
+mode of ‘/lfs/sources/libtool-2.4.6.tar.xz’ retained as 1666 (rw-rw-rwT)
+chmod: getting new attributes of ‘linux-5.10.17.tar.xz’: No such file or directory
+mode of ‘/lfs/sources/linux-5.10.17.tar.xz’ retained as 1666 (rw-rw-rwT)
+chmod: getting new attributes of ‘m4-1.4.18.tar.xz’: No such file or directory
+mode of ‘/lfs/sources/m4-1.4.18.tar.xz’ retained as 1666 (rw-rw-rwT)
+chmod: getting new attributes of ‘make-4.3.tar.gz’: No such file or directory
+mode of ‘/lfs/sources/make-4.3.tar.gz’ retained as 1666 (rw-rw-rwT)
+chmod: getting new attributes of ‘man-db-2.9.4.tar.xz’: No such file or directory
+mode of ‘/lfs/sources/man-db-2.9.4.tar.xz’ retained as 1666 (rw-rw-rwT)
+chmod: getting new attributes of ‘man-pages-5.10.tar.xz’: No such file or directory
+mode of ‘/lfs/sources/man-pages-5.10.tar.xz’ retained as 1666 (rw-rw-rwT)
+chmod: getting new attributes of ‘meson-0.57.1.tar.gz’: No such file or directory
+mode of ‘/lfs/sources/meson-0.57.1.tar.gz’ retained as 1666 (rw-rw-rwT)
+chmod: getting new attributes of ‘mpc-1.2.1.tar.gz’: No such file or directory
+mode of ‘/lfs/sources/mpc-1.2.1.tar.gz’ retained as 1666 (rw-rw-rwT)
+chmod: getting new attributes of ‘mpfr-4.1.0.tar.xz’: No such file or directory
+mode of ‘/lfs/sources/mpfr-4.1.0.tar.xz’ retained as 1666 (rw-rw-rwT)
+chmod: getting new attributes of ‘ncurses-6.2.tar.gz’: No such file or directory
+mode of ‘/lfs/sources/ncurses-6.2.tar.gz’ retained as 1666 (rw-rw-rwT)
+chmod: getting new attributes of ‘ninja-1.10.2.tar.gz’: No such file or directory
+mode of ‘/lfs/sources/ninja-1.10.2.tar.gz’ retained as 1666 (rw-rw-rwT)
+chmod: getting new attributes of ‘openssl-1.1.1j.tar.gz’: No such file or directory
+mode of ‘/lfs/sources/openssl-1.1.1j.tar.gz’ retained as 1666 (rw-rw-rwT)
+chmod: getting new attributes of ‘patch-2.7.6.tar.xz’: No such file or directory
+mode of ‘/lfs/sources/patch-2.7.6.tar.xz’ retained as 1666 (rw-rw-rwT)
+chmod: getting new attributes of ‘perl-5.32.1.tar.xz’: No such file or directory
+mode of ‘/lfs/sources/perl-5.32.1.tar.xz’ retained as 1666 (rw-rw-rwT)
+chmod: getting new attributes of ‘pkg-config-0.29.2.tar.gz’: No such file or directory
+mode of ‘/lfs/sources/pkg-config-0.29.2.tar.gz’ retained as 1666 (rw-rw-rwT)
+chmod: getting new attributes of ‘procps-ng-3.3.17.tar.xz’: No such file or directory
+mode of ‘/lfs/sources/procps-ng-3.3.17.tar.xz’ retained as 1666 (rw-rw-rwT)
+chmod: getting new attributes of ‘psmisc-23.4.tar.xz’: No such file or directory
+mode of ‘/lfs/sources/psmisc-23.4.tar.xz’ retained as 1666 (rw-rw-rwT)
+chmod: getting new attributes of ‘Python-3.9.2.tar.xz’: No such file or directory
+mode of ‘/lfs/sources/Python-3.9.2.tar.xz’ retained as 1666 (rw-rw-rwT)
+chmod: getting new attributes of ‘python-3.9.2-docs-html.tar.bz2’: No such file or directory
+mode of ‘/lfs/sources/python-3.9.2-docs-html.tar.bz2’ retained as 1666 (rw-rw-rwT)
+chmod: getting new attributes of ‘readline-8.1.tar.gz’: No such file or directory
+mode of ‘/lfs/sources/readline-8.1.tar.gz’ retained as 1666 (rw-rw-rwT)
+chmod: getting new attributes of ‘sed-4.8.tar.xz’: No such file or directory
+mode of ‘/lfs/sources/sed-4.8.tar.xz’ retained as 1666 (rw-rw-rwT)
+chmod: getting new attributes of ‘shadow-4.8.1.tar.xz’: No such file or directory
+mode of ‘/lfs/sources/shadow-4.8.1.tar.xz’ retained as 1666 (rw-rw-rwT)
+chmod: getting new attributes of ‘sysklogd-1.5.1.tar.gz’: No such file or directory
+mode of ‘/lfs/sources/sysklogd-1.5.1.tar.gz’ retained as 1666 (rw-rw-rwT)
+chmod: getting new attributes of ‘systemd-247.tar.gz’: No such file or directory
+mode of ‘/lfs/sources/systemd-247.tar.gz’ retained as 1666 (rw-rw-rwT)
+chmod: getting new attributes of ‘systemd-man-pages-247.tar.xz’: No such file or directory
+mode of ‘/lfs/sources/systemd-man-pages-247.tar.xz’ retained as 1666 (rw-rw-rwT)
+chmod: getting new attributes of ‘sysvinit-2.98.tar.xz’: No such file or directory
+mode of ‘/lfs/sources/sysvinit-2.98.tar.xz’ retained as 1666 (rw-rw-rwT)
+chmod: getting new attributes of ‘tar-1.34.tar.xz’: No such file or directory
+mode of ‘/lfs/sources/tar-1.34.tar.xz’ retained as 1666 (rw-rw-rwT)
+chmod: getting new attributes of ‘tcl8.6.11-src.tar.gz’: No such file or directory
+mode of ‘/lfs/sources/tcl8.6.11-src.tar.gz’ retained as 1666 (rw-rw-rwT)
+chmod: getting new attributes of ‘tcl8.6.11-html.tar.gz’: No such file or directory
+mode of ‘/lfs/sources/tcl8.6.11-html.tar.gz’ retained as 1666 (rw-rw-rwT)
+chmod: getting new attributes of ‘texinfo-6.7.tar.xz’: No such file or directory
+mode of ‘/lfs/sources/texinfo-6.7.tar.xz’ retained as 1666 (rw-rw-rwT)
+chmod: getting new attributes of ‘tzdata2021a.tar.gz’: No such file or directory
+mode of ‘/lfs/sources/tzdata2021a.tar.gz’ retained as 1666 (rw-rw-rwT)
+chmod: getting new attributes of ‘udev-lfs-20171102.tar.xz’: No such file or directory
+mode of ‘/lfs/sources/udev-lfs-20171102.tar.xz’ retained as 1666 (rw-rw-rwT)
+chmod: getting new attributes of ‘util-linux-2.36.2.tar.xz’: No such file or directory
+mode of ‘/lfs/sources/util-linux-2.36.2.tar.xz’ retained as 1666 (rw-rw-rwT)
+chmod: getting new attributes of ‘vim-8.2.2433.tar.gz’: No such file or directory
+mode of ‘/lfs/sources/vim-8.2.2433.tar.gz’ retained as 1666 (rw-rw-rwT)
+chmod: getting new attributes of ‘XML-Parser-2.46.tar.gz’: No such file or directory
+mode of ‘/lfs/sources/XML-Parser-2.46.tar.gz’ retained as 1666 (rw-rw-rwT)
+chmod: getting new attributes of ‘xz-5.2.5.tar.xz’: No such file or directory
+mode of ‘/lfs/sources/xz-5.2.5.tar.xz’ retained as 1666 (rw-rw-rwT)
+chmod: getting new attributes of ‘zlib-1.2.11.tar.xz’: No such file or directory
+mode of ‘/lfs/sources/zlib-1.2.11.tar.xz’ retained as 1666 (rw-rw-rwT)
+chmod: getting new attributes of ‘zstd-1.4.8.tar.gz’: No such file or directory
+mode of ‘/lfs/sources/zstd-1.4.8.tar.gz’ retained as 1666 (rw-rw-rwT)
+chmod: getting new attributes of ‘bzip2-1.0.8-install_docs-1.patch’: No such file or directory
+mode of ‘/lfs/sources/bzip2-1.0.8-install_docs-1.patch’ retained as 1666 (rw-rw-rwT)
+chmod: getting new attributes of ‘coreutils-8.32-i18n-1.patch’: No such file or directory
+mode of ‘/lfs/sources/coreutils-8.32-i18n-1.patch’ retained as 1666 (rw-rw-rwT)
+chmod: getting new attributes of ‘glibc-2.33-fhs-1.patch’: No such file or directory
+mode of ‘/lfs/sources/glibc-2.33-fhs-1.patch’ retained as 1666 (rw-rw-rwT)
+chmod: getting new attributes of ‘systemd-247-upstream_fixes-1.patch’: No such file or directory
+mode of ‘/lfs/sources/systemd-247-upstream_fixes-1.patch’ retained as 1666 (rw-rw-rwT)
+chmod: getting new attributes of ‘expat-2.2.10.tar.xz’: No such file or directory
+mode of ‘/lfs/sources/expat-2.2.10.tar.xz’ retained as 1666 (rw-rw-rwT)
+chmod: getting new attributes of ‘kbd-2.4.0-backspace-1.patch’: No such file or directory
+mode of ‘/lfs/sources/kbd-2.4.0-backspace-1.patch’ retained as 1666 (rw-rw-rwT)
+chmod: getting new attributes of ‘sysvinit-2.98-consolidated-1.patch’: No such file or directory
+mode of ‘/lfs/sources/sysvinit-2.98-consolidated-1.patch’ retained as 1666 (rw-rw-rwT)
+[root@localhost ~]# pushd /lfs/sources
+/lfs/sources ~
+[root@localhost sources]#   md5sum -c /lfs/md5sums
+acl-2.2.53.tar.gz: OK
+attr-2.4.48.tar.gz: OK
+autoconf-2.71.tar.xz: OK
+automake-1.16.3.tar.xz: OK
+bash-5.1.tar.gz: OK
+bc-3.3.0.tar.xz: OK
+binutils-2.36.1.tar.xz: OK
+bison-3.7.5.tar.xz: OK
+bzip2-1.0.8.tar.gz: OK
+check-0.15.2.tar.gz: OK
+coreutils-8.32.tar.xz: OK
+dejagnu-1.6.2.tar.gz: OK
+diffutils-3.7.tar.xz: OK
+e2fsprogs-1.46.1.tar.gz: OK
+elfutils-0.183.tar.bz2: OK
+eudev-3.2.10.tar.gz: OK
+expat-2.2.10.tar.xz: OK
+expect5.45.4.tar.gz: OK
+file-5.39.tar.gz: OK
+findutils-4.8.0.tar.xz: OK
+flex-2.6.4.tar.gz: OK
+gawk-5.1.0.tar.xz: OK
+gcc-10.2.0.tar.xz: OK
+gdbm-1.19.tar.gz: OK
+gettext-0.21.tar.xz: OK
+glibc-2.33.tar.xz: OK
+gmp-6.2.1.tar.xz: OK
+gperf-3.1.tar.gz: OK
+grep-3.6.tar.xz: OK
+groff-1.22.4.tar.gz: OK
+grub-2.04.tar.xz: OK
+gzip-1.10.tar.xz: OK
+iana-etc-20210202.tar.gz: OK
+inetutils-2.0.tar.xz: OK
+intltool-0.51.0.tar.gz: OK
+iproute2-5.10.0.tar.xz: OK
+kbd-2.4.0.tar.xz: OK
+kmod-28.tar.xz: OK
+less-563.tar.gz: OK
+lfs-bootscripts-20210201.tar.xz: OK
+libcap-2.48.tar.xz: OK
+libffi-3.3.tar.gz: OK
+libpipeline-1.5.3.tar.gz: OK
+libtool-2.4.6.tar.xz: OK
+linux-5.10.17.tar.xz: OK
+m4-1.4.18.tar.xz: OK
+make-4.3.tar.gz: OK
+man-db-2.9.4.tar.xz: OK
+man-pages-5.10.tar.xz: OK
+meson-0.57.1.tar.gz: OK
+mpc-1.2.1.tar.gz: OK
+mpfr-4.1.0.tar.xz: OK
+ncurses-6.2.tar.gz: OK
+ninja-1.10.2.tar.gz: OK
+openssl-1.1.1j.tar.gz: OK
+patch-2.7.6.tar.xz: OK
+perl-5.32.1.tar.xz: OK
+pkg-config-0.29.2.tar.gz: OK
+procps-ng-3.3.17.tar.xz: OK
+psmisc-23.4.tar.xz: OK
+Python-3.9.2.tar.xz: OK
+python-3.9.2-docs-html.tar.bz2: OK
+readline-8.1.tar.gz: OK
+sed-4.8.tar.xz: OK
+shadow-4.8.1.tar.xz: OK
+sysklogd-1.5.1.tar.gz: OK
+sysvinit-2.98.tar.xz: OK
+tar-1.34.tar.xz: OK
+tcl8.6.11-src.tar.gz: OK
+tcl8.6.11-html.tar.gz: OK
+texinfo-6.7.tar.xz: OK
+tzdata2021a.tar.gz: OK
+udev-lfs-20171102.tar.xz: OK
+util-linux-2.36.2.tar.xz: OK
+vim-8.2.2433.tar.gz: OK
+XML-Parser-2.46.tar.gz: OK
+xz-5.2.5.tar.xz: OK
+zlib-1.2.11.tar.xz: OK
+zstd-1.4.8.tar.gz: OK
+bzip2-1.0.8-install_docs-1.patch: OK
+coreutils-8.32-i18n-1.patch: OK
+glibc-2.33-fhs-1.patch: OK
+kbd-2.4.0-backspace-1.patch: OK
+sysvinit-2.98-consolidated-1.patch: OK
+[root@localhost sources]#   md5sum -c /lfs/md5sums_patches
+bzip2-1.0.8-install_docs-1.patch: OK
+coreutils-8.32-i18n-1.patch: OK
+glibc-2.33-fhs-1.patch: OK
+kbd-2.4.0-backspace-1.patch: OK
+sysvinit-2.98-consolidated-1.patch: OK
+[root@localhost sources]# popd
+~
+[root@localhost ~]# mkdir -pv /lfs/{bin,etc,lib,sbin,usr,var}
+mkdir: created directory ‘/lfs/bin’
+mkdir: created directory ‘/lfs/etc’
+mkdir: created directory ‘/lfs/lib’
+mkdir: created directory ‘/lfs/sbin’
+mkdir: created directory ‘/lfs/usr’
+mkdir: created directory ‘/lfs/var’
+[root@localhost ~]# case $(uname -m) in
+>   x86_64) mkdir -pv /lfs/lib64 ;;
+> esac
+mkdir: created directory ‘/lfs/lib64’
+[root@localhost ~]# mkdir -pv /lfs/tools
+mkdir: created directory ‘/lfs/tools’
+[root@localhost ~]# groupadd lfs
+[root@localhost ~]# useradd -s /bin/bash -g lfs -m lfs
+[root@localhost ~]# passwd lfs # lfs
+Changing password for user lfs.
+New password:
+BAD PASSWORD: The password is shorter than 8 characters
+Retype new password:
+passwd: all authentication tokens updated successfully.
+[root@localhost ~]# chown -v lfs /lfs/{usr,lib,var,etc,bin,sbin,tools}
+changed ownership of ‘/lfs/usr’ from root to lfs
+changed ownership of ‘/lfs/lib’ from root to lfs
+changed ownership of ‘/lfs/var’ from root to lfs
+changed ownership of ‘/lfs/etc’ from root to lfs
+changed ownership of ‘/lfs/bin’ from root to lfs
+changed ownership of ‘/lfs/sbin’ from root to lfs
+changed ownership of ‘/lfs/tools’ from root to lfs
+[root@localhost ~]# case $(uname -m) in
+>   x86_64) chown -v lfs /lfs/lib64 ;;
+> esac
+changed ownership of ‘/lfs/lib64’ from root to lfs
+[root@localhost ~]# chown -v lfs /lfs/sources
+changed ownership of ‘/lfs/sources’ from root to lfs
+[root@localhost ~]# sudo su - lfs
+[lfs@localhost ~]$ cat > ~/.bash_profile << "EOF"
+> exec env -i HOME=$HOME TERM=$TERM PS1='\u:\w\$ ' /bin/bash
+> EOF
+[lfs@localhost ~]$ cat > ~/.bashrc << "EOF"
+> set +h
+> umask 022
+> LFS=/lfs
+> LC_ALL=POSIX
+> LFS_TGT=$(uname -m)-lfs-linux-gnu
+> PATH=/usr/bin
+> if [ ! -L /bin ]; then PATH=/bin:$PATH; fi
+> PATH=$LFS/tools/bin:$PATH
+> CONFIG_SITE=$LFS/usr/share/config.site
+> MAKEFLAGS='-j1'
+> export LFS LC_ALL LFS_TGT PATH CONFIG_SITE MAKEFLAGS
+> EOF
+[lfs@localhost ~]$ [ ! -e /etc/bash.bashrc ] || mv -v /etc/bash.bashrc /etc/bash.bashrc.NOUSE
+[lfs@localhost ~]$ source ~/.bash_profile
+lfs:~$ expect -c "spawn ls"
+spawn ls
+lfs:~$ readelf -l /usr/bin/bash | grep interpreter
+      [Requesting program interpreter: /lib64/ld-linux-x86-64.so.2]
+lfs:~$ ls -la /usr/bin/awk
+lrwxrwxrwx. 1 root root 4 May 29 20:03 /usr/bin/awk -> gawk
+lfs:~$ ls -la /usr/bin/yacc
+lrwxrwxrwx. 1 root root 5 May 29 20:04 /usr/bin/yacc -> bison
+lfs:~$ ls -la /bin/sh
+lrwxrwxrwx. 1 root root 4 May 29 20:03 /bin/sh -> bash

@@ -1,61 +1,57 @@
 #!/bin/bash
 
+# MAKE CHECKPOINT FIRST!
+
 sudo su - root
+cd ~/
 
 # Pre-req
-yum update -y
+#yum update -y
 
 # no gcc-c++ ?
-yum -y install bison bzip2-devel coreutils diffutils findutils gawk \
-gcc gcc-c++ glibc glibc-devel glibc-headers grep gzip m4 make make-devel \
-patch perl perl-devel python3 python3-devel expect \
-sed tar info xz xz-devel
-
-tar -xvf texinfo-6.7.tar.gz
-cd texinfo-6.7
-./configure --prefix=/usr
-make
-make install
+yum -y install bison bzip2 coreutils diffutils findutils gawk \
+gcc gcc-c++ glibc grep gzip m4 make \
+patch perl python3 expect \
+sed tar texinfo xz
 
 ln -sf bash /bin/sh
 ln -sf gawk /usr/bin/awk
 ln -sf bison /usr/bin/yacc
-
-./version-check
 
 export LFS=/lfs
 echo "export LFS=/lfs" >> /root/.profile && source /root/.profile
 echo "export LFS=/lfs" >> /root/.profile && source /root/.bash_profile
 
 # Sources
-mkdir -vp $LFS/sources/patches
-chmod -v a+wt $LFS/sources
-wget --input-file=wget-list --continue --directory-prefix=$LFS/sources
-wget --input-file=wget-list_patches --continue --directory-prefix=/lfs/sources/patches
+tar -zxvf lfs-sources.tar.gz -C /lfs
+chmod -vR a+wt /lfs
+chmod +x /lfs/.version-check
+/lfs/.version-check
 
+#expat md5 should fail
 pushd /lfs/sources
-  md5sum -c md5sums
+  md5sum -c /lfs/md5sums
 popd
 
 pushd /lfs/sources/patches
-  md5sum -c md5sums_patches
+  md5sum -c /lfs/md5sums_patches
 popd
 
 # Setup
-mkdir -pv $LFS/{bin,etc,lib,sbin,usr,var}
+mkdir -pv /lfs/{bin,etc,lib,sbin,usr,var}
 case $(uname -m) in
-  x86_64) mkdir -pv $LFS/lib64 ;;
+  x86_64) mkdir -pv /lfs/lib64 ;;
 esac
-mkdir -pv $LFS/tools
+mkdir -pv /lfs/tools
 
 groupadd lfs
-useradd -s /bin/bash -g lfs -m -k /dev/null lfs
+useradd -s /bin/bash -g lfs -m lfs
 passwd lfs # lfs
-chown -v lfs $LFS/{usr,lib,var,etc,bin,sbin,tools}
+chown -v lfs /lfs/{usr,lib,var,etc,bin,sbin,tools}
 case $(uname -m) in
-  x86_64) chown -v lfs $LFS/lib64 ;;
+  x86_64) chown -v lfs /lfs/lib64 ;;
 esac
-chown -v lfs $LFS/sources
+chown -v lfs /lfs/sources
 
 sudo su - lfs
 cat > ~/.bash_profile << "EOF"
@@ -69,8 +65,8 @@ LC_ALL=POSIX
 LFS_TGT=$(uname -m)-lfs-linux-gnu
 PATH=/usr/bin
 if [ ! -L /bin ]; then PATH=/bin:$PATH; fi
-PATH=$LFS/tools/bin:$PATH
-CONFIG_SITE=$LFS/usr/share/config.site
+PATH=/lfs/tools/bin:$PATH
+CONFIG_SITE=/lfs/usr/share/config.site
 MAKEFLAGS='-j1'
 export LFS LC_ALL LFS_TGT PATH CONFIG_SITE MAKEFLAGS
 EOF
@@ -89,13 +85,13 @@ ls -la /usr/bin/yacc
 ls -la /bin/sh
 
 # Binutils
-cd $LFS/sources
+cd /lfs/sources
 tar -xvf binutils-2.36.1.tar.xz
 cd binutils-2.36.1
 mkdir -v build
 cd build
-../configure --prefix=$LFS/tools       \
-             --with-sysroot=$LFS        \
+../configure --prefix=/lfs/tools       \
+             --with-sysroot=/lfs        \
              --target=$LFS_TGT          \
              --disable-nls              \
              --disable-werror
@@ -122,9 +118,9 @@ mkdir -v build
 cd       build
 ../configure                                       \
     --target=$LFS_TGT                              \
-    --prefix=$LFS/tools                            \
+    --prefix=/lfs/tools                            \
     --with-glibc-version=2.28                      \
-    --with-sysroot=$LFS                            \
+    --with-sysroot=/lfs                            \
     --with-newlib                                  \
     --without-headers                              \
     --enable-initfini-array                        \
@@ -148,20 +144,20 @@ cd ../../
 tar -xvf linux-5.10.17.tar.xz
 cd linux-5.10.17
 make mrproper
-make Headers
+make headers
 find usr/include -name '.*' -delete
 rm usr/include/Makefile
-cp -rv usr/include $LFS/usr
+cp -rv usr/include /lfs/usr
 
 # Glibc
 cd ../
 tar -xvf glibc-2.33.tar.xz
 cd glibc-2.33
 case $(uname -m) in
-    i?86)   ln -sfv ld-linux.so.2 $LFS/lib/ld-lsb.so.3
+    i?86)   ln -sfv ld-linux.so.2 /lfs/lib/ld-lsb.so.3
     ;;
-    x86_64) ln -sfv ../lib/ld-linux-x86-64.so.2 $LFS/lib64
-            ln -sfv ../lib/ld-linux-x86-64.so.2 $LFS/lib64/ld-lsb-x86-64.so.3
+    x86_64) ln -sfv ../lib/ld-linux-x86-64.so.2 /lfs/lib64
+            ln -sfv ../lib/ld-linux-x86-64.so.2 /lfs/lib64/ld-lsb-x86-64.so.3
     ;;
 esac
 patch -Np1 -i ../glibc-2.33-fhs-1.patch
@@ -170,12 +166,12 @@ cd       build
 ../configure                             \
       --prefix=/usr                      \
       --host=$LFS_TGT                    \
-      --build=$(../scripts/config.guess) \
+      --build=x86_64-pc-linux-gnu \
       --enable-kernel=3.2                \
-      --with-headers=$LFS/usr/include    \
+      --with-headers=/lfs/usr/include    \
       libc_cv_slibdir=/lib
-make -j1
-make DESTDIR=$LFS install
+make #-j1
+make DESTDIR=/lfs install
 
 # Sanity check
 echo 'int main(){}' > dummy.c
@@ -186,7 +182,7 @@ readelf -l a.out | grep '/ld-linux'
 rm -v dummy.c a.out
 $LFS_TGT-ld --verbose | grep SEARCH
 $LFS_TGT-gcc -print-prog-name=ld
-$LFS/tools/libexec/gcc/$LFS_TGT/10.2.0/install-tools/mkheaders
+/lfs/tools/libexec/gcc//lfs_TGT/10.2.0/install-tools/mkheaders
 
 # Libstdc++ from GCC-10.2.0, Pass 1
 cd ../../
@@ -202,9 +198,9 @@ cd       build
     --disable-multilib              \
     --disable-nls                   \
     --disable-libstdcxx-pch         \
-    --with-gxx-include-dir=/tools/$LFS_TGT/include/c++/10.2.0
+    --with-gxx-include-dir=/tools//lfs_TGT/include/c++/10.2.0
 make
-make DESTDIR=$LFS install
+make DESTDIR=/lfs install
 
 # M4
 cd ../../
