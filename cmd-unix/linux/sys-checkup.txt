@@ -3,6 +3,8 @@ disk free {
     lsblk
 }
 
+virsh nodeinfo
+
 cpu {
     getconf _NPROCESSORS_ONLN
     echo "Threads/core: $(nproc --all)"

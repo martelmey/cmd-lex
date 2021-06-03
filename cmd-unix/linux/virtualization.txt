@@ -103,9 +103,39 @@ qemu {
 }
 
 virsh {
+  virsh undefine
+  nodeinfo
+  uri
+  capabilities
+  nwfilter-list
+    -binding-list
+  iface-list
+  dom
+    info
+    stats
+    iflist
+    ifstat
+    control
+    if-getlink
+    ifaddr
+  console
+  desc
+  domdisplay
+  domfsinfo
+  event
+  perf
+  qemu-monitor
+    -command
+    -event
+  emulatorpin
+    -l, --log=<file>
+    -d, --debug=<NUM>
+
+  examples {
     virsh blockresize kutlprdsplunk01 /vms/kutlprdsplunk01 80G
     virsh vol-info kutlprdsplunk01 --pool vms
-    virsh undefine
+    virsh event --event graphics kutlprdops01
+  }
 }
 
 <os>

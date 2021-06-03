@@ -153,6 +153,11 @@ netstat {
     -sp IP (ipv4 stats)
     -sp UDP (udp for ipv4 stats)
     -nao (protocol, local/foreign addresses, state, PIDs)
+    
+    examples {
+        # get current connections
+        netstat -n
+    }
 }
 
 winrm {

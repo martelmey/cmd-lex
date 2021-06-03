@@ -1,3 +1,12 @@
+parted {
+    parted [options] [device [command [options...]...]]
+
+    -l, --list
+
+    print (show table)
+    toggle <partition> <flag>
+}
+
 true >| ./thefile.trc
 
 ls {
@@ -11,6 +20,8 @@ ls {
 
     examples {
         ls -la --block-size=M /export/pkgs/cmdb-postgres-backups/cmdb
+        # show dirs only (like tree)
+        find / -type d -ls
     }
 }
 
@@ -21,7 +32,9 @@ gdisk {
 fdisk {
     Manipulate disk partition table
 
-    fdish [options] device
+    fdisk [-uc] [-b sectorsize] [-C cyls] [-H heads] [-S sects] device
+    fdisk -l [-u] [device...]
+    fdisk -s partition...
 
     Options:
         -b, --sector-size sectorsize

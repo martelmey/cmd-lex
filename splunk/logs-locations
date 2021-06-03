@@ -7,6 +7,12 @@ TNS Listener
 Solaris Named
 /var/named/data/named.run
 
+VNCViewer
+C:\Users\user.name\AppData\Local\RealVNC\vncviewer.log
+
+QEMU
+/var/log/libvirt/qemu
+
 Splunk {
 	audit.log (user activities)
 	conf.log (config replication re: SH clustering)

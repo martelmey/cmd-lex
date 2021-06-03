@@ -1,3 +1,20 @@
+tcpdump {
+    -d (human-readable to stdout)
+    -D, --list-interfaces
+    -i, --interface <interface>
+    -l (buffer stdout lines)
+    -n (no dns lookups)
+    -nn (don't convert protocol and port numbers to names)
+    --direction=<direction> (in,out,inout)
+    -w <file> (write raw packets to file)
+    -A (print in ASCII)
+    -vvv (verbosity)
+
+    examples {
+        tcpdump -i br0 port 5900 -n
+    }
+}
+
 mailx {
     -s <subject>
     -a <file> # attach file

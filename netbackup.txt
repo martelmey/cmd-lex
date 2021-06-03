@@ -70,6 +70,12 @@ nbpem goes through nbproxy to talk to bpdm
 when you create a backup, you create an image; find out what the catalog's backup id is using bpimagelist(id=kutlprdnetb01-mgmt_1620328915)
 expire image
 # Examples
+nbcertcmd -getcertificate -force
+nbcertcmd -getCAcertificate -server kutlnpnetm01-mgmt
+nbcertcmd -listCertDetails
+bptestbpcd -host  kutlnpnetm01-mgmt -verbose
+bpclntcmd -clear_host_cache
+	-clean_whitelist_cache
 use bpdbjobs to see if tasks are running, if Activity Monitor is stopped
 
 # Path
