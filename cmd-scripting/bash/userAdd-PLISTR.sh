@@ -7,7 +7,7 @@ if [ $? -eq 0 ]; then
 else
 	which adduser > /dev/null
 	if [ $? -gt 0 ]; then
-	    useradd -d /export/home/$USER -G adm martel.meyers
+	    useradd -d /export/home/$USER -G cgistaff martel.meyers
 	else
 	    adduser -m $USER
 	    chage -d 0 $USER

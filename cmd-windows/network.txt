@@ -1,3 +1,7 @@
+available range of source ports {
+    netsh interface ipv4 show dynamic tcp
+}
+
 Hosts file location:
 C:\Windows\System32\drivers\etc\
 

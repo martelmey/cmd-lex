@@ -1,3 +1,11 @@
+show mac addresses {
+    netstat -pn |grep SP
+}
+
+available range of source ports {
+    ndd -get /dev/tcp tcp_smallest_anon_port and ndd -get /dev/tcp tcp_largest_anon_port 
+}
+
 route {
     add 10.10.10.0/24 192.168.1.1
 }
@@ -19,4 +27,12 @@ netstat {
 
 ipstat {
     -io
+}
+
+see macs of interfaces {
+    /usr/bin/netstat -pn |grep SP
+}
+
+mtu {
+    dladm set-linkprop -t -p mtu=9000 net0
 }

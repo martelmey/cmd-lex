@@ -5,9 +5,8 @@ read -p "Type username to add: " USER
 which adduser > /dev/null
 if [ $? -gt 0 ]; then
     mkdir -p /export/home/$USER
-    useradd -d /export/home/$USER $USER
     groupadd $USER
-    usermod -G $USER,cgistaff $USER
+    useradd -d /export/home/$USER -G cgistaff,$USER $USER
     chown --recursive $USER:$USER /export/home/$USER
 else
     adduser -m $USER

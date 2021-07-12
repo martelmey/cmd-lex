@@ -1,10 +1,13 @@
 # DBs
-#192.168.60.225:solaris-domain
-#192.168.60.226:solaris-domain
-#192.168.60.215:linux
-#192.168.63.20:solaris-domain
-#192.168.63.21:solaris-domain
-#192.168.63.22:solaris-domain
+192.168.63.20:solaris-domain:db
+192.168.63.21:solaris-domain:db
+192.168.63.22:solaris-domain:db
+192.168.63.31:solaris-domain:db
+192.168.63.32:solaris-domain:db
+192.168.62.25:solaris-domain:db
+192.168.62.26:solaris-domain:db
+192.168.61.25:solaris-domain:db
+192.168.61.26:solaris-domain:db
 # App servers
 192.168.63.40:solaris-domain:app
 192.168.63.41:solaris-domain:app
@@ -22,6 +25,22 @@
 192.168.63.71:solaris-domain:app
 192.168.63.72:solaris-domain:app
 192.168.63.73:solaris-domain:app
+192.168.62.1:solaris-domain:app
+192.168.62.27:solaris-domain:app
+192.168.62.29:solaris-domain:app
+192.168.62.31:solaris-domain:app
+192.168.62.2:solaris-domain:app
+192.168.62.28:solaris-domain:app
+192.168.62.30:solaris-domain:app
+192.168.62.32:solaris-domain:app
+192.168.61.1:solaris-domain:app
+192.168.61.27:solaris-domain:app
+192.168.61.29:solaris-domain:app
+192.168.61.31:solaris-domain:app
+192.168.61.2:solaris-domain:app
+192.168.61.28:solaris-domain:app
+192.168.61.30:solaris-domain:app
+192.168.61.32:solaris-domain:app
 # Dev
 192.168.63.23:solaris-zone:dev
 192.168.63.24:solaris-zone:dev
@@ -72,29 +91,29 @@
 192.168.63.176:solaris-zone:int2
 192.168.63.177:solaris-zone:int2
 # UAT zones
+192.168.63.108:solaris-zone:uat
 192.168.63.109:solaris-zone:uat
 192.168.63.110:solaris-zone:uat
 192.168.63.111:solaris-zone:uat
-192.168.63.112:solaris-zone:uat
+192.168.63.117:solaris-zone:uat
 192.168.63.118:solaris-zone:uat
 192.168.63.119:solaris-zone:uat
 192.168.63.120:solaris-zone:uat
 192.168.63.121:solaris-zone:uat
-192.168.63.122:solaris-zone:uat
+192.168.63.124:solaris-zone:uat
 192.168.63.125:solaris-zone:uat
-192.168.63.126:solaris-zone:uat
 # SAND zones
+192.168.63.104:solaris-zone:sand
 192.168.63.105:solaris-zone:sand
 192.168.63.106:solaris-zone:sand
 192.168.63.107:solaris-zone:sand
-192.168.63.108:solaris-zone:sand
+192.168.63.112:solaris-zone:sand
 192.168.63.113:solaris-zone:sand
 192.168.63.114:solaris-zone:sand
 192.168.63.115:solaris-zone:sand
 192.168.63.116:solaris-zone:sand
-192.168.63.117:solaris-zone:sand
+192.168.63.122:solaris-zone:sand
 192.168.63.123:solaris-zone:sand
-192.168.63.124:solaris-zone:sand
 # BRD zones
 192.168.63.46:solaris-zone:brd
 192.168.63.47:solaris-zone:brd
@@ -138,10 +157,57 @@
 192.168.63.169:solaris-zone:int1
 192.168.63.94:solaris-zone:int1
 192.168.63.170:solaris-zone:int1
+192.168.63.100:solaris-zone:int1
 192.168.63.101:solaris-zone:int1
 192.168.63.171:solaris-zone:int1
 192.168.63.102:solaris-zone:int1
 192.168.63.172:solaris-zone:int1
+# PS
+192.168.62.38:solaris-zone:ps
+192.168.62.40:solaris-zone:ps
+192.168.62.42:solaris-zone:ps
+192.168.62.44:solaris-zone:ps
+192.168.62.46:solaris-zone:ps
+192.168.62.48:solaris-zone:ps
+192.168.62.50:solaris-zone:ps
+192.168.62.52:solaris-zone:ps
+192.168.62.54:solaris-zone:ps
+192.168.62.56:solaris-zone:ps
+192.168.62.58:solaris-zone:ps
+192.168.62.39:solaris-zone:ps
+192.168.62.41:solaris-zone:ps
+192.168.62.43:solaris-zone:ps
+192.168.62.45:solaris-zone:ps
+192.168.62.47:solaris-zone:ps
+192.168.62.49:solaris-zone:ps
+192.168.62.51:solaris-zone:ps
+192.168.62.53:solaris-zone:ps
+192.168.62.55:solaris-zone:ps
+192.168.62.57:solaris-zone:ps
+192.168.62.59:solaris-zone:ps
+# PRD
+192.168.61.38:solaris-zone:prd
+192.168.61.40:solaris-zone:prd
+192.168.61.42:solaris-zone:prd
+192.168.61.44:solaris-zone:prd
+192.168.61.46:solaris-zone:prd
+192.168.61.48:solaris-zone:prd
+192.168.61.50:solaris-zone:prd
+192.168.61.52:solaris-zone:prd
+192.168.61.54:solaris-zone:prd
+192.168.61.56:solaris-zone:prd
+192.168.61.58:solaris-zone:prd
+192.168.61.39:solaris-zone:prd
+192.168.61.41:solaris-zone:prd
+192.168.61.43:solaris-zone:prd
+192.168.61.45:solaris-zone:prd
+192.168.61.47:solaris-zone:prd
+192.168.61.49:solaris-zone:prd
+192.168.61.51:solaris-zone:prd
+192.168.61.53:solaris-zone:prd
+192.168.61.55:solaris-zone:prd
+192.168.61.57:solaris-zone:prd
+192.168.61.59:solaris-zone:prd
 # NP Util containers
 192.168.60.31:linux
 192.168.60.30:linux

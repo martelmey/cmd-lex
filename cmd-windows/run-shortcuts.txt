@@ -22,3 +22,4 @@ logoff
 lusrmgr.msc (local users & groups)
 mmc /a (ms mgmt console)
 psr (problem steps recorder)
+ms-settings:troubleshoot

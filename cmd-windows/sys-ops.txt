@@ -251,6 +251,7 @@ DISM {
     /AcceptEula
     examples {
         # Fix missing Windows Feature sources
+        Dism.exe /online /cleanup-image /scanhealth
         DISM /Online /Cleanup-Image /RestoreHealth
     }
 }
@@ -273,4 +274,8 @@ slmgr.vbs {
 wmic {
     https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wmic
     logicaldisk list brief
+}
+
+sfc {
+    sfc /scannow
 }

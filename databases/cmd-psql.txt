@@ -1,5 +1,6 @@
 Installation directory: /usr/pgsql-10
 DB data directory: /var/lib/pgsql/10/data
+Logs: /var/lib/pgsql/10/data/log
 
 \list \l (list databases)
 \du (list roles & their attributes)
@@ -12,6 +13,11 @@ Connect {
 	psql -U postgres -d postgres (default,global)
 	psql --dbname=cmdbuild --username=cmdbuild
 	psql -U cmdb -d cmdb	
+}
+
+Check service {
+	systemctl status postgresql-10
+	/usr/pgsql-10/bin/pg_ctl status -D /var/lib/pgsql/10/data
 }
 
 Start the server {
@@ -132,10 +138,6 @@ Show settings {
 	show server_encoding;
 	show port;
 	show server_version;	
-}
-
-Check service {
-	systemctl status postgresql-10
 }
 
 Examples {

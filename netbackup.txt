@@ -1,3 +1,5 @@
+https://www.veritas.com/support/en_US/doc/86063237-127664549-0/v109483729-127664549
+
 MSDP = Media Server Deduplication Storage Pool
 	Disk that is attached to a media server where the backups reside and are deduplicated
 AIR = auto image replication (kdc prd <---> cdc prd)
@@ -12,11 +14,34 @@ Unified Archive =
 	https://docs.oracle.com/cd/E37838_01/html/E60984/gmrlo.html
 	Backup of a zone that allows the OS admin to quickly, efficiently restore that zone.
 
+/etc/rc2.d/S77netbackup -> /etc/init.d/netbackup # startup script
+
+level 0 = full backup
+level 1 = differential incremental backup
+
 # Rename policy name:
 /opt/openv/netbackup/bin/admincmd/bppolicynew
 When client is assigned new policy, full backup is done (no longer incremental - no record of backups done)
 
 Standard = Unix
+
+expire images {
+	media {
+		[root@kutlprdnetm01-mgmt:backup_test]# ls
+		kdcprd-cmu-fam2_1625607622_C1_F1.1625607622.img    kdcprd-cmu-fam2_1625607622_C1_HDR.1625607622.img
+		kdcprd-cmu-fam2_1625607622_C1_F1.1625607622.info   kdcprd-cmu-fam2_1625607622_C1_HDR.1625607622.info
+	}
+	master {
+		bpexpdate -backupid kdcprd-cmu-fam2_1625607379 -d 0
+	}
+}
+
+figure out when something was done {
+	root@kutlprdnetb01-mgmt:~# bpexpdate -backupid kdcprd-cmu-fam2_1625607622 -d 0
+	Are you SURE you want to delete kdcprd-cmu-fam2_1625607622 y/n (n)? y
+	root@kutlprdnetb01-mgmt:~# bpdbm -ctime 1625607622
+	1625607622 = Tue Jul 06 21:40:22 2021
+}
 
 # Schedule backup types:
 Differential incremental backup = changes since last backup (lessen backup time)
@@ -27,6 +52,15 @@ User archive = after backup, removed from originating server
 # Schedule types:
 Calendar (better)
 Frequency (worst)
+
+# Services / Processes
+Media:
+bpbrm = sends meta data about the backup to the master server
+bptm = writes the backup data to storage
+Client:
+bpkar
+bpcd = port 13724, once backup request comes in, vnetd hands request over to bpcd. bpcd checks master and media servers are good, checks IPs and hostnames
+vnetd = port 1556, listens for requests from master or media servers (i.e. backup or restore)
 
 # Include/Exclude dates:
 Manual backups ignore exclude lists (schedule it 5 minutes from now, etc.)
@@ -46,12 +80,23 @@ bptestbpcd -client knapp23
 # Client install dir
 /usr/openv/ (Solaris)
 
+Only way to rename policies {
+	bppolicynew <oldname> -renameto <newname>
+}
+
 # CMDs: (bring down media, then master; bring up master, then media)
+nbfindfile
+bpimagelist
+/opt/VRTSpbx/bin/vxpbx_exchanged start
+bptestbpcd -client brt-hial-ohs1
+	192.168.57.54:13724 (bpcd port) (vnet port = 1556)
 bp.kill_all (shutdown)
 	kill -9 1184
-bpps -a (check processes) (shortname: nbpem netbackup-policy-execution-manager) 
+bpps -a (check processes) (shortname: nbpem netbackup-policy-execution-manager)
+	 -x
 bp.start_all (startup)
 bpsetconfig -e exclude_list -h knpapp23 (Push out configs)
+bpgetconfig
 bpplclients -allunique > /tmp/NB_clients
 	 cat /tmp/NB_clients | awk '{print $3}' > /tmp/NB_clients (trim to just hostnames, to use in for loop, to push out exclude_list)
 jnbSA & (send to background)
@@ -114,9 +159,13 @@ Select from backup history
 /usr/openv/netbackup/logs/user_ops
 
 # errors
+13 = the file read failed
 196 = queue is too full start window closed before they could start
 71  = file not found
 50  = client process aborted
+2106 = disk storage server down (is either actually down, or network problem)
+2074 = disk volume down
+99 = ndmp backup failure
 
 # before changing anything on the master server, backup the catalog
 Policies>Catalog_Backup>Manual Backup

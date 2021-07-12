@@ -23,6 +23,9 @@ lxc container {
     -S, --stats
     -H, --no-humanize
     -n, --name=<NAME>
+      examples {
+        lxc-info -pHn kutlnpcmdb01
+      }
   lxc-monitor
   lxc-top
     -d, --delay <delay>

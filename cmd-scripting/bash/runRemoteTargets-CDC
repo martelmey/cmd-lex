@@ -1,0 +1,35 @@
+# DB domains
+192.168.161.25:solaris-domain:db
+192.168.161.26:solaris-domain:db
+# App domains
+192.168.161.1:solaris-domain:app
+192.168.161.2:solaris-domain:app
+192.168.161.27:solaris-domain:app
+192.168.161.29:solaris-domain:app
+192.168.161.31:solaris-domain:app
+192.168.161.28:solaris-domain:app
+192.168.161.30:solaris-domain:app
+192.168.161.32:solaris-domain:app
+# App zones
+192.168.161.42:solaris-zone:cdc
+192.168.161.44:solaris-zone:cdc
+192.168.161.40:solaris-zone:cdc
+192.168.161.38:solaris-zone:cdc
+192.168.161.50:solaris-zone:cdc
+192.168.161.52:solaris-zone:cdc
+192.168.161.54:solaris-zone:cdc
+192.168.161.46:solaris-zone:cdc
+192.168.161.48:solaris-zone:cdc
+192.168.161.58:solaris-zone:cdc
+192.168.161.56:solaris-zone:cdc
+192.168.161.43:solaris-zone:cdc
+192.168.161.41:solaris-zone:cdc
+192.168.161.45:solaris-zone:cdc
+192.168.161.39:solaris-zone:cdc
+192.168.161.47:solaris-zone:cdc
+192.168.161.49:solaris-zone:cdc
+192.168.161.51:solaris-zone:cdc
+192.168.161.55:solaris-zone:cdc
+192.168.161.53:solaris-zone:cdc
+192.168.161.57:solaris-zone:cdc
+192.168.161.59:solaris-zone:cdc

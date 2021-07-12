@@ -39,8 +39,9 @@ SolarWinds Orion {
 		Trapservice.log
 		Syslogservice.log
 	C:\ProgramData\SolarWinds\Logs\Orion
+		ConfigurationWizard.log
 		BusinessLayerHost (plugins)
-	C:\ProgramData\SolarWinds\Logs\high availability	
+	C:\ProgramData\SolarWinds\Logs\high availability
 }
 
 Cron {

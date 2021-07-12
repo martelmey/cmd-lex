@@ -1,0 +1,46 @@
+lxc.network.type {
+     specify  what kind of network virtualization to be used for the container.
+
+    none:  will  cause the container to share the host's network namespace. 
+
+    empty: will create only the loopback interface.
+
+    veth: a virtual ethernet pair device is created with one side assigned to the container and the other side attached  to  a  bridge  specified  by  the
+    lxc.network.link  option.   
+
+    vlan: a vlan interface is linked with the interface specified by the lxc.network.link and assigned to the container. The vlan identifier is  specified
+    with the option lxc.network.vlan.id.
+
+    macvlan:  a  macvlan interface is linked with the interface specified by the lxc.network.link and assigned to the container.  
+
+    phys: an already existing interface specified by the lxc.network.link is assigned to the container.
+ }
+lxc.network.flags {
+    specify an action to do for the network.
+
+    up: activates the interface.    
+}
+lxc.network.link {
+    specify the interface to be used for real network traffic.
+}
+lxc.network.mtu {
+    specify the maximum transfer unit for this interface.
+}
+lxc.network.name {
+    the  interface  name is dynamically allocated, but if another name is needed because the configuration files being used by the container use a generic
+    name, eg. eth0, this option will rename the interface in the container.
+}
+lxc.network.hwaddr {
+    the interface mac address is dynamically allocated by default to the virtual interface, but in some cases, this is needed to  resolve  a  mac  address
+    conflict  or  to  always  have the same link-local ipv6 address.  Any "x" in address will be replaced by random value, this allows setting hwaddr tem‐
+    plates.
+}
+lxc.network.ipv4 {
+    specify the ipv4 address to assign to the virtualized interface. Several lines specify several ipv4 addresses.  The address is  in  format  x.y.z.t/m,
+    eg. 192.168.1.123/24. The broadcast address should be specified on the same line, right after the ipv4 address.
+}
+lxc.network.ipv4.gateway {
+    specify  the ipv4 address to use as the gateway inside the container. The address is in format x.y.z.t, eg.  192.168.1.123.  Can also have the special
+    value auto, which means to take the primary address from the bridge interface (as specified by the lxc.network.link option) and use that as the  gate‐
+    way. auto is only available when using the veth and macvlan network types.
+}

@@ -1,8 +1,18 @@
 swapon{}
 swapoff{}
 
+cal {
+    <year>
+}
+
 tty {
     -s, --silent, --quiet
+
+    end session {
+        w
+        ps -ft <tty>
+        kill -9 <pid>
+    }
 }
 
 chvt {

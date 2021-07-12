@@ -72,6 +72,7 @@ svcprop {
 svcadm {
     refresh network/firewall
     restart svc:/network/ssh:default
+    svc:/application/management/net-snmp:default
 }
 
 svcs {
@@ -145,6 +146,19 @@ zoneadm {
 }
 
 zonecfg {
+    -r # enable live edit
+    -z [-r] <zonename> <subcommand>
+
+    <subcommand> {
+        add <resouce-type> <property-value>
+        cancel
+        clear <property-name>
+        commit [-n] [-q]
+        info <zonename> [-a] [-i | -I] [resource-type [identifier | [property-name=property-value]*]]
+    }
+
+    example# zonecfg -z myzone -r
+    zonecfg:myzone> info
 }
 
 zonename {
