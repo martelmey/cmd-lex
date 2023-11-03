@@ -9,6 +9,25 @@ Get-NetAdapter {
     [<CommonParameters>]
 }
 
+Get-NetFirewallRule {
+    https://learn.microsoft.com/en-us/powershell/module/netsecurity/get-netfirewallrule?view=windowsserver2022-ps
+    [-All]
+    [-PolicyStore <String>]
+    [-TracePolicyStore]
+    [-CimSession <CimSession[]>]
+    [-ThrottleLimit <Int32>]
+    [-AsJob]
+    [<CommonParameters>]
+    
+    -all
+    -policystore
+
+    example {
+        get-netfirewallrule -policystore configurableservicestore -all
+        get-netfirewallrule -all
+    }
+}
+
 Get-NetIPInterface {
     * https://learn.microsoft.com/en-us/powershell/module/nettcpip/get-netipinterface?view=windowsserver2022-ps
 

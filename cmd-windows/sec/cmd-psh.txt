@@ -1,0 +1,31 @@
+Import-Certificate {
+    https://learn.microsoft.com/en-us/troubleshoot/windows-server/windows-security/install-imported-certificates
+    https://www.sonicwall.com/support/knowledge-base/how-can-i-import-certificates-into-the-ms-windows-local-machine-certificate-store/170504615105398/#top
+    https://learn.microsoft.com/en-us/powershell/module/pki/import-certificate?view=windowsserver2022-ps
+
+    [-FilePath] <String>
+    [-CertStoreLocation <String>]
+    [-WhatIf]
+    [-Confirm]
+    [<CommonParameters>]
+
+    examples {
+        # imports the certificate from the file into the root store of the current user
+        $params = @{
+            FilePath = 'C:\Users\Xyz\Desktop\BackupCert.cer'
+            CertStoreLocation = 'Cert:\CurrentUser\Root'
+        }
+        Import-Certificate @params
+
+        # imports the certificate from the file into the current store
+        Set-Location -Path cert:\CurrentUser\My
+        Import-Certificate -Filepath 'C:\files\intermediate.cert'
+
+        # imports the certificate from the file into the root store of the local machine
+        $params = @{
+            FilePath = 'C:\Users\Xyz\Desktop\BackupCert.cer'
+            CertStoreLocation = 'Cert:\LocalMachine\Root'
+        }
+        Import-Certificate @params
+    }
+}

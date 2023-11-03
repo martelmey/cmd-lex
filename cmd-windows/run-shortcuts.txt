@@ -29,3 +29,4 @@ psr (problem steps recorder)
 ms-settings:troubleshoot
 tsconfig.msc (terminal services)
 rundll32 sysdm.cpl,EditEnvironmentVariables (un-priv user edit env vars)
+wf.msc (firewall)
