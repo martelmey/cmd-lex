@@ -1,0 +1,58 @@
+swapon{}
+swapoff{}
+
+se {
+    sestatus (selinux status)
+}
+
+/etc/skel {
+    # defined in /etc/default/useradd
+}
+
+history {
+    -c # clear
+}
+
+cal {
+    <year>
+}
+
+chvt {
+    N
+}
+
+iostat {
+    -c CPU report
+    -d devive report
+    -h easier read
+    -k kb per sec
+    -m mb per sec
+    -t print time
+    -x extended stats
+    examples {
+        -c 2 (2 second intervals)
+    }
+}
+
+free {
+    -m
+    -h
+}
+
+ntpq {
+    -p
+}
+
+ethtool {
+    # manage ethernet devices
+}
+
+listing {
+    ls --human-readable, -h
+        -L, --dereference
+        -R --recursive
+        -S (sort by size)
+        -lH, --dereference-command-line
+        --dereference-command-line-symlink-to-dir
+    ls -l /etc/alternatives/java
+}

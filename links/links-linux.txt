@@ -1,0 +1,73 @@
+###==
+####===
+--------= sec
+####===
+###==
+
+	Linux Password Cracking: Explain unshadow and john Command
+https://www.cyberciti.biz/faq/unix-linux-password-cracking-john-the-ripper/
+	Understanding /etc/shadow file format on Linux
+https://www.cyberciti.biz/faq/understanding-etcshadow-file/
+	Change Password of a user in /etc/shadow
+https://unix.stackexchange.com/questions/76313/change-password-of-a-user-in-etc-shadow
+	Allow An Unprivileged User To Run A Certain Command With Sudo
+https://www.atrixnet.com/allow-an-unprivileged-user-to-run-a-certain-command-with-sudo/
+
+###==
+####===
+--------= vnc / gui
+####===
+###==
+
+	Oracle Linux: Install the VNC Remote Access Server
+https://docs.oracle.com/en/operating-systems/oracle-linux/8/obe-vnc-install/#before-you-begin
+	How To Configure VNC To Run Gnome/KDE Desktop on Oracle Linux
+https://support.oracle.com/knowledge/Oracle%20Linux%20and%20Virtualization/2160543_1.html
+	How To Take Snapshot Of a VM in KVM?
+https://getlabsdone.com/how-to-take-snapshot-of-a-vm-in-kvm/
+
+###==
+####===
+--------= services
+####===
+###==
+
+	Configure NTP client
+https://geek-university.com/linux/configure-ntp-client/
+
+###==
+####===
+--------= virt
+####===
+###==
+
+	KVM startup - permission denied
+https://www.dedoimedo.com/computers/kvm-permission-denied.html
+	How To extend/increase KVM Virtual Machine (VM) disk size
+https://computingforgeeks.com/how-to-extend-increase-kvm-virtual-machine-disk-size/
+	qemu-kvm: could not open disk image ' ': Permission denied
+https://github.com/jedi4ever/veewee/issues/996
+	Access a qcow2 Virtual Disk Image From The Host
+https://www.jamescoyle.net/how-to/1818-access-a-qcow2-virtual-disk-image-from-the-host
+
+###==
+####===
+--------= filesystem
+####===
+###==
+
+	How to extend root filesystem using LVM on Linux
+https://computingforgeeks.com/extending-root-filesystem-using-lvm-linux/
+	The skel directory
+https://www.thegeekdiary.com/understanding-the-etc-skel-directory-in-linux/
+	Correct SSH Directory permissions
+https://linux.uits.uconn.edu/2017/02/27/correct-ssh-directory-permissions/
+
+###==
+####===
+--------= networking
+####===
+###==
+
+	How To Use Netcat to Establish and Test TCP and UDP Connections
+https://www.digitalocean.com/community/tutorials/how-to-use-netcat-to-establish-and-test-tcp-and-udp-connections

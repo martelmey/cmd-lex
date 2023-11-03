@@ -1,0 +1,17 @@
+fix ERROR 25 {
+	# run on master:
+	bptestbpcd -client <client>
+	# port should be 1556
+	# run on client:
+	/usr/openv/netbackup/bin/./bpps -x
+	ssh martel.meyers@192.168.63.43 "sudo /usr/openv/netbackup/bin/./bpps -x"
+	# vnetd, bpcd, pbx should be running
+	# run on client:
+	/opt/VRTSpbx/bin/vxpbx_exchanged start
+	ssh martel.meyers@192.168.63.43 "sudo /opt/VRTSpbx/bin/vxpbx_exchanged start"
+}
+
+fix win ERROR 59 {
+	# add master(s) & media(s) to:
+	Computer\HKEY_LOCAL_MACHINE\SOFTWARE\VERITAS\NetBackup\CurrentVersion\Config
+}

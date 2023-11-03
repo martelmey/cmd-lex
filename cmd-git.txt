@@ -1,0 +1,30 @@
+git {
+	remote
+		-v
+		add {
+			origin <protocol>://<user>@<host>/path/to/repo.git
+		}
+	init {}
+	commit {
+		-m 'message'
+	}
+	push {
+		origin master
+	}
+	branch {}
+	log {}
+	config {
+		--get {
+			core.editor
+		}
+		--list / -l {
+			--show-origin
+		}
+		--global {
+			--list / -l
+			--edit / -e
+		}
+	}
+}
+
+cat ~/git/chalister-local.git/.gitconfig

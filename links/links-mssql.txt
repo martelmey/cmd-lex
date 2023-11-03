@@ -1,0 +1,111 @@
+	Transact-SQL
+https://docs.microsoft.com/en-us/sql/t-sql/language-reference?view=sql-server-ver15
+	Restore a SQL Server BACKUP Using Transact-SQL
+https://www.c-sharpcorner.com/UploadFile/c1f7d5/restore-a-sql-server-backup-using-transact-sql/
+
+	How to fix the “Agent XPs disabled” error
+https://www.sqlshack.com/how-to-fix-the-agent-xps-disabled-error/
+
+	SQL Server Script to Create Windows Directories
+https://www.mssqltips.com/sqlservertip/1460/sql-server-script-to-create-windows-directories/
+
+	Install SQL Server from the Command Prompt
+https://docs.microsoft.com/en-us/sql/database-engine/install-windows/install-sql-server-from-the-command-prompt?view=sql-server-ver15#Install
+
+	Determine the version, edition, and update level of SQL Server and its components
+https://docs.microsoft.com/en-us/troubleshoot/sql/general/determine-version-edition-update-level#determine-which-version-and-edition-of-sql-server-database-engine-is-running
+
+###==
+####===
+--------= agent
+####===
+###==
+
+	Agent Properties
+https://www.sqlserverscience.com/sql-server-agent/agent-properties/
+
+	Select an Account for the SQL Server Agent Service
+https://docs.microsoft.com/en-us/sql/ssms/agent/select-an-account-for-the-sql-server-agent-service?view=sql-server-ver15
+
+	Add Folder Permissions to Virtual Account “NT SERVICE\MSSQLSERVER”
+https://zarez.net/?p=3187
+
+	Giving file system access to the SQLSERVERAGENT virtual account
+https://dba.stackexchange.com/questions/70069/giving-file-system-access-to-the-sqlserveragent-virtual-account#125638
+
+	Configure File System Permissions for Database Engine Access
+https://docs.microsoft.com/en-us/sql/database-engine/configure-windows/configure-file-system-permissions-for-database-engine-access?view=sql-server-ver15
+
+	Configure Windows Service Accounts and Permissions
+https://docs.microsoft.com/en-us/sql/database-engine/configure-windows/configure-windows-service-accounts-and-permissions?view=sql-server-ver15
+
+###==
+####===
+--------= backups
+####===
+###==
+
+	Scheduled Automatic SQL Database Backup using SSMS
+https://blogs.sap.com/2019/11/15/scheduled-automatic-sql-database-backup-using-ssms/
+	Recovery Models (SQL Server)
+https://docs.microsoft.com/en-us/sql/relational-databases/backup-restore/recovery-models-sql-server?view=sql-server-ver15
+
+###==
+####===
+--------= netbackup
+####===
+###==
+
+	Database Files and Filegroups
+https://docs.microsoft.com/en-us/sql/relational-databases/databases/database-files-and-filegroups?redirectedfrom=MSDN&view=sql-server-ver15&viewFallbackFrom=sql-server-ver155-8
+
+###==
+####===
+--------= auto-restore related
+####===
+###==
+
+	Fully automated SQL Server Restore Script
+https://social.technet.microsoft.com/wiki/contents/articles/23800.fully-automated-sql-server-restore-script.aspx
+
+	How to schedule automatically restore sql server database from .bak file in FTP server
+https://social.msdn.microsoft.com/Forums/sqlserver/en-US/080894c3-51d0-4ec9-b35c-d3f17e78a758/how-to-schedule-automatically-restore-sql-server-database-from-bak-file-in-ftp-server
+
+	MS SQL Database Restoration With NORECOVERY Command
+https://www.datarepairtools.com/blog/restore-sql-server-database-with-norecovery/
+
+###==
+####===
+--------= mirroring
+####===
+###==
+
+	Configure SQL Server Database Mirroring Using SSMS
+https://www.mssqltips.com/sqlservertip/2464/configure-sql-server-database-mirroring-using-ssms/
+
+	What is SQL Server database mirroring?
+https://www.sqlshack.com/sql-server-database-mirroring/
+
+###==
+####===
+--------= installation on NFS
+####===
+###==
+
+	Setting up SQL Server in External Drive
+https://social.msdn.microsoft.com/Forums/en-US/92f64bbf-72a7-4ce4-bd49-ac09c4c23334/setting-up-sql-server-in-external-drive
+
+	How do I change the instance root directory?
+https://social.technet.microsoft.com/Forums/sqlserver/en-US/feceb028-be44-44d7-9f7e-647f8b64fcdb/how-do-i-change-the-instance-root-directory
+
+	Change SQL Data Root Directory
+https://www.sqlservercentral.com/forums/topic/change-sql-data-root-directory
+
+###==
+####===
+--------= installation on SMB
+####===
+###==
+
+	Install SQL Server with SMB fileshare storage
+https://docs.microsoft.com/en-us/sql/database-engine/install-windows/install-sql-server-with-smb-fileshare-as-a-storage-option?view=sql-server-ver15

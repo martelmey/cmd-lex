@@ -1,0 +1,55 @@
+HKLM (HKEY_LOCAL_MACHINE)
+HKCU (HKEY_CURRENT_USER)
+
+WSUS {
+    Computer\HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate
+        SetProxyBehaviorForUpdateDetection -Value 0 -PropertyType DWord
+        UpdateServiceUrlAlternate -Value "" -PropertyType String
+        WUServer -Value "http://192.168.*.*:8530" -PropertyType String
+        WUStatusServer -Value "http://192.68.*.*:8530" -PropertyType String
+    Computer\HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU
+        AUOptions -Value 4
+        AllowMUUpdateService -Value 1 -PropertyType DWord
+        AutomaticMaintenanceEnabled -Value 1 -PropertyType DWord
+        NoAutoUpdate -Value 0 -PropertyType DWord
+        ScheduledInstallDay -Value 2 -PropertyType DWord
+        ScheduledInstallFourthWeek -Value 1 -PropertyType DWord
+        ScheduledInstallTime -Value 0 -PropertyType DWord
+        UseWUServer -Value 1 -PropertyType DWord
+}
+
+MS SQL Instances {
+	Computer\HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Microsoft SQL Server
+}
+
+Temp. Profile Fix {
+    Computer\HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\ProfileList
+}
+
+NetBackup {
+    # master & media list
+    Computer\HKEY_LOCAL_MACHINE\SOFTWARE\VERITAS\NetBackup\CurrentVersion\Config
+}
+
+Time {
+    Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\w32time\Parameters" -Name "NtpServer" -Value "192.168.*.*,0x8 192.168.*.*,0x8"
+    Restart-Service w32time
+    w32tm /resync
+}
+
+RDS {
+    "HKLM\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services" LicenseServers -Value "192.168.*.*"
+    "HKLM\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services" LicensingMode -Value 4
+}
+
+Other User's Env Vars {
+    HKEY_USERS\S-1-5-21-754343526-404298208-2692719310-4105\Environment
+}
+
+WinHttpSettings {
+    Computer\HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Internet Settings\Connections
+}
+
+.Net {
+    Computer\HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Full
+}

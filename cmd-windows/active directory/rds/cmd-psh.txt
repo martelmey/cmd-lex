@@ -1,0 +1,106 @@
+New-RDSessionDeployment {
+  https://docs.microsoft.com/en-us/powershell/module/remotedesktop/new-rdsessiondeployment?view=win10-ps
+  [-ConnectionBroker] <String>
+  [-SessionHost] <String[]>
+  [[-WebAccessServer] <String>]
+  [<CommonParameters>]
+}
+
+New-RDSessionCollection {
+  https://docs.microsoft.com/en-us/powershell/module/remotedesktop/new-rdsessioncollection?view=win10-ps
+  [-CollectionName] <String>
+  [-CollectionDescription <String>]
+  -SessionHost <String[]>
+  [-ConnectionBroker <String>]
+  [-PersonalUnmanaged]
+  [-AutoAssignUser]
+  [-GrantAdministrativePrivilege]
+  [<CommonParameters>]
+}
+
+Add-RDSessionHost {
+  https://docs.microsoft.com/en-us/powershell/module/remotedesktop/add-rdsessionhost?view=win10-ps
+  [-CollectionName] <String>
+  -SessionHost <String[]>
+  [-ConnectionBroker <String>]
+  [<CommonParameters>]
+}
+
+Add-RDServer {
+  https://docs.microsoft.com/en-us/powershell/module/remotedesktop/add-rdserver?view=win10-ps
+  [-Server] <String>
+  [-Role] <String>
+  [[-ConnectionBroker] <String>]
+  [[-GatewayExternalFqdn] <String>]
+  [-CreateVirtualSwitch]
+  [<CommonParameters>]
+}
+
+See RDS-related certificates: {
+  Run > certlm.msc
+  Server Manager > RDS > Overview > Edit deployment properties
+}
+
+Invoke-Command {
+    * https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/invoke-command?view=powershell-7.1
+
+    -ComputerName 192.168.60.192
+    -FilePath c:\scripts\test.ps1
+    -ScriptBlock { ipconfig }
+}
+
+Get-RDDeploymentGatewayConfiguration {
+	* https://docs.microsoft.com/en-us/powershell/module/remotedesktop/get-rddeploymentgatewayconfiguration?view=win10-ps
+
+	Get-RDDeploymentGatewayConfiguration
+	[[-ConnectionBroker] <String>]
+	[<CommonParameters>]
+}
+
+Get-RDLicenseConfiguration {
+	* https://docs.microsoft.com/en-us/powershell/module/remotedesktop/get-rdlicenseconfiguration?view=win10-ps
+
+	Get-RDLicenseConfiguration
+   [[-ConnectionBroker] <String>]
+   [<CommonParameters>]
+}
+
+Get-RDServer {
+	* https://docs.microsoft.com/en-us/powershell/module/remotedesktop/get-rdserver?view=win10-ps
+
+   [[-ConnectionBroker] <String>]
+   [[-Role] <String[]>]
+   [<CommonParameters>]	
+}
+
+Get-RDSessionCollection {
+	* https://docs.microsoft.com/en-us/powershell/module/remotedesktop/get-rdsessioncollection?view=win10-ps
+
+   [[-CollectionName] <String>]
+   [-ConnectionBroker <String>]
+   [<CommonParameters>]	
+}
+
+Get-RDSessionCollectionConfiguration {
+	* https://docs.microsoft.com/en-us/powershell/module/remotedesktop/get-rdsessioncollectionconfiguration?view=win10-ps
+
+   [-CollectionName] <String>
+   [-ConnectionBroker <String>]
+   [<CommonParameters>]
+}
+
+Get-RDSessionHost {
+	* https://docs.microsoft.com/en-us/powershell/module/remotedesktop/get-rdsessionhost?view=win10-ps
+
+   [-CollectionName] <String>
+   [-ConnectionBroker <String>]
+   [<CommonParameters>]
+}
+
+Get-RDUserSession {
+	* https://docs.microsoft.com/en-us/powershell/module/remotedesktop/get-rdusersession?view=win10-ps
+
+   [[-CollectionName] <String[]>]
+   [[-ConnectionBroker] <String>]
+   [<CommonParameters>]
+}

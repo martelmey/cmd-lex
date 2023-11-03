@@ -1,0 +1,30 @@
+cut {
+	-f <list> [-d delim] [-s] [file]...
+
+	-d <delim> (field delim, default=tab)
+	-f <list>
+
+	examples {
+		cut -d: -f1,5 /etc/passwd
+		name=$(who am i | cut -f1 -d' ')
+		nbstlutil report | grep "In Process" | cut -f2
+	}
+}
+
+tr {
+	examples {
+		nbstlutil report | grep "To_" | cut -d')' -f2 | tr -s ' ' | cut -d ' ' -f2
+	}
+}
+
+sed {
+	
+	examples {
+		# Delete empty lines from file
+		sed -e '/^\s*$/d' infile > infile.tmp && mv infile.tmp infile
+	}
+}
+
+grep {
+    -v (Prints all lines except those that contain the pattern.)
+}

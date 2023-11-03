@@ -1,0 +1,52 @@
+out-of-band = a separate stream of data from the main data stream
+
+# REPEATERS
+
+# HUBS
+layer 1
+Cisco FastHub 400 series
+Hub = multi-port repeater
+A Wifi network is a hub in the air
+No intelligence
+Traffic is received on one port, and floods it to all other ports
+
+# BRIDGE
+between switch and hub
+learns MAC addresses in software
+
+# SWITCH
+all ports enabled by default
+ports start at 1/0/1
+Catalyst 3560-CG/CX
+Cisco 3750 (2960)
+layer 2
+Switch has intelligence
+Reads the frames received on ethernet
+Uses MAC address table
+Receives and forwards the frames out of the correct ports
+Traffic is received on one port, for a certain MAC, and comes out of the port associated with that MAC only
+Uses hardware Application Specific Integrated Circuits to learn MAC addresses
+can have routing capabilities
+
+# ROUTER
+all ports disabled by default
+ports start at 0/0/0
+Cisco 4321
+layer 3
+1800 series cisco router (4321, 3560cx)
+routes from one IP network to another
+
+# FIREWALL
+in front of or behind the router
+# IDS
+intrusion detection system
+alert only
+sits outside traffic, just receives copies
+# IPS
+intrusion prevention system
+automatically block
+sits inside traffic
+
+# WLAN CONTROLLER
+autonomous AP = no wlan controller
+controls lightweight APs

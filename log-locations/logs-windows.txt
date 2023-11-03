@@ -1,0 +1,2 @@
+# Windows update
+C:\ProgramData\USOShared\Logs

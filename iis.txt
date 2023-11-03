@@ -1,0 +1,4 @@
+w3wp.exe {
+	IIS Manager > KUTLPRDSOLAR01 > Worker Processes # get PID
+								 > Application Pools # stop/start here
+}

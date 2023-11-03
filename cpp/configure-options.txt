@@ -1,0 +1,36 @@
+configure --prefix=/usr/gcc/9 \
+--mandir=/usr/gcc/9/share/man \
+--bindir=/usr/gcc/9/bin \
+--sbindir=/usr/gcc/9/sbin \
+--libdir=/usr/gcc/9/lib \
+--infodir=/usr/gcc/9/share/info \
+--libexecdir=/usr/gcc/9/lib \
+--enable-languages=c,c++,fortran,go,objc \
+--enable-shared \
+--enable-initfini-array \
+--disable-rpath \
+--with-system-zlib \
+--with-build-config=no \
+--with-gmp-include=/usr/include \
+--with-mpfr-include=/usr/include \
+--without-gnu-ld \
+--with-ld=/usr/bin/ld \
+--with-gnu-as \
+--with-as=/usr/gnu/bin/as \
+--disable-bootstrap 'BOOT_CFLAGS=-g -O2' x86_64-pc-solaris2.11
+
+configure:4592: gcc -V >&5
+gcc: error: unrecognized command line option '-V'
+gcc: fatal error: no input files
+compilation terminated.
+configure:4603: $? = 1
+configure:4592: gcc -qversion >&5
+gcc: error: unrecognized command line option '-qversion'; did you mean '--version'?
+
+ld: fatal: library -lgcc: not found
+
+CC='gcc'
+CCDEPMODE=''
+CFLAGS=''
+GNULIB_*=''
+POD2MAN=''

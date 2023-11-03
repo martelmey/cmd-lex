@@ -1,0 +1,14 @@
+USE {
+	https://docs.microsoft.com/en-us/sql/t-sql/language-elements/use-transact-sql?view=sql-server-ver15
+	Changes the database context to the specified database or database snapshot in SQL Server.
+
+	USE { database_name }   
+	[;]  
+}
+
+GO {
+	https://docs.microsoft.com/en-us/sql/t-sql/language-elements/sql-server-utilities-statements-go?view=sql-server-ver15
+	GO signals the end of a batch of Transact-SQL statements to the SQL Server utilities.
+
+	GO [count]
+}

@@ -1,0 +1,4 @@
+rollover cables
+rj45
+db9 serial
+rs-232 serial (alt. to ethernet)

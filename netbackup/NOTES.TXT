@@ -1,0 +1,158 @@
+ports {
+	443 web interface port
+	13724 bpcd
+	1556 vnet
+	902 vmware
+}
+
+scripts {
+	# startup
+	/etc/rc2.d/S77netbackup -> /etc/init.d/netbackup 
+}
+
+windows registry {
+	# master & media list
+	Computer\HKEY_LOCAL_MACHINE\SOFTWARE\VERITAS\NetBackup\CurrentVersion\Config
+}
+
+confs {
+	bp.conf {
+		# config master & media servers
+
+		SERVER = kutlnpnetb01-mgmt, 
+		CLIENT_NAME = kutlprdhwu21
+		CONNECT_OPTIONS = localhost 1 0 2
+
+		examples {
+			fix error 59 by adding SERVER = lines
+		}
+	}
+	pd.conf {
+		/usr/openv/lib/ost-plugins/ # unix
+		C:\Program Files\Veritas\NetBackup\bin\ost-plugins\pd.conf # win
+
+		FP_CACHE_CLIENT_POLICY = clienthostmachine,backuppolicy,date
+		date = when to stop using these fingerprints mm/dd/yyyy
+	}
+	contentrouter.cfg {
+		# server-side rebasing config
+		RebaseMinContainers default 3
+		RebaseScatterThreshold default 1MB
+	}
+	tpconfig {
+		/usr/openv/volmgr/bin/tpconfig
+
+		examples {
+			tpconfig -add -application_server nm1.vrts.edu.lab -application_server_user_id mxana -application_type hadoop -requiredport 9870 -password P@ssw0rd
+		}
+	}
+}
+
+dirs {
+	client install {
+		/usr/openv
+		/usr/openv/pdde/pdcr/bin
+		/msdpcat/databases/catalog/2
+	}
+}
+
+terms {
+	MSDP {
+		Media Server Deduplication Storage Pool
+		Disk that is attached to a media server where the backups reside and are deduplicated
+	}
+	AIR {
+		auto image replication
+		Backup images are replicated to another NetBackup domain to provide a 2nd copy of a backup.
+	}
+	Domain {
+		Each Master server is a domain.
+	}
+	SLP {
+		Storage Lifecycle Policies
+		Manages lifecyle of backups which can include copying backups to tape and using AIR to replicate to another domain.
+	}
+	NDMP {
+		Network Data Management Protocol
+		Used on NAS (network attached storage) devices for communication with backup software & devices.
+	}
+	UAR {
+		Unified Archive
+		https://docs.oracle.com/cd/E37838_01/html/E60984/gmrlo.html
+		Backup of a zone that allows the OS admin to quickly, efficiently restore that zone.
+	}
+	EEB {
+		emergency engineering binary
+	}
+	SLO {
+		service level objective (protection plan)
+	}
+	tape-out (duplicating from msdp to tape)
+}
+
+policy types {
+	Standard = Linux
+}
+
+errors {
+	2 = none of the requested files were backed up
+	13 = the file read failed
+	23 = socket read failure
+	25 = cannot connect on socket
+	50  = client process aborted
+	58 = can't connect on socket / can't connect to client (potential firewall blockage)
+	59 = access to the client was not allowed
+	62 = timer expired
+	71  = file not found
+	87 = media close error
+	99 = ndmp backup failure
+	150 = termination requested by admin
+	156 = snapshot error encountered
+	191 = no images were successfully processed
+	196 = queue is too full start window closed before they could start
+		- waiting for too many to finish
+		- msdp pool was full
+		- msdp pool is broken
+	2074 = disk volume down
+	2106 = disk storage server down (is either actually down, or network problem)
+	7647 = proxy peer does not conform to proxy protocol
+}
+
+# 1 delay = .015 seconds
+delayed (123955 times * .015) / 60 = minutes wasted
+
+# Include/Exclude dates:
+Manual backups ignore exclude lists (schedule it 5 minutes from now, etc.)
+
+# Old names
+Backup Plus
+Open Vision
+
+# netbackup blackouts
+only on tuesdays, wednesdays, thursdays 8am-7pm
+
+#KMS database contents
+KMS_DATA.dat
+KMS_KPKF.dat
+KMS_HMKF.dat
+
+#normal restore
+storage server rehydrates data
+least busy media server is chosen to move data to client
+media server must have credentials for msdp deduplication engine
+media server bptm process moves data to client
+
+#client-direct restore
+causes restore data to bypass the media server & bptm
+msdp data is sent directly to the client for rehydration
+allows decryption and decompression to be performed by either the storage server or the client
+recommended if doing lots of restores
+
+# windows permissions
+NetBackup Client Service | Running | Automatic | .\Administrator
+NetBackup Deduplication  | Manual              | Local System
+NetBackup Discovery      | Running | Automatic | .\Administrator
+NetBackup Legacy Client  | Running | Automatic | .\Administrator
+NetBackup Legacy Network | Running | Automatic | .\Administrator
+NetBackup Proxy Service  | Manual              | .\Administrator
+NetBackup SAN Client     | Disabled            | .\Administrator

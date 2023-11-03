@@ -1,0 +1,25 @@
+java {
+	-version
+}
+
+jar {
+	-xvf *.war
+	-version
+}
+
+javac {
+	-version
+}
+
+mvn {
+	validate # within project dir
+
+	examples {
+		-o -DskipTests=true clean package
+		-o -Dtest=STTC01Test#scenarioShowEnv test
+		-o -Dtest=LmcTest#exportDeltaFiles test
+		-o -DvalidateSource=n -Dtest=LmcTest#exportDeltaFiles test
+		-o -Dtest=LmcTest#LmcBatteries test
+		-DvalidateSource=n -Dtest=LmcTest#LmcBatteries test
+	}
+}

@@ -1,0 +1,60 @@
+NB Management > Host properties {
+	Retention Periods
+	Global Attributes {
+		Maximum jobs per client: default is 1, increase to 20
+	}
+	Servers {
+		Add other GUI servers (cutlmgtops01)
+	}
+	Media {
+		if we get tape, allow all media overwrite options
+		just in case tapes come pre-formatted, we can overwrite
+	}
+	Timeouts {
+		you can increase for troubleshooting
+	}
+	Client Attributes {
+		click client, then offline backups until: to temporarily pause backups for that host
+	}
+	Logging {
+		increase debug level here for troubleshooting / support cases
+		may require a reboot of affected services
+	}
+	Resource Limit {
+		play in here once we get vmware
+		otherwise will backup all the guests at once, cause crash
+	}
+	SLP Parameter {
+		Pending AIR import threshold = keep at 24 hours
+		Maximum size per AIR replication job = keep at 100GB
+		It's like waiting to fill the dishwasher before starting
+	}
+}
+
+Storage > Storage Lifecycle Policies
+# for moving data around
+Add Backup task, Add Replication task
+
+Storage > Catalog
+	Action: Verify
+see dedupe ratios falling: go back in time to see if anything is wrong with the msdp pool
+Verify will go and read that disk, and pretend to do a restore to verify if a restore is possible
+	Action: Import
+If data is written to tape, and is expired, it is not deleted from tape, only deleted from database, unless tape is overwritten
+You could import the un-deleted but expired info back into the database, and then restore, but write-lock the tape first
+The imported data will have its original retention period restored
+When netbackup expires data on disk (image clean), info in database is expired, and then is deleted from disk
+You have 12 hours from the point of expiry to the point of image clean, to re-import the expired data to the database
+2 phases to an import
+press initialize import button
+image type: disk
+disk type: pure disk
+will check to see if there is anything that CAN be imported
+	Action: Duplication
+Replication: take a backup in one domain, and replicate to another domain
+Duplication: stays within a domain (example: copy from disk to tape, or between pools within same domain)
+When duplicating you will probably set up a SLP (storage lifecycle policy)
+example: upon replicating, it can then be duplicated
+can differentiate between copy #s, and the 'primary' copy
+'primary' is the one nb will use for a restore, any # could be the copy
+phase 1 initialization info will remain in the database for 1 week, for you to import

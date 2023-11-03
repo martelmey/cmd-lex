@@ -1,0 +1,20 @@
+serviceclass/host 
+serviceclass/host:port servicename
+
+HTTP/www.contoso.com
+    Any page on the Web site on the default TCP port 80 for http://www.contoso.com/
+HTTP/www.contoso.com:8080
+    Any page on the Web site on the non-standard TCP port 8080 for http://www.contoso.com
+HOST/WORKSTATION5
+    Any service running on the computer with NetBIOS name WORKSTATION5
+HOST/SERVER7.contoso.com
+    Any service running on the computer with hostname SERVER7.contoso.com
+TERMSRV/FRONTRM.contoso.com
+    Remote Desktop Protocol (RDP) service running on the computer with hostname FRONTRM.contoso.com 
+MSSQLSvc/SQLSERVER2.fabrikam.com:1433
+    SQL Server listening on SQLSERVER2.fabrikam.com, port 1433
+cifs/KHWIN7.fabrikam.com
+    The file share on the computer with hostname KHWIN7.fabrikam.com
+
+RPC interface GUIDs:
+DRS = E3514235-4B06-11D1-AB04-00C04FC2DCD2

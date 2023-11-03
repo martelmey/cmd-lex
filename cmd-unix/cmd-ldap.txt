@@ -1,0 +1,20 @@
+ldapsearch {
+		-n (dry run, useful w/ -v)
+		-v (verbose)
+		-c (continue, no exit on errors, useful w/ -f)
+		-u (include user-friendly name of DN)
+		-t (writes non-printable values to set of temp files)
+		-tt (write all values to files)
+		-T (write temp files to this <path>)
+		-A (attributes only, no values)
+		-b (use <searchbase> as starting point for search)
+		-f (read file, perform ldap search per line)
+		-x (use simple authentication, not SASL)
+		-W (prompt simple authentication)
+		-w (use password for simple authentication)
+		-y (use password file for simple authentication)
+
+		examples {
+			ldapsearch -x -b "uid=test.user,ou=people,dc=health,dc=local" -h ldap1.kdc.health.local
+		}
+}

@@ -1,0 +1,12 @@
+# IPython
+	https://ipython.org/
+	REPL model (Read-Eval-Print-Loop)
+
+# Anaconda
+	https://www.anaconda.com/products/individual
+
+A module is a collection of Python declarations intended broadly to be used as a tool. Modules are also often referred to as “libraries” or “packages” — a package is really a directory that holds a collection of modules.
+from module_name import object_name
+
+Notice that when we want to invoke the randint() function we call random.randint(). This is default behavior where Python offers a namespace for the module. A namespace isolates the functions, classes, and variables defined in the module from the code in the file doing the importing. Your local namespace, meanwhile, is where your code is run.
+import module_name as name_you_pick_for_the_module

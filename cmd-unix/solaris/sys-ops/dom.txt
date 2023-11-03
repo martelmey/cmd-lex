@@ -1,0 +1,69 @@
+ldm {
+    stop-domain
+    start-domain
+    list-domain
+    -a, --all
+    -d, --domain
+
+    examples {
+            # access ldom console via cdom
+        telnet localhost 5001
+            # see console settings of ldom
+        ldm list -o console ldom01
+            # shut down, start up
+        ldm stop <dom>
+        ldm unbind-domain <dom>
+        ldm start <dom>
+        ldm bind-domain <dom>
+    }
+}
+
+zoneadm {
+    -z <zone_name>
+
+    attach
+    boot
+    clone
+    detach
+    halt
+    install
+        -a <unified_archive>
+        -z <archived_zone>
+    list
+        -c all configured zones
+        -i all installed zones
+        -p parseable output
+        -v verbose
+    reboot
+    shutdown
+    suspend
+}
+
+zonecfg {
+    -r # enable live edit
+    -z [-r] <zonename> <subcommand>
+    -f <command_file> # file of zonecfg subcmds
+
+    <subcommand> {
+        add <resouce-type> <property-value>
+        cancel
+        clear <property-name>
+        commit [-n] [-q]
+        info <zonename> [-a] [-i | -I] [resource-type [identifier | [property-name=property-value]*]]
+    }
+
+    examples {
+        zonecfg -z myzone -r
+        zonecfg:myzone> info
+        zonecfg -z np-comsrv1 -f /var/tmp/zonebkps/np-comsrv1-config.txt
+    } 
+    
+}
+
+zonename {
+    Print name of current zone
+}
+
+zonestat {
+    
+}

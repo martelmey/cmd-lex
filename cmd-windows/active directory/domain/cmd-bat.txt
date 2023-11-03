@@ -1,0 +1,131 @@
+klist {
+    https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/klist
+
+    klist [-lh <logonID.highpart>] [-li <logonID.lowpart>]
+        tickets
+        tgt
+        purge
+        sessions
+        kcd_cache
+        get
+        add_bind
+        query_bind
+        purge_bind
+
+    examples {
+        # view tickets
+        klist tickets
+        # purge queue
+        klist purge
+    }
+}
+
+dcdiag {
+    /v
+    /test:
+        NCSecDesc
+        NCSecDes
+        MachineAccount
+        checksecurityerror
+}
+
+dsquery {
+    https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/cc732952(v=ws.11)
+
+    dsquery <object>
+
+    server {
+        -hasfsmo <fsmo>
+    }
+    computer
+    user
+    ou
+    
+    examples {
+        # list all OUs in domain
+        dsquery ou dc=sws,dc=health,dc=local (or domainroot, or dc=cp)
+        # list users in given OU
+        dsquery user "ou=PLIS Users,dc=sws,dc=health,dc=local"
+        dsquery user cn=users,dc=sws,dc=health,dc=local (default user OU)
+        # list all domain controllers
+        dsquery server
+        # show fsmo roles of domain controllers
+        dsquery server -hasfsmo schema
+    }
+}
+
+dsget {
+    https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-R2-and-2012/cc755162(v=ws.11)
+
+    -dn display distinguished names of servers
+    -desc display description of servers
+    -dnsname display DNS hostnames of servers
+    -site display sitename to which servers belong
+    -isgc display whether server is a global catalog server
+    -l display entries in a list
+
+    # see all domain controllers, so their DNS host and site names
+    dsquery server -domain sws.health.local | dsget server -dnsname -site
+    # is domain controller a global catalog server
+    dsget server CN=cutlprddc01,CN=Servers,CN=CDC,CN=Sites,CN=configuration,DC=sws,DC=health,DC=local -isgc
+    # show distinguished names of directory partitions on domain controller
+    dsget server CN=cutlprddc01,CN=Servers,CN=CDC,CN=Sites,CN=configuration,DC=sws,DC=health,DC=local -part
+    # show top 5 SPNs that own the most objects on the domain controller
+    dsget server CN=cutlprddc01,CN=widgets,DC=sws,dc=health,dc=local -topobjowner 5
+}
+
+netdom {
+
+    examples {
+        # show fsmo roles
+        netdom query fsmo
+    }
+}
+
+nltest {
+    https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-R2-and-2012/cc731935(v=ws.11)
+
+    nltest [/server:<servername>] [<operation>[<parameter>]
+
+    examples {
+        nltest /dclist:sws.health.local
+        nltest /user:"test.user"
+        * Verify trust relationship with a specific server
+        nltest.exe /server:kutlprddc01.sws.health.local /sc_query:sws.health.local
+        nltest /domain_trusts
+        nltest /dsgetdc:[sws.health.local]
+    }
+}
+
+ntdsutil {
+    
+}
+
+repadmin {
+    /showrepl
+    /replsum
+}
+
+setspn {
+    # syntax 1
+    https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-R2-and-2012/cc731241(v=ws.11)
+    # syntax 2
+    https://social.technet.microsoft.com/wiki/contents/articles/717.service-principal-names-spn-setspn-syntax.aspx
+    # troubleshoot 1
+    https://learn.microsoft.com/en-us/troubleshoot/windows-server/windows-security/kerberos-event-4-access-denied
+
+    # edit mode switches:
+    -L <hostname> # list registrations for host
+    -s <serviceclass>/<host>:<portnumber> <servicename> # check for duplicates before setting
+    -r <hostname> # reset default SPN registrations
+    -d <SPN> <accountname> # delete specified SPN
+    # modifiers:
+    -C # specify accountname is a computer account
+    -U # specify accountname is a user account
+
+    # query mode switches:
+    -Q # query for existence of spn
+    -X # search for duplicate PNs
+    # modifiers:
+    -F # perform queries at forest level, not domain-level
+}

@@ -1,0 +1,84 @@
+Fingerprinting {
+	Which ports on a network are listening, and whether any devices such as firewalls are intermediate to the sender & receiver.
+}
+
+Vulnerability Management Lifecycle {
+	1. Discovery
+		- Nmap
+	2. Prioritization
+	3. Assessment
+		- Nessus / Nexpose
+		- Open VAS
+	4. Reporting
+	5. Remediation
+	6. Verification
+}
+
+OpenVAS (Open Vulnerability Assessment System) {
+	https://openvas.org/
+	Framework of tools & services for vulnerability scanning & management systems.
+	Search of networked devices, accessible ports ad services.
+	Competitor to Nexpose and Nessus.
+	Engine: Network Vulnerability Tests (NVT)
+
+	OpenVAS Manager
+		* Manager of the processes
+		* Controls the scanner using OpenVAS Transfer Protocol (OTP) and OpenVAS Managemet Protocols (OMP)
+		* Schedules scans, manages report generation
+		* Runs on a SQL DB where results are stored
+
+	Greenbone Security Manager (GSM) GUI alternative:
+	Greenbone Security Assistant
+}
+
+CVSS (Common Vulnerability Scoring System)
+
+NVD (National Vulnerability Database) {
+	Quantitative analysis of vulnerabilities based on:
+		* Access vector
+		* Complexity
+		* Authentication
+		* Impact to confidentiality, integrity, & availability
+	Scored 0 to 10
+		* 0 None
+		* 0.1-3.9 Low
+		* 4.0-6.9 Medium
+		* 7.0-8.9 High
+		* 9.0-10 Critical
+}
+
+Socket/Endpoint
+
+Ports {
+	0-65535 (total)
+	0-1023 (well-known)
+
+	Open: App actively listening
+	Closed: Probe received, no app listening
+	Filtered: Unknown, probe dropped
+	Unfiltered: Accessible, can't discern
+	Open/Filtered: No state established
+	Closed/Filtered: Unable to discern anything
+
+	Scans {
+		Vanilla {
+			All 65536, easily detectable
+		}
+		SYN {
+			Sends a SYN, doesn't wait for response. Faster.
+			-sS
+		}
+		Strobe {
+			Selective attempts to connect t select ports, < 20.
+		}
+		Stealth {
+
+		}
+		FTP Bounce {
+
+		}
+		XMAS {
+
+		}
+	}
+}

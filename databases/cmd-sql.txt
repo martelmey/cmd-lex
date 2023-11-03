@@ -1,0 +1,33 @@
+https://www.sqltutorial.org/sql-cheat-sheet/
+https://www.sqltutorial.org/sql-syntax/
+
+=== LA DB ===
+SELECT table_name FROM all_tables;
+SELECT * FROM LA_ALERT_TRANSACTION_STATE;
+
+=== ORION DB ===
+SELECT Details FROM dbo.OrionServers;
+
+UPDATE dbo.OrionServers
+SET FQDN = 'kutlprdsolar01.sws.kdc.health.local'
+WHERE FQDN = 'kutlprdsolar01';
+
+[{"HotfixVersionNumber":1,"Name":"Orion Platform","ShortName":"Orion","Version":"2020.2"},
+{"HotfixVersionNumber":null,"Name":"Network Configuration Manager","ShortName":"NCM","Version":"2020.2"},
+{"HotfixVersionNumber":null,"Name":"Cloud Monitoring","ShortName":"CloudMonitoring","Version":"2020.2.0"},
+{"HotfixVersionNumber":1,"Name":"Network Performance Monitor","ShortName":"NPM","Version":"2020.2"},
+{"HotfixVersionNumber":1,"Name":"Log Analyzer","ShortName":"LA","Version":"2020.2"},
+{"HotfixVersionNumber":null,"Name":"Quality of Experience","ShortName":"QoE","Version":"2.8"},
+{"HotfixVersionNumber":1,"Name":"NetFlow Traffic Analyzer","ShortName":"NTA","Version":"2020.2"},
+{"HotfixVersionNumber":null,"Name":"Virtual Infrastructure Monitor","ShortName":"VMAN","Version":"2020.2"},
+{"HotfixVersionNumber":null,"Name":"NetPath","ShortName":"NetPath","Version":"2020.2"}]
+
+[{"HotfixVersionNumber":1,"Name":"Orion Platform","ShortName":"Orion","Version":"2020.2"},
+{"HotfixVersionNumber":null,"Name":"Network Configuration Manager","ShortName":"NCM","Version":"2020.2"},
+{"HotfixVersionNumber":null,"Name":"Cloud Monitoring","ShortName":"CloudMonitoring","Version":"2020.2.1"},
+{"HotfixVersionNumber":1,"Name":"Network Performance Monitor","ShortName":"NPM","Version":"2020.2"},
+{"HotfixVersionNumber":1,"Name":"Log Analyzer","ShortName":"LA","Version":"2020.2"},
+{"HotfixVersionNumber":null,"Name":"Quality of Experience","ShortName":"QoE","Version":"2.8"},
+{"HotfixVersionNumber":1,"Name":"NetFlow Traffic Analyzer","ShortName":"NTA","Version":"2020.2"},
+{"HotfixVersionNumber":null,"Name":"Virtual Infrastructure Monitor","ShortName":"VMAN","Version":"2020.2"},
+{"HotfixVersionNumber":null,"Name":"NetPath","ShortName":"NetPath","Version":"2020.2"}]

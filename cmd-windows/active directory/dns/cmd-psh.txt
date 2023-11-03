@@ -1,0 +1,22 @@
+Add-DnsServerPrimaryZone {
+    https://docs.microsoft.com/en-us/powershell/module/dnsserver/add-dnsserverprimaryzone?view=win10-ps
+    -NetworkId "192.168.60.0/24"
+    -ReplicationScope Domain
+    -DynamicUpdate NonsecureAndSecure
+    -PassThru
+}
+
+Set-DnsServerScavenging {
+    -ScavengingState $true
+    -RefreshInterval 7.00:00:00
+    -NoRefreshInterval 7.00:00:00
+    -ApplyOnAllZones
+}
+
+Sync-DnsServerZone {
+    -passthru
+}
+
+Get-DnsServer {
+    https://docs.microsoft.com/en-us/powershell/module/dnsserver/get-dnsserver?view=win10-ps
+}

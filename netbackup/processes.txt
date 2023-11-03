@@ -1,0 +1,16 @@
+# Media:
+bpbrm = sends meta data about the backup to the master server
+bptm = writes the backup data to storage
+
+# Client:
+bpkar
+bpcd = port 13724, once backup request comes in, vnetd hands request over to bpcd. bpcd checks master and media servers are good, checks IPs and hostnames
+vnetd = port 1556, listens for requests from master or media servers (i.e. backup or restore)
+
+# Explanations:
+nbpem asks bpdm if there's jobs to run
+nbpem goes through nbproxy to talk to bpdm
+when you create a backup, you create an image; find out what the catalog's backup id is using bpimagelist(id=kutlprdnetb01-mgmt_1620328915)
+expire image
+
+nbkms

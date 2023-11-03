@@ -1,0 +1,17 @@
+Class
+Blueprint for a house
+
+Instance
+Each house you build is an instance / object
+
+Reference
+Each house has an address, or reference
+Can copy as much as you like, still referring to same house
+
+Value Types
+are primitive types
+holds values
+
+Reference Types
+holds references
+such as arrays

@@ -1,0 +1,55 @@
+┌──(root💀PEATT-KL)-[~/miniconda3/bin]
+└─# ./conda install pybind11 -c conda-forge
+Collecting package metadata (current_repodata.json): done
+Solving environment: done
+
+## Package Plan ##
+
+  environment location: /root/miniconda3
+
+  added / updated specs:
+    - pybind11
+
+
+The following packages will be downloaded:
+
+    package                    |            build
+    ---------------------------|-----------------
+    ca-certificates-2020.12.5  |       ha878542_0         137 KB  conda-forge
+    certifi-2020.12.5          |   py38h578d9bd_1         143 KB  conda-forge
+    conda-4.9.2                |   py38h578d9bd_0         3.0 MB  conda-forge
+    openssl-1.1.1i             |       h27cfd23_0         2.5 MB
+    pybind11-2.6.1             |   py38h82cb98a_0         220 KB  conda-forge
+    python_abi-3.8             |           1_cp38           4 KB  conda-forge
+    ------------------------------------------------------------
+                                           Total:         6.1 MB
+
+The following NEW packages will be INSTALLED:
+
+  pybind11           conda-forge/linux-64::pybind11-2.6.1-py38h82cb98a_0
+  python_abi         conda-forge/linux-64::python_abi-3.8-1_cp38
+
+The following packages will be UPDATED:
+
+  ca-certificates    pkgs/main::ca-certificates-2020.10.14~ --> conda-forge::ca-certificates-2020.12.5-ha878542_0
+  certifi            pkgs/main/noarch::certifi-2020.6.20-p~ --> conda-forge/linux-64::certifi-2020.12.5-py38h578d9bd_1
+  openssl                                 1.1.1h-h7b6447c_0 --> 1.1.1i-h27cfd23_0
+
+The following packages will be SUPERSEDED by a higher-priority channel:
+
+  conda               pkgs/main::conda-4.9.2-py38h06a4308_0 --> conda-forge::conda-4.9.2-py38h578d9bd_0
+
+
+Proceed ([y]/n)? y
+
+
+Downloading and Extracting Packages
+certifi-2020.12.5    | 143 KB    | ########################################################################################### | 100% 
+openssl-1.1.1i       | 2.5 MB    | ########################################################################################### | 100% 
+ca-certificates-2020 | 137 KB    | ########################################################################################### | 100% 
+conda-4.9.2          | 3.0 MB    | ########################################################################################### | 100% 
+pybind11-2.6.1       | 220 KB    | ########################################################################################### | 100% 
+python_abi-3.8       | 4 KB      | ########################################################################################### | 100% 
+Preparing transaction: done
+Verifying transaction: done
+Executing transaction: done

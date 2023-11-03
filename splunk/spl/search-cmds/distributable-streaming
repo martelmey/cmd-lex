@@ -1,0 +1,366 @@
+| eval {
+	* https://docs.splunk.com/Documentation/Splunk/8.1.0/SearchReference/Eval
+	* The stats command calculates statistics based on fields in your events. The eval command creates new fields in your events by using existing fields and an arbitrary expression.
+	<SYNTAX>
+
+		eval <field>=<expression>["," <field>=<expression>]...
+
+		<field>
+			Syntax: <string>
+			Description: A destination field name for the resulting calculated value. If the field name already exists in your events, eval overwrites the value.
+		<expression>
+			Syntax: <string>
+			Description: A combination of values, variables, operators, and functions that will be executed to determine the value to place in your destination field.
+	<EXAMPLES>
+		* Create a new field that contains the result of a calculation
+		... | eval velocity=distance/time
+
+		* Use the if function to analyze field values
+		... | eval error = if(status == 200, "OK", "Problem")
+
+		* Convert values to lowercase
+		... | eval 'low-user' = lower(username)
+
+		* Use the value of one field as the name for a new field
+		index=perfmon sourcetype=Perfmon* counter=* Value=*
+		| eval {counter} = Value
+
+		* Set sum_of_areas to be the sum of the areas of two circles
+		... | eval sum_of_areas = pi() * pow(radius_a, 2) + pi() * pow(radius_b, 2)
+
+		* Set status to some simple http error codes
+		... | eval error_msg = case(error == 404, "Not found", error == 500, "Internal Server Error", error == 200, "OK")
+
+		* Concatenate values from two fields
+		... | eval full_name = first_name." ".last_name
+
+		* Coalesce a field from two different source types, create a transaction of events
+		sourcetype=A OR sourcetype=B
+		| eval phone=coalesce(number,subscriberNumber)
+		| transaction phone maxspan=2m
+
+		* Separate events into categories, count and display minimum and maximum values
+		source=all_month.csv
+		| eval Description=case(depth<=70, "Shallow", depth>70 AND depth<=300, "Mid", depth>300, "Deep")
+		| stats count min(mag) max(mag) by Description
+
+		* Find IP addresses and categorize by network using eval functions cidrmatch and if
+		sourcetype=access_*
+		| eval network=if(cidrmatch("182.236.164.11/16", clientip), "local", "other")
+
+		* Extract information from an event into a separate field, create a multivalue field
+		sourcetype="cisco:esa" mailfrom=*
+		| eval accountname=split(mailfrom,"@"), from_user=mvindex(accountname,0), from_domain=mvindex(accountname,-1)
+		| table mailfrom, from_user, from_domain
+}
+
+| makemv {
+	* https://docs.splunk.com/Documentation/Splunk/8.1.0/SearchReference/Makemv
+	* Converts a single valued field into a multivalue field by splitting the values on a simple string delimiter. The delimiter can be a multicharacter delimiter. Alternatively, splits field by using a regex.
+	<SYNTAX>
+
+		makemv [delim=<string> | tokenizer=<string>] [allowempty=<bool>] [setsv=<bool>] <field>
+
+		<field>
+			Syntax: <field>
+			Description: Specify the name of a field.
+		<delim>
+			Syntax: delim=<string>
+			Description: A string value used as a delimiter. Splits the values in field on every occurrence of this string.
+			Default: A single space (" ").
+		<tokenizer>
+			Syntax: tokenizer=<string>
+			Description: A regex, with a capturing group, that is repeat-matched against the text of field. For each match, the first capturing group is used as a value of the newly created multivalue field.
+		<allowempty>
+			Syntax: allowempty=<bool>
+			Description: Specifies whether to permit empty string values in the multivalue field. When using delim=true, repeats of the delimiter string produce empty string values in the multivalue field. For example if delim="," and field="a,,b", by default does not produce any value for the empty string. When using the tokenizer argument, zero length matches produce empty string values. By default they produce no values.
+			Default: false
+		<setsv>
+			Syntax: setsv=<bool>
+			Description: If true, the makemv command combines the decided values of the field into a single value, which is set on the same field. (The simultaneous existence of a multivalue and a single value for the same field is a problematic aspect of this flag.)
+			Default: false
+	<EXAMPLES>
+		* Use a comma to separate field values
+		eventtype="sendmail"
+		| makemv delim="," senders
+		| top senders
+
+		* Use a colon delimiter and allow empty values
+		... | makemv delim=":" allowempty=true foo
+
+		* Use a regular expression to separate values
+		| makeresults
+		| eval my_multival="one,two,three"
+		| makemv tokenizer="([^,]+),?" my_multival
+}
+
+| mvexpand {
+	* https://docs.splunk.com/Documentation/Splunk/8.1.0/SearchReference/Mvexpand
+	* Expands the values of a multivalue field into separate events, one event for each value in the multivalue field. For each result, the mvexpand command creates a new result for every multivalue field.
+	<SYNTAX>
+
+		mvexpand <field> [limit=<int>]
+
+		<field>
+			Syntax: <field>
+			Description: The name of a multivalue field.
+		<limit>
+			Syntax: limit=<int>
+			Description: Specify the number of values of <field> to use for each input event.
+			Default: 0, or no limit
+	<EXAMPLES>
+		* Create new events for each value of multivalue field, "foo".
+		... | mvexpand foo
+
+		* Create new events for the first 100 values of multivalue field, "foo".
+		... | mvexpand foo limit=100
+
+		* Expand an event with more than one multivalue field into individual events for each field value
+		source="mvexpandData.csv"
+		| rex field=_raw "a=(?<a>\d+)" max_match=5 
+		| rex field=_raw "b=(?<b>\d+)" max_match=5 
+		| eval fields = mvzip(a,b) 
+		| mvexpand fields 
+		| rex field=fields "(?<alpha>\d+),(?<beta>\d+)" 
+		| table _time alpha beta
+}
+
+| sort {
+	* https://docs.splunk.com/Documentation/Splunk/8.1.0/SearchReference/Sort
+	* The sort command sorts all of the results by the specified fields. Results missing a given field are treated as having the smallest or largest possible value of that field if the order is descending or ascending, respectively.
+
+	<SYNTAX>
+
+		sort
+		[<count>]
+		<sort-by-clause>...
+		[desc]
+
+		<sort-by-clause>
+			Syntax: ( - | + ) <sort-field>, ( - | + ) <sort-field> ...
+			Description: List of fields to sort by and the sort order. Use a minus sign (-) for descending order and a plus sign (+) for ascending order. When specifying more than one field, separate the field names with commas. See Sort field options.
+		<count>
+			Syntax: <int>
+			Description: Specify the number of results to return from the sorted results. If no count is specified, the default limit of 10000 is used. If 0 is specified, all results are returned.
+			Default: 10000
+		<desc>
+			Syntax: d | desc
+			Description: Reverses the order of the results. If multiple fields are specified, reverses the order of the values in the fields in the order in which the fields are specified. For example, if there are three fields specified, the desc argument reverses the order of the values in the first field. For each set of duplicate values in the first field, reverses the order of the corresponding values in the second field. For each set of duplicate values in the second field, reverses the order of the corresponding values in the third field.
+		<sort-field>
+			Syntax: <field> | auto(<field>) | str(<field>) | ip(<field>) | num(<field>)
+			Description: Options you can specify with <sort-field>.
+			<field>
+				Syntax: <string>
+				Description: The name of field to sort.
+			<auto>
+				Syntax: auto(<field>)
+				Description: Determine automatically how to sort the values of the field.
+			<ip>
+				Syntax: ip(<field>)
+				Description: Interpret the values of the field as IP addresses.
+			<num>
+				Syntax: num(<field>)
+				Description: Interpret the values of the field as numbers.
+			<str>
+				Syntax: str(<field>)
+				Description: Interpret the values of the field as strings and order the values alphabetically.
+
+	<EXAMPLES>
+
+		* Use the sort field options to specify field types
+		... | sort num(ip), -str(url)
+
+		* Specifying the number of results to sort
+		... | sort 100 -num(size), +str(source)
+
+		* Specifying descending and ascending sort orders
+		... | sort _time, -host
+}
+
+| where {
+	* https://docs.splunk.com/Documentation/Splunk/8.1.0/SearchReference/Where
+	* The where command uses eval-expressions to filter search results.
+
+	<SYNTAX>
+
+		where <eval-expression>
+
+		<eval-expression>
+		Syntax: <eval-mathematical-expression> | <eval-concatenate-expression> | <eval-comparison-expression> | <eval-boolean-expression> | <eval-function-call>
+		Description: A combination of values, variables, operators, and functions that represent the value of your destination field. See Usage.
+
+	<EXAMPLES>
+
+		* Specify a wildcard with the where command
+		... | where like(ipaddress, "198.%")
+
+		* Match IP addresses or a subnet using the where command
+		host="CheckPoint" | where like(src, "10.9.165.%") OR cidrmatch("10.9.165.0/25", dst)
+
+		* Specify a calculation in the where command expression
+		sourcetype=physicsjobs | where distance/time > 100
+}
+
+| fields {
+	* https://docs.splunk.com/Documentation/Splunk/8.1.0/SearchReference/Fields#Usage
+	* Keeps or removes fields from search results based on the field list criteria.
+
+	<SYNTAX>
+
+	fields [+|-] <wc-field-list>
+		<wc-field-list>
+		Syntax: <string>, <string>, ...
+		Description: Comma-delimited list of fields to keep or remove. You can use wild card characters in the field names.
+
+	<EXAMPLES>
+	* Remove the host and ip fields from the results
+	... | fields - host, ip
+
+	* Keep only the host and ip fields. Remove all of the internal fields.
+	... | fields host, ip | fields - _*
+
+	* Remove unwanted internal fields from the output CSV file.
+	index=_internal sourcetype="splunkd" | head 5 | fields - _raw _indextime _sourcetype _subsecond _serial | outputcsv MyTestCsvfile
+}
+
+| rename {
+	* https://docs.splunk.com/Documentation/Splunk/8.1.1/SearchReference/Rename
+	* Use the rename command to rename one or more fields.
+
+	<SYNTAX>
+
+	rename <wc-field> AS <wc-field>...
+		wc-field
+		Syntax: <string>
+		Description: The name of a field and the name to replace it. You can use wild card characters in the field names. Names with spaces must be enclosed in quotation marks.
+
+	<EXAMPLES>
+
+	* Use quotation marks when you rename a field with a phrase.
+	... | rename SESSIONID AS "The session ID"
+
+	* Use wildcards to rename multiple fields.
+	... | rename *ip AS *IPaddress
+}
+
+| replace {
+	* https://docs.splunk.com/Documentation/Splunk/latest/SearchReference/Replace#Usage
+	* Replaces a single occurrence of the first string with another string in the specified fields.
+
+	<SYNTAX>
+
+	replace (<wc-string> WITH <wc-string>)... [IN <field-list>]
+
+	wc-string
+		Syntax: <string>
+		Description: Specify one or more field values and their replacements. You can use wildcard characters to match one or multiple terms.
+
+	field-list
+		Syntax: <string> ...
+		Description: Specify a comma or space delimited list of one or more field names for the field value replacements. To replace values on _internal fields, you must specify the field name with the IN <fieldname> clause.
+
+	<EXAMPLES>
+
+	* Replace a value in all fields
+	... | replace *localhost WITH localhost
+
+	* Replace a value in a specific field
+	... | replace 127.0.0.1 WITH localhost IN host
+
+	* Change the value of two fields
+	... | replace aug WITH August IN start_month end_month
+}
+
+| fieldformat {
+	* https://docs.splunk.com/Documentation/Splunk/8.1.0/SearchReference/Fieldformat#Basic_examples
+	* With the fieldformat command you can use an <eval-expression> to change the format of a field value when the results render.
+
+	<SYNTAX>
+
+	fieldformat <field>=<eval-expression>
+
+	<field>
+		Description: The name of a new or existing field, non-wildcarded, for the output of the eval expression.
+
+	<eval-expression>
+		Syntax: <string>
+		Description: A combination of values, variables, operators, and functions that represent the value of your destination field. You can specify only one <eval-expression> with the fieldformat command. To specify multiple formats you must use multiple fieldformat commands. See Examples.
+
+	<EXAMPLES>
+
+	* Format numeric values to display commas
+	| metadata type=sourcetypes 
+	| table sourcetype totalCount
+	| fieldformat totalCount=tostring(totalCount, "commas")
+
+	* Display UNIX time in a readable format
+	... | fieldformat start_time = strftime(start_time, "%H:%M:%S")
+
+	* Add currency symbols to numerical values
+	...| fieldformat totalSales="$".tostring(totalSales,"commas")
+
+	* Formatting multiple fields
+	| metadata type=sourcetypes 
+	| rename totalCount as Count firstTime as "First Event" lastTime as "Last Event" 
+	  recentTime as "Last Update" 
+	| table sourcetype Count "First Event" "Last Event" "Last Update" 
+	| fieldformat Count=tostring(Count, "commas") 
+	| fieldformat "First Event"=strftime('First Event', "%c") 
+	| fieldformat "Last Event"=strftime('Last Event', "%c") 
+	| fieldformat "Last Update"=strftime('Last Update', "%c")
+}
+
+| regex {
+	* https://docs.splunk.com/Documentation/Splunk/8.1.0/SearchReference/Regex
+	* Removes results that do not match the specified regular expression.
+
+	<SYNTAX>
+
+	regex
+	(<field>=<regex-expression> | <field>!=<regex-expression> | <regex-expression>)
+
+	<regex-expression>
+		Syntax: "<string>"
+		Description: An unanchored regular expression. The regular expression must be a Perl Compatible Regular Expression supported by the PCRE library. Quotation marks are required.
+
+	<field>
+		Syntax: <field>
+		Description: Specify the field name from which to match the values against the regular expression.
+		You can specify that the regex command keeps results that match the expression by using <field>=<regex-expression>. To keep results that do not match, specify <field>!=<regex-expression>.
+		Default: _raw
+
+	<EXAMPLES>
+
+	* Keep only search results whose "_raw" field contains IP addresses in the non-routable class A (10.0.0.0/8). This example uses a negative lookbehind assertion at the beginning of the expression.
+	... | regex _raw="(?<!\d)10\.\d{1,3}\.\d{1,3}\.\d{1,3}(?!\d)"
+
+	* Keep only the results that match a valid email address. For example, buttercup@example.com.
+	...| regex email="^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$"
+}
+
+| addinfo {
+	* https://docs.splunk.com/Documentation/Splunk/8.1.2/SearchReference/Addinfo
+	* Adds fields to each event that contain global, common information about the search. This command is primarily an internally-used component of Summary Indexing.
+
+	<SYNTAX>
+
+	The following fields are added to each event when you use the addinfo command.
+
+	Field				Description
+	info_min_time		The earliest time boundary for the search.
+	info_max_time		The latest time boundary for the search.
+	info_sid			The ID of the search that generated the event.
+	info_search_time	The time when the search was run.
+
+	<EXAMPLES>
+
+	* Add information to each event
+	... | addinfo
+
+	* Determine which heartbeats are later than expected
+	... | stats latest(_time) AS latest_time BY host
+	| addinfo | eval latest_age = info_max_time - latest_time | fields - info_*
+	| inputlookup append=t expected_hosts | fillnull value=9999 latest_age
+	| dedup host
+	| where latest_age > 42
+}

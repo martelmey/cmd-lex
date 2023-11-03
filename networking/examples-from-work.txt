@@ -1,0 +1,14 @@
+# trying to determine what happened to <KDC-R1-18-MGMT-UTIL-PSPR / 192.168.61.230>
+Eth1/34       eth    10G     KDC-R1.18-U17-S72-NET2
+KDC-R1.18-MGMT-93108-C# sh mac addr int e1/34
+Legend:
+        * - primary entry, G - Gateway MAC, (R) - Routed MAC, O - Overlay MAC
+        age - seconds since last seen,+ - primary entry using vPC Peer-Link,
+        (T) - True, (F) - False, C - ControlPlane MAC, ~ - vsan
+   VLAN     MAC Address      Type      age     Secure NTFY Ports
+---------+-----------------+--------+---------+------+----+------------------
+* 3060     0010.e0e3.59d4   dynamic  0         F      F    Eth1/34
+* 3060     0014.4ffa.852f   dynamic  0         F      F    Eth1/34
+* 3060     0014.4ffa.ba55   dynamic  0         F      F    Eth1/34
+* 3060     0014.4ffb.d8f3   dynamic  0         F      F    Eth1/34
+KDC-R1.18-MGMT-93108-C#

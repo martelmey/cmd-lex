@@ -1,0 +1,5 @@
+224.0.0.5
+224.0.0.6
+known as link-local multicasts
+does not propagate off the local link/segment
+multicast = one device is talking to a group of devices

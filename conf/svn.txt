@@ -1,0 +1,19 @@
+APACHE SUBVERSION
+http://svnbook.red-bean.com/en/1.7/index.html
+https://svnbook.red-bean.com/en/1.7/svn.ref.svnadmin.html
+https://svnbook.red-bean.com/en/1.7/svn.reposadmin.maint.html
+
+/etc/httpd/conf.d/subversion.conf
+
+<repo>./conf/svnserve
+			passwd - users
+			authx - acl
+
+# Create a repository
+$ svnadmin create /var/svn/repos
+
+authx {
+	[general]
+	password-db = passwd
+	authz-db = authz
+}

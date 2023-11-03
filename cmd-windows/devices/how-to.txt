@@ -1,0 +1,5 @@
+show hidden adapters {
+    set devmgr_show_nonpresent_devices=1
+    devmgmt.msc
+    View > Show hidden devices
+}

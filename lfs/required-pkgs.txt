@@ -1,0 +1,14 @@
+binutils binutils-common binutils-dev binutils-x86-64-linux-gnu libbinutils libctf-nobfd0 libctf0
+bison m4
+cpp cpp-9 gcc gcc-9 gcc-9-base libasan5 libatomic1 libc-dev-bin libc6-dev libcc1-0 libcrypt-dev libgcc-9-dev
+	libgomp1 libisl22 libitm1 liblsan0 libmpc3 libquadmath0 libtsan0 libubsan1 linux-libc-dev manpages-dev
+libpython2-stdlib libpython2.7-minimal libpython2.7-stdlib python-is-python2 python2 python2-minimal python2.7
+	python2.7-minimal
+libauthen-sasl-perl libdata-dump-perl libencode-locale-perl libfile-listing-perl libfont-afm-perl
+	libhtml-form-perl libhtml-format-perl libhtml-parser-perl libhtml-tagset-perl libhtml-tree-perl
+	libhttp-cookies-perl libhttp-daemon-perl libhttp-date-perl libhttp-message-perl libhttp-negotiate-perl
+	libio-html-perl libio-socket-ssl-perl liblwp-mediatypes-perl liblwp-protocol-https-perl libmailtools-perl
+	libnet-http-perl libnet-smtp-ssl-perl libnet-ssleay-perl libtext-unidecode-perl libtimedate-perl libtry-tiny-perl
+	liburi-perl libwww-perl libwww-robotrules-perl libxml-libxml-perl libxml-namespacesupport-perl libxml-parser-perl
+	libxml-sax-base-perl libxml-sax-expat-perl libxml-sax-perl perl-openssl-defaults tex-common texinfo
+g++ g++-9 libstdc++-9-dev

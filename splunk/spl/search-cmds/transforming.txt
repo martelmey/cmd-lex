@@ -1,0 +1,345 @@
+| stats {
+	* https://docs.splunk.com/Documentation/Splunk/8.1.0/SearchReference/Stats
+	* Calculates aggregate statistics, such as average, count, and sum, over the results set. This is similar to SQL aggregation.
+	<SYNTAX>
+		stats (stats-function(field) [AS field])... [BY field-list]
+
+		| stats
+		[partitions=<num>]
+		[allnum=<bool>]
+		[delim=<string>]
+		( <stats-agg-term>... | <sparkline-agg-term>... )
+		[<by-clause>]
+		[<dedup_splitvals>]
+
+		<stats-agg-term>
+			Syntax: <stats-func>(<evaled-field> | <wc-field>) [AS <wc-field>]
+			Description: A statistical aggregation function. See Stats function options. The function can be applied to an eval expression, or to a field or set of fields. Use the AS clause to place the result into a new field with a name that you specify. You can use wild card characters in field names. For more information on eval expressions, see Types of eval expressions in the Search Manual.
+		<sparkline-agg-term>
+			Syntax: <sparkline-agg> [AS <wc-field>]
+			Description: A sparkline aggregation function. Use the AS clause to place the result into a new field with a name that you specify. You can use wild card characters in the field name.
+		<allnum>
+			Syntax: allnum=<bool>
+			Description: If true, computes numerical statistics on each field if and only if all of the values of that field are numerical.
+			Default: false
+		<by-clause>
+			Syntax: BY <field-list>
+			Description: The name of one or more fields to group by. You cannot use a wildcard character to specify multiple fields with similar names. You must specify each field separately. The BY clause returns one row for each distinct value in the BY clause fields. If no BY clause is specified, the stats command returns only one row, which is the aggregation over the entire incoming result set.
+		<dedup_splitvals>
+			Syntax: dedup_splitvals=<boolean>
+			Description: Specifies whether to remove duplicate values in multivalued BY clause fields.
+			Default: false
+		<delim>
+			Syntax: delim=<string>
+			Description: Specifies how the values in the list() or values() aggregation are delimited.
+			Default: a single space
+		<partitions>
+			Syntax: partitions=<num>
+			Description: If specified, partitions the input data based on the split-by fields for multithreaded reduce. The partitions argument runs the reduce step (in parallel reduce processing) with multiple threads in the same search process on the same machine. Compare that with parallel reduce, using the redistribute command, that runs the reduce step in parallel on multiple machines.
+			Default: 1
+	<EXAMPLES>
+		* Return the average transfer rate for each host
+		sourcetype=access*
+		| stats avg(kbps) BY host
+
+		* Search the access logs, and return the total number of hits from the top 100 values of "referer_domain"
+		sourcetype=access_combined
+		| top limit=100 referer_domain
+		| stats sum(count) AS total
+
+		* Calculate the average time for each hour for similar fields using wildcard characters
+		... | stats avg(*lay) BY date_hour
+
+		* Compare the difference between using the stats and chart commands
+		sourcetype=access_* | stats count BY status, host
+		sourcetype=access_* | chart count BY status, host
+
+		* Use eval expressions to count the different types of requests against each Web server
+		sourcetype=access_*
+		| stats count(eval(method="GET")) AS GET, count(eval(method="POST")) AS POST BY host
+}
+
+| table {
+	* https://docs.splunk.com/Documentation/Splunk/8.1.0/SearchReference/Table#Usage
+	* The table command returns a table that is formed by only the fields that you specify in the arguments. Columns are displayed in the same order that fields are specified. Column headers are the field names. Rows are the field values. Each row represents an event.
+	<SYNTAX>
+
+		table <wc-field-list>
+
+		<wc-field-list>
+			Syntax: <wc-field> <wc-field> ...
+			Description: A list of field names. You can use wild card characters in the field names.
+	<EXAMPLES>
+
+		* Search for recent earthquakes in and around California and display only the time of the quake (Datetime), where it occurred (Region), and the quake's magnitude (Magnitude) and depth (Depth).
+		index=usgs_* source=usgs place=*California
+		| table time, place, mag, depth
+
+		* Show the date, time, coordinates, and magnitude of each recent earthquake in Northern California.
+		index=usgs_* source=usgs place=*California
+		| rename lat as latitude lon as longitude
+		| table time, place, lat*, lon*, mag
+
+		* Search for IP addresses and classify the network they belong to.
+		sourcetype=access_*
+		| dedup clientip
+		| eval network=if(cidrmatch("192.0.0.0/16", clientip), "local", "other")
+		| table clientip, network
+}
+
+| chart {
+	* https://docs.splunk.com/Documentation/Splunk/8.1.0/SearchReference/Chart
+	* The chart command is a transforming command that returns your results in a table format. The results can then be used to display the data as a chart, such as a column, line, area, or pie chart. You must specify a statistical function when you use the chart command.
+
+	<SYNTAX>
+
+		chart
+		[<chart-options>]
+		[agg=<stats-agg-term>]
+		( <stats-agg-term> | <sparkline-agg-term> | "("<eval-expression>")" )...
+		[ BY <row-split> <column-split> ] | [ OVER <row-split> ] [BY <column-split>]
+		[<dedup_splitvals>]
+
+		<stats-agg-term>
+			Syntax: <stats-func> ( <evaled-field> | <wc-field> ) [AS <wc-field>]
+			Description: A statistical aggregation function. See Stats function options. The function can be applied to an eval expression, or to a field or set of fields. Use the AS clause to place the result into a new field with a name that you specify. You can use wildcard characters in field names.
+
+		<eval-expression>
+			Syntax: <eval-math-exp> | <eval-concat-exp> | <eval-compare-exp> | <eval-bool-exp> | <eval-function-call>
+			Description: A combination of literals, fields, operators, and functions that represent the value of your destination field. For more information, see the Evaluation functions. See Usage.
+			For these evaluations to work, your values need to be valid for the type of operation. For example, with the exception of addition, arithmetic operations might not produce valid results if the values are not numerical. If both operands are strings, they can be concatenated. When concatenating values with a period, the search treats both values as strings regardless of their actual type.
+
+		<agg>
+			Syntax: agg=<stats-agg-term>
+			Description: Specify an aggregator or function. For a list of stats functions with descriptions and examples, see Statistical and charting functions.
+
+		<chart-options>
+			Syntax: cont | format | limit | sep
+			Description: Options that you can specify to refine the result. See the Chart options section in this topic.
+
+		<column-split>
+			Syntax: <field> [<tc-options>]... [<where-clause>]
+			Description: Specifies a field to use as the columns in the result table. By default, when the result are visualized, the columns become the data series in the chart. If the field is numerical, discretization is applied using the tc-options argument. See the tc options and the where clause sections in this topic.
+			Default: The number of columns included is limited to 10 by default. You can change the number of columns by including a <where-clause>.
+			When a column-split field is included, the output is a table where each column represents a distinct value of the split-by field. This is in contrast with the by-clause, where each row represents a single unique combination of values of the group-by fields. For additional information see the Usage section in this topic.
+
+		<dedup_splitvals>
+			Syntax: dedup_splitvals=<boolean>
+			Description: Specifies whether to remove duplicate values in multivalued BY clause fields.
+			Default: false
+			row-split
+			Syntax: <field> [<bin-options>]...
+			Description: The field that you specify becomes the first column in the results table. The field values become the row labels in the results table. In a chart, the field name is used to label the X-axis. The field values become the X-axis values. See the Bin options section in this topic.
+			Default: None.
+
+		<CHART OPTIONS>
+
+			<cont>
+				Syntax: cont=<bool>
+				Description: Specifies if the bins are continuous. If cont=false, replots the x-axis so that a noncontinuous sequence of x-value bins show up adjacently in the output. If cont=true, bins that have no values will display with a count of 0 or null values.
+				Default: true
+
+			<format>
+				Syntax: format=<string>
+				Description: Used to construct output field names when multiple data series are used in conjunction with a split-by-field. format takes precedence over sep and allows you to specify a parameterized expression with the stats aggregator and function ($AGG$) and the value of the split-by-field ($VAL$).
+
+			<limit>
+				Syntax: limit=(top | bottom) <int>
+				Description: Only valid when a column-split is specified. Use the limit option to specify the number of results that should appear in the output. When you set limit=N the top or bottom N values are retained, based on the sum of each series and the prefix you have selected. If limit=0, all results are returned. If you opt not to provide a prefix, the Splunk software provides the top results.
+				Default: top 10
+
+			<sep>
+				Syntax: sep=<string>
+				Description: Used to construct output field names when multiple data series are used in conjunctions with a split-by field. This is equivalent to setting format to $AGG$<sep>$VAL$.
+
+		<STATS FUNCTION OPTIONS>
+
+			Aggregate functions
+				avg()
+				count()
+				distinct_count()
+				estdc()
+				estdc_error()
+				exactperc<int>()
+				max()
+				median()
+				min()
+				mode()
+				perc<int>()
+				range()
+				stdev()
+				stdevp()
+				sum()
+				sumsq()
+				upperperc<int>()
+				var()
+				varp()
+			Event order functions
+				earliest()
+				first()
+				last()
+				latest()
+			Multivalue stats and chart functions
+				list(X)
+				values(X)
+
+		<EXAMPLES>
+
+		* Chart the max(delay) for each value of foo
+		... | chart max(delay) OVER foo
+
+		* Chart the max(delay) for each value of foo, split by the value of bar
+		... | chart max(delay) OVER foo BY bar
+
+		* Chart the ratio of the average to the maximum "delay" for each distinct "host" and "user" pair
+		... | chart eval(avg(size)/max(delay)) AS ratio BY host user
+
+		* Chart the average size for each distinct host
+		... | chart avg(size) BY host
+}
+
+| convert {
+	* https://docs.splunk.com/Documentation/Splunk/8.1.0/SearchReference/Convert
+	* The convert command converts field values in your search results into numerical values.
+
+	<SYNTAX>
+
+		convert [timeformat=string] (<convert-function> [AS <field>] )...
+
+		<convert-function>
+			Syntax: auto() | ctime() | dur2sec() | memk() | mktime() | mstime() | none() | num() | rmcomma() | rmunit()
+			Description: Functions to use for the conversion.
+
+		<timeformat>
+			Syntax: timeformat=<string>
+			Description: Specify the output format for the converted time field. The timeformat option is used by ctime and mktime functions. For a list and descriptions of format options, see Common time format variables in the Search Reference.
+			Default: %m/%d/%Y %H:%M:%S. Note that this default does not conform to the locale settings.
+
+		<field>
+			Syntax: <string>
+			Description: Creates a new field with the name you specify to place the converted values into. The original field and values remain intact.
+
+		<CONVERT FUNCTIONS>
+
+			auto()
+				Syntax: auto(<wc-field>)
+				Description: Automatically convert the fields to a number using the best conversion. Note that if not all values of a particular field can be converted using a known conversion type, the field is left untouched and no conversion at all is done for that field. You can use wild card characters in the field name.
+
+			ctime()
+				Syntax: ctime(<wc-field>)
+				Description: Convert an epoch time to an ascii human readable time. Use the timeformat option to specify exact format to convert to. You can use wild card characters in the field name.
+
+			dur2sec()
+				Syntax: dur2sec(<wc-field>)
+				Description: Convert a duration format "[D+]HH:MM:SS" to seconds. You can use wild card characters in the field name.
+
+			memk()
+				Syntax: memk(<wc-field>)
+				Description: Accepts a positive number (integer or float) followed by an optional "k", "m", or "g". The letter k indicates kilobytes, m indicates megabytes, and g indicates gigabytes. If no letter is specified, kilobytes is assumed. The output field is a number expressing quantity of kilobytes. Negative values cause data incoherency. You can use wild card characters in the field name.
+
+			mktime()
+				Syntax: mktime(<wc-field>)
+				Description: Convert a human readable time string to an epoch time. Use timeformat option to specify exact format to convert from. You can use wild card characters in the field name.
+
+			mstime()
+				Syntax: mstime(<wc-field>)
+				Description: Convert a [MM:]SS.SSS format to seconds. You can use wild card characters in the field name.
+
+			none()
+				Syntax: none(<wc-field>)
+				Description: In the presence of other wildcards, indicates that the matching fields should not be converted. You can use wild card characters in the field name.
+
+			num()
+				Syntax: num(<wc-field>)
+				Description: Like auto(), except non-convertible values are removed. You can use wild card characters in the field name.
+
+			rmcomma()
+				Syntax: rmcomma(<wc-field>)
+				Description: Removes all commas from value, for example rmcomma(1,000,000.00) returns 1000000.00. You can use wild card characters in the field name.
+
+			rmunit()
+				Syntax: rmunit(<wc-field>)
+				Description: Looks for numbers at the beginning of the value and removes trailing text. You can use wild card characters in the field name.
+
+	<EXAMPLES>
+
+		* Convert field values except for values in specified fields
+		... | convert auto(*) none(foo)
+
+		* Change the duration values to seconds for the specified fields
+		... | convert dur2sec(xdelay) dur2sec(delay)
+
+		* Change memory values to kilobytes
+		... | convert memk(virt)
+}
+
+| timechart {
+	* https://docs.splunk.com/Documentation/Splunk/8.1.0/SearchReference/Timechart#Description
+	* Creates a time series chart with corresponding table of statistics.
+
+	<SYNTAX>
+
+	[sep=<string>]
+	[format=<string>]
+	[partial=<bool>]
+	[cont=<bool>]
+	[limit=<chart-limit-opt>]
+	[agg=<stats-agg-term>]
+	[<bin-options>... ]
+	( (<single-agg> [BY <split-by-clause>] ) | (<eval-expression>) BY <split-by-clause> )
+	[<dedup_splitvals>]
+
+	eval-expression
+		Syntax: <math-exp> | <concat-exp> | <compare-exp> | <bool-exp> | <function-call>
+		Description: A combination of literals, fields, operators, and functions that represent the value of your destination field. For these evaluations to work, your values need to be valid for the type of operation. For example, with the exception of addition, arithmetic operations might not produce valid results if the values are not numerical. Additionally, the search can concatenate the two operands if they are both strings. When concatenating values with a period '.' the search treats both values as strings, regardless of their actual data type.
+	single-agg
+		Syntax: count | <stats-func>(<field>)
+		Description: A single aggregation applied to a single field, including an evaluated field. For <stats-func>, see Stats function options. No wildcards are allowed. The field must be specified, except when using the count function, which applies to events as a whole.
+	split-by-clause
+		Syntax: <field> (<tc-options>)... [<where-clause>]
+		Description: Specifies a field to split the results by. If field is numerical, default discretization is applied. Discretization is defined with the tc-options. Use the <where-clause> to specify the number of columns to include. See the tc options and the where clause sections in this topic.
+
+	<EXAMPLES>
+
+	* Chart the product of the average "CPU" and average "MEM" for each "host"
+	... | timechart span=1m eval(avg(CPU) * avg(MEM)) BY host
+
+	* Chart the average of cpu_seconds by processor
+	... | timechart eval(round(avg(cpu_seconds),2)) BY processor
+
+	* Chart the average of "CPU" for each "host"
+	... | timechart span=1m avg(CPU) BY host
+
+	* Chart the average "cpu_seconds" by "host" and remove outlier values
+	... | timechart avg(cpu_seconds) BY host | outlier action=tf
+}
+
+| mvcombine {
+	* https://docs.splunk.com/Documentation/Splunk/8.1.1/SearchReference/Mvcombine#Examples
+	* Takes a group of events that are identical except for the specified field, which contains a single value, and combines those events into a single event. The specified field becomes a multivalue field that contains all of the single values from the combined events.
+
+	<SYNTAX>
+
+	mvcombine [delim=<string>] <field>
+
+	field
+		Syntax: <field>
+		Description: The name of a field to merge on, generating a multivalue field.
+
+	delim
+		Syntax: delim=<string>
+		Description: Defines the string to use as the delimiter for the values that get combined into the multivalue field. For example, if the values of your field are "1", "2", and "3", and delim is "; " then the combined multivalue field is "1";"2";"3".
+		Default: a single space, (" ")
+
+	<EXAMPLES>
+
+	* Creating a multivalue field
+	index=* | stats max(bytes) AS max, min(bytes) AS min BY host
+	index=* host=www* | stats max(bytes) AS max, min(bytes) AS min BY host
+	index=* host=www* | stats max(bytes) AS max, min(bytes) AS min BY host | mvcombine host
+
+	* Returning the delimited values
+	index=* host=www* | stats max(bytes) AS max, min(bytes) AS min BY host | mvcombine delim="," host | nomv host
+	sourcetype="WMI:WinEventLog:Security" | fields EventCode, Category,RecordNumber | mvcombine delim="," RecordNumber | nomv RecordNumber
+	... | mvcombine delim=":" foo
+}

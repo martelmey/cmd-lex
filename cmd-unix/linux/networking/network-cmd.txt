@@ -1,0 +1,493 @@
+ssh:linux {
+    -agent {
+        -s
+    }
+}
+
+netcat {
+    -4                         Use IPv4 only
+    -c, --sh-exec <command>    Executes the given command via /bin/sh
+    -e, --exec <command>       Executes the given command
+    -d, --delay <time>         Wait between read/writes
+    -o, --output <filename>    Dump session data to a file
+    -p, --source-port port     Specify source port to use
+    -s, --source addr          Specify source address to use (doesn't affect -l)
+    -l, --listen               Bind and listen for incoming connections
+    -k, --keep-open            Accept multiple connections in listen mode
+    -n, --nodns                Do not resolve hostnames via DNS
+    -t, --telnet               Answer Telnet negotiations
+    -u, --udp                  Use UDP instead of default TCP
+    -v, --verbose              Set verbosity level (can be used several times)
+    -w, --wait <time>          Connect timeout
+    -z                         Zero-I/O mode, report connection status only
+    --append-output        Append rather than clobber specified output files
+    --send-only            Only send data, ignoring received; quit on EOF
+    --recv-only            Only receive data, never send anything
+    --proxy <addr[:port]>  Specify address of host to proxy through
+    --proxy-type <type>    Specify proxy type ("http" or "socks4" or "socks5")
+    --proxy-auth <auth>    Authenticate with HTTP or SOCKS proxy server
+}
+
+ssh:windows {
+    start-ssh-agent.cmd # start agent
+    -add {
+        -l # list identities
+        -D # delete all identities
+    }
+}
+
+tcpdump {
+    [ -AbdDefhHIJKlLnNOpqStuUvxX# ] [ -B buffer_size ]
+    [ -c count ]
+    [ -C file_size ] [ -G rotate_seconds ] [ -F file ]
+    [ -i interface ] [ -j tstamp_type ] [ -m module ] [ -M secret ]
+    [ --number ] [ -Q in|out|inout ]
+    [ -r file ] [ -V file ] [ -s snaplen ] [ -T type ] [ -w file ]
+    [ -W filecount ]
+    [ -E spi@ipaddr algo:secret,...  ]
+    [ -y datalinktype ] [ -z postrotate-command ] [ -Z user ]
+    [ --time-stamp-precision=tstamp_precision ]
+    [ --immediate-mode ] [ --version ]
+    [ expression ]
+
+    -d (human-readable to stdout)
+    -D, --list-interfaces
+    -i, --interface <interface>
+    -l (buffer stdout lines)
+    -n (no dns lookups)
+    -nn (don't convert protocol and port numbers to names)
+    --direction=<direction> (in,out,inout)
+    -w <file> (write raw packets to file)
+    -A (print in ASCII)
+    -vvv (verbosity)
+
+    examples {
+        tcpdump -i br0 port 5900 -n
+        tcpdump -i net0 -vvv |tee >> tcpdump_int1-posia-wls2_2.txt
+        snoop -I net0 |tee >> snoopoutput.txt
+
+        # print all packets arriving at or departing from <host>
+        tcp host <host>
+    }
+}
+
+snoop {
+    [-aqrCDINPSvV] [-t r | a | d] [-c maxcount]
+    [-d device] [-I IP_interface] [-i filename] [-n filename]
+    [-o filename] [-p first [, last]] [-s snaplen]
+    [-x offset [, length]] [expression]
+
+    examples {
+        # capture between 1 & 2
+        snoop -o file.cap host1 host2
+
+        # view capture
+        snoop -i file.cap -t r | more
+        snoop -i file.cap -p 99,108
+        snoop -i file.cap -v -p101
+    }    
+}
+
+mailx {
+    -s <subject>
+    -a <file> # attach file
+    -d debug, no delivery
+    -e check sys inbox
+    -F save message to send
+    -H print header summaries, all msgs
+    -r set from address
+    -u <user>
+
+    .mailrc
+
+    echo "test for CMDB resports" | mailx -vvv -s "test CMDB" -S smtp="smtp.kdc.health.local" martel.meyers@cgi.com
+    echo "test for CMDB resports" | mailx -vvv -s "test CMDB" -S smtp="192.168.60.10" martel.meyers@cgi.com
+}
+
+post{
+    postconf
+    postfix
+        -d
+        check
+        start
+        stop
+        abort
+        flush
+        reload
+        status
+
+        $MAIL_CONFIG
+        $config_directory
+}
+
+curl {
+    -d, --data <data> (--data-ascii)
+        --data-binary (post data purely binary)
+            @filename
+        --data-urlencode (url encode the value of a form field)
+    -G, --get
+    -i, --include (include headers in output)
+    -k, --insecure 
+    -X, --request GET:HEAD:POST:PUT
+
+    examples {
+        # test website connectivity
+        curl -I https://www.cisco.com
+    }
+}
+
+ldapsearch {
+    -x (simple auth)
+    -b (searchbase as the starting point for the search instead of the default)
+    examples {
+        ldapsearch -x -b "ou=groups,dc=health,dc=local"
+        ldapsearch -x -b "ou=people,dc=health,dc=local"
+        ldapsearch -x -b "cn=dba-prod,ou=groups,dc=health,dc=local"
+        ldapsearch -x -b "uid=test,ou=people,dc=health,dc=local"
+    }
+}
+
+ldapclient {
+    list
+}
+
+ldapmodify {
+    -x (simple auth)`
+    -W (prompt for password)
+    -D (place to apply change)
+    -f (file to apply)
+}
+
+mailx{
+    -s (subject) "subject" <e@mail.address>
+}
+
+named-checkconf
+named-checkzone
+
+rndc {
+    https://linux.die.net/man/8/rndc
+    tsig-list
+    reconfig
+    reload
+}
+
+dig {
+    @<nameserver> <record>
+    example {
+        dig @ns2.kdc.health.local. testing.uat.health.local.
+        dig @ns1.kdc.health.local. kutlprdops01.kdc.health.local.
+    }
+}
+
+
+dnssec-keygen {
+    https://bind.isc.org/doc/arm/9.11/man.dnssec-keygen.html
+    https://docs.oracle.com/cd/E36784_01/html/E36871/dnssec-keygen-1m.html
+    -a (algorithm)
+    -b (keysize)
+    -n (nametype)
+        for a key associated with a host(KEY) ZONE, HOST, ENTITY
+        for a key associated with a user(KEY) USER
+        (DNSKEY) OTHER
+    -K (where to write key files)
+}
+
+proxy {
+    echo "http_proxy=http://192.168.60.250:8008/" > /etc/environment
+    echo "export http_proxy=http://192.168.60.250:8008" > /etc/profile.d/http_proxy.sh
+    echo "export http_proxy=http://192.168.60.250:8008" > /etc/profile.d/proxy.sh
+    (
+        PROXY_URL="http://192.168.60.250:8008"
+        export http_proxy="$PROXY_URL"
+        export https_proxy="$PROXY_URL"
+        export ftp_proxy="$PROXY_URL"
+        export no_proxy="127.0.0.1,localhost"
+    )/etc/profile.d/proxy.sh
+}
+
+iptables {
+    #to disable:
+        iptables -F
+        iptables -X
+        iptables -P INPUT ACCEPT
+        iptables -P OUTPUT ACCEPT
+        iptables -P FORWARD ACCEPT
+
+    iptables
+        --flush, -F
+        --delete-chain, -X [chain]
+        --policy, -P [chain] [target]
+        --list, -L
+        --verbose, -v
+        --numeric, -n
+        --list-rules, -S
+        --append, -A INPUT
+        --protocol, -p tcp
+        --dport 8000
+        --jump, -j ACCEPT
+        --table nat
+        --out-interface wlan0
+        --in-interface wlan1
+
+    examples {
+        iptables --append INPUT --protocol tcp --dport 8000 --jump ACCEPT
+        iptables --append INPUT --protocol tcp --dport 1556 --jump ACCEPT
+        iptables --append INPUT --protocol tcp --dport 13724 --jump ACCEPT
+        iptables --table nat --append POSTROUTING --out-interface wlan0 -j MASQUERADE
+        iptables --append FORWARD --in-interface wlan1 -j ACCEPT
+    }
+
+    echo 1 > /proc/sys/net/ipv4/ip_forward
+
+    backup&restore {
+        iptables-save > /etc/sysconfig/iptables
+            > /etc/iptables/rules.v4
+            < /etc/sysconfig/iptables
+        iptables-restore < /etc/iptables/rules.v4    
+    }
+}
+
+ports {
+    lsof -i -P -n | grep LISTEN
+    #see specific port
+        lsof -i:22
+    ss -lntu
+}
+
+testing {
+    telnet 192.168.63.234 8080
+}
+
+if {
+    ifdown em1
+    ifup em
+}
+
+dnsmasq {
+    dnsmasq -C dnsmasq.conf -d
+}
+
+route {
+    route add -net 192.168.1.0 netmask 255.255.255.0 gw 192.168.1.1
+    route add -net 192.168.160.0 netmask 255.255.255.0 gw 192.168.60.254
+    route add -net 192.168.61.0 netmask 255.255.255.0 gw 192.168.60.254
+
+    route change default iface eth0
+
+    route del -net 192.168.122.0 netmask 255.255.255.0 gw 0.0.0.0
+}
+
+ifconfig {
+    ifconfig wlan0 down
+    ifconfig wlan0 up
+    ifconfig wlan1 up 192.168.1.1 netmask 255.255.255.0
+}
+
+firewalld {
+    firewall-cmd --list-all
+    firewall-cmd --list-all-zones
+    firewall-cmd --get-default-zone
+    firewall-cmd --list-services
+    firewall-cmd --list-ports
+    firewall-cmd --zone=public --list-services/ports
+    firewall-cmd --permanent --zone=public --add-service=nfs
+    firewall-cmd --permanent --add-service=rpc-bind
+    firewall-cmd --permanent --add-service=mountd
+    firewall-cmd --permanent --add-port=8008/tcp
+    firewall-cmd --reload
+
+    # list of service's ports
+    --info-service samba
+}
+
+brctl {
+    addbr # add bridge
+    delbr # remove bridge
+    addif <bridge> <if> # add interface to bridge
+    delif <bridge> <if> # remove interface from bridge
+    show
+    showmacs
+}
+
+ip {
+    -h, -human, -human-readable
+    -s, -stats, -statistics
+    -d, -details
+
+    link {
+        add {
+            name
+
+            examples {
+                ip link add name veth0 type veth peer name veth0_container
+            }
+        }
+        show
+        set {
+            dev <dev> {
+                up
+                down
+            }
+
+            examples {
+                ip link set dev eth3 netns $pid name eth1
+                ip link set dev veth0_container netns $pid name veth0
+                ip link set dev eth1 up
+            }
+        }
+    }
+    del
+    change
+    replace
+    route {
+        add {
+            exampels {
+                ip route add default via 192.168.60.254 dev eth0
+                ip ro add 192.168.56.0/23 dev eth1
+                ip ro add 192.168.156.0/23 via 192.168.57.254 dev eth1
+            }
+        }
+        change
+        delete {
+            examples {
+                ip route del default
+            }
+        }
+    }
+    change {
+
+    }
+    append
+    show
+    flush
+        -statistics
+
+    examples {
+        ip ro change default via 192.168.63.254 dev br0
+        ip ro add default via 192.168.160.254 dev br0
+        ip ro add 192.168.60.0/24 via 192.168.160.254 dev br0
+        
+        ip addr show
+        ip addr show dev em1
+        ip addr add 10.1.1.1/24 dev em2
+        ip addr show wlan1
+
+        ip link set em2 up
+        ip link set em1 down
+        ip link
+        ip link show wlan1
+    }
+}
+
+dns {
+    nslookup chalister.ca
+}
+
+netstat {
+    # see all listening ports
+    netstat -tulpn | grep LISTEN
+}
+
+netfilter {
+    netfilter-persistent save (apt install netfilter-persistent iptables-persistent)
+}
+
+network mgr {
+    nmcli device status
+}
+
+iw {
+    iw reg set BO
+
+    iwconfig wlan0 txpower 30
+    iwconfig wlan0 channel 13
+    iwconfig wlan1 mode monitor
+
+    iw event
+        -f (auth/assoc/deauth/disassoc frames)
+        -t (timing)
+
+    iw dev mon0 set freq 2437
+    iw dev wlan0 del
+    iw dev wlan0 link #to see phy#'s
+        station dump
+            get <peer-MAC-address>/<AP-MAC-address>
+            get 10:78:5b:e4:90:12
+        set txpower <auto|fixed|limit>
+        set power_save on
+        get power_save
+        connect <ap_name>
+        disconnect
+
+    iw phy <phyname> set txpower <auto|fixed|limit> [<tx power in mBm>]
+    iw phy <hw_phy_name> interface add <interface_name> type <mode>
+    iw phy phy0 interface add mon0 type monitor
+    iw phy phy0 interface add wlan0 type managed
+
+    iw wlan1 link
+    iw wlan1 scan
+    iw wlan0 connect <ap_name> [keys] <frequency>
+        set bitrates legacy-2.4 12 18 24
+            6  12 24 (Purge G)
+            mcs-5 4
+            mcs-2.4 10
+            mcs-2.4 (clear)
+            mcs-5 (clear)
+            <power in mBm> = 100 * <power in dBm>
+}
+
+wpa_supplicant {
+    wpa_supplicant -B -D wext -i wlan1 -c /etc/wpa_supplicant.conf
+        -B (background)
+        -D (driver)
+        -c (path to conf)
+}
+
+dh {
+    dhclient wlan1
+        -r
+}
+
+ping {
+    -B # Do not change source address of probes. bound to one selected at start
+    -I interface
+
+    examples {
+        ping 8.8.8.8
+        ping -I br1 192.168.156.192
+        ping -I br1 192.168.57.254
+    }
+}
+
+protonvpn-cli {
+    login <username>
+    c (connect)
+        --sc (secure-core)
+        -f (fastest)
+    r
+    d (disconnect)
+    s (status)
+    refresh
+    configure
+    examples
+    ks (kill-switch)
+        --on
+        --always-on
+        --off
+}
+
+hostapd {
+    *.conf
+}
+
+(
+[keyfile]
+unmanaged-devices=interface-name:wlan1
+)>>/etc/NetworkManager/NetworkManager.conf
+
+# static, persistent routes
+touch /etc/sysconfig/network-scripts/route-eth0
+echo "192.168.160.0/24 via 192.168.60.254 dev eth0" >> /etc/sysconfig/network-scripts/route-eth0
+touch /etc/sysconfig/network-scripts/route-eth1
+echo "192.168.156.0/23 via 192.168.57.254 dev eth1" >> /etc/sysconfig/network-scripts/route-eth1

@@ -1,0 +1,4 @@
+messages {
+    more /var/adm/messages
+    dmesg
+}

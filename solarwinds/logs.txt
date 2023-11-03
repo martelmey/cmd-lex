@@ -1,0 +1,20 @@
+Kiwi Syslogd
+C:\Program Files(x86)\Syslogd\Logs
+
+Solaris Named
+/var/named/data/named.run
+
+SolarWinds Orion {
+	C:\Program Files (x86)\SolarWinds\Orion\OLM
+	C:\ProgramData\SolarWinds\Logs\OLM
+		PollingService.log
+		Trapservice.log
+		Syslogservice.log
+	C:\ProgramData\SolarWinds\Logs\Orion
+		ConfigurationWizard.log
+		BusinessLayerHost (plugins)
+		OrionWeb (website logins)
+		AccountManagement (logins)
+		swdebugMaintenance.log (database maintenance)
+	C:\ProgramData\SolarWinds\Logs\high availability
+}

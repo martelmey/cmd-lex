@@ -1,0 +1,68 @@
+# How to restart NetBackup services on Windows
+https://www.veritas.com/support/en_US/article.100012543
+
+# NetBackup Compatibility List for all Versions
+https://www.veritas.com/content/support/en_US/article.100040093
+
+# Installation requirements for UNIX and Linux
+https://www.veritas.com/content/support/en_US/doc/27801100-138646475-0/v112189449-138646475
+
+# Veritas NetBackup™ Logging Reference Guide
+https://www.veritas.com/support/en_US/doc/86063237-127664549-0/v109483729-127664549
+
+# Veritas NetBackup ™ Enterprise Server and Server 8.0 - 8.x.x OS Software Compatibility List
+https://download.veritas.com/resources/content/live/OSVC/100040000/100040093/en_US/nbu_80_scl.html?__gda__=1626512103_992b2ebf9bbe90dcf5f6e81e33fda9ad
+
+# How to restore Microsoft SQL databases using NetBackup?
+https://www.settlersoman.com/how-to-restore-microsoft-sql-databases-using-netbackup/
+
+# Media Server Deduplication and PureDisk Performance Requirements
+https://www.veritas.com/support/en_US/article.100005782
+
+# NET_BUFFER_SZ, SIZE_DATA_BUFFERS and NUMBER_DATA_BUFFERS on UNIX - how they work and how to configure them
+https://www.veritas.com/support/en_US/article.100000498
+
+# Best practices for NET_BUFFER_SZ and Buffer_size, why can't NetBackup change the TCP send/receive space
+https://www.veritas.com/support/en_US/article.100016112
+
+# Netbackup Cheat Sheet
+http://www.datadisk.co.uk/html_docs/veritas/veritas_netbackup_cs.htm
+
+# Anatomy of a Backup
+https://www.netbackupcli.com/backupjobdetails
+
+# Logging Reference Guide : Backup process(es) map
+https://www.veritas.com/support/en_US/doc/86063237-127664549-0/v109483729-127664549
+
+# NetBackup™ Backup Planning and Performance Tuning Guide
+https://www.veritas.com/support/en_US/doc/21414900-146141073-0/v147506449-146141073
+
+# Veritas NetBackup™ Deduplication Guide
+https://www.veritas.com/support/en_US/doc/25074086-136046435-0/v24630236-136046435
+
+# Veritas NetBackup™ Commands Reference Guide
+https://www.veritas.com/support/en_US/doc/15263389-138646468-0/v33470500-138646468
+
+# NetBackup Accelerator backup fails STATUS 84
+https://www.veritas.com/support/en_US/article.100049585
+
+# ERROR: access to the client was not allowed (59)
+https://www.veritas.com/support/en_US/article.100022203
+
+# How To - Perform A Manual NetBackup Client Removal On Linux From 8.1 Onwards
+https://opscenter.dlt.com/hc/en-us/articles/360001605248-How-To-Perform-a-manual-NetBackup-client-removal-on-Linux-from-8-1-onwards
+# Removing NetBackup from UNIX and Linux servers and clients
+https://www.veritas.com/content/support/en_US/doc/27801100-127350444-0/v121344818-127350444
+
+# Port number 1556 for netbackup client is not listening
+https://vox.veritas.com/t5/NetBackup/Port-number-1556-for-netbackup-client-is-not-listening/td-p/757351
+
+# Veritas NetBackup™ for PostgreSQL Administrator's Guide
+https://www.veritas.com/content/support/en_US/doc/129277259-129955710-0/v129277265-129955710
+# PostgreSQL backup fails with - "Invalid archive command"
+https://duckduckgo.com/?q=netbackup+postgresql+invalid+archive+command&ia=web
+
+# NDMP Backup of Oracle ZFS file systems fail with  Filesystem traverse error
+https://www.veritas.com/support/en_US/article.100028163
+# NDMP Implementation Guide for the Oracle ZFS Storage Appliance
+https://www.oracle.com/technetwork/server-storage/sun-unified-storage/documentation/ndmp-implem-0615-2586112.pdf

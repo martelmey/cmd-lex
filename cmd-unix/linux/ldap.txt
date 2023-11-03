@@ -1,0 +1,111 @@
+https://www.openldap.org/doc/admin24/
+# LDAP Server management
+https://proactionca.ent.cgi.com/confluence/display/PLISTR/LDAP+Server+management
+# Configuring a Basic LDAP Server + Client in Solaris 11
+https://blogs.oracle.com/paulie/configuring-a-basic-ldap-server-client-in-solaris-11
+# HIALPLIS: Solaris Zone Setup
+https://proactionca.ent.cgi.com/confluence/display/PLISTR/Solaris+Zone+Setup
+# ldap , search groups that user belong
+https://www.unix.com/unix-for-dummies-questions-and-answers/196107-ldap-search-groups-user-belong.html
+# [SOLVED] Retrieve group names for user in OpenLDAP
+https://www.linuxquestions.org/questions/linux-newbie-8/retrieve-group-names-for-user-in-openldap-4175430661/
+
+ls /home/ian.watts/ldap_updates/
+
+/etc/openldap/slapd.d
+
+systecmtl start|stop|status slapd
+
+nslcd.service   Naming services LDAP client daemon.
+slapd.service   OpenLDAP Server Daemon
+
+svcadm enable ldap/server
+svc:/network/ldap/client:default
+svc:/network/ldap/server:openldap
+ 
+# Check this to see order of checks for groups that can login to server, etc.
+/etc/nsswitch.conf
+
+# Client config
+/var/ldap/ldap_client_file
+/var/ldap/ldap_client_cred
+
+# Cxn info
+/usr/lib/ldap/ldap_cachemgr -g
+
+ldapadd{}
+
+ldapwhoami {
+	-vvv -h <hostname> -p <port> -D <binddn> -x -w <passwd>
+}
+
+ldapmodify{
+	-x Use simple authentication instead of SASL
+	-W Prompt for simple authentication. This is used instead of specifying the password on the command line
+	-D <binddn> Use the Distinguished Name binddn to bind to the LDAP directory.
+	-f <file> Read the entry modification information from file instead of from standard input.
+
+	remove_member.ldif{
+		dn: cn=cdc-temp,ou=groups,dc=health,dc=local
+		changetype: modify
+		delete: member
+		member: uid=saumil.surati,ou=people,dc=health,dc=local
+	}
+
+	modify_user.ldif{
+		dn: uid=carol.geisler,ou=people,dc=health,dc=local
+		changeType: modify
+		replace: uid
+		uid: carol.geisler
+	}
+
+	examples{
+		ldapmodify -x -W -D "cn=Manager,dc=health,dc=local" -f <name_of_your_ldif_file>
+	}
+}
+
+ldapsearch{
+	-b <searchbase> Use searchbase as the starting point for the search instead of the default.
+	-D <binddn> Use the Distinguished Name binddn to bind to the LDAP directory.
+	-W Prompt for simple authentication. This is used instead of specifying the password on the command line
+
+	examples{
+		# From master:
+		ldapsearch -x -b "dc=health,dc=local" | less
+		# From client:
+		ldapsearch -x -b "dc=health,dc=local" -h 192.168.160.10 | less
+
+		ldapsearch -x -b "uid=test.user,ou=people,dc=health,dc=local" -h ldap1.np.health.local
+		ldapsearch -x -b "uid=test.user,ou=people,dc=health,dc=local" -h ldap2.np.health.local
+		ldapsearch -x -b "uid=test.user,ou=people,dc=health,dc=local" -h ldap1.kdc.health.local
+		ldapsearch -x -b "uid=test.user,ou=people,dc=health,dc=local" -h ldap2.kdc.health.local
+
+		ldapsearch -h ldap1.np.health.local -p port -D "bindDN" -w  "password" -b "DC=mydomain" -s sub "(uniquemember=CN=name,CN=Users,DC=mydomain)" dn
+
+		# Find group memberships for user
+		ldapsearch -h 127.0.0.1 -x -b "dc=health,dc=local" "(&(cn=*)(memberUid=test.user))"
+	}
+}
+
+ldapdelete {}
+
+ldapclient{
+	list # see groups that can login to server
+
+	examples {
+		# configure solaris zone client
+		ldapclient manual \
+			-a domainName=dc=health.local \
+			-a credentialLevel=proxy \
+			-a defaultSearchBase=dc=health,dc=local \
+			-a proxyDN=cn=Manager,dc=health,dc=local \
+			-a proxyPassword=secret \
+			-a serviceauthenticationmethod=pam_ldap:simple \
+			-a serviceauthenticationmethod=passwd-cmd:simple \
+			-a serviceSearchDescriptor=passwd:ou=people,dc=health,dc=local?sub?\(\|\(memberof=cn=app-deployment,ou=groups,dc=health,dc=local\)\(memberof=cn=testers,ou=groups,dc=health,dc=local\)\(memberof=cn=operations,ou=groups,dc=health,dc=local\)\)\;ou=serviceAccounts,dc=health,dc=local \
+			-a serviceSearchDescriptor=shadow:ou=people,dc=health,dc=local?sub?\(\|\(memberof=cn=app-deployment,ou=groups,dc=health,dc=local\)\(memberof=cn=testers,ou=groups,dc=health,dc=local\)\(memberof=cn=operations,ou=groups,dc=health,dc=local\)\)\;ou=serviceAccounts,dc=health,dc=local \
+			-a serviceSearchDescriptor=group:ou=groups,dc=health,dc=local \
+			-a preferredServerList=ldap1.kdc.health.local \
+			-a defaultServerList=ldap2.kdc.health.local
+	}
+}

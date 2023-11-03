@@ -1,0 +1,6 @@
+Enable-Mailbox {
+	
+	examples {
+		Enable-Mailbox -Identity nbu_svc_exch@vrtsedu.lab -Database ExchangeDB1
+	}
+}

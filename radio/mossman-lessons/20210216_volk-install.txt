@@ -1,0 +1,566 @@
+┌──(mxana㉿PEATT-KL)-[~/volk/build]
+└─$ make       
+Scanning dependencies of target utils
+[  1%] Building C object cpu_features/CMakeFiles/utils.dir/src/filesystem.c.o
+[  3%] Building C object cpu_features/CMakeFiles/utils.dir/src/stack_line_reader.c.o
+[  5%] Building C object cpu_features/CMakeFiles/utils.dir/src/string_view.c.o
+[  5%] Built target utils
+Scanning dependencies of target cpu_features
+[  6%] Building C object cpu_features/CMakeFiles/cpu_features.dir/src/cpuinfo_x86.c.o
+[  8%] Linking C static library libcpu_features.a
+[  8%] Built target cpu_features
+Scanning dependencies of target list_cpu_features
+[ 10%] Building C object cpu_features/CMakeFiles/list_cpu_features.dir/src/utils/list_cpu_features.c.o
+/home/mxana/volk/cpu_features/src/utils/list_cpu_features.c: In function ‘GetCacheTypeString’:
+/home/mxana/volk/cpu_features/src/utils/list_cpu_features.c:343:1: warning: control reaches end of non-void function [-Wreturn-type]
+  343 | }
+      | ^
+[ 11%] Linking C executable list_cpu_features
+[ 11%] Built target list_cpu_features
+Scanning dependencies of target unix_based_hardware_detection
+[ 13%] Building C object cpu_features/CMakeFiles/unix_based_hardware_detection.dir/src/hwcaps.c.o
+[ 13%] Built target unix_based_hardware_detection
+[ 15%] Generating volk_machine_avx512cd_64_mmx.c
+[ 16%] Generating ../include/volk/volk.h
+[ 18%] Generating volk.c
+[ 20%] Generating ../include/volk/volk_typedefs.h
+[ 22%] Generating ../include/volk/volk_cpu.h
+[ 23%] Generating volk_cpu.c
+[ 25%] Generating ../include/volk/volk_config_fixed.h
+[ 27%] Generating volk_machines.h
+[ 28%] Generating volk_machines.c
+[ 30%] Generating volk_machine_generic.c
+[ 32%] Generating volk_machine_sse2_64_mmx.c
+[ 33%] Generating volk_machine_sse3_64_mmx.c
+[ 35%] Generating volk_machine_ssse3_64_mmx.c
+[ 37%] Generating volk_machine_sse4_a_64_mmx.c
+[ 38%] Generating volk_machine_sse4_1_64_mmx.c
+[ 40%] Generating volk_machine_sse4_2_64_mmx.c
+[ 42%] Generating volk_machine_avx_64_mmx.c
+[ 44%] Generating volk_machine_avx2_64_mmx.c
+[ 45%] Generating volk_machine_avx512f_64_mmx.c
+Scanning dependencies of target volk_obj
+[ 47%] Building C object lib/CMakeFiles/volk_obj.dir/constants.c.o
+[ 49%] Building C object lib/CMakeFiles/volk_obj.dir/volk_prefs.c.o
+[ 50%] Building C object lib/CMakeFiles/volk_obj.dir/volk_rank_archs.c.o
+[ 52%] Building C object lib/CMakeFiles/volk_obj.dir/volk_malloc.c.o
+[ 54%] Building C object lib/CMakeFiles/volk_obj.dir/volk.c.o
+[ 55%] Building C object lib/CMakeFiles/volk_obj.dir/volk_cpu.c.o
+[ 57%] Building C object lib/CMakeFiles/volk_obj.dir/volk_machines.c.o
+[ 59%] Building C object lib/CMakeFiles/volk_obj.dir/volk_machine_generic.c.o
+[ 61%] Building C object lib/CMakeFiles/volk_obj.dir/volk_machine_sse2_64_mmx.c.o
+[ 62%] Building C object lib/CMakeFiles/volk_obj.dir/volk_machine_sse3_64_mmx.c.o
+[ 64%] Building C object lib/CMakeFiles/volk_obj.dir/volk_machine_ssse3_64_mmx.c.o
+[ 66%] Building C object lib/CMakeFiles/volk_obj.dir/volk_machine_sse4_a_64_mmx.c.o
+[ 67%] Building C object lib/CMakeFiles/volk_obj.dir/volk_machine_sse4_1_64_mmx.c.o
+[ 69%] Building C object lib/CMakeFiles/volk_obj.dir/volk_machine_sse4_2_64_mmx.c.o
+[ 71%] Building C object lib/CMakeFiles/volk_obj.dir/volk_machine_avx_64_mmx.c.o
+[ 72%] Building C object lib/CMakeFiles/volk_obj.dir/volk_machine_avx2_64_mmx.c.o
+[ 74%] Building C object lib/CMakeFiles/volk_obj.dir/volk_machine_avx512f_64_mmx.c.o
+[ 76%] Building C object lib/CMakeFiles/volk_obj.dir/volk_machine_avx512cd_64_mmx.c.o
+[ 76%] Built target volk_obj
+Scanning dependencies of target volk
+[ 77%] Linking C shared library libvolk.so
+[ 77%] Built target volk
+Scanning dependencies of target volk_test_all
+[ 79%] Building CXX object lib/CMakeFiles/volk_test_all.dir/testqa.cc.o
+[ 81%] Building CXX object lib/CMakeFiles/volk_test_all.dir/qa_utils.cc.o
+[ 83%] Linking CXX executable volk_test_all
+[ 83%] Built target volk_test_all
+Scanning dependencies of target volk-config-info
+[ 84%] Building CXX object apps/CMakeFiles/volk-config-info.dir/volk-config-info.cc.o
+[ 86%] Building CXX object apps/CMakeFiles/volk-config-info.dir/volk_option_helpers.cc.o
+[ 88%] Linking CXX executable volk-config-info
+[ 88%] Built target volk-config-info
+Scanning dependencies of target volk_profile
+[ 89%] Building CXX object apps/CMakeFiles/volk_profile.dir/volk_profile.cc.o
+[ 91%] Building CXX object apps/CMakeFiles/volk_profile.dir/__/lib/qa_utils.cc.o
+[ 93%] Building CXX object apps/CMakeFiles/volk_profile.dir/volk_option_helpers.cc.o
+[ 94%] Linking CXX executable volk_profile
+[ 94%] Built target volk_profile
+Scanning dependencies of target pygen_python_volk_modtool_5ccd3
+[ 96%] Shebangin volk_modtool
+[ 96%] Built target pygen_python_volk_modtool_5ccd3
+Scanning dependencies of target pygen_python_volk_modtool_4837e
+[ 98%] Generating __init__.pyc, cfg.pyc, volk_modtool_generate.pyc
+[100%] Generating __init__.pyo, cfg.pyo, volk_modtool_generate.pyo
+[100%] Built target pygen_python_volk_modtool_4837e
+                                                                                                                                      
+┌──(mxana㉿PEATT-KL)-[~/volk/build]
+└─$ make test  
+Running tests...
+Test project /home/mxana/volk/build
+        Start   1: qa_volk_16i_32fc_dot_prod_32fc
+  1/134 Test   #1: qa_volk_16i_32fc_dot_prod_32fc .......................   Passed    0.02 sec
+        Start   2: qa_volk_16i_branch_4_state_8
+  2/134 Test   #2: qa_volk_16i_branch_4_state_8 .........................   Passed    0.00 sec
+        Start   3: qa_volk_16i_convert_8i
+  3/134 Test   #3: qa_volk_16i_convert_8i ...............................   Passed    0.00 sec
+        Start   4: qa_volk_16i_max_star_16i
+  4/134 Test   #4: qa_volk_16i_max_star_16i .............................   Passed    0.00 sec
+        Start   5: qa_volk_16i_max_star_horizontal_16i
+  5/134 Test   #5: qa_volk_16i_max_star_horizontal_16i ..................   Passed    0.00 sec
+        Start   6: qa_volk_16i_permute_and_scalar_add
+  6/134 Test   #6: qa_volk_16i_permute_and_scalar_add ...................   Passed    0.00 sec
+        Start   7: qa_volk_16i_s32f_convert_32f
+  7/134 Test   #7: qa_volk_16i_s32f_convert_32f .........................   Passed    0.01 sec
+        Start   8: qa_volk_16i_x4_quad_max_star_16i
+  8/134 Test   #8: qa_volk_16i_x4_quad_max_star_16i .....................   Passed    0.00 sec
+        Start   9: qa_volk_16i_x5_add_quad_16i_x4
+  9/134 Test   #9: qa_volk_16i_x5_add_quad_16i_x4 .......................   Passed    0.00 sec
+        Start  10: qa_volk_16ic_convert_32fc
+ 10/134 Test  #10: qa_volk_16ic_convert_32fc ............................   Passed    0.01 sec
+        Start  11: qa_volk_16ic_deinterleave_16i_x2
+ 11/134 Test  #11: qa_volk_16ic_deinterleave_16i_x2 .....................   Passed    0.01 sec
+        Start  12: qa_volk_16ic_deinterleave_real_16i
+ 12/134 Test  #12: qa_volk_16ic_deinterleave_real_16i ...................   Passed    0.01 sec
+        Start  13: qa_volk_16ic_deinterleave_real_8i
+ 13/134 Test  #13: qa_volk_16ic_deinterleave_real_8i ....................   Passed    0.01 sec
+        Start  14: qa_volk_16ic_magnitude_16i
+ 14/134 Test  #14: qa_volk_16ic_magnitude_16i ...........................   Passed    0.01 sec
+        Start  15: qa_volk_16ic_s32f_deinterleave_32f_x2
+ 15/134 Test  #15: qa_volk_16ic_s32f_deinterleave_32f_x2 ................   Passed    0.01 sec
+        Start  16: qa_volk_16ic_s32f_deinterleave_real_32f
+ 16/134 Test  #16: qa_volk_16ic_s32f_deinterleave_real_32f ..............   Passed    0.01 sec
+        Start  17: qa_volk_16ic_s32f_magnitude_32f
+ 17/134 Test  #17: qa_volk_16ic_s32f_magnitude_32f ......................   Passed    0.01 sec
+        Start  18: qa_volk_16ic_x2_dot_prod_16ic
+ 18/134 Test  #18: qa_volk_16ic_x2_dot_prod_16ic ........................   Passed    0.01 sec
+        Start  19: qa_volk_16ic_x2_multiply_16ic
+ 19/134 Test  #19: qa_volk_16ic_x2_multiply_16ic ........................   Passed    0.01 sec
+        Start  20: qa_volk_16u_byteswap
+ 20/134 Test  #20: qa_volk_16u_byteswap .................................   Passed    0.00 sec
+        Start  21: qa_volk_16u_byteswappuppet_16u
+ 21/134 Test  #21: qa_volk_16u_byteswappuppet_16u .......................   Passed    0.00 sec
+        Start  22: qa_volk_32f_64f_add_64f
+ 22/134 Test  #22: qa_volk_32f_64f_add_64f ..............................   Passed    0.01 sec
+        Start  23: qa_volk_32f_64f_multiply_64f
+ 23/134 Test  #23: qa_volk_32f_64f_multiply_64f .........................   Passed    0.01 sec
+        Start  24: qa_volk_32f_8u_polarbutterfly_32f
+ 24/134 Test  #24: qa_volk_32f_8u_polarbutterfly_32f ....................   Passed    0.00 sec
+        Start  25: qa_volk_32f_8u_polarbutterflypuppet_32f
+ 25/134 Test  #25: qa_volk_32f_8u_polarbutterflypuppet_32f ..............   Passed    0.01 sec
+        Start  26: qa_volk_32f_accumulator_s32f
+ 26/134 Test  #26: qa_volk_32f_accumulator_s32f .........................   Passed    0.01 sec
+        Start  27: qa_volk_32f_acos_32f
+ 27/134 Test  #27: qa_volk_32f_acos_32f .................................   Passed    0.01 sec
+        Start  28: qa_volk_32f_asin_32f
+ 28/134 Test  #28: qa_volk_32f_asin_32f .................................   Passed    0.01 sec
+        Start  29: qa_volk_32f_atan_32f
+ 29/134 Test  #29: qa_volk_32f_atan_32f .................................   Passed    0.01 sec
+        Start  30: qa_volk_32f_binary_slicer_32i
+ 30/134 Test  #30: qa_volk_32f_binary_slicer_32i ........................   Passed    0.01 sec
+        Start  31: qa_volk_32f_binary_slicer_8i
+ 31/134 Test  #31: qa_volk_32f_binary_slicer_8i .........................   Passed    0.01 sec
+        Start  32: qa_volk_32f_convert_64f
+ 32/134 Test  #32: qa_volk_32f_convert_64f ..............................   Passed    0.01 sec
+        Start  33: qa_volk_32f_cos_32f
+ 33/134 Test  #33: qa_volk_32f_cos_32f ..................................   Passed    0.01 sec
+        Start  34: qa_volk_32f_exp_32f
+ 34/134 Test  #34: qa_volk_32f_exp_32f ..................................   Passed    0.00 sec
+        Start  35: qa_volk_32f_expfast_32f
+ 35/134 Test  #35: qa_volk_32f_expfast_32f ..............................   Passed    0.01 sec
+        Start  36: qa_volk_32f_index_max_16u
+ 36/134 Test  #36: qa_volk_32f_index_max_16u ............................   Passed    0.01 sec
+        Start  37: qa_volk_32f_index_max_32u
+ 37/134 Test  #37: qa_volk_32f_index_max_32u ............................   Passed    0.01 sec
+        Start  38: qa_volk_32f_invsqrt_32f
+ 38/134 Test  #38: qa_volk_32f_invsqrt_32f ..............................   Passed    0.00 sec
+        Start  39: qa_volk_32f_log2_32f
+ 39/134 Test  #39: qa_volk_32f_log2_32f .................................   Passed    0.01 sec
+        Start  40: qa_volk_32f_null_32f
+ 40/134 Test  #40: qa_volk_32f_null_32f .................................   Passed    0.00 sec
+        Start  41: qa_volk_32f_s32f_32f_fm_detect_32f
+ 41/134 Test  #41: qa_volk_32f_s32f_32f_fm_detect_32f ...................   Passed    0.00 sec
+        Start  42: qa_volk_32f_s32f_add_32f
+ 42/134 Test  #42: qa_volk_32f_s32f_add_32f .............................   Passed    0.01 sec
+        Start  43: qa_volk_32f_s32f_calc_spectral_noise_floor_32f
+ 43/134 Test  #43: qa_volk_32f_s32f_calc_spectral_noise_floor_32f .......   Passed    0.01 sec
+        Start  44: qa_volk_32f_s32f_convert_16i
+ 44/134 Test  #44: qa_volk_32f_s32f_convert_16i .........................   Passed    0.01 sec
+        Start  45: qa_volk_32f_s32f_convert_32i
+ 45/134 Test  #45: qa_volk_32f_s32f_convert_32i .........................   Passed    0.01 sec
+        Start  46: qa_volk_32f_s32f_convert_8i
+ 46/134 Test  #46: qa_volk_32f_s32f_convert_8i ..........................   Passed    0.01 sec
+        Start  47: qa_volk_32f_s32f_mod_rangepuppet_32f
+ 47/134 Test  #47: qa_volk_32f_s32f_mod_rangepuppet_32f .................   Passed    0.01 sec
+        Start  48: qa_volk_32f_s32f_multiply_32f
+ 48/134 Test  #48: qa_volk_32f_s32f_multiply_32f ........................   Passed    0.01 sec
+        Start  49: qa_volk_32f_s32f_normalize
+ 49/134 Test  #49: qa_volk_32f_s32f_normalize ...........................   Passed    0.00 sec
+        Start  50: qa_volk_32f_s32f_power_32f
+ 50/134 Test  #50: qa_volk_32f_s32f_power_32f ...........................   Passed    0.01 sec
+        Start  51: qa_volk_32f_s32f_s32f_mod_range_32f
+ 51/134 Test  #51: qa_volk_32f_s32f_s32f_mod_range_32f ..................   Passed    0.00 sec
+        Start  52: qa_volk_32f_s32f_stddev_32f
+ 52/134 Test  #52: qa_volk_32f_s32f_stddev_32f ..........................   Passed    0.01 sec
+        Start  53: qa_volk_32f_sin_32f
+ 53/134 Test  #53: qa_volk_32f_sin_32f ..................................   Passed    0.01 sec
+        Start  54: qa_volk_32f_sqrt_32f
+ 54/134 Test  #54: qa_volk_32f_sqrt_32f .................................   Passed    0.01 sec
+        Start  55: qa_volk_32f_stddev_and_mean_32f_x2
+ 55/134 Test  #55: qa_volk_32f_stddev_and_mean_32f_x2 ...................   Passed    0.01 sec
+        Start  56: qa_volk_32f_tan_32f
+ 56/134 Test  #56: qa_volk_32f_tan_32f ..................................   Passed    0.01 sec
+        Start  57: qa_volk_32f_tanh_32f
+ 57/134 Test  #57: qa_volk_32f_tanh_32f .................................   Passed    0.01 sec
+        Start  58: qa_volk_32f_x2_add_32f
+ 58/134 Test  #58: qa_volk_32f_x2_add_32f ...............................   Passed    0.01 sec
+        Start  59: qa_volk_32f_x2_divide_32f
+ 59/134 Test  #59: qa_volk_32f_x2_divide_32f ............................   Passed    0.01 sec
+        Start  60: qa_volk_32f_x2_dot_prod_16i
+ 60/134 Test  #60: qa_volk_32f_x2_dot_prod_16i ..........................   Passed    0.01 sec
+        Start  61: qa_volk_32f_x2_dot_prod_32f
+ 61/134 Test  #61: qa_volk_32f_x2_dot_prod_32f ..........................   Passed    0.02 sec
+        Start  62: qa_volk_32f_x2_fm_detectpuppet_32f
+ 62/134 Test  #62: qa_volk_32f_x2_fm_detectpuppet_32f ...................   Passed    0.01 sec
+        Start  63: qa_volk_32f_x2_interleave_32fc
+ 63/134 Test  #63: qa_volk_32f_x2_interleave_32fc .......................   Passed    0.01 sec
+        Start  64: qa_volk_32f_x2_max_32f
+ 64/134 Test  #64: qa_volk_32f_x2_max_32f ...............................   Passed    0.01 sec
+        Start  65: qa_volk_32f_x2_min_32f
+ 65/134 Test  #65: qa_volk_32f_x2_min_32f ...............................   Passed    0.01 sec
+        Start  66: qa_volk_32f_x2_multiply_32f
+ 66/134 Test  #66: qa_volk_32f_x2_multiply_32f ..........................   Passed    0.01 sec
+        Start  67: qa_volk_32f_x2_pow_32f
+ 67/134 Test  #67: qa_volk_32f_x2_pow_32f ...............................   Passed    0.02 sec
+        Start  68: qa_volk_32f_x2_s32f_interleave_16ic
+ 68/134 Test  #68: qa_volk_32f_x2_s32f_interleave_16ic ..................   Passed    0.01 sec
+        Start  69: qa_volk_32f_x2_subtract_32f
+ 69/134 Test  #69: qa_volk_32f_x2_subtract_32f ..........................   Passed    0.01 sec
+        Start  70: qa_volk_32f_x3_sum_of_poly_32f
+ 70/134 Test  #70: qa_volk_32f_x3_sum_of_poly_32f .......................   Passed    0.01 sec
+        Start  71: qa_volk_32fc_32f_add_32fc
+ 71/134 Test  #71: qa_volk_32fc_32f_add_32fc ............................   Passed    0.01 sec
+        Start  72: qa_volk_32fc_32f_dot_prod_32fc
+ 72/134 Test  #72: qa_volk_32fc_32f_dot_prod_32fc .......................   Passed    0.03 sec
+        Start  73: qa_volk_32fc_32f_multiply_32fc
+ 73/134 Test  #73: qa_volk_32fc_32f_multiply_32fc .......................   Passed    0.01 sec
+        Start  74: qa_volk_32fc_conjugate_32fc
+ 74/134 Test  #74: qa_volk_32fc_conjugate_32fc ..........................   Passed    0.02 sec
+        Start  75: qa_volk_32fc_convert_16ic
+ 75/134 Test  #75: qa_volk_32fc_convert_16ic ............................   Passed    0.01 sec
+        Start  76: qa_volk_32fc_deinterleave_32f_x2
+ 76/134 Test  #76: qa_volk_32fc_deinterleave_32f_x2 .....................   Passed    0.01 sec
+        Start  77: qa_volk_32fc_deinterleave_64f_x2
+ 77/134 Test  #77: qa_volk_32fc_deinterleave_64f_x2 .....................   Passed    0.02 sec
+        Start  78: qa_volk_32fc_deinterleave_imag_32f
+ 78/134 Test  #78: qa_volk_32fc_deinterleave_imag_32f ...................   Passed    0.01 sec
+        Start  79: qa_volk_32fc_deinterleave_real_32f
+ 79/134 Test  #79: qa_volk_32fc_deinterleave_real_32f ...................   Passed    0.01 sec
+        Start  80: qa_volk_32fc_deinterleave_real_64f
+ 80/134 Test  #80: qa_volk_32fc_deinterleave_real_64f ...................   Passed    0.01 sec
+        Start  81: qa_volk_32fc_index_max_16u
+ 81/134 Test  #81: qa_volk_32fc_index_max_16u ...........................   Passed    0.01 sec
+        Start  82: qa_volk_32fc_index_max_32u
+ 82/134 Test  #82: qa_volk_32fc_index_max_32u ...........................   Passed    0.01 sec
+        Start  83: qa_volk_32fc_magnitude_32f
+ 83/134 Test  #83: qa_volk_32fc_magnitude_32f ...........................   Passed    0.02 sec
+        Start  84: qa_volk_32fc_magnitude_squared_32f
+ 84/134 Test  #84: qa_volk_32fc_magnitude_squared_32f ...................   Passed    0.02 sec
+        Start  85: qa_volk_32fc_s32f_atan2_32f
+ 85/134 Test  #85: qa_volk_32fc_s32f_atan2_32f ..........................   Passed    0.02 sec
+        Start  86: qa_volk_32fc_s32f_deinterleave_real_16i
+ 86/134 Test  #86: qa_volk_32fc_s32f_deinterleave_real_16i ..............   Passed    0.01 sec
+        Start  87: qa_volk_32fc_s32f_magnitude_16i
+ 87/134 Test  #87: qa_volk_32fc_s32f_magnitude_16i ......................   Passed    0.01 sec
+        Start  88: qa_volk_32fc_s32f_power_32fc
+ 88/134 Test  #88: qa_volk_32fc_s32f_power_32fc .........................   Passed    0.02 sec
+        Start  89: qa_volk_32fc_s32f_power_spectral_densitypuppet_32f
+ 89/134 Test  #89: qa_volk_32fc_s32f_power_spectral_densitypuppet_32f ...   Passed    0.01 sec
+        Start  90: qa_volk_32fc_s32f_power_spectrum_32f
+ 90/134 Test  #90: qa_volk_32fc_s32f_power_spectrum_32f .................   Passed    0.01 sec
+        Start  91: qa_volk_32fc_s32f_x2_power_spectral_density_32f
+ 91/134 Test  #91: qa_volk_32fc_s32f_x2_power_spectral_density_32f ......   Passed    0.00 sec
+        Start  92: qa_volk_32fc_s32fc_multiply_32fc
+ 92/134 Test  #92: qa_volk_32fc_s32fc_multiply_32fc .....................   Passed    0.02 sec
+        Start  93: qa_volk_32fc_s32fc_rotatorpuppet_32fc
+ 93/134 Test  #93: qa_volk_32fc_s32fc_rotatorpuppet_32fc ................   Passed    0.02 sec
+        Start  94: qa_volk_32fc_s32fc_x2_rotator_32fc
+ 94/134 Test  #94: qa_volk_32fc_s32fc_x2_rotator_32fc ...................   Passed    0.00 sec
+        Start  95: qa_volk_32fc_x2_add_32fc
+ 95/134 Test  #95: qa_volk_32fc_x2_add_32fc .............................   Passed    0.02 sec
+        Start  96: qa_volk_32fc_x2_conjugate_dot_prod_32fc
+ 96/134 Test  #96: qa_volk_32fc_x2_conjugate_dot_prod_32fc ..............   Passed    0.03 sec
+        Start  97: qa_volk_32fc_x2_divide_32fc
+ 97/134 Test  #97: qa_volk_32fc_x2_divide_32fc ..........................   Passed    0.02 sec
+        Start  98: qa_volk_32fc_x2_dot_prod_32fc
+ 98/134 Test  #98: qa_volk_32fc_x2_dot_prod_32fc ........................   Passed    0.04 sec
+        Start  99: qa_volk_32fc_x2_multiply_32fc
+ 99/134 Test  #99: qa_volk_32fc_x2_multiply_32fc ........................   Passed    0.03 sec
+        Start 100: qa_volk_32fc_x2_multiply_conjugate_32fc
+100/134 Test #100: qa_volk_32fc_x2_multiply_conjugate_32fc ..............   Passed    0.03 sec
+        Start 101: qa_volk_32fc_x2_s32f_square_dist_scalar_mult_32f
+101/134 Test #101: qa_volk_32fc_x2_s32f_square_dist_scalar_mult_32f .....   Passed    0.03 sec
+        Start 102: qa_volk_32fc_x2_s32fc_multiply_conjugate_add_32fc
+102/134 Test #102: qa_volk_32fc_x2_s32fc_multiply_conjugate_add_32fc ....   Passed    0.02 sec
+        Start 103: qa_volk_32fc_x2_square_dist_32f
+103/134 Test #103: qa_volk_32fc_x2_square_dist_32f ......................   Passed    0.02 sec
+        Start 104: qa_volk_32i_s32f_convert_32f
+104/134 Test #104: qa_volk_32i_s32f_convert_32f .........................   Passed    0.01 sec
+        Start 105: qa_volk_32i_x2_and_32i
+105/134 Test #105: qa_volk_32i_x2_and_32i ...............................   Passed    0.01 sec
+        Start 106: qa_volk_32i_x2_or_32i
+106/134 Test #106: qa_volk_32i_x2_or_32i ................................   Passed    0.01 sec
+        Start 107: qa_volk_32u_byteswap
+107/134 Test #107: qa_volk_32u_byteswap .................................   Passed    0.00 sec
+        Start 108: qa_volk_32u_byteswappuppet_32u
+108/134 Test #108: qa_volk_32u_byteswappuppet_32u .......................   Passed    0.01 sec
+        Start 109: qa_volk_32u_popcnt
+109/134 Test #109: qa_volk_32u_popcnt ...................................   Passed    0.00 sec
+        Start 110: qa_volk_32u_popcntpuppet_32u
+110/134 Test #110: qa_volk_32u_popcntpuppet_32u .........................   Passed    0.00 sec
+        Start 111: qa_volk_32u_reverse_32u
+111/134 Test #111: qa_volk_32u_reverse_32u ..............................   Passed    0.01 sec
+        Start 112: qa_volk_64f_convert_32f
+112/134 Test #112: qa_volk_64f_convert_32f ..............................   Passed    0.01 sec
+        Start 113: qa_volk_64f_x2_add_64f
+113/134 Test #113: qa_volk_64f_x2_add_64f ...............................   Passed    0.02 sec
+        Start 114: qa_volk_64f_x2_max_64f
+114/134 Test #114: qa_volk_64f_x2_max_64f ...............................   Passed    0.02 sec
+        Start 115: qa_volk_64f_x2_min_64f
+115/134 Test #115: qa_volk_64f_x2_min_64f ...............................   Passed    0.01 sec
+        Start 116: qa_volk_64f_x2_multiply_64f
+116/134 Test #116: qa_volk_64f_x2_multiply_64f ..........................   Passed    0.02 sec
+        Start 117: qa_volk_64u_byteswap
+117/134 Test #117: qa_volk_64u_byteswap .................................   Passed    0.00 sec
+        Start 118: qa_volk_64u_byteswappuppet_64u
+118/134 Test #118: qa_volk_64u_byteswappuppet_64u .......................   Passed    0.01 sec
+        Start 119: qa_volk_64u_popcnt
+119/134 Test #119: qa_volk_64u_popcnt ...................................   Passed    0.00 sec
+        Start 120: qa_volk_64u_popcntpuppet_64u
+120/134 Test #120: qa_volk_64u_popcntpuppet_64u .........................   Passed    0.01 sec
+        Start 121: qa_volk_8i_convert_16i
+121/134 Test #121: qa_volk_8i_convert_16i ...............................   Passed    0.00 sec
+        Start 122: qa_volk_8i_s32f_convert_32f
+122/134 Test #122: qa_volk_8i_s32f_convert_32f ..........................   Passed    0.01 sec
+        Start 123: qa_volk_8ic_deinterleave_16i_x2
+123/134 Test #123: qa_volk_8ic_deinterleave_16i_x2 ......................   Passed    0.01 sec
+        Start 124: qa_volk_8ic_deinterleave_real_16i
+124/134 Test #124: qa_volk_8ic_deinterleave_real_16i ....................   Passed    0.01 sec
+        Start 125: qa_volk_8ic_deinterleave_real_8i
+125/134 Test #125: qa_volk_8ic_deinterleave_real_8i .....................   Passed    0.01 sec
+        Start 126: qa_volk_8ic_s32f_deinterleave_32f_x2
+126/134 Test #126: qa_volk_8ic_s32f_deinterleave_32f_x2 .................   Passed    0.01 sec
+        Start 127: qa_volk_8ic_s32f_deinterleave_real_32f
+127/134 Test #127: qa_volk_8ic_s32f_deinterleave_real_32f ...............   Passed    0.01 sec
+        Start 128: qa_volk_8ic_x2_multiply_conjugate_16ic
+128/134 Test #128: qa_volk_8ic_x2_multiply_conjugate_16ic ...............   Passed    0.01 sec
+        Start 129: qa_volk_8ic_x2_s32f_multiply_conjugate_32fc
+129/134 Test #129: qa_volk_8ic_x2_s32f_multiply_conjugate_32fc ..........   Passed    0.01 sec
+        Start 130: qa_volk_8u_conv_k7_r2puppet_8u
+130/134 Test #130: qa_volk_8u_conv_k7_r2puppet_8u .......................   Passed    0.01 sec
+        Start 131: qa_volk_8u_x2_encodeframepolar_8u
+131/134 Test #131: qa_volk_8u_x2_encodeframepolar_8u ....................   Passed    0.00 sec
+        Start 132: qa_volk_8u_x3_encodepolar_8u_x2
+132/134 Test #132: qa_volk_8u_x3_encodepolar_8u_x2 ......................   Passed    0.00 sec
+        Start 133: qa_volk_8u_x3_encodepolarpuppet_8u
+133/134 Test #133: qa_volk_8u_x3_encodepolarpuppet_8u ...................   Passed    0.01 sec
+        Start 134: qa_volk_8u_x4_conv_k7_r2_8u
+134/134 Test #134: qa_volk_8u_x4_conv_k7_r2_8u ..........................   Passed    0.00 sec
+
+100% tests passed, 0 tests failed out of 134
+
+Total Test time (real) =   1.44 sec
+                                                                                                                                      
+┌──(mxana㉿PEATT-KL)-[~/volk/build]
+└─$ sudo make install                 
+[sudo] password for mxana: 
+[  5%] Built target utils
+[  8%] Built target cpu_features
+[ 11%] Built target list_cpu_features
+[ 13%] Built target unix_based_hardware_detection
+[ 76%] Built target volk_obj
+[ 77%] Built target volk
+[ 83%] Built target volk_test_all
+[ 88%] Built target volk-config-info
+[ 94%] Built target volk_profile
+[ 96%] Built target pygen_python_volk_modtool_5ccd3
+[100%] Built target pygen_python_volk_modtool_4837e
+Install the project...
+-- Install configuration: "Release"
+-- Installing: /usr/local/lib/pkgconfig/volk.pc
+-- Installing: /usr/local/include/volk
+-- Installing: /usr/local/include/volk/volk_8i_s32f_convert_32f.h
+-- Installing: /usr/local/include/volk/volk_32fc_x2_square_dist_32f.h
+-- Installing: /usr/local/include/volk/volk_16i_s32f_convert_32f.h
+-- Installing: /usr/local/include/volk/volk_32fc_s32fc_rotatorpuppet_32fc.h
+-- Installing: /usr/local/include/volk/volk_32fc_s32f_power_32fc.h
+-- Installing: /usr/local/include/volk/volk_32fc_index_max_16u.h
+-- Installing: /usr/local/include/volk/volk_32f_sin_32f.h
+-- Installing: /usr/local/include/volk/volk_16ic_convert_32fc.h
+-- Installing: /usr/local/include/volk/volk_8ic_deinterleave_16i_x2.h
+-- Installing: /usr/local/include/volk/volk_16i_x4_quad_max_star_16i.h
+-- Installing: /usr/local/include/volk/volk_32f_index_max_16u.h
+-- Installing: /usr/local/include/volk/volk_32f_s32f_convert_16i.h
+-- Installing: /usr/local/include/volk/volk_8ic_x2_s32f_multiply_conjugate_32fc.h
+-- Installing: /usr/local/include/volk/volk_16ic_s32f_deinterleave_real_32f.h
+-- Installing: /usr/local/include/volk/volk_32f_expfast_32f.h
+-- Installing: /usr/local/include/volk/volk_8ic_x2_multiply_conjugate_16ic.h
+-- Installing: /usr/local/include/volk/volk_32fc_32f_multiply_32fc.h
+-- Installing: /usr/local/include/volk/volk_32fc_x2_s32fc_multiply_conjugate_add_32fc.h
+-- Installing: /usr/local/include/volk/volk_32fc_32f_add_32fc.h
+-- Installing: /usr/local/include/volk/volk_32fc_x2_dot_prod_32fc.h
+-- Installing: /usr/local/include/volk/volk_16u_byteswappuppet_16u.h
+-- Installing: /usr/local/include/volk/volk_32f_s32f_convert_8i.h
+-- Installing: /usr/local/include/volk/volk_8u_x3_encodepolar_8u_x2.h
+-- Installing: /usr/local/include/volk/volk_16ic_deinterleave_16i_x2.h
+-- Installing: /usr/local/include/volk/volk_32f_s32f_calc_spectral_noise_floor_32f.h
+-- Installing: /usr/local/include/volk/volk_8u_conv_k7_r2puppet_8u.h
+-- Installing: /usr/local/include/volk/volk_8ic_s32f_deinterleave_real_32f.h
+-- Installing: /usr/local/include/volk/volk_32f_exp_32f.h
+-- Installing: /usr/local/include/volk/volk_32f_s32f_multiply_32f.h
+-- Installing: /usr/local/include/volk/volk_32u_reverse_32u.h
+-- Installing: /usr/local/include/volk/volk_16ic_s32f_magnitude_32f.h
+-- Installing: /usr/local/include/volk/volk_32fc_magnitude_32f.h
+-- Installing: /usr/local/include/volk/volk_32u_byteswap.h
+-- Installing: /usr/local/include/volk/volk_32f_x2_max_32f.h
+-- Installing: /usr/local/include/volk/volk_16i_permute_and_scalar_add.h
+-- Installing: /usr/local/include/volk/volk_32f_cos_32f.h
+-- Installing: /usr/local/include/volk/volk_32fc_x2_s32f_square_dist_scalar_mult_32f.h
+-- Installing: /usr/local/include/volk/volk_32f_tan_32f.h
+-- Installing: /usr/local/include/volk/volk_32fc_x2_multiply_conjugate_32fc.h
+-- Installing: /usr/local/include/volk/volk_32f_x2_min_32f.h
+-- Installing: /usr/local/include/volk/volk_32fc_deinterleave_real_64f.h
+-- Installing: /usr/local/include/volk/volk_32f_8u_polarbutterflypuppet_32f.h
+-- Installing: /usr/local/include/volk/volk_32fc_x2_divide_32fc.h
+-- Installing: /usr/local/include/volk/volk_32fc_s32f_deinterleave_real_16i.h
+-- Installing: /usr/local/include/volk/volk_32fc_deinterleave_real_32f.h
+-- Installing: /usr/local/include/volk/volk_32f_convert_64f.h
+-- Installing: /usr/local/include/volk/volk_16i_32fc_dot_prod_32fc.h
+-- Installing: /usr/local/include/volk/volk_32f_s32f_32f_fm_detect_32f.h
+-- Installing: /usr/local/include/volk/volk_32f_x2_divide_32f.h
+-- Installing: /usr/local/include/volk/volk_32f_s32f_stddev_32f.h
+-- Installing: /usr/local/include/volk/volk_64u_popcnt.h
+-- Installing: /usr/local/include/volk/volk_16ic_s32f_deinterleave_32f_x2.h
+-- Installing: /usr/local/include/volk/volk_32f_acos_32f.h
+-- Installing: /usr/local/include/volk/volk_32f_x2_pow_32f.h
+-- Installing: /usr/local/include/volk/volk_8u_x3_encodepolarpuppet_8u.h
+-- Installing: /usr/local/include/volk/volk_8ic_deinterleave_real_16i.h
+-- Installing: /usr/local/include/volk/volk_32fc_s32f_power_spectral_densitypuppet_32f.h
+-- Installing: /usr/local/include/volk/volk_32f_log2_32f.h
+-- Installing: /usr/local/include/volk/volk_32f_binary_slicer_32i.h
+-- Installing: /usr/local/include/volk/volk_32f_null_32f.h
+-- Installing: /usr/local/include/volk/volk_32f_invsqrt_32f.h
+-- Installing: /usr/local/include/volk/volk_32f_x3_sum_of_poly_32f.h
+-- Installing: /usr/local/include/volk/volk_32fc_s32f_atan2_32f.h
+-- Installing: /usr/local/include/volk/volk_32f_accumulator_s32f.h
+-- Installing: /usr/local/include/volk/volk_8ic_s32f_deinterleave_32f_x2.h
+-- Installing: /usr/local/include/volk/volk_32f_s32f_normalize.h
+-- Installing: /usr/local/include/volk/volk_8u_x2_encodeframepolar_8u.h
+-- Installing: /usr/local/include/volk/volk_16i_max_star_horizontal_16i.h
+-- Installing: /usr/local/include/volk/volk_32fc_magnitude_squared_32f.h
+-- Installing: /usr/local/include/volk/volk_32f_s32f_power_32f.h
+-- Installing: /usr/local/include/volk/volk_32f_x2_interleave_32fc.h
+-- Installing: /usr/local/include/volk/volk_32f_s32f_add_32f.h
+-- Installing: /usr/local/include/volk/volk_32fc_s32f_magnitude_16i.h
+-- Installing: /usr/local/include/volk/volk_32fc_s32fc_x2_rotator_32fc.h
+-- Installing: /usr/local/include/volk/volk_32f_s32f_s32f_mod_range_32f.h
+-- Installing: /usr/local/include/volk/volk_32f_s32f_convert_32i.h
+-- Installing: /usr/local/include/volk/volk_16ic_deinterleave_real_8i.h
+-- Installing: /usr/local/include/volk/volk_32fc_s32f_power_spectrum_32f.h
+-- Installing: /usr/local/include/volk/volk_32fc_deinterleave_64f_x2.h
+-- Installing: /usr/local/include/volk/volk_32u_popcntpuppet_32u.h
+-- Installing: /usr/local/include/volk/volk_32f_tanh_32f.h
+-- Installing: /usr/local/include/volk/volk_16i_convert_8i.h
+-- Installing: /usr/local/include/volk/volk_32fc_s32fc_multiply_32fc.h
+-- Installing: /usr/local/include/volk/volk_32f_x2_fm_detectpuppet_32f.h
+-- Installing: /usr/local/include/volk/volk_32fc_x2_conjugate_dot_prod_32fc.h
+-- Installing: /usr/local/include/volk/volk_32i_s32f_convert_32f.h
+-- Installing: /usr/local/include/volk/volk_32fc_convert_16ic.h
+-- Installing: /usr/local/include/volk/volk_32f_binary_slicer_8i.h
+-- Installing: /usr/local/include/volk/volk_32fc_conjugate_32fc.h
+-- Installing: /usr/local/include/volk/volk_64u_popcntpuppet_64u.h
+-- Installing: /usr/local/include/volk/volk_64f_convert_32f.h
+-- Installing: /usr/local/include/volk/volk_64u_byteswap.h
+-- Installing: /usr/local/include/volk/volk_32f_x2_subtract_32f.h
+-- Installing: /usr/local/include/volk/volk_16ic_x2_dot_prod_16ic.h
+-- Installing: /usr/local/include/volk/volk_32f_x2_dot_prod_32f.h
+-- Installing: /usr/local/include/volk/volk_32fc_x2_add_32fc.h
+-- Installing: /usr/local/include/volk/volk_32i_x2_or_32i.h
+-- Installing: /usr/local/include/volk/volk_32f_stddev_and_mean_32f_x2.h
+-- Installing: /usr/local/include/volk/volk_64f_x2_multiply_64f.h
+-- Installing: /usr/local/include/volk/volk_32f_s32f_mod_rangepuppet_32f.h
+-- Installing: /usr/local/include/volk/volk_32f_index_max_32u.h
+-- Installing: /usr/local/include/volk/volk_64f_x2_add_64f.h
+-- Installing: /usr/local/include/volk/volk_32fc_deinterleave_imag_32f.h
+-- Installing: /usr/local/include/volk/volk_32f_sqrt_32f.h
+-- Installing: /usr/local/include/volk/volk_16ic_magnitude_16i.h
+-- Installing: /usr/local/include/volk/volk_16u_byteswap.h
+-- Installing: /usr/local/include/volk/volk_8u_x4_conv_k7_r2_8u.h
+-- Installing: /usr/local/include/volk/volk_32fc_s32f_x2_power_spectral_density_32f.h
+-- Installing: /usr/local/include/volk/volk_32f_x2_dot_prod_16i.h
+-- Installing: /usr/local/include/volk/volk_32fc_32f_dot_prod_32fc.h
+-- Installing: /usr/local/include/volk/volk_32fc_deinterleave_32f_x2.h
+-- Installing: /usr/local/include/volk/volk_32fc_x2_multiply_32fc.h
+-- Installing: /usr/local/include/volk/volk_32f_64f_multiply_64f.h
+-- Installing: /usr/local/include/volk/volk_32f_x2_s32f_interleave_16ic.h
+-- Installing: /usr/local/include/volk/asm
+-- Installing: /usr/local/include/volk/asm/orc
+-- Installing: /usr/local/include/volk/asm/neon
+-- Installing: /usr/local/include/volk/volk_8i_convert_16i.h
+-- Installing: /usr/local/include/volk/volk_32fc_index_max_32u.h
+-- Installing: /usr/local/include/volk/volk_16i_branch_4_state_8.h
+-- Installing: /usr/local/include/volk/volk_32f_x2_add_32f.h
+-- Installing: /usr/local/include/volk/volk_32f_8u_polarbutterfly_32f.h
+-- Installing: /usr/local/include/volk/volk_16i_x5_add_quad_16i_x4.h
+-- Installing: /usr/local/include/volk/volk_32i_x2_and_32i.h
+-- Installing: /usr/local/include/volk/volk_32u_popcnt.h
+-- Installing: /usr/local/include/volk/volk_16ic_deinterleave_real_16i.h
+-- Installing: /usr/local/include/volk/volk_64f_x2_min_64f.h
+-- Installing: /usr/local/include/volk/volk_32f_x2_multiply_32f.h
+-- Installing: /usr/local/include/volk/volk_32u_byteswappuppet_32u.h
+-- Installing: /usr/local/include/volk/volk_32f_atan_32f.h
+-- Installing: /usr/local/include/volk/volk_32f_asin_32f.h
+-- Installing: /usr/local/include/volk/volk_32f_64f_add_64f.h
+-- Installing: /usr/local/include/volk/volk_16ic_x2_multiply_16ic.h
+-- Installing: /usr/local/include/volk/volk_64f_x2_max_64f.h
+-- Installing: /usr/local/include/volk/volk_16i_max_star_16i.h
+-- Installing: /usr/local/include/volk/volk_8ic_deinterleave_real_8i.h
+-- Installing: /usr/local/include/volk/volk_64u_byteswappuppet_64u.h
+-- Installing: /usr/local/include/volk/volk_prefs.h
+-- Installing: /usr/local/include/volk/volk_alloc.hh
+-- Installing: /usr/local/include/volk/volk_complex.h
+-- Installing: /usr/local/include/volk/volk_common.h
+-- Installing: /usr/local/include/volk/saturation_arithmetic.h
+-- Installing: /usr/local/include/volk/volk_avx_intrinsics.h
+-- Installing: /usr/local/include/volk/volk_avx2_intrinsics.h
+-- Installing: /usr/local/include/volk/volk_sse_intrinsics.h
+-- Installing: /usr/local/include/volk/volk_sse3_intrinsics.h
+-- Installing: /usr/local/include/volk/volk_neon_intrinsics.h
+-- Installing: /usr/local/include/volk/volk.h
+-- Installing: /usr/local/include/volk/volk_cpu.h
+-- Installing: /usr/local/include/volk/volk_config_fixed.h
+-- Installing: /usr/local/include/volk/volk_typedefs.h
+-- Installing: /usr/local/include/volk/volk_malloc.h
+-- Installing: /usr/local/include/volk/volk_version.h
+-- Installing: /usr/local/include/volk/constants.h
+-- Installing: /usr/local/lib/cmake/volk/VolkConfig.cmake
+-- Installing: /usr/local/lib/cmake/volk/VolkConfigVersion.cmake
+-- Installing: /usr/local/lib/cmake/volk/VolkTargets.cmake
+-- Installing: /usr/local/lib/cmake/volk/VolkTargets-release.cmake
+-- Installing: /usr/local/lib/libcpu_features.a
+-- Installing: /usr/local/include/cpu_features/cpu_features_macros.h
+-- Installing: /usr/local/include/cpu_features/cpu_features_cache_info.h
+-- Installing: /usr/local/include/cpu_features/cpuinfo_x86.h
+-- Installing: /usr/local/bin/list_cpu_features
+-- Installing: /usr/local/lib/cmake/CpuFeatures/CpuFeaturesTargets.cmake
+-- Installing: /usr/local/lib/cmake/CpuFeatures/CpuFeaturesTargets-release.cmake
+-- Installing: /usr/local/lib/cmake/CpuFeatures/CpuFeaturesConfig.cmake
+-- Installing: /usr/local/lib/cmake/CpuFeatures/CpuFeaturesConfigVersion.cmake
+-- Installing: /usr/local/lib/libvolk.so.2.4
+-- Installing: /usr/local/lib/libvolk.so
+-- Installing: /usr/local/bin/volk_profile
+-- Set runtime path of "/usr/local/bin/volk_profile" to ""
+-- Installing: /usr/local/bin/volk-config-info
+-- Set runtime path of "/usr/local/bin/volk-config-info" to ""
+-- Installing: /usr/local/lib/python3/dist-packages/volk_modtool/__init__.py
+-- Installing: /usr/local/lib/python3/dist-packages/volk_modtool/cfg.py
+-- Installing: /usr/local/lib/python3/dist-packages/volk_modtool/volk_modtool_generate.py
+-- Installing: /usr/local/lib/python3/dist-packages/volk_modtool/__init__.pyc
+-- Installing: /usr/local/lib/python3/dist-packages/volk_modtool/cfg.pyc
+-- Installing: /usr/local/lib/python3/dist-packages/volk_modtool/volk_modtool_generate.pyc
+-- Installing: /usr/local/lib/python3/dist-packages/volk_modtool/__init__.pyo
+-- Installing: /usr/local/lib/python3/dist-packages/volk_modtool/cfg.pyo
+-- Installing: /usr/local/lib/python3/dist-packages/volk_modtool/volk_modtool_generate.pyo
+-- Installing: /usr/local/bin/volk_modtool

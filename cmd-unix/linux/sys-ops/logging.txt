@@ -1,0 +1,11 @@
+journalctl {
+    -u (user)
+    -l (long listing)
+    -f (tail follow)
+}
+
+messages {
+    dmesg
+        | more
+}
+

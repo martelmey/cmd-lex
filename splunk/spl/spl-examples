@@ -1,0 +1,209 @@
+######################
+which hosts USERNAME has accessed past 24 hours
+###################### {
+	index=os_evt_* sourcetype=who USERNAME=emmanuel.comia
+	| chart count by host
+}
+
+######################
+Sizes of indexes over time
+###################### {
+	[ | makeresults
+	  | eval index="*"
+	  | makemv index
+	  | mvexpand index]
+	| eval raw_len=len(_raw)
+	| stats sum(raw_len) AS event_size by index
+	| eval "Size in GB"=round(event_size/1024/1024/1024,2)
+	| sort - event_size
+	| table index "Size in GB"
+
+	[ | makeresults
+	  | eval index="*"
+	  | makemv index
+	  | mvexpand index]
+	| eval raw_len=len(_raw)
+	| stats sum(raw_len) AS event_size by index
+	| eval "Size in MB"=round(event_size/1024/1024,2)
+	| sort - event_size
+	| table index "Size in MB"
+}
+
+######################
+LDAP alert
+###################### {
+	index="os_evt_*" sourcetype="ldap-check" linecount=1 result="LDAPCheck failed!"
+	| chart count by host
+	| sort host
+}
+
+######################
+DF - disk space alert
+###################### {
+	index="*ps*" host="*db*" sourcetype=df
+	| multikv fields Filesystem Type Size Used Avail UsePct MountedOn
+	| convert auto(UsePct)
+	| where UsePct>75 AND MountedOn="/u01"
+}
+
+######################
+look for _internal errors
+###################### {
+	index="_internal" host="kutlprdsplunk01.np.health.local" source="/opt/splunk/var/log/splunk/mongod.log"
+
+	index="_internal" host="knpdb11" ERROR component=ExecProcessor "/proc/"
+	| dedup event_message
+
+	index="_internal" host="kutlprdsplunk01.np.health.local" component=KVStoreLookup
+	| dedup event_message
+
+	index="_internal" host="knpdb11" ERROR component=ExecProcessor
+	| dedup event_message
+
+	index="_internal" host="knpdb11" ERROR component=ExecProcessor cpu_usage
+	| dedup event_message
+
+	index="_internal" host="knpdb11" ERROR component=ExecProcessor df_usage
+	| dedup event_message
+
+	index=_internal source=*splunkd.log HttpInputDataHandler ERROR
+	| stats values(_raw) by _time host
+
+	index=_internal source=*splunkd.log* log_level=ERROR OR log_level=DEBUG component=HttpInputDataHandler reply=*
+	| eval response_to_client=case(reply=="0","success",reply=="1","Token disabled",reply=="2","Token is required",reply=="3","Invalid authorization",reply=="4","Invalid token",reply=="5","No data",reply=="6","Invalid data format",reply=="7","Incorrect index",reply=="9","Server is busy",reply=="10","Data channel is missing",reply=="11","Invalid data channel",reply=="12","Event field is required",reply=="13","Event field cannot be blank",reply=="14","ACK is disabled",reply=="15","Error in handling indexed fields",reply=="16","Query string authorization is not enabled",reply=="17","HEC is healthy",reply=="18","HEC is unhealthy, queues are full",reply=="19","HEC is unhealthy, ack service unavailable",reply=="20","Hec is unhealthy, queues are full, ack service unavailable")
+	| stats count by host name channel source_IP response_to_client reply
+	| rename host as "HEC Receiver" source_IP as "HEC client"
+}
+
+######################
+look for nix_errors in syslog
+###################### {
+	index="*np" host="knpdb11" sourcetype="syslog" eventtype=nix_errors
+}
+
+######################
+chart counts of
+###################### {
+	index="db_ps" OR index="os_evt_ps" host="kdcps-db10"
+	| chart count by source
+
+	index="db_ps" OR index="os_evt_ps" host="kdcps-db10" eventtype=openPorts
+	| chart count by Port
+
+	index="db_ps" host="kdcps-db10"
+	| chart count by source
+
+	index="db_np" OR index="os_evt_np" host="knpdb11"
+	| chart count by sourcetype
+
+	| metadata type=hosts index=* OR index=_*
+
+	metadata type=sourcetypes index=* OR index=_*
+
+	index="os_evt_ps"
+	| chart count by host
+
+	index= 
+	|chart count by source
+
+	index= 
+	|chart count by sourcetype
+}
+
+######################
+forwarder cxn test
+###################### {
+	`dmc_get_forwarder_tcpin` hostname=knpdb11
+	| eval source_uri = hostname.":".sourcePort
+	| eval dest_uri = host.":".destPort
+	| eval connection = source_uri."->".dest_uri
+	| stats values(fwdType) as fwdType, values(sourceIp) as sourceIp, latest(version) as version,  values(os) as os, values(arch) as arch, dc(dest_uri) as dest_count, dc(connection) as connection_count, avg(tcp_KBps) as avg_tcp_kbps, avg(tcp_eps) as avg_tcp_eps by hostname, guid
+	| eval avg_tcp_kbps = round(avg_tcp_kbps, 2)
+	| eval avg_tcp_eps = round(avg_tcp_eps, 2)
+	| `dmc_rename_forwarder_type(fwdType)`
+	| rename hostname as Instance, fwdType as "Forwarder Type", sourceIp as IP, version as "Splunk Version", os as OS, arch as Architecture, guid as GUID, dest_count as "Receiver Count", connection_count as "Connection Count", avg_tcp_kbps as "Average KB/s", avg_tcp_eps as "Average Events/s"
+}
+
+######################
+cpu counter object
+###################### {
+	counter= 
+	| stats count as errors
+	| stats avg(CPUTime)
+	| eval PercentProcessorTime=(100-mvindex(pctIdle,0))
+}
+
+######################
+one-time extraction (searchtime)
+###################### {
+	index=router source=udp:1514 host=192.168.0.1 sourctype=syslog node
+	| rex "\]:\s+(?P<test>\w+),"
+}
+
+######################
+metrics
+###################### {
+	| mcatalog values(host) WHERE index=metrics_linux
+
+	| mcatalog values(host) WHERE index=metrics_linux AND metric_name=df.free
+
+	| mcatalog values(host) WHERE index=em_metrics AND metric_name=df.free
+
+	| mcatalog values(host) WHERE index=em_metrics
+
+	| mcatalog values(df.free) WHERE index=em_metrics
+
+	| mcatalog values(metric_name) WHERE index=new-metric-idx
+
+	| mcatalog values(metric_name)
+
+	| mcatalog values(ip) WHERE index=* AND metric_name=login.failure
+
+	| mcatalog values(_dims)
+}
+
+######################
+experimental
+###################### {
+	index="_internal" host="knpdb11" ERROR
+	| rename _raw AS temp cmd_error AS _raw
+	| extract pairdelim="\"", kvdelim=":"
+	| rename _raw AS cmd_error temp AS _raw
+
+	source=* sourcetype=* 
+	[| eventcount summarize=false index=* 
+	| table index 
+	| format "(" "" "" "" "OR" ")"] 
+	| fillnull value="N/A" Customer 
+	| stats count by index, source, sourcetype, Customer 
+	| sort index, source, sourcetype, Customer
+
+	index=si_conf fieldalias OR rename
+	| stats count by text
+	| table text
+}
+
+index=os_evt_prd sourcetype=top host=kdcprd-db00
+[search index=os_evt_prd sourcetype=top host="kdcprd-db00" | regex VIRT="(\d+[K])" | convert rmunit(VIRT) as kRAM | fields kRAM]
+| rename COMMAND as Program
+| regex Program="(\w+[[:lower:]])"
+| replace *oracle WITH oracle
+| convert rmunit(VIRT) as mRAM
+| eval "Used GB Mem."=floor(VIRT*0.0009765625)
+| timechart avg("Used GB Mem.") BY Program
+
+index=os_evt_prd sourcetype=top host=kdcprd-db00
+| rename COMMAND as Program
+| regex Program="(\w+[[:lower:]])"
+| replace *oracle WITH oracle
+| convert rmunit(VIRT)
+| timechart avg(VIRT) BY Program
+
+index=os_evt_prd sourcetype=top host=kdcprd-db00
+| rename COMMAND as Program
+| regex Program="(\w+[[:lower:]])"
+| replace *oracle WITH oracle
+| eval isK=if(match(VIRT,"K"),1,0)
+| convert rmunit(VIRT)
+| eval VIRT=floor(if(isK=1,VIRT/1048576,VIRT/1024))
+| timechart avg(VIRT) BY Program

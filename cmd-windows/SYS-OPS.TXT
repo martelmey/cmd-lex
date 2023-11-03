@@ -1,0 +1,294 @@
+# list serial devices
+    [System.IO.Ports.SerialPort]::getportnames()
+
+# logs
+WindowsCapability logs: C:\Windows\Logs\DISM\dism.log
+
+net {
+    https://www.lifewire.com/net-command-2618094
+    https://docs.microsoft.com/en-us/troubleshoot/windows-server/networking/net-commands-on-operating-systems
+
+    accounts
+        [/FORCELOGOFF:{minutes | NO}]  
+        [/MINPWLEN:length]  
+        [/MAXPWAGE:{days | UNLIMITED}]  
+        [/MINPWAGE:days]  
+        [/UNIQUEPW:number] [/DOMAIN]
+    computer
+    config
+    group
+    localgroup
+    session
+    statistics
+    user
+    stop
+        sppsvc
+        w32time
+    start
+        sppsvc
+        w32time
+    use
+        Z: \\192.168.61.132\
+        * \\192.168.61.132\ (first available drive will be used)
+
+    examples {
+        net use * \\servername\sharefolder /persistent:no /user:domain\username *
+    }
+}
+
+slui {
+    4 (license installation)
+}
+
+gpupdate {
+    /force
+}
+
+gpresult {
+    # see dc that gpos are applied from
+    /r
+}
+
+set {
+    * https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/set_1
+
+    set [<variable>=[<string>]]
+    set [/p] <variable>=[<promptString>]
+    set /a <variable>=<expression>
+
+    /p  Sets the value of <variable> to a line of input entered by the user.
+    /a  Sets <string> to a numerical expression that is evaluated.
+    /?  Displays help at the command prompt.
+}
+
+psexec {
+    https://docs.microsoft.com/en-us/sysinternals/downloads/psexec
+
+    examples {
+        # send script to remote and execute
+        psexec -i \\cutlnetops01 -c c:\Windows\checkPatches.bat
+    }
+}
+
+ConvertTo-SecureString {
+    * https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.security/convertto-securestring?view=powershell-7#examples
+
+    -String <string>
+    -SecureKey <securestring>
+}
+
+w32tm {
+    /query
+        /peers
+        /source
+        /status
+    /config
+        /manualpeerlist:[server],0x8
+        /syncfromflags:MANUAL
+        /update
+    /resync
+
+    examples {
+        w32tm /resync
+        w32tm /query /peers
+    }
+}
+
+rd {
+    /s c:\$Recycle.Bin
+}
+
+shutdown {
+    /s
+    /l (logoff)
+    /r (restart)
+    /f (force)
+    /t (time)
+    /m (REMOTE_COMPUTER_NAME)
+}
+
+logoff {
+    <ID>
+}
+
+Get-Hotfix {
+    https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/get-hotfix?view=powershell-7.2
+
+    -Id
+    -ComputerName
+    -Description
+}
+
+Restart-Computer {
+    https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/restart-computer?view=powershell-7
+    -ComputerName REMOTE_COMPUTER_NAME
+    -Force
+}
+
+Stop-Computer {
+    https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/stop-computer?view=powershell-7
+    -ComputerName REMOTE_COMPUTER_NAME
+    -Force
+}
+
+Rename-Computer {
+    https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/rename-computer?view=powershell-7
+    -NewName "cutlprdsolsql01"
+    -Restart
+}
+
+Add-Computer {
+    https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/add-computer?view=powershell-5.1
+    -WorkGroupName MyWorkGroup
+}
+
+Install-WindowsFeature {
+    https://docs.microsoft.com/en-us/powershell/module/servermanager/install-windowsfeature?view=winserver2012r2-ps
+    -IncludeManagementTools
+    -Restart
+    -IncludeAllSubFeature
+    examples {
+        Install-WindowsFeature NET-Framework-Features -IncludeAllSubFeature
+    }
+}
+
+Uninstall-WindowsFeature {
+    https://docs.microsoft.com/en-us/powershell/module/servermanager/uninstall-windowsfeature?view=winserver2012r2-ps
+    -Name
+    -IncludeManagementTools
+    -Remove
+    -Restart
+}
+
+Get-WindowsFeature {
+    https://docs.microsoft.com/en-us/powershell/module/servermanager/get-windowsfeature?view=winserver2012r2-ps
+    dns* || dhcp* || *net*
+}
+
+Add-WindowsCapability {
+    https://docs.microsoft.com/en-us/powershell/module/dism/add-windowscapability?view=win10-ps
+    -Online
+    -Name OpenSSH.Server~~~~0.0.1.0
+}
+
+Get-WindowsCapability {
+    https://docs.microsoft.com/en-us/powershell/module/dism/get-windowscapability?view=win10-ps
+    -Online | ? Name -like 'OpenSSH*'
+}
+
+Get-Command {
+    https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/get-command?view=powershell-7
+    *dns*
+}
+
+Get-WmiObject {
+    https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/get-wmiobject?view=powershell-5.1
+    example 1 {
+        (Get-WmiObject Win32_ComputerSystem).Name
+        (Get-WmiObject Win32_ComputerSystem).Domain
+    }
+    get mac address {
+        win32_networkadapterconfiguration | select description, macaddress
+    }
+}
+
+Get-CimInstance {
+    https://docs.microsoft.com/en-us/powershell/module/cimcmdlets/get-ciminstance?view=powershell-7.1
+    get mac address {
+        win32_networkadapterconfiguration | select description, macaddress 
+    }
+}
+
+New-Item {
+    https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/new-item?view=powershell-7
+    -ItemType SymbolicLink
+    -Path "C:\Users\Public\Desktop"
+    -Name "eclipse.lnk"
+    -Value "C:\eclipse\jee-2020-092\eclipse\eclipse.exe"
+}
+
+Get-Item {
+    https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/get-item?view=powershell-7
+    <WSMan:\localhost\Client\TrustedHosts>
+        -Value '<ComputerName>,'
+        -Value '10.10.10.1,'
+    <WSMan:\localhost\Service\RootSDDL>
+}
+
+Set-Item {
+    https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/set-item?view=powershell-7
+}
+
+Move-Item {
+    https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/move-item?view=powershell-7
+    -Path <string>
+    -Destination <string>
+    -Filter <string>
+    -Include <string>
+    -Exclude <string>
+    -WhatIf
+    -Confirm
+    examples {
+        * Move dir
+        Move-Item -Path C:\Temp -Destination C:\Logs
+
+        * All of specific extension
+        Move-Item -Path .\*.txt -Destination C:\Logs
+
+        * Recursive
+        Get-ChildItem -Path ".\*.txt" -Recurse | Move-Item -Destination "C:\TextFiles"
+    }
+}
+
+Get-ChildItem {
+    -Path Env:\
+        COMPUTERNAME
+}
+
+Get-PSProvider {
+    https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/get-psprovider?view=powershell-7
+    -PSProvider Environment
+}
+
+Set-Location {
+    -Path Env:\
+}
+
+DISM {
+    /Online
+    /Set-Edition:ServerStandard
+    /ProductKey:xxx
+    /AcceptEula
+    examples {
+        # Fix missing Windows Feature sources
+        Dism.exe /online /cleanup-image /scanhealth
+        DISM /Online /Cleanup-Image /RestoreHealth
+    }
+}
+
+slmgr.vbs {
+    https://docs.microsoft.com/en-us/windows-server/get-started/activation-slmgr-vbs-options
+    /dli
+    /cpky clear
+    /rilc reinstall
+    /rearm reset license status
+    /upk uninstall product key
+    /sdns enable dns publishing
+    /act-type 2 <activation-id>
+    /ato
+    /dli
+    /dlv
+    /ipk xxx
+}
+
+wmic {
+    https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wmic
+    https://docs.microsoft.com/en-us/windows/win32/wmisdk/wmi-start-page
+
+    logicaldisk list brief
+    useraccount get domain,name,sid
+}
+
+sfc {
+    sfc /scannow
+}

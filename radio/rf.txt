@@ -1,0 +1,24 @@
+====notes:
+Convert binary bits to hex:
+printf '%x\n' "$((2#10101010))"
+
+===info: inspectrum
+every pulse is either short or long
+two durations
+pulse-width modulated on-off keying
+osmocom_fft
+
+short pulse= one unit
+gap of 2 units
+long pulse = 2 units
+gap of 1 unit
+
+3-time units
+
+110=long
+100=short
+
+1.) frequency
+2.) modulation
+3.) data rate
+2450 time units per second

@@ -1,0 +1,26 @@
+$ORIGIN .
+$TTL 3600       ; 1 hour
+sws.health.local        IN SOA  ns1.health.local. root.health.local. (
+                                2020111100 ; serial
+                                3600       ; refresh (1 hour)
+                                1800       ; retry (30 minutes)
+                                604800     ; expire (1 week)
+                                86400      ; minimum (1 day)
+                                )
+$TTL 86400      ; 1 day
+                        NS      ns1.kdc.health.local.
+                        NS      ns2.kdc.health.local.
+                        NS      ns3.kdc.health.local.
+                        NS      ns1.cdc.health.local.
+                        NS      ns2.cdc.health.local.
+$ORIGIN sws.health.local.
+$TTL 3600       ; 1 hour
+testing                 A       192.168.60.10
+$TTL 86400      ; 1 day
+testing9                A       192.168.60.10
+
+; Win VMs
+kutlprdsolar01                  IN      A       192.168.60.201
+kutlprdsolsql01                 IN      A       192.168.60.202
+cutlprdsolar01                  IN      A       192.168.160.201
+cutlprdsolsql01                 IN      A       192.168.160.202

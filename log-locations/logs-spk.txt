@@ -1,0 +1,8 @@
+Splunk {
+	audit.log (user activities)
+	conf.log (config replication re: SH clustering)
+	python.log (REST endpoints, splukd comms, PDFS, sendmail)
+	scheduler.log (scheduled search activity)
+	splunkd.log (primary log + stderr from scripted inputs, scripted search cmds)
+	splunkd_access.log (actions from splunkd through UI, CLI, POST & GET)
+}

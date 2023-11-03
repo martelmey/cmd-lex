@@ -1,0 +1,10 @@
+Sysinternals Process Explorer. With this, you can search to find what process(es) have a file open, and you can use it to close the handle(s) if you want. Of course, it is safer to close the whole process. Exercise caution and judgement.
+
+To find a specific file, use the menu option Find->Find Handle or DLL... Type in part of the path to the file. The list of processes will appear below.
+
+If you prefer command line, Sysinternals suite includes command line tool Handle, that lists open handles.
+
+Examples
+
+c:\Program Files\SysinternalsSuite>handle.exe |findstr /i "e:\" (finds all files opened from drive e:\"
+c:\Program Files\SysinternalsSuite>handle.exe |findstr /i "file-or-path-in-question"

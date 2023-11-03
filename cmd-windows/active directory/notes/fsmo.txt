@@ -1,0 +1,19 @@
+forest-wide:
+    schema master
+        updates schema NC:
+        LDAP://cn=schema,cn=configuration,dc=<domain>
+    domain naming master
+        updates forest-wide domain name space:
+        LDAP://CN=Partitions,CN=Configuration,DC=<domain>
+        CN=configuration,DC=<forest root domain>
+domain-wide:
+    RID master
+        DC=<domain>
+        assigns RIDs from domain's unallocated pool
+    PDC emulator
+        DC=<domain>
+        synchronize time across enterprise
+        infrastructure master (IM)
+        updates object's SID and DN in a cross-domain object reference
+    infra. master
+        DC=<domain>

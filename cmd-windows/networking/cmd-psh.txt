@@ -1,0 +1,107 @@
+Get-NetAdapter {
+    https://docs.microsoft.com/en-us/powershell/module/netadapter/get-netadapter?view=win10-ps
+    -InterfaceIndex <UInt32[]>
+    [-IncludeHidden]
+    [-Physical]
+    [-CimSession <CimSession[]>]
+    [-ThrottleLimit <Int32>]
+    [-AsJob]
+    [<CommonParameters>]
+}
+
+Get-NetIPInterface {
+    * https://learn.microsoft.com/en-us/powershell/module/nettcpip/get-netipinterface?view=windowsserver2022-ps
+
+    -AutomaticMetric # assigns lowest metric to fastest interface automatically
+    
+    examples {
+        # get ip info for machine
+        Get-NetIPInterface | Format-Table
+        Get-NetIPInterface | Sort-Object -Property InterfaceIndex | Format-Table
+        # get ip info by interface index
+        Get-NetIPInterface -InterfaceIndex 12
+    }
+}
+
+Test-NetConnection {
+    https://docs.microsoft.com/en-us/powershell/module/nettcpip/test-netconnection?view=win10-ps#syntax
+}
+
+Test-Connection {
+    https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/test-connection?view=powershell-7#outputs
+}
+
+Resolve-DnsName {
+    https://docs.microsoft.com/en-us/powershell/module/dnsclient/resolve-dnsname?view=win10-ps
+}
+
+Clear-DnsClientCache {
+    https://docs.microsoft.com/en-us/powershell/module/dnsclient/clear-dnsclientcache?view=win10-ps
+}
+
+Get-DnsClient {
+    https://docs.microsoft.com/en-us/powershell/module/dnsclient/get-dnsclient?view=win10-ps
+}
+
+Set-DnsClient {
+    https://docs.microsoft.com/en-us/powershell/module/dnsclient/set-dnsclient?view=win10-ps
+    -InterfaceIndex <UInt32[]>
+    [-ConnectionSpecificSuffix <String>]
+    [-RegisterThisConnectionsAddress <Boolean>]
+    [-UseSuffixWhenRegistering <Boolean>]
+    [-ResetConnectionSpecificSuffix]
+    [-CimSession <CimSession[]>]
+    [-ThrottleLimit <Int32>]
+    [-AsJob]
+    [-PassThru]
+    [-WhatIf]
+    [-Confirm]
+    [<CommonParameters>]
+}
+
+Get-DnsClientCache {
+    https://docs.microsoft.com/en-us/powershell/module/dnsclient/get-dnsclientcache?view=win10-ps
+}
+
+Get-DnsClientGlobalSetting {
+    https://docs.microsoft.com/en-us/powershell/module/dnsclient/get-dnsclientglobalsetting?view=win10-ps
+}
+
+Get-DnsClientServerAddress {
+    https://docs.microsoft.com/en-us/powershell/module/dnsclient/get-dnsclientserveraddress?view=win10-ps
+    -InterfaceAlias "Ethernet"
+    -ServerAddresses ("10.0.0.1","10.0.0.2")
+}
+
+Set-DnsClientServerAddress {
+    https://docs.microsoft.com/en-us/powershell/module/dnsclient/set-dnsclientserveraddress?view=win10-ps
+    [-InterfaceAlias] <String[]>
+    [-ServerAddresses <String[]>]
+    [-Validate]
+    [-ResetServerAddresses]
+    [-CimSession <CimSession[]>]
+    [-ThrottleLimit <Int32>]
+    [-AsJob]
+    [-PassThru]
+    [-WhatIf]
+    [-Confirm]
+    [<CommonParameters>]
+}
+
+
+
+New-NetIPAddress {
+    https://docs.microsoft.com/en-us/powershell/module/nettcpip/new-netipaddress?view=win10-ps
+    –InterfaceAlias “Ethernet”
+    –IPAddress “192.168.60.192”
+    –PrefixLength 24
+    -DefaultGateway 192.168.60.254
+}
+
+New-NetRoute {
+    https://docs.microsoft.com/en-us/powershell/module/nettcpip/new-netroute?view=win10-ps
+    -DestinationPrefix "192.168.61.0/24"
+    -InterfaceAlias Ethernet
+    -NextHop 192.168.61.254
+}
+

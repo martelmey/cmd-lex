@@ -1,0 +1,25 @@
+[] electrum
+[] osmocom_fft
+[] gqrx
+[] keeper
+[] sublime text
+[] sublime merge
+[] termius
+[] visual studio code
+
+kali-linux-core
+kali-linux-default
+kali-desktop-live
+kali-desktop-xfce
+
+firmware-misc-nonfree
+firmware-linux-nonfree
+firmware-linux
+firmware-brcm80211
+firmware-bnx2
+firmware-bnx2x
+broadcom-sta-common
+broadcom-sta-dkms
+dnsmasq
+hostapd
+iw

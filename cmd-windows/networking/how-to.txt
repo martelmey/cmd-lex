@@ -1,0 +1,10 @@
+available range of source ports {
+    netsh interface ipv4 show dynamic tcp
+}
+
+Hosts file location:
+C:\Windows\System32\drivers\etc\
+
+set proxy {
+    C:\windows\System32\bitsadmin.exe /Util /SetIEProxy LocalSystem Manual_proxy http://<proxyserver>:<proxy port> "<Any bypasses to be added>"
+}

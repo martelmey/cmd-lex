@@ -1,0 +1,37 @@
+nmap -v -A -iL <listofhosts/networks> 10.0.<0-255>.<1-254>
+nmap -sTU -O IP-address-Here
+
+nmap -sn <target addresses>
+Results = all responding active hosts
+-sn disables port scanning {
+	nmap -sn 10.0.0.0/24
+}
+
+nmap {
+	-V (services)
+	-S (port scan)
+	-sA (detect firewalls, filters)
+	-O, -osscan-guess (OS detection)
+	-A (os & version detection, script scanning, traceroute)
+	-PN (same as -sA)
+	-sP (check for live hosts)
+	-F (fast, check only common ports)
+	--iflist (host interfaces & route info)
+	-p <port> (scan for specific port)
+	-p T:<port,port> (scan a TCP port)
+	-sU <port> (scan a UDP port)
+	-sV (find versions of services running on hosts)
+	-PS <host> (scan using TCP ACK(PA) & TCP Syn(PS) for ICMP-filtering firewalls)
+	-PA -p <port,port> <host> (use TCP ACK)
+	-PS -p <port,port> <host> (use TCP Syn)
+	-sS (stealthy scan)
+	-sT (check common ports with TCP Syn)
+	-sN (tcp null scan, fool a firewall)
+}
+
+examples {
+	nmap -sS 10.0.0.0/24 (hosts up)
+	nmap -sn 192.168.60.0/24 (list of hosts up)
+	nmap -sV 10.0.0.0/24 (services)
+	nmap -O 10.0.0.0/24 (OS detection)
+}

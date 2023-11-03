@@ -1,0 +1,122 @@
+svccfg {
+    # https://docs.oracle.com/cd/E26502_01/html/E29031/svccfg-1m.html#REFMAN1Msvccfg-1m
+    
+    -s ipfilter:default listprop   | grep file
+    -s pkg/server describe network/restart_on
+    -s pkg/server describe -v network/restart_on
+
+    exampels {
+        # set hostname
+        svccfg -s system/identity:node listprop config
+        svccfg -s system/identity:node setprop config/nodename="cutlprdnetb01-mgmt"
+        svccfg -s system/identity:node setprop config/loopback="cutlprdnetb01-mgmt"
+        svccfg -s system/identity:node refresh
+        svcadm restart system/identity:node
+        # set dns nameserver lookup list
+        svccfg -s svc:/network/dns/client setprop config/nameserver = net_address: \(192.168.160.10 192.168.60.20\)
+        svcadm refresh svc:/network/dns/client
+    }
+}
+
+svcprop {
+    # https://docs.oracle.com/cd/E36784_01/html/E36870/svcprop-1.html
+
+    svcprop [-afqtv] [-C | -c | -s snapshot] [-p [name/]name]... 
+        [ -g pgtype]... -l layer[,...] {FMRI | pattern}...
+
+    svcprop -w [-fqtv] [-p [name/]name] {FMRI | pattern}
+
+    –a
+    Display all properties, including those in SMF template definition property groups.
+
+    –C
+    Uses the directly attached properties, without composition.
+
+    –c
+    For service instances, uses the composed view of their directly attached properties.
+
+    –f
+    Selects the multi-property output format, with full FMRIs as designators.
+
+    –g pgtype
+    Display only the selected properties belonging to property groups of type pgtype. Multiple –g options will display properties from multiple properties group types. This option implies multi-property output format (–t).
+
+    –l layer[,...]
+    Display only the properties defined at the selected layers. Available layers are manifest, system-profile, site-profile, and admin. The alias all is available to select all layers. Properties that belong to non-persistent property groups will not be displayed when this option is used.
+
+    –p name
+    For each service or service instance specified by the operands, selects all properties in the name property group. For property groups specified by the operands, selects the name property. If used with –g, selects the name property for all matching property group types.
+
+    –p pg/prop
+    Selects property prop in property group pg for each of the services or service instances specified by the operands.
+
+    –q
+    Quiet. Produces no output.
+
+    examples {
+        svc:/system/identity
+        svc:/system/identity:domain
+        -p config/prop1 example   
+    }
+}
+
+svcadm {
+    refresh network/firewall
+    restart svc:/network/ssh:default
+    svc:/application/management/net-snmp:default
+}
+
+svcs {
+    -x <ipfilter:default>
+        <vbiosd>
+        -L <vbiosd>
+    -a
+    -Ho inst identity
+    -l <net-snmp>
+    -p <net-snmp>
+    view `svcs -L <vbiosd>`
+}
+
+top {
+    -C, --color
+    -I, --idle-procs no idle procs
+    -S, --system-procs
+    -a, --all show procs for as long as possible
+    -b, --batch terminal input ignored
+    -c, --full-commands show full cmd ling for each proc
+    -i, --interactive
+        c colours
+        M sort by mem usage
+        P sort by CPU usage
+    -q, --quick renice top to -20
+    -t, --threads show threads on separate lines
+    -U <username>, --user=<username> only for username
+    examples {
+        -Hbn1 -p 3692
+    }
+    atop
+    htop
+}
+
+ps {
+    -a most freq requested
+    -A all
+    -d all exept session leaders
+    -e every process now running
+    -f full listing
+    -j print session id and process group id
+    -P show # of processor to which process or lwp is bound
+    -t show processes associated with term
+    -z <zonelist> list processes of specified zones
+}
+
+processes {
+    pgrep
+    pstree
+    pidof <mysqld>
+    ps -T -p 3692
+}
+
+kstat {
+    cpu_info | grep core_id | sort -u | wc -l (total cores)
+}

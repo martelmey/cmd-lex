@@ -1,0 +1,225 @@
+file_descriptors {
+    0 = stdin
+    1 = stdout
+    2 = stderr
+    >&
+        redirect merger operator
+    2>&1
+        send stderr to stdout
+    3<&0
+        send stdin to file descriptor 3
+    > /dev/null 2>&1
+        send to the void
+}
+
+HOSTNAME=$(hostname)
+DATE=$(date)
+
+positional parameter vars {
+    $# (no. of arguments)
+    $0 is the name of the script itself (script.sh)
+    $1 is the first argument (filename1)
+    $2 is the second argument (dir1)
+    $9 is the ninth argument
+    ${10} is the tenth argument and must be enclosed in brackets after $9.
+    ${11} is the eleventh argument.
+}
+
+operators {
+    * https://linuxhint.com/bash_operator_examples/#o54
+    -=
+    ++
+        (pre/post)
+    --
+        (pre/post)
+    ?
+        <condition> ? <if true, do> : <else, do>
+    ,
+        (execute multiple statements in line)
+    <<<
+        cat <<< "Pass this to cat"
+    -eq
+        check equality of 2 values
+    -ne
+        check inequality of 2 values
+    -gt
+    -ge
+        >=
+    -lt
+        <
+    -le
+        <=
+    =
+        compare equality of 2 strings
+    ==
+        compare equality of 2 values
+    -z
+        is string length zero or not
+    -n
+        is string length non-zero or not
+    -a
+        boolean AND logic within >= 2 conditions
+    -o 
+        boolean OR logic within >= 2 conditions
+    -e
+        does any file or folder exist
+    -f
+        does any file exist
+    -s
+        is file size greater than 0 or not
+    -d
+        does any folder exist
+    -b
+        is the file a block special file
+    -c
+        is the file a character special file
+    -p
+        is the file a pipe
+    -h
+        is the file a sym link
+    -S
+        is the file a socket
+    -t
+        is file associated with terminal
+    -r
+        does file have read permission
+    -w
+        does file have write permission
+    -x
+        does file have exec permission
+    -g
+        is the SGID set for the file
+    -u
+        is the SUID set for the file
+    -k
+        is the sticky bit set for the file
+    -O
+        check ownership of file
+    -N
+        check has file been modified
+    -nt
+        is file newer than
+    -ot
+        is file older than
+}
+
+exec {
+    * https://www.computerhope.com/unix/bash/exec.htm
+    exec [-c] [-l] [-a name] [command [arguments ...]] [redirection ...]
+    -a name
+        Pass the string name as the zeroth argument to command. This option is available in bash versions 4.2 and above. When used, it will execute command, and set the special shell variable $0 to the value name, instead of command. For more information, see bash special parameter 0.
+    -c
+        Execute command in an empty environment.
+    -l
+        Insert a dash at the beginning of the zeroth argument. This can be used to start a login shell via exec. For more information about login shells, and bash's requirements about how they may be invoked, see shell invocation in bash.
+    command
+        The command to be executed. If you do not specify a command, exec can still provide redirection.
+    arguments
+        The arguments for the command you'd like to execute.
+    redirection
+        Any redirection for the command. If no command is specified, redirection applies to the current shell.
+}
+
+append string to $var {
+    vech="London"
+    vech="$vech Bus"
+    echo $vech
+
+    x="Mango"
+    y="Pickle"
+    x="$x $y"
+    echo "$x"
+}
+
+declare {
+    -a indexed array
+    -A associative array
+    -i value of var is an int
+
+}
+
+read {
+	-r \ does not act as an escape character
+    -d 1st char of delim terminates input line, rather than newline
+    -e if coming from terminal, readline is used to obtain the linewq
+}
+
+###
+### FOR LOOP
+### {
+    * https://www.cyberciti.biz/faq/bash-for-loop/
+    for OUTPUT in $(Linux-Or-Unix-Command-Here)
+    do
+        command1 on $OUTPUT
+        command2 on $OUTPUT
+        commandN
+    done
+}
+
+###
+### WHILE LOOP
+### {
+    * https://www.cyberciti.biz/faq/bash-while-loop/
+    while [ condition ]
+    do
+        command1
+        command2
+        command3
+    done
+    example 1 {
+        FILE=$1
+        exec 3<&0
+        exec 0<$FILE
+        while read line
+        do
+            echo $line
+        done
+        exec 0<&3
+    }
+}
+
+###
+### ARRAYS
+### {
+    declare -a ARRAY=(
+        ""
+    )
+
+    if [ $? -gt 0 ]; then
+
+    array[0]='foo'
+    array[1]='bar'
+
+    ARRAY=()
+    ARRAY+=('foo')
+    ARRAY+=('bar')
+}
+
+###
+### FUNCTIONS
+### {
+    function usage {
+        echo ""
+        echo "Usage: $0 [solaris-domain|solaris-zone|linux|all] \"[commands]\" [env]"
+        echo ""
+        echo "Example: $0 solaris-zone \"sudo svcadm restart xyz\" int2"
+        echo ""
+        exit 1
+    }
+}
+
+###
+### CASE
+### {
+    case $month in
+      February)
+     
+    echo "There are 28/29 days in $month.";;
+      April | June | September | November)
+    echo "There are 30 days in $month.";;
+      January | March | May | July | August | October | December)
+    echo "There are 31 days in $month.";;
+      *)
+    echo "Unknown month. Please check if you entered the correct month name: $month";;
+    esac
+}

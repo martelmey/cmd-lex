@@ -1,0 +1,46 @@
+gpedit.msc (local)
+Computer configuration > Administrative templates > Windows components > Windows Update
+    > Configure automatic updates
+    regedit: "HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU"
+    > Specify intranet Microsoft update service location
+    regedit: "HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate"
+
+gpedit: 4 - Auto download & schedule the install
+regedit: AUOptions -Value 4
+
+gpedit: Install during automatic maintenance = yes
+regedit: AllowMUUpdateService -Value 1 
+
+gpedit: Sheduled install day = 1 - Every Sunday
+    1=Sunday-7=Saturday, 0=Every day
+regedit: ScheduledInstallDay -Value 2 
+
+gpedit: Scheduled install time: 00:00
+    00:00-23:00, automatic
+regedit: ScheduledInstallTime -Value 0 
+
+gpedit: week
+regedit: will have 1 of the following:
+    ScheduledInstallFourthWeek -Value 1 
+    ScheduledInstallThirdWeek -Value 1 
+    ScheduledInstallSecondWeek -Value 1 
+    ScheduledInstallFirstWeek -Value 1 
+    ScheduledInstallEveryWeek -Value 1 
+
+# cmds
+
+Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Internet Settings" ProxyEnable -value 1
+Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Internet Settings" ProxyServer -value 192.168.*.*:8008
+Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Internet Settings" ProxyOveride -value <local>
+
+New-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate" -Name UpdateServiceUrlAlternate -Value "" -PropertyType String
+New-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate" -Name WUServer -Value "http://192.168.*.*:8530" -PropertyType String
+New-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate" -Name WUStatusServer -Value "http://192.168.*.*:8530" -PropertyType String
+Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU" AUOptions -Value 4
+New-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU" -Name AllowMUUpdateService -Value 1 -PropertyType DWord
+New-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU" -Name AutomaticMaintenanceEnabled -Value 1 -PropertyType DWord
+New-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU" -Name NoAutoUpdate -Value 0 -PropertyType DWord
+New-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU" -Name ScheduledInstallDay -Value 2 -PropertyType DWord
+New-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU" -Name ScheduledInstallFourthWeek -Value 1 -PropertyType DWord
+New-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU" -Name ScheduledInstallTime -Value 0 -PropertyType DWord
+New-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU" -Name UseWUServer -Value 1 -PropertyType DWord

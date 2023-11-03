@@ -1,0 +1,2 @@
+Transaction:
+C:\Program Files\Microsoft SQL Server\MSSQL 15.SWSSQLSERVER\MSSQL\DATA\SolarWindsOrion_log.ldf

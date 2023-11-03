@@ -1,0 +1,17 @@
+* Check for traffic to avsvmcloud:
+	Apache forward-proxy logs /etc/httpd/logs/forward-proxy_access*
+
+https://www.fireeye.com/blog/threat-research/2020/12/evasive-attacker-leverages-solarwinds-supply-chain-compromises-with-sunburst-backdoor.html
+https://osiris.substack.com/p/what-is-happening-with-solarwinds
+https://www.solarwinds.com/sa-overview/securityadvisory
+https://us-cert.cisa.gov/ncas/analysis-reports/ar21-039a
+
+The backdoor was injected into SolarWinds.Orion.Core.BusinessLayer.dll, a SolarWinds digitally signed component of the Orion software framework, which is a plugin that communicates via HTTP to third-party servers. It beacons out to a command-and-control (C2) domain called avsvmcloud[.]com.
+
+I'd like to discuss the poor decisions which led up to and enabled the attack to occur, and how the malware was able to remain undetected for 9 months. I'd like to explain who the attackers' targets were, and some theories as to who might have been responsible. Also there is the fallout to consider - the consequence of poor security practices on who is ultimately the victim - the citizens of the nations whose departments utilized SolarWinds, and now information critical to the safety and security of those nations and citizens are compromised.
+
+Education on security can apply to everyone, and everyone with a SIN number deserves to know how their information is being managed, stored and expoited.
+
+We're kind of in the wild west, where technology has exploded in the past decade or so, but security has not kept pace, and we are alarmingly vulnerable to other nations who are transitioning their efforts from military to cyber, in their ongoing attempts to thwart enemy nations.
+
+https://www.golinuxcloud.com/prevent-brute-force-ssh-attacks-centos-linux/ (ssh bruteforce)

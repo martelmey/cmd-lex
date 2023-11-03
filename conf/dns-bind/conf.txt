@@ -1,0 +1,5 @@
+BIND DNS
+Configuration syntax:
+https://bind9.readthedocs.io/en/v9_16_8/reference.html
+Configuration location:
+/etc, /etc/bind, /etc/named

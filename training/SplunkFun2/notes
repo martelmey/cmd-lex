@@ -1,0 +1,97 @@
+For SPL reporting conversions:
+* Implement usage of | fields
+index=os_evt_prd sourcetype=top
+| chart count over host by COMMAND
+
+Fast mode = selected fields only
+Verbose = everything
+Smart = curated
+
+Lab Mod 1:
+Q1: A: 2
+Q2: A: _time
+Q3: A: host, source, sourcetype
+
+Too many values: aggregated into OTHER
+Dimension/field is not in the top 10
+Change the limit or ignore
+useother=f
+limit=5 (see only top 5 values of product_name for each host)
+index=web sourcetype=access_combined product_name=*
+| chart count OVER host BY product_name useother=f limit=5
+
+Value: NULL
+Represents the absence of value for a field in an event
+Some events within index=web sourcetype=access_combined that do not contain a product_name field
+index=web sourcetype=access_combined product_name=*
+| chart count OVER host BY product_name useother=f limit=5 usenull=f
+
+index=sales sourcetype=vendor_sales
+| stats sum(price) as "Total Sales", values(price) as "Price" by product_name, VendorCountry
+
+Last 24 hours = per-hour buckets
+Last 30 days = per-day buckets
+Override default bucket config:
+| timechart span=15m sum(price) (bucket per 15 minute span)
+You can specify ranges for any number-based field value
+| chart count by status span=100 (bucket per 100 status code values)
+
+Trellis
+Chart for each of the values of the split field (action)
+index=web sourcetype=access_combined
+| timechart count by action
+
+earliest=-28@d (last 28 days, per-day buckets, snap-to day)
+
+Top failed logins per user by Country,Region,City
+index=security sourcetype=linux_secure fail* OR invalid
+| iplocation src_ip
+| geostats latfield=lat longfield=lon count by user globallimit=5
+
+Compare fields action=purchase
+Compare values action="purchase"
+
+Where can compare fields, search cannot
+Where cannot come before the first pipe
+
+| stats count as eventcount bbby src_ip
+| sort - eventcount
+
+tag::app=PROD (PROD apps only)
+tag::host=PROD (PROD hosts only)
+tag=PROD (PROD apps, hosts, etc.)
+
+#major_attack_attempt (eventtype) (define what constitutes a security incident)
+#Must be basic search, no sub-searches or pipes
+#Tag eventtypes to organize data
+(index=security sourcetype=history_access) OR (sourcetype=linux_secure "failed password") OR (sourcetype="win_audit" log_level=FailureAudit)
+
+#Macros
+`statis_web_combined`=(index=web sourcetype=access_combined)
+ Ctrl+Shift+E expand macros
+
+ #Dynamic macros
+ `idx_sourcetype(2)`
+ (1=index=web, 2=sourcetype=access_combined)
+ `idx_sourcetype("web","access_combined")`
+
+ `sec_investigation(1)`
+ (1=user=djohnson)
+ `sec_investigation("djohnson")`
+
+ index=sales VendorID>=5012 AND VendorID<=5023
+| stats sum(price)  as sales by product_name
+| eval sales = "$" + tostring('sales', "commas")
+
+sourcetype=vendor_sales VendorCountry IN (Germany,France,Italy)
+| stats sum(price) as USD by product_name
+| eval euro="€".tostring(round(USD*0.79,2),"commas"), USD="$".tostring(USD,"commas")
+
+stats sum(price) as USD by product_name
+| eval $currency$="$symbol$".tostring(round(USD*$rate$,2),"commas"), USD="$".tostring(USD,"commas")
+
+sourcetype=vendor_sales VendorCountry IN (Germany,France,Italy)
+| `convert_sales(euro,€,0.79)`
+
+sourcetype=vendor_sales VendorCountry IN (Germany,France,Italy)
+| `convert_sales(GBP,£,0.64)`ww

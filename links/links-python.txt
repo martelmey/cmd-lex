@@ -1,0 +1,21 @@
+Python {
+    File write
+        https://www.w3schools.com/python/python_file_write.asp
+    pySerial
+        https://pythonhosted.org/pyserial/
+    datetime
+        https://www.tutorialspoint.com/How-to-print-current-date-and-time-using-Python
+    open
+        https://www.programiz.com/python-programming/methods/built-in/open
+    string matches
+        https://stackoverflow.com/questions/19300020/python-match-a-string-with-regex
+}
+
+# Error ref
+    https://codecademy.github.io/codepedia/entries/errors/py
+
+# IPython
+    https://ipython.org/
+
+# Anaconda
+    https://www.anaconda.com/products/individual

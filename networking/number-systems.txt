@@ -1,0 +1,90 @@
+##################
+# BINARY
+##################{
+	Binary needed for:
+	1. ACL
+	2. subnetting
+
+	2 states * 3 cables = 2^3 = 8   values
+	2 states * 4 cables = 2^4 = 16  values
+	2 states * 5 cables = 2^5 = 32  values
+	2 states * 6 cables = 2^6 = 64  values
+	2 states * 6 cables = 2^6 = 128 values
+	2 states * 6 cables = 2^6 = 256 values
+
+	octet = 8 binary values 0-7 (8 things in a row)
+	IPv4 = 8 bits per octet, 4 octets = 32 bits
+
+	Octet	8   7	6	5	4	3	2	1
+	Base    2^7 2^6 2^5 2^4 2^3 2^2 2^1 2^0
+	Binary  1   1   1   1   1   1   1   1 
+	Decimal 128 64  32  16  8   4   2   1
+
+	128 + 64 + 32 + 16 +8 + 4 + 2 + 1 = 255 (dec) = 1111111 (bin)
+	192 (dec) = 11000000 (bin)
+	253 (dec) = 11111101 (bin) (try 255-253 = 2, turn off 2 bit)
+
+	192.168.60.250:
+	11000000 10100100 00111100 11111010
+	255.255.255.0:
+	11111111 11111111 11111111 00000000
+}
+
+##################
+# HEX
+##################{
+	Hex needed for:
+	1. MAC addresses
+	2. ipv6
+
+	Base 16 - sixteen numbers
+	0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A=10, B=11, C=12, D=13, E=14, F=15
+
+	MAC = Organizationally Unique Identifier (OUI) and unique number
+		is a 48-bit number
+		hex value = 4 binary bits
+		12 hex values
+		12 * 4 = 48
+}
+
+##################
+# CONVERSION
+##################
+Hex Bin 	Dec
+0	0000		0
+1	0001		1
+2	0010		2
+3	0011		3
+4	0100		4
+5	0101		5
+6	0110		6
+7	0111		7
+8	1000		8
+9	1001		9
+A   1010		10
+B   1011		11
+C   1100		12
+D   1101		13
+E   1110		14
+F   1111		15
+80	1000 0000	128
+FF	1111 1111	255
+E0	1110 0000	224
+F0  1111 0000	240
+
+##################
+# EXAMPLES
+##################
+Dec    				Bin    			Hex
+255.255.255.255		1111 	1111	FF
+					1111 	1111	FF
+					1111 	1111	FF
+					1111 	1111	FF
+10.1.1.1			0000(0) 1010(A)	0A
+					0000    0001	01
+					0000 	0001	01
+					0000 	0001	01
+224.1.2.3			1110(E) 0000(0)	E0
+					0000 	0001	01
+					0000 	0010	02
+					0000 	0011	03

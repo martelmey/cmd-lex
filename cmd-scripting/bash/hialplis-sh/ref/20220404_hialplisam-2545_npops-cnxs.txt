@@ -1,0 +1,53 @@
+ping -s igf.dev.hial.healthbc.org 56 1 | grep 64
+ping -s hial-wls1.dev.hial.healthbc.org 56 1 | grep 64
+ping -s dev-ems.np.hial.healthbc.org 56 1 | grep 64
+ping -s igf.brd.hial.healthbc.org 56 1 | grep 64
+ping -s hial-wls1.brd.hial.healthbc.org 56 1 | grep 64
+ping -s ems.brd.hial.healthbc.org 56 1 | grep 64
+ping -s igf.brt.hial.healthbc.org 56 1 | grep 64
+ping -s hial-wls1.brt.hial.healthbc.org 56 1 | grep 64
+ping -s ems.brt.hial.healthbc.org 56 1 | grep 64
+ping -s igf.test.hial.healthbc.org 56 1 | grep 64
+ping -s hial-wls1.test.hial.healthbc.org 56 1 | grep 64
+ping -s ems.test.hial.healthbc.org 56 1 | grep 64
+ping -s igf.int1.hial.healthbc.org 56 1 | grep 64
+ping -s hial-soa1.int1.hial.healthbc.org 56 1 | grep 64
+ping -s ems.int1.hial.healthbc.org 56 1 | grep 64
+ping -s igf.int2.hial.healthbc.org 56 1 | grep 64
+ping -s hial-soa1.int2.hial.healthbc.org 56 1 | grep 64
+ping -s ems.int2.hial.healthbc.org 56 1 | grep 64
+ping -s igf.uat.hial.healthbc.org 56 1 | grep 64
+ping -s hial-wls1.uat.hial.healthbc.org 56 1 | grep 64
+ping -s ems.uat.hial.healthbc.org 56 1 | grep 64
+ping -s igf.sand.hial.healthbc.org 56 1 | grep 64
+ping -s hial-wls1.sand.hial.healthbc.org 56 1 | grep 64
+ping -s ems.sand.hial.healthbc.org 56 1 | grep 64
+
+===
+=
+===
+
+netcat -z -n -v 10.3.10.30 6080
+netcat -z -n -v 10.3.10.30 5080
+netcat -z -n -v 10.3.10.30 4553
+netcat -z -n -v 10.3.10.67 6080
+netcat -z -n -v 10.3.10.67 5080
+netcat -z -n -v 10.3.10.67 4553
+netcat -z -n -v 10.3.10.74 6080
+netcat -z -n -v 10.3.10.74 5080
+netcat -z -n -v 10.3.10.74 4553
+netcat -z -n -v 10.3.10.32 6080
+netcat -z -n -v 10.3.10.32 5080
+netcat -z -n -v 10.3.10.32 4553
+netcat -z -n -v 10.3.40.78 6080
+netcat -z -n -v 10.3.40.78 5080
+netcat -z -n -v 10.3.40.78 4553
+netcat -z -n -v 10.3.40.98 6080
+netcat -z -n -v 10.3.40.98 5080
+netcat -z -n -v 10.3.40.98 4553
+netcat -z -n -v 10.3.10.154 6080
+netcat -z -n -v 10.3.10.154 5080
+netcat -z -n -v 10.3.10.154 4553
+netcat -z -n -v 10.3.10.150 6080
+netcat -z -n -v 10.3.10.150 5080
+netcat -z -n -v 10.3.10.150 4553

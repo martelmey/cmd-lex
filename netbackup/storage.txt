@@ -1,0 +1,7 @@
+1 gig ram per 1 tb of storage of MSDP
+If disk is expanded, ram must be too, according to above rule
+
+msdp has to be on vxfs
+
+pure disk = vxfs filesystem
+basic disk = zfs filesystem

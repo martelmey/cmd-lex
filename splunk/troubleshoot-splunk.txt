@@ -1,0 +1,10 @@
+### Splunk data forwarding to index, troubleshooting
+
+1.) On agent:
+    splunk list inputstatus
+        * Check exec processor exit codes, open & close
+        * Check tail processor reading status
+
+    cat $SPLUNKHOME/etc/system/local/inputs.conf
+        * Check spelling of indexes
+        * Verify filepaths

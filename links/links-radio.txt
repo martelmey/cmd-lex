@@ -1,0 +1,10 @@
+http://fcc.io/
+
+rfcat
+https://github.com/atlas0fd00m/rfcat
+
+vhf
+https://en.wikipedia.org/wiki/Very_high_frequency
+
+rss-210
+https://www.ic.gc.ca/eic/site/smt-gst.nsf/eng/sf01320.html

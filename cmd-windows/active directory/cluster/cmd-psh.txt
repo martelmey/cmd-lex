@@ -1,0 +1,23 @@
+New-ClusterNameAccount {
+	https://docs.microsoft.com/en-us/powershell/module/failoverclusters/new-clusternameaccount?view=win10-ps
+    -Name "SWSKDCCDC"
+    -Domain "sws.health.local"
+    -Enabled false
+}
+
+Remove-Cluster {
+    -Force
+    -CleanupAD
+}
+
+New-Cluster {
+	https://docs.microsoft.com/en-us/powershell/module/failoverclusters/new-cluster?view=win10-ps
+	-Name <string>
+	-Node <StringCollection>
+	-StaticAddress <StringCollection>
+	-IgnoreNetwork <StringCollection>
+	-NoStorage
+	-S2D
+	-AdministrativeAccessPoint <AdminAccessPoint>
+	-Force
+}

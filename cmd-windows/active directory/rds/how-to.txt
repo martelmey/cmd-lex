@@ -1,0 +1,10 @@
+# set licensing mode & server
+$obj = gwmi -namespace “Root/CIMV2/TerminalServices” Win32_TerminalServiceSetting
+$obj.ChangeMode(4)
+$obj.SetSpecifiedLicenseServerList(“192.168.60.201”)
+
+# view license
+$obj.GetSpecifiedLicenseServerList()
+
+# send msg to other users
+msg martel.meyers "test"

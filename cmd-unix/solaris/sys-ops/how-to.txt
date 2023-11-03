@@ -1,0 +1,73 @@
+env vars {
+    env | grep SPRING_PROFILES_ACTIVE
+    env | grep JAVA
+}
+
+# reboot ldom
+if [ auto-boot == false ]; then
+    # from ldom:
+    init 6
+    # from cdom:
+    ldm ls
+    telnet 0 <port number>
+    boot
+else
+    # from ldom:
+    init 6
+fi
+
+# shutdown, and then start ldom:
+# on ldom:
+init 0
+# on cdom:
+ldm stop cutlprdnetm01
+ldm start cutlprdnetm01
+# to force:
+# on cdom:
+ldm stop -f cutlprdnetm01
+
+# check how many processes are running
+ps -ef |wc -l
+
+# check zombie processes
+ps aux |grep "defunct"
+ps aux |grep Z
+
+# kill zombie processes
+pstree -paul
+kill -9
+
+# zero a file
+true >| ./thefile.trc
+
+# clear ilom diag msgs
+set /SYS/MB clear_fault_action=true
+
+# show mac addresses
+netstat -pn |grep SP
+
+# show route table
+netstat -r
+
+# check dns client
+svcs dns/client
+cat /etc/resolv.conf
+
+# available range of source ports
+ndd -get /dev/tcp tcp_smallest_anon_port and ndd -get /dev/tcp tcp_largest_anon_port 
+
+# see macs of interfaces
+/usr/bin/netstat -pn |grep SP
+
+# mtu
+dladm set-linkprop -t -p mtu=9000 net0
+
+# check ram
+echo "::memstat" | mdb -k
+vmstat -p 3
+
+# processes using most user-memory
+prstat -s rss
+
+# view memory
+prtdiag -v

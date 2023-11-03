@@ -1,0 +1,167 @@
+##################
+# OVERVIEW
+##################{
+	* connectionless protocol - no sessions
+	* best effort delivery - may be duplicated or lost
+	* no data recoery features - routers can't fix corruption
+}
+
+##################
+# FORMAT
+##################{
+	* IP address is a 32 bit binary number in dotted-decimal format (x.x.x.x)
+	* divided into 4 octets (8 bites or 1 byte)
+	* 00001010.00000001.00001000.00000010 = 10.1.8.2
+	* 2 portions: net id & host id
+	* net id specifies subnet/street
+	* host id specifies host/house
+}
+
+##################
+# CLASSES
+##################{
+	Classes have been replaced by CIDR
+
+	A,B,C = unicast traffic
+	D = multicast traffic
+	E = experimental reserve
+
+	Class A{
+		* natural mask: 255.0.0.0
+		* 8 net bits, 24 host bits (/8)
+		* 00000000.(net)00000000.00000000.00000000(host)
+		* start w/ binary 0
+		* range: 0.0.0.0 - 127.255.255.255
+		* exception: 127.0.0.1 is reserved for loopback, 0.1.1.1 is reserved for default network
+		* true range: 1.0.0.0 - 126.255.255.255
+		* 127.0.0.1
+	}
+	Class B{
+		* natural mask: 255.255.0.0
+		* 16 net bits, 16 host bits (/16)
+		* 00000000.00000000.(net)00000000.00000000(host)
+		* start w/ binary 10
+		* range: 128.0.0.0 - 191.255.255.255
+	}
+	Class C{
+		* natural mask: 255.255.255.0
+		* 00000000.00000000.00000000.(net)00000000(host)
+		* start w/ binary 110
+		* range: 192.0.0.0 - 223.255.255.255
+	}
+	Class D{
+		* start w/ binary 1110
+		* range: 224.0.0.0 - 239.255.255.255
+	}
+	Class E{
+		* start w/ binary 1111
+		* range 240.0.0.0 - 255.255.255.255
+		* reserved for broadcasts
+	}
+	CIDR = classless inter-domain routing
+}
+
+##################
+# CIDR
+##################{
+	* variable length subnet masks (vlsm)
+	* uses 10.0.0.0/8 notation
+	* 255.255.255.0 = 11111111.11111111.11111111.00000000 = 8x3=24 bits = /24 (because there are 24 binary ones)
+	* subnet mask doesn't need to be on the octet boundary
+
+	classful masks {
+		mask is on octet boundary
+		A: 255|.0.0.0
+		B: 255.255|.0.0
+		C: 255.255.255|.0
+	}
+
+	classless masks (vlsm) {
+		mask not on octet boundary
+		255.224.0.0
+		11111111.111|00000.00000000.00000000
+		11 binary 1's or /11
+	}
+}
+
+##################
+# SPECIAL ADDRESSES
+##################{
+	* directed broadcast address {
+		- host sends data to all devices on a specific network
+		- binary 1s in the entire host portion of the address
+		- net: 172.31.0.0 = directed broadcast: 172.31.255.255; net: 192.168.60.30 = directed broadcast: 192.168.60.255
+		- disabled by default on routers
+		- DoS uses forwarding of directed broadcasts (ex. by using SMURF)
+		- 172.16.0.1 sends directed broadcast to 172.31.255.255, all hosts on the network will receive & accept, then forward to higher level protocols for processing
+	}
+	* local broadcast address {
+		- communicate w/ all devices on local net
+		- address is all binary 1s
+		- 11111111.11111111.11111111.11111111 = 255.255.255.255
+		- host requests an IP from DHCP
+		- always dropped by routers unless DHCP forwarding or relay is configured
+	}
+	* local loopback address {
+		- let a system send a message to itself for testing, ensure tcp/ip stack installed correctly
+		- 127.0.0.1
+		- routers/switches loopback interface is different from a hosts's loopback address
+	}
+}
+
+##################
+# PRIVATE ADDRESSES
+##################{
+	* originated in RFC1918
+	* non-routable on internet, blocked by ISPs
+	* 1 Class A: 10.0.0.0 - 10.255.255.255 (10/8 prefix); 16 Class B: 172.16.0.0 - 172.31.255.255 (172.16/12 prefix); 256 Class C: 192.168.0.0 - 192.168.255.255 (192.168/16 prefix)
+	* Private IPs are NAT'd to Public IPs
+	* ipv4 link-local addresses can be configured using APIPA when no DHCP server available, from range 169.254.0.0/16, allowing 2 nodes on a local link to talk (non-routable)
+}
+
+##################
+# SUBNET MASKS
+##################{
+	* used to determine network & host portion, if device is remote or local
+	* if remote, traffic is sent to default gateway for inter-vlan routing
+	* any address bits which have corresponding mask bit set to 1 represent the network id
+	* any address bits that have corresponding mask bits set to 0 represent the node id
+	* cisco devices do not support discontiguous masks
+
+	example {
+		IP: 10.1.1.1 = 00001010.00000001.00000001.00000001
+		Mask: 255.0.0.0 = 11111111.00000000..00000000..00000000
+		Netid = 00001010 = 10
+		Hostid = 00000001.00000001.00000001 = 1.1.1
+	}
+
+	example {
+		* Is other host local?
+
+		1. check net portion of the address
+		2. compare to the other host
+
+		Same = local
+		Not the same = remote
+	}
+}
+
+##################
+# ROUTING
+##################{
+	* hierarchal structure enables routing
+	* routers match dest. ip in packets to net id
+	* routing decisions based on net id
+	* packets treated independently: those from same session may take different paths
+	* could be based on load balancing, bandwidth, hopcount
+
+	Protocols{
+		RIP - hopcount
+		OSPF - bandwidth
+	}
+}
+
+network masks
+
+they are nat'd to a public ip
+nat = network address translation

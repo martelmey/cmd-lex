@@ -1,0 +1,29 @@
+pkg {
+    search
+        -H omit headers
+        -I case-sensitive search
+        -l search installed pkgs
+        -p show pkgs having actions matching each query term
+
+        -l -p /usr/bin/curl
+    uninstall
+    update
+    list
+    history
+    install
+    refresh
+    info
+    publisher
+        -HPn
+        -F <format>
+        <publisher>
+    set-publisher
+        -g origin_to_add
+        -G origin_to_remove
+    contents
+        -r <pkgname> # see where files will be installed
+}
+
+pkgchk {
+    -L CSWcollectd # list files
+}

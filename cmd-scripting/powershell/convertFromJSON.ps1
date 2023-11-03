@@ -1,0 +1,1 @@
+$stu = cmd /c curl -X GET https://lnxmaster.vrtsedu.lab:1556/netbackup/storage/storage-units/master_msdp_stu -H "Accept: application/vnd.netbackup+json;version=4.0" -H "Authorization: API key" --cacert C:\certs\cacert.cer --silent | ConvertFrom-Json; $stu.data.attributes

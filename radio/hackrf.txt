@@ -1,0 +1,165 @@
+https://medium.com/practical-coding/setting-up-a-c-python-project-with-pybind11-and-cmake-8de391494fca
+
+20210204_PEATT-KL
+
+===terms
+DSP = digital signal processing
+
+===math
+10e6 = 10m
+10e3 = thousands
+
+===conf
+/etc/gnuradio/conf.d/
+	grc.conf
+
+===summary
+* Install:
+	- gqrx
+	- gnuradio
+	- hackrf
+	- qspectrumanalyer
+	- inspectrum
+
+===links
+https://github.com/sharebrained/portapack-hackrf
+https://store.sharebrained.com/products/portapack-for-hackrf-one-kit
+https://github.com/gnuradio/gnuradio
+https://github.com/atlas0fd00m/rfcat
+https://github.com/miek/inspectrum
+https://github.com/osmocom/gr-osmosdr
+https://github.com/xmikos/qspectrumanalyzer
+https://github.com/mossmann/hackrf
+http://www.baudline.com/
+https://greatscottgadgets.com/sdr/
+
+===software
+rfcat/kali-rolling 190423-0kali1 amd64
+osmo-sdr/kali-rolling 0.1.8.effcaa7-7+b1 amd64
+inspectrum/kali-rolling 0.2.3-1 amd64
+hackrf/kali-rolling 2018.01.1-2 amd64
+gnuradio/kali-rolling 3.8.2.0-11+b2 amd64
+gqrx-sdr/kali-rolling,now 2.14.4-1 amd64
+soapysdr-module-hackrf/kali-rolling 0.3.3-3 amd64
+
+===setup
+apt install hackrf gnuradio gqrx
+
+===gnuradio 3.7
+#Option1
+pip3 install PyBOMBS
+cd ~/.local/bin/
+./pybombs recipes add gr-recipes git+https://github.com/gnuradio/gr-recipes.git  
+./pybombs recipes add gr-etcetera git+https://github.com/gnuradio/gr-etcetera.git
+./pybombs prefix init ~/prefix/default/
+./pybombs install gnuradio
+./pybombs run gnuradio-companion
+
+#Option2
+apt install -y gcc cmake fftw2
+pip3 install mako boost Cheetah3 numpy pygccxml pybind11
+# pybind11-config is installed in '/home/mxana/.local/bin'
+/home/mxana/Downloads/./Miniconda3-latest-Linux-x86_64.sh
+/root/miniconda3/bin/./conda install pybind11 -c conda-forge
+cd
+git clone --recursive https://github.com/gnuradio/volk.git
+cd volk
+mkdir build
+cd build
+cmake -DCMAKE_BUILD_TYPE=Release -DPYTHON_EXECUTABLE=/usr/bin/python3 ../
+make
+make test
+sudo make install
+sudo ldconfig
+cd
+git clone https://github.com/gnuradio/gnuradio.git
+cd gnuradio
+mkdir build
+cd build
+cmake -DCMAKE_BUILD_TYPE=Release -DPYTHON_EXECUTABLE=/usr/bin/python3 -DCMAKE_PREFIX_PATH=/home/mxana/.local/lib/python3.9/site-packages/pybind11/share/cmake/pybind11 ../
+make -j8
+make test
+sudo make install
+sudo ldconfig
+
+#Option3
+sudo apt-get install python3-pip
+sudo pip3 install pybombs
+pybombs auto-config
+pybombs recipes add-defaults
+pybombs prefix init ~/prefix-3.7 -R gnuradio-default
+source ~/prefix-3.8/setup_env.sh
+gnuradio-companion
+
+===qspectrumanalyzer installation
+https://github.com/xmikos/qspectrumanalyzer
+https://github.com/keenerd/rtl-sdr-misc #heatmap
+#add-apt-repository ppa:myriadrf/drivers
+apt update
+apt install python3-pip python3-pyqt5 python3-numpy
+apt install soapysdr-module-hackrf
+pip3 install --user qspectrumanalyzer #/home/mxana/.local/bin
+# stored in ~/.local/bin
+# execs: qspectrumanalyzer soapy_power
+
+cd ~/radio
+git clone https://github.com/xmikos/qspectrumanalyzer.git
+pip3 install --user .
+git clone https://github.com/keenerd/rtl-sdr-misc
+
+pip3 install Image
+
+===cmds
+hackrf_info
+hackrf_sweep {
+	https://github.com/mossmann/hackrf/wiki/hackrf_sweep
+
+	[-h] # this help
+	[-d serial_number] # Serial number of desired HackRF
+	[-a amp_enable] # RX RF amplifier 1=Enable, 0=Disable
+	[-f freq_min:freq_max] # minimum and maximum frequencies in MHz
+	[-p antenna_enable] # Antenna port power, 1=Enable, 0=Disable
+	[-l gain_db] # RX LNA (IF) gain, 0-40dB, 8dB steps
+	[-g gain_db] # RX VGA (baseband) gain, 0-62dB, 2dB steps
+	[-n num_samples] # Number of samples per frequency, 8192-4294967296
+	[-w bin_width] # FFT bin width (frequency resolution) in Hz
+	[-1] # one shot mode
+	[-B] # binary output
+	[-I] # binary inverse FFT output
+	-r filename # output file
+
+	examples {
+		hackrf_sweep -f1:3000 -w100000 -l32 -g8 > output_data.csv
+		hackrf_sweep -f 2400:2490
+	}
+}
+hackrf_transfer {
+	https://manpages.debian.org/unstable/hackrf/hackrf_transfer.1.en.html
+
+	-r <filename> # Receive data into file.
+	-t <filename> # Transmit data from file.
+	-w # Receive data into file with WAV header and automatic name.
+	# This is for SDR# compatibility and may not work with other software.
+	[-f set_freq_hz] # Set Freq in Hz
+	[-a set_amp] # Set Amp 1=Enable, 0=Disable.
+	[-l gain_db] # Set lna gain, 0-40dB, 8dB steps
+	[-i gain_db] # Set vga(if) gain, 0-62dB, 2dB steps
+	[-x gain_db] # Set TX vga gain, 0-47dB, 1dB steps
+	[-s sample_rate_hz] # Set sample rate in Hz (8/10/12.5/16/20MHz)
+	[-n num_samples] # Number of samples to transfer (default is unlimited).
+	[-b baseband_filter_bw_hz] # Set baseband filter bandwidth in MHz.
+	    Possible values: 1.75/2.5/3.5/5/5.5/6/7/8/9/10/12/14/15/20/24/28MHz, default < sample_rate_hz. 
+}
+/usr/bin/inspectrum
+
+===firmware updates
+
+dfu-util --device 1fc9:000c --download hackrf_usb.dfu --reset
+
+cd /root/mayhem_v1.1.1_FIRMWARE
+
+hackrf_spiflash -w portapack-h1_h2-mayhem.bin
+
+cd /root/portapack-h1-firmware-20190405
+
+hackrf_spiflash -w portapack-h1-firmware.bin

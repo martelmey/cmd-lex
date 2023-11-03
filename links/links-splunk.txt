@@ -1,0 +1,200 @@
+###==
+####===
+--------= TA
+####===
+###==
+
+About the Splunk Add-on for Unix and Linux
+   https://docs.splunk.com/Documentation/AddOns/released/UnixLinux/About
+
+###==
+####===
+--------= jobs
+####===
+###==
+
+Extending job lifetimes
+   https://docs.splunk.com/Documentation/Splunk/latest/Search/Extendjoblifetimes
+
+###==
+####===
+--------= alerts
+####===
+###==
+
+Convert a script alert action to a custom alert action
+   https://docs.splunk.com/Documentation/Splunk/8.0.3/AdvancedDev/CustomAlertConvertScripted?ref=hk
+Create a custom alert action script
+   https://docs.splunk.com/Documentation/Splunk/8.1.0/AdvancedDev/CustomAlertScript
+
+###==
+####===
+--------= syntax ref
+####===
+###==
+
+Knowledge manual:
+   https://docs.splunk.com/Documentation/Splunk/8.0.5/Knowledge/WhatisSplunkknowledge
+Transforms.conf:
+   https://docs.splunk.com/Documentation/Splunk/8.0.5/Admin/Transformsconf
+Props.conf:
+   https://docs.splunk.com/Documentation/Splunk/8.0.5/Admin/Propsconf
+Eventtypes.conf:
+   https://docs.splunk.com/Documentation/Splunk/8.0.5/Admin/Eventtypesconf
+Tags.conf:
+   https://docs.splunk.com/Documentation/Splunk/8.0.5/Admin/Tagsconf
+
+###==
+####===
+--------= ms sql
+####===
+###==
+
+Add-on for Microsoft SQL Server installation overview
+   https://docs.splunk.com/Documentation/AddOns/released/MSSQLServer/Installationsteps
+Monitoring MS SQL server
+   https://community.splunk.com/t5/Getting-Data-In/How-to-monitor-Microsoft-SQL-server-using-the-Splunk-Add-on-for/m-p/297120
+
+###==
+####===
+--------= dispatch
+####===
+###==
+
+Dispatch directory and search artifacts
+   https://docs.splunk.com/Documentation/Splunk/8.1.0/Search/Dispatchdirectoryandsearchartifacts
+
+###==
+####===
+--------= intermediate forwarding
+####===
+###==
+
+Deploy a heavy forwarder:
+   https://docs.splunk.com/Documentation/Splunk/8.1.0/Forwarding/Deployaheavyforwarder
+Configure forwarding with outputs.conf
+   https://docs.splunk.com/Documentation/Forwarder/8.1.0/Forwarder/Configureforwardingwithoutputs.conf
+Configure an intermediate forwarder
+   https://docs.splunk.com/Documentation/Forwarder/8.1.0/Forwarder/Configureanintermediateforwarder
+Configure an intermediate forwarder
+   https://docs.splunk.com/Documentation/SplunkCloud/latest/Forwarding/Configureanintermediateforwarder
+
+
+###==
+####===
+--------= command ref
+####===
+###==
+
+SPL:
+   https://docs.splunk.com/Documentation/Splunk/8.0.5/SearchReference/CommonStatsFunctions
+Build a chart of multiple data series:
+   https://docs.splunk.com/Documentation/Splunk/8.1.1/Search/Chartmultipledataseries
+
+###==
+####===
+--------= app creation
+####===
+###==
+
+Addon builder docs:
+   https://docs.splunk.com/Documentation/AddonBuilder/3.0.2/UserGuide/BeforeYouBegin
+Python strptime():
+   https://www.journaldev.com/23365/python-string-to-datetime-strptime
+
+###==
+####===
+--------= metrics
+####===
+###==
+
+StatsD:
+   https://github.com/statsd/statsd
+   https://codeascraft.com/2011/02/15/measure-anything-measure-everything/
+   https://docs.splunk.com/Documentation/Splunk/8.0.5/Metrics/GetMetricsInStatsd
+
+HTTPInputDataHandler
+   https://community.splunk.com/t5/Getting-Data-In/HTTP-Event-Collector-Getting-error-quot-HttpInputDataHandler/td-p/463905
+
+SAI Metrics
+   https://docs.splunk.com/Documentation/InfraApp/2.2.0/Admin/ManageAgents
+   https://docs.splunk.com/Documentation/InfraApp/2.2.0/Admin/collectd
+
+Building collectd:
+   https://github.com/collectd/collectd
+   https://github.com/splunk/collectd-plugins
+
+###==
+####===
+--------= clustering
+####===
+###==
+
+Multisite indexer clusters
+   https://docs.splunk.com/Documentation/Splunk/8.0.6/Indexer/Multisiteclusters
+Multisite indexer cluster deployment overview
+   https://docs.splunk.com/Documentation/Splunk/8.0.6/Indexer/Multisitedeploymentoverview
+Multisite indexer cluster architecture
+   https://docs.splunk.com/Documentation/Splunk/8.0.6/Indexer/Multisitearchitecture
+Configure the site replication factor
+   https://docs.splunk.com/Documentation/Splunk/8.0.6/Indexer/Sitereplicationfactor
+Configure the site search factor
+   https://docs.splunk.com/Documentation/Splunk/8.0.6/Indexer/Sitesearchfactor
+Configure multisite indexer clusters with server.conf
+   https://docs.splunk.com/Documentation/Splunk/8.0.6/Indexer/Multisiteconffile
+
+Restart the entire indexer cluster or a single peer node
+   https://docs.splunk.com/Documentation/Splunk/8.0.6/Indexer/Restartthecluster
+
+Search head configuration overview
+   https://docs.splunk.com/Documentation/Splunk/8.0.6/Indexer/Configurethesearchhead
+
+Indexes, indexers, and indexer clusters
+   https://docs.splunk.com/Documentation/Splunk/8.0.6/Indexer/Aboutindexesandindexers
+About indexer clusters and index replication
+   https://docs.splunk.com/Documentation/Splunk/8.0.6/Indexer/Aboutclusters
+Indexer cluster deployment overview
+   https://docs.splunk.com/Documentation/Splunk/8.0.6/Indexer/Clusterdeploymentoverview
+Key differences between clustered and non-clustered deployments of indexers
+   https://docs.splunk.com/Documentation/Splunk/8.0.6/Indexer/Keydifferences
+Configure the peer indexes in an indexer cluster
+   https://docs.splunk.com/Documentation/Splunk/8.0.6/Indexer/Configurethepeerindexes
+Use forwarders to get data into the indexer cluster
+   https://docs.splunk.com/Documentation/Splunk/8.0.6/Indexer/useforwarders#Advantages_of_the_indexer_discovery_method
+
+###==
+####===
+--------= storage
+####===
+###==
+
+Configure index storage
+   https://docs.splunk.com/Documentation/Splunk/8.0.6/Indexer/Configureindexstorage
+Set a retirement and archiving policy
+   https://docs.splunk.com/Documentation/Splunk/8.0.6/Indexer/Setaretirementandarchivingpolicy
+
+###==
+####===
+--------= api
+####===
+###==
+
+Specify time modifiers in your search
+   https://docs.splunk.com/Documentation/Splunk/8.1.1/Search/Specifytimemodifiersinyoursearch#Examples_of_searches_with_relative_time_modifiers
+Search endpoint descriptions
+   https://docs.splunk.com/Documentation/Splunk/8.1.1/RESTREF/RESTsearch#search.2Fjobs
+Creating searches using the REST API
+   https://docs.splunk.com/Documentation/Splunk/8.1.1/RESTTUT/RESTsearches
+Endpoints reference list
+   https://docs.splunk.com/Documentation/Splunk/8.1.1/RESTREF/RESTlist
+Splunk REST API is EASY to use
+   https://www.splunk.com/en_us/blog/tips-and-tricks/splunk-rest-api-is-easy-to-use.html
+
+###==
+####===
+--------= dashboards
+####===
+###==
+
+Build a Dashboard with Dynamic and Editable Inputs\
+   https://www.splunk.com/en_us/blog/tips-and-tricks/build-a-dashboard-with-dynamic-and-editable-inputs.html

@@ -1,0 +1,7 @@
+cmd
+DISM /Online /Enable-Feature /FeatureName:NetFx3 /All
+
+D:\sources\sxs
+
+# mount Windows install ISO
+# use as alternative source path6

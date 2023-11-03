@@ -1,0 +1,16 @@
+80   /tcp http
+135  /tcp msrpc
+139  /tcp netbios-ssn
+443  /tcp https
+445  /tcp microsoft-ds
+9080 /tcp glrpc
+1801 /tcp msmq
+2103 /tcp zephyr-clt
+2105 /tcp eklogin
+2107 /tcp msmq-mgmt
+2179 /tcp vmrdp
+2869 /tcp icslap
+3389 /tcp ms-wbt-server
+5357 /tcp wsdapi
+6000 /tcp X11
+49152/tcp unknown

@@ -1,0 +1,4 @@
+turn this :
+    test-lab2       IN      A       10.3.10.174
+into this :
+    10.3.10.174 : test-lab2

@@ -1,0 +1,36 @@
+# Install
+msiexec /i "FlexNet Inventory Agent.msi" /qn
+
+# Trigger the inventory:
+cd “C:\Program Files (x86)\ManageSoft\Tracker”
+.\ndtrack.exe -t Machine
+
+# Force update the policy
+cd “C:\Program Files (x86)\ManageSoft\Schedule Agent”
+.\ndschedag.exe -t machine
+
+# Fetch policy
+cd “C:\Program Files (x86)\ManageSoft\Policy Client”
+.\mgspolicy.exe
+
+logs {
+    C:\ProgramData\ManageSoft\ManageSoft
+    %AppData%\Local\Temp\11\ManageSoft
+    
+    installation.log: from ndlaunch, downloads packages for agent
+    policy.log: from policy download component, mgspolicy
+    schedule.log: from ndschedag
+    tracker.log: from ndtrack
+    uploader.log: from ndupload
+    usageagent.lo: from mgsusageag
+}
+
+manual uninstall {
+    Computer\HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\ManageSoft Corp
+    C:\Program Files (x86)\ManageSoft
+    C:\ProgramData\ManageSoft Corp\ManageSoft
+}
+
+mgssetup.ini {
+    INSTALLTYPE = proxy
+}

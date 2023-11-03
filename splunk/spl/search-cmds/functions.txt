@@ -1,0 +1,60 @@
+Statistical and charting functions
+https://docs.splunk.com/Documentation/Splunk/8.1.0/SearchReference/CommonStatsFunctions
+
+Comparison and Conditional functions
+https://docs.splunk.com/Documentation/Splunk/8.1.0/SearchReference/ConditionalFunctions#like.28TEXT.2C_PATTERN.29
+
+Mathematical functions
+https://docs.splunk.com/Documentation/Splunk/8.1.0/SearchReference/MathematicalFunctions#floor.28X.29
+
+Aggregate functions
+https://docs.splunk.com/Documentation/Splunk/8.1.0/SearchReference/Aggregatefunctions
+
+https://regex101.com/
+
+######################
+aggregate functions
+######################
+
+avg()
+count()
+distinct_count()
+estdc()
+estdc_error()
+exactperc<num>()
+max()
+median()
+min()
+mode()
+perc<num>()
+range()
+stdev()
+stdevp()
+sum()
+sumsq()
+upperperc<num>()
+var()
+varp()
+
+######################
+event order functions
+######################
+
+first()
+last()
+
+######################
+multivalue stats & chart functions
+######################
+
+list()
+values()
+
+######################
+time functions
+######################
+
+earliest()
+earliest_time()
+latest()
+latest_time()

@@ -1,0 +1,21 @@
+
+#1 SolarWindsOrion
+E:\data01\Data\SolarWindsOrion.mdf
+
+#2 SolarWindsOrion_log
+F:\Log\SolarWindsOrion_log.ldf
+
+#3 SolarWindsOrion_FG1
+D:\data01\Data\SolarWindsOrion_FG1.mdf
+
+#4 SolarWindsOrion_FG2
+D:\\data01\Data\SolarWindsOrion_FG2.mdf
+
+#5 SolarWindsOrion_FG3
+E:\\data01\Data\SolarWindsOrion_FG3.mdf
+
+#6 SolarWindsOrion_FG4
+E:\data01\Data\SolarWindsOrion_FG4.mdf
+
+#7 SolarWindsOrion_log_2
+T:\Log\SolarWindsOrion_log2.ldf

@@ -1,0 +1,37 @@
+########
+# add host files
+# to master & media:
+########
+# Master:
+echo "192.168.57.202 kutlprdsolsql01.sws.health.local kutlprdsolsql01" >> /etc/hosts
+# Media:
+echo "192.168.57.202 kutlprdsolsql01.sws.health.local kutlprdsolsql01" >> /etc/hosts
+
+########
+# add to host files
+# to clients:
+########
+run: C:\Windows\System32\drivers\etc\hosts
+192.168.57.232 kutlprdnetb01-mgmt.prod.health.local kutlprdnetb01-mgmt
+192.168.57.233 kutlprdnetm01-mgmt.prod.health.local kutlprdnetm01-mgmt
+
+########
+# chk cxns
+# from clietnt
+# chk firewalls
+########
+telnet 443      #web interface port, to master only
+telnet 13724    #bpcd
+telnet 1556     #vnet
+
+********
+* checkpoint
+********
+[] client x (master & media) telnet via 1556,13724; client x (media) telnet via 443
+[] master & media hostnames resolve to their BUR ips
+
+########
+# add client hostname
+# to Client_Install policy
+# via Master GUI
+########

@@ -1,0 +1,2 @@
+* run remote, check last reboot of all machines
+https://docs.microsoft.com/en-us/powershell/scripting/learn/ps101/08-powershell-remoting?view=powershell-7.2

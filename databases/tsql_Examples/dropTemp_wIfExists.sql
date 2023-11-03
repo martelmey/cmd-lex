@@ -1,0 +1,6 @@
+DROP TABLE IF EXISTS  #TempTableName
+GO
+CREATE TABLE #TempTableName
+(
+Col1 VARCHAR(100)
+)

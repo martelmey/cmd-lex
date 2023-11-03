@@ -1,0 +1,5 @@
+check largest DB tables {
+    All Settings > Database Details > Database Statistics
+    compare # of reserved kb, to actual data in DB
+    check polling & retention for tables where actual data, is close to reserved limit
+}

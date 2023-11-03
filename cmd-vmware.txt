@@ -1,0 +1,8 @@
+esxcli {
+	network {
+		nic {
+			list
+			get -n vmnic1
+		}
+	}
+}

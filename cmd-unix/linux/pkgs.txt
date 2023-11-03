@@ -1,0 +1,158 @@
+rpm {
+    rpm -q, --query
+        --configfiles
+        --i, info
+        --filesbypkg
+        -l, --list
+        -R, --requires
+        -f, --file
+        -p, --package
+        -v, --verify
+        -i, --install
+        -U, upgrade
+        -h, --hash (print 50 hash marks while pkg is unpacked)
+}
+
+dpkg{
+    -i, --install <package_file>
+    -r, --remove package...|-a|--pending
+}
+
+dpkg-query{
+    -l, --list <pattern>
+    -s, --status <pkg_name>
+    -L, --listfiles <pkg_name>
+    -s, --search <filename_search_pattern>
+    -p, --print-avail <pkg_name>
+}
+
+yum-config-manager {
+    -C --cacheonly (don't update cache)
+    -d --debuglevel
+    -v --verbose
+    --installrepo=[path]
+    --enablerepo=[repo] / --disablerepo=[repo]
+    --skip-broken
+    --downloadonly (no update, just download)
+    --downloaddir=[dir]
+    --enable / --disable
+
+    examples {
+        # show config of reposq
+        yum-config-manager <reponame>
+    }
+}
+
+yum {
+    check
+    makecache {
+        fast
+    }
+    clean {
+        packages
+        metadata
+        headers
+        all
+    }
+	install {
+        --downloadonly
+        --installroot
+        --downloaddir
+        ./*rpm
+        --downloadonly --installroot=/root/libvirt-installroot --downloaddir=/root/libvirt libvirt
+    }
+	list {
+		installed
+    }
+	info
+	groups {
+		group list
+		group info
+		group summary
+    }
+	search {
+		--showduplicates
+    }
+	resolvedep
+	deplist {
+		--showduplicates
+		--verbose
+    }
+	repolist {
+		-v
+    }
+	repoinfo
+	history
+
+    --enablerepo
+
+    examples {
+        # Update only specific repo
+        yum --disablerepo="*" --enablerepo="ol7_developer_kvm_utils" update
+        # clear metadata for single repo, if stale
+        yum clean all --disablerepo="*" --enablerepo=<repo>
+        # disable plugins
+        --disableplugin=rhnplugin
+        /etc/yum/pluginconf.d/rhnplugin.conf
+        # disable all plugins
+        --noplugins
+
+
+        --enablerepo=offline-libvirt install libvirt
+        --enablerepo=offline-virt-viewer install virt-viewer
+    }
+}
+
+yumdownloader {
+	--destdir
+	--resolve
+	--source
+	--archlist=x86_64
+    
+    examples {
+        --destdir=/root/yumdownloader-libvirt --resolve libvirt
+        --destdir=/root/yumdownloader-virt-viewer --resolve virt-viewer
+    }
+}
+
+repotrack {
+    -a x86_64 -p /root/repotrack-boost boost-iostreams
+    -a x86_64 -p /root/repotrack libvirt virt-viewer boost-iostreams gnutls-dane gnutls-utils
+}
+
+repoclosure {
+    --repoid=offline-libvirt
+    --repoid=offline-virt-viewer
+}
+
+reposync {
+    -g -l -n -a x86_64 -r ol7_x86_64_latest --download_path=/root/reposync -m --download-metadata
+
+    --arch=x86_64 \
+    --repoid=ol7_x86_64_latest \
+    --cachedir=/root/yumrepo/yumcache \
+    --download_path=/root/yumrepo \
+    --gpgcheck \
+    --plugins \
+    --downloadcomps \
+    --download-metadata \
+    --newest-only 
+}
+
+repo {
+    createrepo --database /root/virt-viewer
+}
+
+[offline-libvirt]
+name=Oracle Linux-$releasever - libvirt
+baseurl=file:///repos/libvirt
+enabled=0
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-oracle
+
+[offline-virt-viewer]
+name=Oracle Linux-$releasever - virt-viewer
+baseurl=file:///repos/virt-viewer
+enabled=0
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-oracle

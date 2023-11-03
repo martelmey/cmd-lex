@@ -1,0 +1,17 @@
+ssh-keygen {
+    -t <type>
+
+    examples {
+        ssh-keygen -t rsa
+    }
+}
+
+tty {
+    -s, --silent, --quiet
+
+    end session {
+        w
+        ps -ft <tty>
+        kill -9 <pid>
+    }
+}

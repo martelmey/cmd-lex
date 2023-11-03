@@ -1,0 +1,180 @@
+###==
+####===
+--------= rds / tmp profiles
+####===
+###==
+
+# How to fix Temporary Profile in Microsoft Windows and Microsoft Server
+	https://www.itsmdaily.com/easy-how-to-fix-temporary-profile-in-microsoft-windows-and-microsoft-server/
+# Troubleshoot user profiles with events
+	https://docs.microsoft.com/en-us/windows-server/storage/folder-redirection/troubleshoot-user-profiles-events
+	
+# How to allow active directory users to remote desktop in?
+	https://serverfault.com/questions/419423/how-to-allow-active-directory-users-to-remote-desktop-in
+# Windows Server 2019 RDS Installation And License Configuration
+	https://www.systemconf.com/2020/07/25/windows-server-2019-rds-installation-and-license-configuration/
+# RDS CAL Per-User: Workgroup: How to assign license to users
+	https://docs.microsoft.com/en-us/answers/questions/224336/rds-cal-per-user-workgroup-how-to-assign-license-t.html
+# Manage users in your RDS collection
+	https://docs.microsoft.com/en-us/windows-server/remote/remote-desktop-services/rds-user-management#assign-users-and-groups-to-collections
+# Server 2019 Remote Desktop Licensing mode is not configured?
+	https://social.technet.microsoft.com/Forums/en-US/2bd96b3a-6b5a-40b8-bcf2-db6dedd9ef58/server-2019-remote-desktop-licensing-mode-is-not-configured
+# Remote Desktop Services architecture
+	https://docs.microsoft.com/en-us/windows-server/remote/remote-desktop-services/desktop-hosting-logical-architecture
+# Deploy your Remote Desktop environment
+	https://docs.microsoft.com/en-us/windows-server/remote/remote-desktop-services/rds-deploy-infrastructure
+# RDS License Issue, logged out in 60 mins
+	https://social.technet.microsoft.com/Forums/office/en-US/fad1bdb9-5d0b-4aac-9159-7c57cf5ed829/remote-desktop-license-issue
+# about_Remote_Troubleshooting
+	https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_remote_troubleshooting?view=powershell-7.1
+# Running Remote Desktop Session Host Configuration
+	https://forsenergy.com/en-us/tscc/html/a4987cd3-79eb-4ad2-a3a8-86b56ff40f45.htm
+
+###==
+####===
+--------= powershell
+####===
+###==
+
+# Powershell loops - connection / dns tests
+	https://stackoverflow.com/questions/29493414/ping-a-list-of-host-names-and-output-the-results-to-a-csv-in-powershell
+	https://sid-500.com/2018/02/02/powershell-test-open-tcp-ports-with-test-openport-multiple-hosts-multiple-port-numbers/
+	https://techibee.com/powershell/powershell-query-dns-server-for-a-ptr-mx-ns-and-other-records/2570
+# Powershell equivalents
+	https://devblogs.microsoft.com/scripting/table-of-basic-powershell-commands/
+# Schedule PowerShell Tasks with Task Scheduler On Windows Server
+	http://www.ntweekly.com/2020/06/28/schedule-powershell-tasks-with-task-scheduler-on-windows-server/
+# PsExec v2.2
+	https://docs.microsoft.com/en-us/sysinternals/downloads/psexec
+# Schedule PowerShell Tasks with Task Scheduler On Windows Server
+	http://www.ntweekly.com/2020/06/28/schedule-powershell-tasks-with-task-scheduler-on-windows-server/
+
+###==
+####===
+--------= gpo
+####===
+###==
+
+# GPO x Registry lookups
+	https://gpsearch.azurewebsites.net
+# Use Group Policy to apply WinHTTP proxy settings to Windows clients
+	https://docs.microsoft.com/en-us/troubleshoot/windows-client/networking/use-group-policy-apply-winhttp-proxy-settings
+# Configuring Windows Firewall Settings And Rules With Group Policy
+	https://zamarax.com/2019/12/25/configuring-windows-firewall-settings-and-rules-with-group-policy/
+
+###==
+####===
+--------= windows features / sources
+####===
+###==
+
+# Fix Windows Features sources
+	http://woshub.com/how-to-install-net-framework-3-5-in-windows-server-2012-r2/
+# Add-WindowsCapability failed. Error code = 0x800f0954 – RSAT Fix
+	https://thesysadminchannel.com/solved-add-windowscapability-failed-error-code-0x800f0954-rsat-fix/
+
+###==
+####===
+--------= wsus
+####===
+###==
+
+# Fix WSUS snap-in
+	https://social.technet.microsoft.com/Forums/windows/en-US/715f42b1-197e-428a-a2a6-73589823fc0d/mmc-this-snapin-is-not-responding
+	https://support.microsoft.com/en-us/help/929135/how-to-perform-a-clean-boot-in-windows
+	https://www.prajwaldesai.com/install-configure-wsus-on-windows-server-2019/#Configure_Windows_Server_Update_Services_(WSUS)
+# Configure WSUS servers/clients
+	https://www.prajwaldesai.com/install-configure-wsus-on-windows-server-2019/
+	https://www.action1.com/kb/install-and-configure-WSUS-on-Windows-Server-2019.html
+# Error code 0x8024401c on trying to perform Windows Update on Windows 10
+	https://answers.microsoft.com/en-us/windows/forum/all/error-code-0x8024401c-on-trying-to-perform-windows/47cf080e-ebd9-46c7-8dc7-41f7143a0151
+# Reset Windows Update components manually
+	https://docs.microsoft.com/en-us/windows/deployment/update/windows-update-resources#reset-windows-update-components-manually
+
+###==
+####===
+--------= wsfc
+####===
+###==
+
+* WSFC: DNS Registration with the Network Name Resource
+	https://techcommunity.microsoft.com/t5/failover-clustering/dns-registration-with-the-network-name-resource/ba-p/371482
+* WSFC: RPC
+	https://social.technet.microsoft.com/wiki/contents/articles/4494.windows-server-troubleshooting-rpc-server-is-unavailable.aspx#The_RPC_Server
+* WSFC: Distributed Management Point Network Type
+	https://blogs.windows.com/windows-insider/2018/08/14/announcing-windows-server-2019-insider-preview-build-17733/#W0YAxO8BfwBRbkzG.97
+
+###==
+####===
+--------= shares
+####===
+###==
+
+# Enable ADMIN$ share
+	https://martinsblog.dk/windows-10-admin-share-not-enabled-in-workgroup/
+# NFS Anonymous UID & GID fix
+	https://blog.edie.io/2018/06/16/mounting-nfs-shares-in-windows-using-identity-mapping/
+# Windows NFS client re-connect to NFS target on reboot
+	https://social.technet.microsoft.com/Forums/en-US/44445dc3-0185-407f-b8ad-711f22cd4ec6/windows-nfs-client-reconnect-to-nfs-target-on-reboot?forum=winserverfiles
+# Hard Mount vs Soft Mount in NFS
+	https://linoxide.com/file-system/difference-soft-hard-nfs-mount/
+# Mounting NFS Shares in Windows Using Identity Mapping
+	https://blog.edie.io/2018/06/16/mounting-nfs-shares-in-windows-using-identity-mapping/
+# Windows Server 2019 SMB Share
+	https://social.technet.microsoft.com/Forums/en-US/e63f1d76-3913-4b33-85b5-e04581d59f8b/windows-server-2019-smb-share
+# How to detect, enable and disable SMBv1, SMBv2, and SMBv3 in Windows
+	https://docs.microsoft.com/en-us/windows-server/storage/file-server/troubleshoot/detect-enable-and-disable-smbv1-v2-v3#how-to-detect-status-enable-and-disable-smb-protocols-on-the-smb-client
+
+###==
+####===
+--------= misc
+####===
+###==
+
+# Set NTP server
+	https://www.server-world.info/en/note?os=Windows_Server_2019&p=ntp&f=2
+	https://kb.meinbergglobal.com/kb/time_sync/timekeeping_on_windows/configuring_w32time_as_ntp_client
+# Disabling UAC on the Windows Server 2019
+	https://asvignesh.in/disabling-uac-on-the-windows-server-2019/
+# How to Automatically Create System Restore Points in Windows 7 and 8
+	https://www.sevenforums.com/tutorials/67114-system-restore-point-create-system-startup.html
+# Copy Windows Server 2019 ISO to USB in Simple Steps
+	https://www.diskpart.com/server-2019/windows-server-2019-iso-to-usb-1984.html
+
+###==
+####===
+--------= regedit
+####===
+###==
+
+# How to create a registry backup in Windows Server 2019/2016
+	https://www.osradar.com/how-to-create-a-registry-backup-in-windows-server-2019-2016/
+
+###==
+####===
+--------= ad
+####===
+###==
+
+# How to configure a firewall for Active Directory domains and trusts
+	https://docs.microsoft.com/en-us/troubleshoot/windows-server/identity/config-firewall-for-ad-domains-and-trusts
+# Configuring Domain Password Expiration Policy
+	https://theitbros.com/password-expiration-policy/
+# How to Check Which Domain Controller You Are Connected To
+	https://www.techwalla.com/articles/how-to-check-which-domain-controller-you-are-connected-to
+
+###==
+####===
+--------= srvs
+####===
+###==
+
+# Service overview and network port requirements for Windows
+	https://docs.microsoft.com/en-us/troubleshoot/windows-server/networking/service-overview-and-network-port-requirements
+# HOW TO TROUBLESHOOT THE ‘RPC SERVER IS UNAVAILABLE’ ERROR
+	http://techgenix.com/troubleshoot-rpc-server-unavailable/
+# Service Principal Names (SPN): SetSPN Syntax
+	https://social.technet.microsoft.com/wiki/contents/articles/717.service-principal-names-spn-setspn-syntax.aspx#Manually_Registering_SPNs
+# SSH
+	https://jeetblogs.org/post/sshing-into-a-windows-wsl-linux-subsystem/ (with subsystem)
+	https://www.incredigeek.com/home/how-to-increase-session-timeout-for-ssh/ (timeout)

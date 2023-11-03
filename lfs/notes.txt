@@ -1,0 +1,42 @@
+# Binutils second pass {
+	lfs@lfs-build:/lfs/sources/binutils-2.36.1/build$ make DESTDIR=$LFS install
+	make[1]: Entering directory '/lfs/sources/binutils-2.36.1/build'
+	/bin/sh ../mkinstalldirs /lfs/usr /lfs/usr
+	/bin/sh: line 3: cd: ./bfd: No such file or directory
+	make[1]: *** [Makefile:2834: install-bfd] Error 1
+	make[1]: Leaving directory '/lfs/sources/binutils-2.36.1/build'
+	make: *** [Makefile:2289: install] Error 2
+	lfs@lfs-build:/lfs/sources/binutils-2.36.1/build$ install -vm755 libctf/.libs/libctf.so.0.0.0 $LFS/usr/lib
+	install: cannot stat 'libctf/.libs/libctf.so.0.0.0': No such file or directory
+}
+
+# libstdc++ from gcc pass #2 {
+	configure:4116: x86_64-lfs-linux-gnu-gcc -V >&5
+	x86_64-lfs-linux-gnu-gcc: error: unrecognized command-line option '-V'
+	x86_64-lfs-linux-gnu-gcc: fatal error: no input files
+	compilation terminated.
+	configure:4127: $? = 1
+	configure:4116: x86_64-lfs-linux-gnu-gcc -qversion >&5
+	x86_64-lfs-linux-gnu-gcc: error: unrecognized command-line option '-qversion'; did you mean '--version'?
+	x86_64-lfs-linux-gnu-gcc: fatal error: no input files
+	compilation terminated.
+	configure:4127: $? = 1
+	configure:4143: x86_64-lfs-linux-gnu-gcc -o conftest    conftest.c  >&5
+	x86_64-lfs-linux-gnu-gcc: fatal error: cannot execute 'as': execvp: No such file or directory
+	compilation terminated.
+	configure:4146: $? = 1
+	configure:4359: checking for suffix of object files
+	configure:4381: x86_64-lfs-linux-gnu-gcc -c   conftest.c >&5
+	x86_64-lfs-linux-gnu-gcc: fatal error: cannot execute 'as': execvp: No such file or directory
+	compilation terminated.
+	configure:4385: $? = 1
+	configure: failed program was:
+	| /* confdefs.h */
+	| #define PACKAGE_NAME "package-unused"
+	| #define PACKAGE_TARNAME "libstdc++"
+	| #define PACKAGE_VERSION "version-unused"
+	| #define PACKAGE_STRING "package-unused version-unused"
+	| #define PACKAGE_BUGREPORT ""
+	| #define PACKAGE_URL ""
+	| /* end confdefs.h.  */
+}

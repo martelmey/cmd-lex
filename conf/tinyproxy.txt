@@ -1,0 +1,3 @@
+Allow SSL cert for SFTP {
+	ConnectPort 22
+}

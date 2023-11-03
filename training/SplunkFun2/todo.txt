@@ -1,0 +1,14 @@
+create eventtypes
+
+create tags
+
+create field aliases
+
+create calculated fields
+
+create data models
+
+individual server dashboards {
+	real-time, single-value RAM
+	real-time, gauge CPU
+}

@@ -1,0 +1,36 @@
+Copy-Item {
+	https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/copy-item?view=powershell-7.1
+
+    [-Path] <String[]>
+    [[-Destination] <String>]
+    [-Container]
+    [-Force]
+    [-Filter <String>]
+    [-Include <String[]>]
+    [-Exclude <String[]>]
+    [-Recurse]
+    [-PassThru]
+    [-Credential <PSCredential>]
+    [-WhatIf]
+    [-Confirm]
+    [-FromSession <PSSession>]
+    [-ToSession <PSSession>]
+    [<CommonParameters>]
+
+    Copy-Item -Path "C:\Logfiles\*" -Destination "C:\Drawings" -Recurse
+}
+
+Test-Path {
+    https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/test-path?view=powershell-7.1
+
+    [-Path] <String[]>
+    [-Filter <String>]
+    [-Include <String[]>]
+    [-Exclude <String[]>]
+    [-PathType <TestPathType>]
+    [-IsValid]
+    [-Credential <PSCredential>]
+    [-OlderThan <DateTime>]
+    [-NewerThan <DateTime>]
+    [<CommonParameters>]
+}

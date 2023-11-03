@@ -1,0 +1,15 @@
+lscpi {
+    # list all pci devices
+
+    examples {
+        lscpi -tv
+        lspci | grep -i vga
+        lspci -s 01:00.0 -v
+        cat /proc/pci
+    }
+}
+
+lshw {
+    # show tree of all attached/detected hw
+}
+

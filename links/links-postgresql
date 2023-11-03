@@ -1,0 +1,28 @@
+:: Alter role
+	https://www.postgresql.org/docs/9.5/sql-alterrole.html
+
+:: Roles & attributes
+	https://www.postgresql.org/docs/9.5/role-attributes.html
+
+:: List dbs & tables
+	https://chartio.com/resources/tutorials/how-to-list-databases-and-tables-in-postgresql-using-psql/
+
+:: Create database
+	https://www.postgresql.org/docs/9.0/sql-createdatabase.html
+
+:: Client Authentication
+	https://www.postgresql.org/docs/9.5/client-authentication.html
+	https://www.postgresql.org/docs/9.5/client-authentication-problems.html
+	https://stackoverflow.com/questions/18664074/getting-error-peer-authentication-failed-for-user-postgres-when-trying-to-ge
+
+:: Allow remote
+	https://blog.bigbinary.com/2016/01/23/configure-postgresql-to-allow-remote-connection.html
+
+:: General PGSQL
+	https://www.postgresqltutorial.com/psql-commands/
+
+:: PostgreSQL Copy Database Made Easy
+	https://www.postgresqltutorial.com/postgresql-copy-database/
+
+:: PostgreSQL Backup
+	https://www.postgresqltutorial.com/postgresql-backup-database/

@@ -1,0 +1,44 @@
+https://www.ntweekly.com/2019/08/19/how-to-manage-remote-desktop-services-rds-with-powershell/
+
+Get-Service {
+    https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/get-service?view=powershell-7
+    -Name "WinRM"
+}
+
+Start-Service {
+    https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/start-service?view=powershell-7
+    -Name "sshd"
+}
+
+Set-Service {
+    https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/set-service?view=powershell-7
+    -Name sshd
+    -StartupType 'Automatic'
+}
+
+Restart-Service {
+    https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/restart-service?view=powershell-7
+}
+
+sshd {
+	* https://docs.microsoft.com/en-us/windows-server/administration/openssh/openssh_server_configuration?WT.mc_id=social-twitter-orthomas
+	* https://jeetblogs.org/post/sshing-into-a-windows-wsl-linux-subsystem/
+
+	examples {
+		Add-WindowsCapability -Online -Name OpenSSH.Server~~~~0.0.1.0
+		Set-Service -Name sshd -StartupType 'Automatic'
+		sed -i 's/#ClientAliveInterval 0/ClientAliveInterval 5m/g' C:\ProgramData\ssh\sshd_config
+		sed -i 's/#ClientAliveCountMax 3/ClientAliveCountMax 3/g' C:\ProgramData\ssh\sshd_config
+		New-ItemProperty -Path "HKLM:\SOFTWARE\OpenSSH" -Name DefaultShell -Value "C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe" -PropertyType String -Force
+		Start-Service sshd
+	}
+}
+
+sc.exe {
+    * https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-R2-and-2012/cc754599(v=ws.11)
+
+    examples {
+        sc.exe qc lanmanworkstation
+        sc config portmap start= auto
+    }
+}

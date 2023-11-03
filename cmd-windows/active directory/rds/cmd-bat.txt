@@ -1,0 +1,11 @@
+msg {
+    https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/msg
+    msg {<username> | <sessionname> | <sessionID>| @<filename> | *} [/server:<servername>] [/time:<seconds>] [/v] [/w] [<message>]
+
+    examples {
+        # send msg to yourself
+        msg martel.meyers "test"
+        # Sending Messages to all Users of computers in given OU
+        (Get-ADComputer -SearchBase "OU=PLIS Servers,DC=sws,DC=health,DC=local" -Filter *).Name | Foreach-Object {Invoke-Command -ComputerName $_ {msg * "Please close all open files. The Server will be shut down in 5 Minutes"}}
+    }
+}

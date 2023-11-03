@@ -1,0 +1,15 @@
+En/Disable HA {
+	cd "C:\Program Files (x86)\SolarWinds\Orion"
+	HAEnableDisable /DisableHA # or /EnableHA
+}
+
+SELECT TOP 1000 * FROM [dbo].[AuditingEvents]
+where actiontypeid = 1 or actiontypeid = 2 and accountid = 'admin'
+order by timeloggedutc desc
+
+Ports {
+	HA {
+		5671 (primary, secondary)
+		4369, 25672 (primary, secondary)
+	}
+}

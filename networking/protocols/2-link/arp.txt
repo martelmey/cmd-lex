@@ -1,0 +1,7 @@
+1.) requesting the MAC address of the queried IP:
+Layer 2: Ethernet II Header
+0060.3EE7.1199 >> FFFF.FFFF.FFFF
+ARP Packet Src. IP: 10.1.1.99, Dest. IP: 10.1.1.100
+2.) send broadcast frame to switch
+3.) switch floods the broadcast (sends from all ports)
+4.) nodes on those ports will drop the packet if they don't have the requested IP to resolve to MAC

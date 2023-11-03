@@ -1,0 +1,42 @@
+| transaction {
+	* https://docs.splunk.com/Documentation/Splunk/8.1.2/SearchReference/Transaction#Usage
+	* The transaction command finds transactions based on events that meet various constraints. Transactions are made up of the raw text (the _raw field) of each member, the time and date fields of the earliest member, as well as the union of all other fields of each member. Additionally, the transaction command adds two fields to the raw events, duration and eventcount. The values in the duration field show the difference between the timestamps for the first and last events in the transaction. The values in the eventcount field show the number of events in the transaction.
+
+	<SYNTAX>
+
+	transaction
+	[<field-list>]
+	[name=<transaction-name>]
+	[<txn_definition-options>...]
+	[<memcontrol-options>...]
+	[<rendering-options>...]
+
+	<EXAMPLES>
+
+	* Transactions with the same host, time range, and pause
+	... | transaction host cookie maxspan=30s maxpause=5s
+
+	* Transactions with the same "from" value, time range, and pause
+	... | transaction from maxspan=30s maxpause=5s
+
+	* Transactions with the same field values
+	... | streamstats window=2 current=t latest(alert_level) AS last earliest(alert_level) AS first | transaction endswith=eval(first!=last) | table _time duration first last alert_level eventcount
+
+	* Transactions of Web access events based on IP address
+	sourcetype=access_* | transaction clientip maxspan=30s maxpause=5s
+
+	* Transaction of Web access events based on host and client IP
+	sourcetype=access_* | transaction clientip host maxspan=30s maxpause=5s
+
+	* Purchase transactions based on IP address and time range
+	sourcetype=access_* action=purchase | transaction clientip maxspan=10m maxevents=3
+
+	* Email transactions based on maxevents and endswith
+	sourcetype="cisco:esa" | transaction mid dcid icid maxevents=10 endswith="Message done"
+
+	* Email transactions based on maxevents, maxspan, and mvlist
+	sourcetype="cisco:esa" | transaction mid dcid icid maxevents=10 maxspan=30s mvlist=true
+
+	* Transactions with the same session ID and IP address
+	sourcetype=access_* | transaction JSESSIONID clientip startswith="view" endswith="purchase" | where duration>0
+}

@@ -1,0 +1,22 @@
+lxc.conf {
+  /etc/lxc/default.conf # privileged container
+  ~/.config/lxc/default.conf # unprivileged container
+  /etc/lxc/lxc.conf  # privileged system
+  ~/.config/lxc/lxc.conf  # unprivileged system
+}
+
+qemu host conf {
+    <os>
+      <type>hvm</type>
+      <boot dev='cdrom'/>
+      <boot dev='hd'/>
+      <bootmenu enable='yes'/>
+    </os>
+
+    <disk type='file' device='cdrom'>
+      <driver name='qemu' type='raw'/>
+      <source file='/iso-kvm/server19eval.iso'/>
+      <target dev='hdd' bus='ide'/>
+      <readonly/>
+    </disk>
+}

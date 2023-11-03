@@ -1,0 +1,47 @@
+dmidecode {
+    --type
+        memory
+}
+
+disk free {
+    df -klh
+    lsblk
+}
+
+virsh nodeinfo
+
+cpu {
+    getconf _NPROCESSORS_ONLN
+    echo "Threads/core: $(nproc --all)"
+    lscpu | grep Virtualization
+
+    iostat
+    sar -u 5
+}
+
+ram total {
+    free -g -t
+    less /proc/meminfo
+    vmstat -s
+}
+
+find largest files in system {
+    du -a / | sort -n -r | head -n 10
+    du -hsx -- * | sort -rh | head -10 (cd /path/to/some/where)
+    du -hsx * | sort -rh | head -10 (cd /path/to/some/where)
+
+    for i in G M K
+    do 
+    du -ah | grep [0-9]$i | sort -nr -k 1
+    done | head -n 11
+
+    find / -printf '%s %p\n'| sort -nr | head -10
+    find . -printf '%s %p\n'| sort -nr | head -10
+    find /path/to/search/ -type f -printf '%s %p\n'| sort -nr | head -10 (skip dirs, only display files)
+    
+    shell alias {
+        alias ducks='du -cks * | sort -rn | head'
+        alias ducks='du -cks -- * | sort -rn | head'
+        ducks
+    }
+}

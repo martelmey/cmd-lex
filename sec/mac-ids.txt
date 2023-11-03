@@ -1,0 +1,15 @@
+# shaw gateway
+38:3F:B3:E5:6C:C3 (Technicolor CH USA)
+
+# xbox
+84:57:33:CA:44:1D (Microsoft)
+
+# lenovo thinkpad intel wifi
+60:F2:62:A6:BE:18 (Intel Corporate)
+
+# nest cams
+64:16:66:D7:40:2E (Nest Labs)
+64:16:66:DA:91:99 (Nest Labs)
+
+# august lock
+B8:B7:F1:74:2B:BF (Wistron Neweb)

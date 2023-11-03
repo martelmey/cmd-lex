@@ -1,0 +1,4 @@
+nohup python /path/to/test.py > output.log &
+ps ax | grep test.py
+kill PID
+pkill -f test.py

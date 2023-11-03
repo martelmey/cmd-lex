@@ -1,0 +1,24 @@
+https://www.aplustopper.com/quick-review-working-sine-cosine-tangent/
+https://en.wikipedia.org/wiki/Waveform
+
+Analog / Continuous signal
+Continuously varying function over time
+Radio waves, sound waves
+
+Digital
+Discrete values at discrete points in time
+Horizontal axis is time
+Digital signals are from the time domain / are time domain signals
+Digital signal = sequence of number
+
+Sampling
+Values arrived upon by measuring a continuous signal
+Analog > Digital converter
+Samples/measures an analog signal at discrete periods in time
+Value is at each sample point
+Every value is a number
+
+opposite/hypotenuse = sine (SOH)
+adjacent/hypotenuse = cosine (CAH)
+opposite/adjacent = tangent (TOA)
+These functions only work on right triangles

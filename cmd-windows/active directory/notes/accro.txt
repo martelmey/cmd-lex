@@ -1,0 +1,11 @@
+FSMO = flexible single master operation (roles)
+DC = domain context
+DN = distinguished name
+GC = global catalog
+NC = naming context
+SPN = service principal name
+DRS = directory replication service
+
+# metadata: replication connections
+FRS = File Replication Service
+DFS = Distributed File System

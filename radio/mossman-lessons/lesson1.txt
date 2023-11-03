@@ -1,0 +1,4 @@
+https://wiki.gnuradio.org/index.php/QT_GUI_Frequency_Sink
+
+lesson1-homework-singlechannel tunes to 97.9, output is 98.5
+lesson1-homework-dualchannel tunes to 97.9, output is 98.5 & 100.3

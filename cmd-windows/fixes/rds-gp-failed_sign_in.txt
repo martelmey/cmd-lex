@@ -1,0 +1,20 @@
+Issue:
+	Upon login, get message: The Group Policy Client service failed the sign-in. Access is denied.
+
+Diagnostics:
+	Check that the host hasn't lost its trust relationship with the domain.
+	Test-ComputerSecureChannel should return True.
+
+	Cached profile is broken on session host (SH).
+	Go to SH C:\Users and rename <username> and <local_username> directory.
+	And then you can restore data from profile.
+
+Solutions:
+	Check the NTUser.dat registry hive permissions.
+	Open regedit.
+	Select HKEY_USERS in the left pane. Click the File menu and choose the Load Hive option.
+	Select All Files in the Files of type box. Navigate to the affected user’s profile folder (under C:\Users folder) and select the NTUSER.DAT file. Click Open.
+	Provide any name for the new hive, e.g. TestHive.
+	Set proper registry hive permissions under the TestHive section. The owner user as well as the System account at minimum should have full control enabled.
+	In regedit, select File –> Unload hive.
+	Logoff the user gracefully and try again.

@@ -1,0 +1,1 @@
+amina.mudhir ALL=(ALL) NOPASSWD: /bin/tail -f /var/log/tinyproxy/tinyproxy.log

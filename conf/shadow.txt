@@ -1,0 +1,6 @@
+	Understanding /etc/shadow file format on Linux
+https://www.cyberciti.biz/faq/understanding-etcshadow-file/
+
+<username>:<password_$id$salt$hashed>:lastchanged:minimum:maximum:warn:inactive:expire
+<username>:<password_$id$salt$hashed>:lastchanged:::::
+<username>:<password_$id$salt$hashed>::::::

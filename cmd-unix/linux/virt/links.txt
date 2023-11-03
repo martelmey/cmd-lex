@@ -1,0 +1,6 @@
+https://wiki.debian.org/LXC/SimpleBridge
+https://bobcares.com/blog/lxc-container-network-configuration/
+https://linuxcontainers.org/lxc/documentation/
+https://linuxcontainers.org/lxd/getting-started-cli/
+# LXC (Linux Containers)
+https://proactionca.ent.cgi.com/confluence/pages/viewpage.action?pageId=52475463

@@ -1,0 +1,147 @@
+Installation directory: /usr/pgsql-10
+DB data directory: /var/lib/pgsql/10/data
+Logs: /var/lib/pgsql/10/data/log
+
+\list \l (list databases)
+\du (list roles & their attributes)
+\c \connect
+\dt (listing tables)
+\q (quit)
+\conninfo
+
+Connect {
+	psql -U postgres -d postgres (default,global)
+	psql --dbname=cmdbuild --username=cmdbuild
+	psql -U cmdb -d cmdb	
+}
+
+Check service {
+	systemctl status postgresql-10
+	/usr/pgsql-10/bin/pg_ctl status -D /var/lib/pgsql/10/data
+}
+
+Start the server {
+	/usr/pgsql-10/bin/pg_ctl start -D /var/lib/pgsql/10/data
+}
+
+Executables {
+	/usr/pgsql-10/bin
+}
+
+pg_isready {
+	examples {
+		/var/run/postgresql:5432 - no response
+	}
+}
+
+pg_ctl {
+	pg_ctl init[db] [-D DATADIR] [-s] [-o OPTIONS]
+	pg_ctl start    [-D DATADIR] [-l FILENAME] [-W] [-t SECS] [-s] [-o OPTIONS] [-p PATH] [-c]
+	pg_ctl stop     [-D DATADIR] [-m SHUTDOWN-MODE] [-W] [-t SECS] [-s]
+	pg_ctl restart  [-D DATADIR] [-m SHUTDOWN-MODE] [-W] [-t SECS] [-s] [-o OPTIONS] [-c]
+	pg_ctl reload   [-D DATADIR] [-s]
+	pg_ctl status   [-D DATADIR]
+	pg_ctl promote  [-D DATADIR] [-W] [-t SECS] [-s]
+	pg_ctl kill     SIGNALNAME PID
+
+	examples {
+		/usr/pgsql-10/bin/pg_ctl status -D /var/lib/pgsql/10/data
+		/usr/pgsql-10/bin/pg_ctl start -D /var/lib/pgsql/10/data
+	}
+}
+
+postgresql-10-setup {
+	initdb
+	check_upgrade
+	upgrade
+}
+
+pg_dump {
+	-U (user)
+	-W (force pw prompt)
+	-F (output format)
+		c (custom archive)
+		d (directory archive)
+		t (tar)
+		p (plain test SQL script)
+	<dbname>
+	> <destination-path>
+	
+	examples {
+		pg_dump -U cmdb -F t cmdb > /export/pkgs/cmdb-postgres-backups/"$date"_cmdb.tar
+	}
+}
+
+pg_dumpall {
+	-U (user)
+	> <destination-path>
+	--schema-only
+	--roles-only
+	--tablespaces-only
+}
+
+Clone database {
+	CREATE DATABASE dvdrental_test 
+	WITH TEMPLATE dvdrental;
+
+	pg_dump -U postgres -d sourcedb -f sourcedb.sql
+	CREATE DATABASE targetdb;
+	psql -U postgres -d targetdb -f sourcedb.sql
+}
+
+See active connections {
+	SELECT pid, usename, client_addr FROM pg_stat_activity WHERE datname = 'cmdb';
+	ps -ef
+	sudo netstat -plunt |grep postgres
+	sudo netstat -plunt |grep postmaster
+}
+
+See, create & drop roles {
+	SELECT rolname FROM pg_roles;
+	CREATE ROLE name;
+	DROP ROLE name;
+}
+
+pg_hba {
+	PGHOST=localhost
+	PGPORT=5432
+	PGSETUP_INITDB_OPTIONS	
+}
+
+Alter role {
+	ALTER ROLE martel.meyers RENAME TO mmeyers;
+	ALTER ROLE mmeyers WITH CREATEDB;
+	ALTER ROLE mmeyers WITH CREATEROLE;
+	ALTER ROLE mmeyers WITH LOGIN;
+	ALTER ROLE mmeyers WITH PASSWORD 'hialplis_N95';	
+}
+
+Create DB {
+	CREATE DATABASE cmdbuild
+	WITH OWNER cmdbuild
+	ENCODING UTF8
+	LC_COLLATE 'en_US.UTF-8'
+	LC_CTYPE 'en_US.UTF-8';
+}
+
+Show settings {
+	SELECT *
+	FROM pg_settings
+	WHERE name = 'port';
+	show data_directory;
+	show all;
+	show hba_file;
+	show ident_file;
+	show listen_addresses;
+	show log_directory;
+	show log_filename;
+	show server_encoding;
+	show port;
+	show server_version;	
+}
+
+Examples {
+	/usr/local/pgsql/bin/createdb <name>
+	createuser martel.meyers
+	dropuser
+}

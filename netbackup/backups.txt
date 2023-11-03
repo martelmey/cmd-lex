@@ -1,0 +1,7 @@
+for large backups
+it writes data in frgaments
+the speed you see (high KB/sec) is indicative of dedupe speed, not network speed
+the speed is high while b & m are talking about duplicates
+the speed drops once they start actually sending data, not just talking about it
+
+dedup rate of >15% is good

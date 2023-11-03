@@ -1,0 +1,17 @@
+192.168.60.31
+sudo: no tty present and no askpass program specified
+
+192.168.60.200
+ssh: connect to host 192.168.60.200 port 22: Connection refused
+
+
+
+
+./runRemote.sh linux "mkdir /home/martel.meyers/.ssh && touch /home/martel.meyers/.ssh/authorized_keys" util
+
+# jump 1
+./runRemote.sh linux "echo 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDdao3Jg9wa0EmkGheTtDgYqdgtblyuo/JE9HWYmHiCNHeP4aEJU8isYc6Lx5OcptcKRz4QZMJZD2VOh3fLvybpPBymOyKlXR/oNilEzB/3dobio3IXZibaEgOEixzGbdN3I+WnApfTPXUwdVQjSXQ92Ky3/kfmlFINAOh9QVGWhYalXg5PVBH9fBHzHo21cuYKeXoAs3JZiOLP7dcBFXFRlSfrk0oK2mS4UFhRVrgmTyOkOJ/yumMSDxaKfdmDOEBTlLk9oN4WxuHxmHEvaWdIv2XQV8Siis9CcIxsKLsZjZ3Q4zV3mfivbNshnL+e1nhOTBesl4U4/I+yW5UMwr3J martel.meyers@KDC-R1-18-MGMT-JUMP-A' >> /home/martel.meyers/.ssh/authorized_keys" util
+
+# jump 2
+./runRemote.sh linux "echo 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC74IaRibQtC0r2EQ9wlEf0j23a5LGG0/ji5HYPhLCybLmc+yDFbCUx5PnfGiLiGU9ryrJ6cTTPTWOcQhxhslUq+LkaMfE30dEQ1MF6yaedrMTi5/otc4iTEjd7mzAqKW+zVcHSp3j2/ubjfamiLjY8ATHCwWVCVCmnbfTkdjpjoGe4atCXloYvR/hOsmwIY0fhdlg6a1AzMi806L3bKlUhA9cQBpKA0ZwPUdQpmOBgyv2hEMtPDryM6ZMZ9NtFse0XNynZpjlDRxs1mb7A7WpdETxgCIKiEWevRJ43RNhfL9XOo+3BecehEC1bXI3qFRkT1maoi43ryDAOmUa3E1fl martel.meyers@KDC-R1-18-MGMT-JUMP2-A' >> /home/martel.meyers/.ssh/authorized_keys" util
+./runRemote.sh linux "" util

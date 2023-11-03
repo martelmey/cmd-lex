@@ -1,0 +1,362 @@
+xcopy {
+    https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/xcopy
+    
+    /w # prompt before begin copy
+    /p # prompt to create each destination file
+    /c # ignores errors
+    /q # quiet
+    /v # verify dest files are identical to source files
+    /f # display source & dest file names while copying
+    /l # dry run, show files to be copied but don't copy
+    /d [:MM-DD-YYYY] # Copies source files changed on or after the specified date only.
+        w/o MM-DD-YYYY value, copies all source files newer than existing dest files.
+        update files that have changed.
+    /u # copies source files that exist on dest only
+    /s # recursive
+    /k # retain readonly attribute when copying
+    /r # copies read-only files
+    /t # copy tree only, no files
+    /h # copy hidden & sys files
+    /n # use when copying from ntfs to fat
+    /o # retains file ownerships and DACL info
+    /y # suppress prompt to overwrite
+    /-y # prompts to confirm overwrite
+    /j # for large files, copy w/o buffering
+    /compress # request network compression where applicable
+
+    examples {
+        # grab from remote
+        xcopy /s \\<remote-ip>\dir C:\local
+    }
+}
+
+telnet {
+    https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/telnet
+    telnet [/a] [/e <escapechar>] [/f <filename>] [/l <username>] [/t {vt100 | vt52 | ansi | vtnt}] [<host> [<port>]] [/?]
+
+    /a	Attempts automatic logon. Same as /l option, except that it uses the currently logged on user's name.
+    /e <escapechar>	Specifies the escape character used to enter the telnet client prompt.
+    /f <filename>	Specifies the file name used for client side logging.
+    /l <username>	Specifies the user name to log on with on the remote computer.
+    /t {vt100 | vt52 | ansi | vtnt}	Specifies the terminal type.
+    <host> [<port>]	Specifies the hostname or IP address of the remote computer to connect to, and optionally the TCP port to use (default 23).
+
+    syntax {
+        GET [WEB PAGE] HTTP/1.1
+        HOST: [SERVER]
+        <Press ENTER>
+    }
+    examples {
+        CONNECT sws.update.microsoft.com:443 HTTP/1.1
+        CONNECT update.googleapis.com:443 HTTP/1.1
+
+        telnet www.shellhacks.com 80
+        GET / HTTP/1.1
+        HOST: www.shellhacks.com
+        <Press ENTER>
+    }
+}
+
+pktmon {
+    filter
+        list
+        add
+        remove
+    reset
+    start
+        [--capture [--counters-only] [--comp <selector>] [--type <type] [--pkt-size <bytes>] [--flags <mask>]]
+        [--trace --providor <name> [--keywords <k>] [--level <n>] ...]
+        [--file-name <name>] [--file-size <size>] [--log-mode <mode>]
+
+        # Packet Capture
+        -c, --capture
+            -o, --counters-only (collect packet counters only, no packet logging)
+            --comp { all | nics | id1 id2 ... } (default ALL)
+            --type { all | flow | drop } (default ALL)
+            --pkt-size <bytes> (default 128)
+            --flags <mask>
+                0x001 - internal packet monitor events
+                0x002 - info about components, counters, filters
+                0x004 - NET_BUFFER_LIST group source and dest. info
+                0x008 - select pkt metadata from NDIS_NET_BUFFER_LIST_INFO
+                0x010 - raw packet, truncated to size from --pkt-size
+
+        # Event Providers
+        -t, --trace
+            -p, --provider <name> (can be used more than once)
+            -k, --keywords <k> (default 0xFFFFFFFF)
+            -l, --level <n> (default is 4, info)
+
+        # Logging params
+        -f, --file-name <name> (default PktMon.etl)
+        -s, --file-size <size> (in MB, max log size, default 512MB)
+        -m, --log-mode { circular | multi-file | memory | real-time } (default circular)
+    stop
+    format
+        <file> [--out <name] [--stats-only] [--timestamp-only] [--metadata] ...
+        [--brief] [--verbose <n>] [--hex] [--no-ethernet] [--vxlan <port>]
+
+        <file> (etl file to convert)
+        -o, --out <name>
+        -t, --timestamp-only (timestamp only prefix for events & packets)
+        -m, --metadata (print event metadata)
+
+        # pkt formatting options
+        -b, --brief (use abbreviated pkt format)
+        -v, --verbose <n> (1-3)
+        -x, --hex (include hex format)
+        -e, --no-ethernet (don't print ethernet header)
+        -l, --vxlan <port>
+
+    examples {
+        # determine IDs of adapters
+        pktmon comp list
+
+        pktmon filter add -p 886
+        pktmon filter add -p 8008
+        pktmon start --etw -p 0 -c 12
+    }
+}
+
+ipconfig {
+    * https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/ipconfig
+    /all
+    /displaydns
+    /flushdns
+    /registerdns
+    /release (all IPv4 addresses)
+    /renew (get a new IP from dhcp)
+}
+
+nslookup {
+    * https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/nslookup
+
+    nslookup [exit | finger | help | ls | lserver | root | server | set | view] [options]
+    
+    interactive/or not
+    -querytype=
+        MX (mail server)
+        MG (email group member)
+        MB (mailbox domain name)
+        UINFO (user information)
+        HINFO (hardware information)
+}
+
+tracert {
+    <address>
+    -d (don't resolve DNS)
+}
+
+net {
+    share {
+        https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-R2-and-2012/hh750728(v=ws.11)
+        
+        net share <ShareName>
+        net share <ShareName>=<drive>:<DirectoryPath> [/grant:<user>,{read | change |full}] [/users:<number> | /unlimited] [/remark:<text>] [/cache:{manual | documents | programs | BranchCache |none} ]
+        net share [/users:<number> | /unlimited] [/remark:<text>] [/cache:{manual | documents | programs | BranchCache |none} ]
+        net share {<ShareName> | <DeviceName> | <drive>:<DirectoryPath>} /delete
+        net share <ShareName> \\<ComputerName> /delete
+
+
+        examples {
+            # shares of local computer
+            net share
+            # share a local folder
+            net share DataShare=c:\Data /remark:"For AMS"
+            # stop sharing local folder
+            net share DataShare /delete
+            # shares of remote computer
+            net share \\<ip>
+            # map drive
+            net use t: \\<ip>\share <password>/user:DOMAIN\<user>
+        }
+    }
+
+    use {
+        https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/gg651155(v=ws.11)
+
+        net use [{<DeviceName> | *}] [\\<ComputerName>\<ShareName>[\<volume>]] [{<Password> | *}]] [/user:[<DomainName>\]<UserName] >[/user:[<DottedDomainName>\]<UserName>] [/user: [<UserName@DottedDomainName>] [/savecred] [/smartcard] [{/delete | /persistent:{yes | no}}]
+        net use [<DeviceName> [/home[{<Password> | *}] [/delete:{yes | no}]]
+        net use [/persistent:{yes | no}]
+
+        examples {
+            # mount & assign disk-drive to remote shared folder
+            net use e: \\<ip>\<sharename>
+            # connect as other user
+            net use d:\\server\share /user:DOMAIN\User1
+            # disconnect
+            net use f: \\server\share /delete
+            # restore current connections at each logon
+            net use /persistent:yes
+        }
+    }
+
+    view {
+        https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/hh875576(v=ws.11)
+
+        net view [\\ComputerName [/CACHE] | [/ALL] | /DOMAIN[:DomainName]]
+
+        examples {
+            # see list of resources shared by remote computer
+            net view \\<server>
+            # see list of computers in domain
+            net view /domain:sales
+        }
+    }
+}
+
+netsh {
+    https://docs.microsoft.com/en-us/windows-server/networking/technologies/netsh/netsh-contexts
+
+    # view list of contexts: netsh /?
+    # within a context, view list of sub-contexts & cmds: <context> /? || <context> help
+
+    advfirewall {
+        show {
+            allprofiles {
+                state
+            }
+        }
+    }
+
+    trace {
+        start {
+            capture=[yes/no]
+            IPv4.Address=x.x.x.x
+        }
+        stop {}
+    }
+
+    winhttp {
+        set {
+            proxy ip:port "localhost;*health.local"
+        }
+        reset {
+            proxy
+        }
+    }
+
+    examples {
+        winhttp reset proxy
+        winhttp set proxy 192.168.60.10:8008 "*.health.local;192.168.*.*"
+    }
+}
+
+netstat {
+    https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/netstat
+
+    -a show all tpc/udp listening
+    -b show .exe involved
+    -n show active tcp sessions, no resolve
+    -o show active tcp sessions, include PID
+    -p <protocol> can be tcp,udp
+    -s show stats by protocol
+    -r show routing table
+    <interval> seconds to refresh, for live
+
+    -rn
+    -an (see all net cxns)
+    -sp IP (ipv4 stats)
+    -sp UDP (udp for ipv4 stats)
+    -nao (protocol, local/foreign addresses, state, PIDs)
+    
+    examples {
+        # get current connections
+        netstat -n
+        # live tcp connections w/ resolution
+        netstat -aop tcp 5
+        # live tcp,udp connections w/o resolution
+        netstat -ap tcp udp 5
+        # redirect output
+        netstat -bo > C:\nstat-out.txt
+        # same as above, but stderr:
+        runas /noprofile /user:martel.meyers@sws.health.local "netstat -bo" 2> C:\nstat-out.txt
+    }
+}
+
+winrm {
+    test {
+        $cred = New-Object System.Management.Automation.PSCredential -ArgumentList @(‘USERNAME’,(ConvertTo-SecureString -String ‘PASSWORD’ -AsPlainText -Force))
+        Invoke-Command -ComputerName vscope-demo2 -ScriptBlock {ipconfig /all} -Credential $cred
+    }
+    g (retrieve info)
+    winrm/config
+    winrm/client
+    winrm/service
+    winrm/service/allowunencrypted
+    s (set info)
+    winrm/config/client/auth @{Basic="true"}
+    winrm/config/service/auth @{Basic="true"}
+    winrm/config/client @{AllowUnencrypted="true"}
+    c (create new instance of mgmt resources)
+    winrm/config/listener?Address=*+Transport=HTTP
+    d (delete an instance)
+    e (list all instances of mgmt resource)
+    winrm/config/resource
+    winrm/config/listener
+        *
+        IP:192.168.60.201
+        MAC:...
+        HTTP:5985
+    winrm/config/plugin
+    winrm/config/service/certmapping
+    i (execute method on a mgmt resource)
+    id (is a ws-mgmt implementation running on a remote machine)
+    quickconfig (quickly allow mgmt from other machines)   
+}
+
+winrs {
+    
+    examples {
+        winrs -r:%%f systeminfo | find /i "Boot Time" >> result.txt
+    }
+}
+
+route {
+    https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/route_ws2008
+    route [/f] [/p] [<command> [<destination>] [mask <netmask>] [<gateway>] [metric <metric>]] [if <interface>]]
+
+    /f clear table of non-host routes
+    /p when used w/ add cmd, makes route persistent
+
+    print
+    add 192.168.61.0
+        mask 255.255.255.0
+        192.168.61.254
+        -p (persistent)
+    delete 192.168.61.0
+    change
+
+    examples {
+        route add 192.168.156.0 mask 255.255.254.0 192.168.157.254 if 20
+        route add 192.168.56.0 mask 255.255.254.0 192.168.157.254 if 13
+        route -p delete 0.0.0.0 (risky)
+        route -p add 0.0.0.0 mask 0.0.0.0 192.168.60.254 (persistent default)
+    }
+}
+
+ping {
+    -t (until stopped)
+    -a (resolve address to hostname)
+    -n <count>
+    -r <count> (records route for <count> hops)
+    -s <count> (timestamp for count hops)
+    -i <ttl> (max 255)
+    -S <srcaddr>
+
+    examples {
+        ping -S 192.168.156.192 192.168.57.240
+    }
+}
+
+pathping {
+    -g <host_list> (loose source route among host-list)
+    -h <maximum_hops> (max hops to search for target)
+    -i <address>
+    -n (no address resolution)
+    -p <period> (wait milliseconds between pings)
+    -q <num_queries> (number of queries per hop)
+    -w <timeout> (wait milliseconds for each reply)
+    -4 (force ipv4)
+    -6 (force ipv6)
+}

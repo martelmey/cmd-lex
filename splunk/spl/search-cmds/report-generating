@@ -1,0 +1,68 @@
+* Generating commands use a leading pipe character and should be the first command in a search.
+
+| makeresults {
+	* https://docs.splunk.com/Documentation/Splunk/latest/SearchReference/Makeresults
+	* Generates the specified number of search results in temporary memory.
+
+	<SYNTAX>
+
+	| makeresults
+	[<count>]
+	[<annotate>]
+	[<splunk-server>]
+	[<splunk-server-group>...]
+
+	<EXAMPLES>
+	
+	* Create a result as an input into the eval command
+	| makeresults | eval newfield="some value"
+
+	* Create daily results for testing
+	| makeresults count=5 
+	| streamstats count
+	| eval _time=_time-(count*86400)
+}
+
+| metadata {
+	* https://docs.splunk.com/Documentation/Splunk/latest/SearchReference/Metadata
+	* The metadata command returns a list of sources, sourcetypes, or hosts from a specified index or distributed search peer. The metadata command returns information accumulated over time. You can view a snapshot of an index over a specific timeframe, such as the last 7 days, by using the time range picker.
+
+	<SYNTAX>
+
+	| metadata type=<metadata-type> [<index-specifier>]... [splunk_server=<wc-string>] [splunk_server_group=<wc-string>]...
+
+	type
+		Syntax: type= hosts | sources | sourcetypes
+		Description: The type of metadata to return. This must be one of the three literal strings: hosts, sources, or sourcetypes.
+
+	index-specifier
+		Syntax: index=<index_name>
+		Description: Specifies the index from which to return results. You can specify more than one index. Wildcard characters (*) can be used. To match non-internal indexes, use index=*. To match internal indexes, use index=_*.
+		Example: | metadata type=hosts index=cs* index=na* index=ap* index=eu*
+		Default: The default index, which is usually the main index.
+
+	splunk_server
+		Syntax: splunk_server=<wc-string>
+		Description: Specifies the distributed search peer from which to return results. If you are using Splunk Cloud, omit this parameter. If you are using Splunk Enterprise, you can specify only one splunk_server argument. However, you can use a wildcard when you specify the server name to indicate multiple servers. For example, you can specify splunk_server=peer01 or splunk_server=peer*. Use local to refer to the search head.
+		Default: All configured search peers return information
+
+	splunk_server_group
+		Syntax: splunk_server_group=<wc-string>...
+		Description: Limits the results to one or more server groups. If you are using Splunk Cloud, omit this parameter. You can specify a wildcard character in the string to indicate multiple server groups.
+
+	<EXAMPLES>
+
+	* Search multiple indexes
+	| metadata type=hosts index=cs* index=na* index=ap* index=eu*
+
+	* Search for sourcetypes
+	| metadata type=sourcetypes index=_internal
+
+	* Format the results from the metadata command
+	| metadata type=sourcetypes index=_internal
+	| rename totalCount as Count firstTime as "First Event" lastTime as "Last Event" recentTime as "Last Update"
+	| fieldformat Count=tostring(Count, "commas")
+	| fieldformat "First Event"=strftime('First Event', "%c")
+	| fieldformat "Last Event"=strftime('Last Event', "%c")
+	| fieldformat "Last Update"=strftime('Last Update', "%c")
+}

@@ -1,0 +1,155 @@
+openfiles {
+    https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/openfiles
+    openfiles /disconnect [/s <system> [/u [<domain>\]<username> [/p [<password>]]]] {[/id <openfileID>] | [/a <accessedby>] | [/o {read | write | read/write}]} [/op <openfile>]
+
+    /query {
+        openfiles /query [/s <system> [/u [<domain>\]<username> [/p [<password>]]]] [/fo {TABLE | LIST | CSV}] [/nh] [/v]
+
+        examples {
+            # to query and display all open files, type:
+            openfiles /query
+            # to query and display all open files in table format without headers, type:
+            openfiles /query /fo table /nh
+            # to query and display all open files in list format with detailed information, type:
+            openfiles /query /fo list /v
+            # to query and display all open files on the remote system srvmain by using the credentials for the user hiropln on the maindom domain, type:
+            openfiles /query /s srvmain /u maindom\hiropln /p p@ssW23
+        }
+    }
+
+    /local {
+        openfiles /local [on | off]
+
+        examples {
+            # to check the current status of the Maintain Objects List global flag, type:
+            openfiles /local
+            # to enable the Maintain Objects List global flag, type:
+            openfiles /local on
+            # to disable the Maintain Objects List global flag, type:
+            openfiles /local off
+        }
+    }
+
+    examples {
+        # to disconnect all open files with the file ID 26843578, type:
+        openfiles /disconnect /id 26843578
+        # to disconnect all open files and directories accessed by the user hiropln, type:
+        openfiles /disconnect /a hiropln
+        # to disconnect all open files and directories with read/write mode, type:
+        openfiles /disconnect /o read/write
+        # to disconnect the directory with the open file name *C:\testshare*, regardless of who is accessing it, type:
+        openfiles /disconnect /a * /op c:\testshare\
+        # to disconnect all open files on the remote computer srvmain that are being accessed by the user hiropln, regardless of their ID, type:
+        openfiles /disconnect /s srvmain /u maindom\hiropln /id *
+    }
+}
+
+del {
+    https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/del
+    del [/p] [/f] [/s] [/q] [/a[:]<attributes>] <names>
+
+    /p prompt first
+    /f force
+    /s deletes specified files from current directory and subdirectories. Displays filenames as they are being deleted
+    /q quiet mode
+    
+    examples {
+        del 'C:\ProgramData\ManageSoft Corp\ManageSoft'
+    }
+}
+
+dir {
+    https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/dir
+    dir [<drive>:][<path>][<filename>] [...] [/p] [/q] [/w] [/d] [/a[[:]<attributes>]][/o[[:]<sortorder>]] [/t[[:]<timefield>]] [/s] [/b] [/l] [/n] [/x] [/c] [/4] [/r]
+
+}
+
+copy {
+    https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/copy
+
+    examples {
+        copy \\tsclient\C\Users\martel.meyers\Desktop\Bginfo64.exe C:\Bginfo64.exe
+    }
+}
+
+cd {
+    /d switch drive
+
+    examples {
+        cd /d D:
+    }
+}
+
+xcopy {
+    examples {
+        xcopy F:\*.* E:\ /s /e /f
+    }
+}
+
+diskpart {
+    https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/diskpart
+
+    list
+        disk
+        partition
+        volume
+        vdisk
+    select
+        disk x
+        partition x
+    clean
+    create
+        partition primary
+    format
+        fs=
+            ntfs
+            fat32
+        quick
+    active
+
+    examples {
+        # show parts for disk
+        diskpart
+        select Disk 0
+        list partition || list volume
+    }
+}
+
+mount {
+    https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/mount
+
+    mount [-o <option>[...]] [-u:<username>] [-p:{<password> | *}] {\\<computername>\<sharename> | <computername>:/<sharename>} {<devicename> | *}
+
+    -o
+        nolock (default = enabled)
+        rsize=<buffersize> (read buffer size)
+        wsize=<buffersize> (write buffer size)
+        timeout=<seconds> (RPC timeout)
+        retry=<number> (for soft mount)
+        mtype=<soft|hard> (default = soft)
+        anon (as anon user)
+        casesensitive (force file lookups to be)
+        fileaccess=<mode> (of new files)
+            ogw (owner, group, world)
+            0: No access
+            1: x (execute access)
+            2: w (write access)
+            3: wx (write and execute access)
+            4: r (read access)
+            5: rx (read and execute access)
+            6: rw (read and write access)
+            7: rwx (read, write, and execute access)
+    -u:<username> (if not preceded by \, treated as UNIX username)
+    -p:<password> (use * to prompt)
+
+    examples {
+        mount 192.168.56.70:/export/utilities-kdcprd/pkgs P:
+        mount -o nolock -u:swssqlsa -p:hialplis_N95 192.168.56.73:/export/sol-ms_sql/db01 A:
+        mount -o anon 192.168.56.73:/export/windows/pkgs P:
+    }
+    group file {
+        swssqlsa:x:1216:
+        swssqlegn:x:1217:
+        swssqlagt:x:1218:
+    }
+}

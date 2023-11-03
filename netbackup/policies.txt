@@ -1,0 +1,14 @@
+level 0 = full backup
+level 1 = differential incremental backup
+
+When client is assigned new policy, full backup is done
+
+# Schedule backup types:
+Differential incremental backup = changes since last backup (lessen backup time)
+Cumumlative incremental backup = changes since last full backup
+User backup = specify server, users there can start backups from there
+User archive = after backup, removed from originating server
+
+# Schedule types:
+Calendar (better)
+Frequency (worst)

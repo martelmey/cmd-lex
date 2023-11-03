@@ -1,0 +1,62 @@
+display \
+	app
+	deploy-client
+	deploy-server
+	listen
+	local-index
+	dist-search
+
+enable \
+	boot-start
+	deply-client
+	deploy-server
+	dist-search
+	index
+	listen
+	local-index
+
+remove \
+	forward-server
+
+add \
+	foward-server
+	index
+	search-server
+	user
+
+edit \
+	search-server
+
+list \
+	deploy-clients
+	forward-server
+	index
+	inputstatus
+	licenses
+	monitor
+	search-server
+	user
+
+reload \
+	deploy-server
+	listen
+	exec (script input config)
+	monitor (monitor input config)
+
+set \
+	deploy-poll host:port
+	default-index
+
+show \
+	config
+	deploy-poll
+
+diag \
+	--basename=dir (where to drop tar)
+
+https://docs.splunk.com/Documentation/Splunk/8.0.6/admin/Indexesconf
+splunk add index autobox \
+-homePath /splunk-indexes/autobox/db \
+-coldPath /splunk-indexes/autobox/colddb \
+-thawedPath /splunk-indexes/autobox/thawedDb \
+-maxTotalDataSizeMB = 20000

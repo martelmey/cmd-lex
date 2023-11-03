@@ -1,0 +1,117 @@
+## check for user
+./runRemote.sh solaris-zone "sudo cat /etc/passwd | grep peter" dev #done
+./runRemote.sh solaris-zone "sudo cat /etc/passwd | grep peter" test #done
+./runRemote.sh solaris-zone "sudo cat /etc/passwd | grep peter" int2 #done
+./runRemote.sh solaris-zone "sudo cat /etc/passwd | grep peter" uat #done
+./runRemote.sh solaris-zone "sudo cat /etc/passwd | grep peter" sand #done
+./runRemote.sh solaris-zone "sudo cat /etc/passwd | grep peter" brd #done
+./runRemote.sh solaris-zone "sudo cat /etc/passwd | grep peter" brt #done
+./runRemote.sh solaris-zone "sudo cat /etc/passwd | grep peter" int1 #done
+
+./runRemote.sh solaris-zone "sudo cat /etc/passwd | grep peter" ps #done
+./runRemote.sh solaris-zone "sudo cat /etc/passwd | grep peter" prd
+./runRemote.sh solaris-zone "sudo cat /etc/passwd | grep peter" cdc #done
+
+./runRemote.sh solaris-domain "sudo cat /etc/passwd | grep peter" db #np,ps,cdc done
+./runRemote.sh solaris-domain "sudo cat /etc/passwd | grep peter" app #np,ps,cdc done
+
+## add user, expire password
+./runRemote.sh solaris-zone "sudo useradd -G cgiadmin -d /export/home/peter.playford -m -s /usr/bin/bash peter.playford && sudo passwd -d peter.playford && sudo passwd -f peter.playford" dev
+./runRemote.sh solaris-zone "sudo useradd -G cgiadmin -d /export/home/peter.playford -m -s /usr/bin/bash peter.playford && sudo passwd -d peter.playford && sudo passwd -f peter.playford" test
+./runRemote.sh solaris-zone "sudo useradd -G cgistaff -d /export/home/peter.playford -m -s /usr/bin/bash peter.playford && sudo passwd -d peter.playford && sudo passwd -f peter.playford" int2
+./runRemote.sh solaris-zone "sudo useradd -G cgistaff -d /export/home/peter.playford -m -s /usr/bin/bash peter.playford && sudo passwd -d peter.playford && sudo passwd -f peter.playford" uat
+./runRemote.sh solaris-zone "sudo useradd -G cgistaff -d /export/home/peter.playford -m -s /usr/bin/bash peter.playford && sudo passwd -d peter.playford && sudo passwd -f peter.playford" sand
+./runRemote.sh solaris-zone "sudo useradd -G cgistaff -d /export/home/peter.playford -m -s /usr/bin/bash peter.playford && sudo passwd -d peter.playford && sudo passwd -f peter.playford" brd
+./runRemote.sh solaris-zone "sudo useradd -G cgistaff -d /export/home/peter.playford -m -s /usr/bin/bash peter.playford && sudo passwd -d peter.playford && sudo passwd -f peter.playford" brt
+./runRemote.sh solaris-zone "sudo useradd -G cgistaff -d /export/home/peter.playford -m -s /usr/bin/bash peter.playford && sudo passwd -d peter.playford && sudo passwd -f peter.playford" int1
+
+./runRemote.sh solaris-zone "sudo useradd -G cgistaff -d /export/home/peter.playford -m -s /usr/bin/bash peter.playford && sudo passwd -d peter.playford && sudo passwd -f peter.playford" ps
+./runRemote.sh solaris-zone "" prd
+./runRemote.sh solaris-zone "sudo useradd -G cgistaff -d /export/home/peter.playford -m -s /usr/bin/bash peter.playford && sudo passwd -d peter.playford && sudo passwd -f peter.playford" cdc
+
+# PS domains
+./runRemote.sh solaris-domain "sudo useradd -G cgiadmin -d /export/home/peter.playford -m -s /usr/bin/bash peter.playford && sudo passwd -d peter.playford && sudo passwd -f peter.playford" db
+./runRemote.sh solaris-domain "sudo useradd -G cgiadmin -d /export/home/peter.playford -m -s /usr/bin/bash peter.playford && sudo passwd -d peter.playford && sudo passwd -f peter.playford" app
+
+# CDC domains
+./runRemote.sh solaris-domain "sudo useradd -G cgiadmin -d /export/home/peter.playford -m -s /usr/bin/bash peter.playford && sudo passwd -d peter.playford && sudo passwd -f peter.playford" db
+./runRemote.sh solaris-domain "sudo useradd -G cgiadmin -d /export/home/peter.playford -m -s /usr/bin/bash peter.playford && sudo passwd -d peter.playford && sudo passwd -f peter.playford" app
+
+## send authorized key
+# fix ownership of home dir, create ~/.ssh/authorized_keys, echo key
+# NP
+./runRemote.sh solaris-zone "sudo chown -R peter.playford:cgistaff /export/home/peter.playford" int1
+./runRemote.sh solaris-zone "sudo su - peter.playford -c 'mkdir /export/home/peter.playford/.ssh' && sudo su - peter.playford -c 'touch /export/home/peter.playford/.ssh/authorized_keys'" int1
+./runRemote.sh solaris-zone "sudo su - peter.playford -c 'echo ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDl4SQagcQyBCmrNQrKXISAmAx2B7LYbBhb0JLvaHqUq1mQsFBsc6dkR1PumVUUPqkks3G7KXLvxRlbMkS1oc1Gpz7qAlSfHTEQW2ZB/ko803CzkRoRdldk0OpTADp7Q9WhXlO2QobLUHFPmvRsqfSoQThsnVlCaht+m4VCfMWIhw2t7irbohFjrfv73zhjpUSiEJiqBWEdnpCHrKCAQ0TPn1Rq7DqAhOoOeEPgSv26gxJDgTjLEzYKni+LykME81ajEe+Uf/OI2WKxeW207d8fAtkqX53As3/rbZAGN5dg6t9Zpk1lsFg/NXkqkB94bBmwya5PU07J1llmJPjHuO7Z peter.playford@KDC-R1-18-MGMT-JUMP-A >> /export/home/peter.playford/.ssh/authorized_keys'" int1
+
+# PS
+# zones
+./runRemote.sh solaris-zone "sudo chown -R peter.playford:cgistaff /export/home/peter.playford" ps
+./runRemote.sh solaris-zone "sudo su - peter.playford -c 'mkdir /export/home/peter.playford/.ssh' && sudo su - peter.playford -c 'touch /export/home/peter.playford/.ssh/authorized_keys'" ps
+./runRemote.sh solaris-zone "sudo su - peter.playford -c 'echo ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDkqLArRyuNWV7LW615m0WRbUdMcI1Wh3NJt6LkTonBWwz6Vgs3bJBq3xapQsKpG8fMu1kqLOkTm/CYUZxgjjdveNa8WSdwhwdZ7dUSZSG9u61lLwNA3qywTy9pGvx/qsN4OraesMT8uh2mbFWQSa6sOyr/44l86aHaBWoBJvOWj0p3tQSQWlZMAdRw0Q4bsaYLT2PMUqZFgiwomjQFSgTd8KPL/uulXQiHmJKmGbdl/9WzCWpx2wz3wDxGpGFcFBAQkdeyGYIv3lbklfo2gsY6ApgIGjIsWFdJzeBmP8QSDHmJ3L/UcSge1PScIz5fVVovNZkabq9j1yIL1hobkpB7 peter.playford@KDC-R1-18-MGMT-JUMP2-A >> /export/home/peter.playford/.ssh/authorized_keys'" ps
+# domains
+./runRemote.sh solaris-domain "sudo chown -R peter.playford:cgiadmin /export/home/peter.playford" db
+./runRemote.sh solaris-domain "sudo chown -R peter.playford:cgiadmin /export/home/peter.playford" app
+./runRemote.sh solaris-domain "sudo su - peter.playford -c 'mkdir /export/home/peter.playford/.ssh' && sudo su - peter.playford -c 'touch /export/home/peter.playford/.ssh/authorized_keys'" db
+./runRemote.sh solaris-domain "sudo su - peter.playford -c 'echo ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDkqLArRyuNWV7LW615m0WRbUdMcI1Wh3NJt6LkTonBWwz6Vgs3bJBq3xapQsKpG8fMu1kqLOkTm/CYUZxgjjdveNa8WSdwhwdZ7dUSZSG9u61lLwNA3qywTy9pGvx/qsN4OraesMT8uh2mbFWQSa6sOyr/44l86aHaBWoBJvOWj0p3tQSQWlZMAdRw0Q4bsaYLT2PMUqZFgiwomjQFSgTd8KPL/uulXQiHmJKmGbdl/9WzCWpx2wz3wDxGpGFcFBAQkdeyGYIv3lbklfo2gsY6ApgIGjIsWFdJzeBmP8QSDHmJ3L/UcSge1PScIz5fVVovNZkabq9j1yIL1hobkpB7 peter.playford@KDC-R1-18-MGMT-JUMP2-A >> /export/home/peter.playford/.ssh/authorized_keys'" db
+./runRemote.sh solaris-domain "sudo su - peter.playford -c 'mkdir /export/home/peter.playford/.ssh' && sudo su - peter.playford -c 'touch /export/home/peter.playford/.ssh/authorized_keys'" app
+./runRemote.sh solaris-domain "sudo su - peter.playford -c 'echo ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDkqLArRyuNWV7LW615m0WRbUdMcI1Wh3NJt6LkTonBWwz6Vgs3bJBq3xapQsKpG8fMu1kqLOkTm/CYUZxgjjdveNa8WSdwhwdZ7dUSZSG9u61lLwNA3qywTy9pGvx/qsN4OraesMT8uh2mbFWQSa6sOyr/44l86aHaBWoBJvOWj0p3tQSQWlZMAdRw0Q4bsaYLT2PMUqZFgiwomjQFSgTd8KPL/uulXQiHmJKmGbdl/9WzCWpx2wz3wDxGpGFcFBAQkdeyGYIv3lbklfo2gsY6ApgIGjIsWFdJzeBmP8QSDHmJ3L/UcSge1PScIz5fVVovNZkabq9j1yIL1hobkpB7 peter.playford@KDC-R1-18-MGMT-JUMP2-A >> /export/home/peter.playford/.ssh/authorized_keys'" app
+
+# PRD
+
+# CDC
+# zones
+./runRemote.sh solaris-zone "sudo chown -R peter.playford:cgistaff /export/home/peter.playford" cdc
+./runRemote.sh solaris-zone "sudo su - peter.playford -c 'mkdir /export/home/peter.playford/.ssh' && sudo su - peter.playford -c 'touch /export/home/peter.playford/.ssh/authorized_keys'" cdc
+./runRemote.sh solaris-zone "sudo su - peter.playford -c 'echo ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCzqGtM+/lmQSvTnpMo23nSlzZbKBA/54qo5fWWyDs2VuQPV0tbXd9AybOIcpUGY1jxK5l2Bwv/7hAd3PV3R2nuc1cWgPzoj4BY6e9IL8ysXv1x4CZwp8mpq3wgtz49Dgf0hH8UUHVy4LjI5l4YlKqX1hy9o9hehbbN4IHe2fnphbjjTgXyKenwOYIJXKbBSbvAn4gEG+TurmQsEOCbABzeaOPqq20hVC+JJUz0urKzatrfmg+Ihj+l23Z+DBm5/C1ZwtUkYLxIDCRzju4ktMVZFnM6IYeT4vwQfkEeJLmTZJhPvOFIDHR070ulFE586pe1+iSui1qtG0c0h5TH5lNz peter.playford@CDC-R1-2-MGMT-JUMP-A >> /export/home/peter.playford/.ssh/authorized_keys'" cdc
+# domains
+./runRemote.sh solaris-domain "sudo chown -R peter.playford:cgiadmin /export/home/peter.playford" db
+./runRemote.sh solaris-domain "sudo chown -R peter.playford:cgiadmin /export/home/peter.playford" app
+./runRemote.sh solaris-domain "sudo su - peter.playford -c 'mkdir /export/home/peter.playford/.ssh' && sudo su - peter.playford -c 'touch /export/home/peter.playford/.ssh/authorized_keys'" db
+./runRemote.sh solaris-domain "sudo su - peter.playford -c 'echo ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCzqGtM+/lmQSvTnpMo23nSlzZbKBA/54qo5fWWyDs2VuQPV0tbXd9AybOIcpUGY1jxK5l2Bwv/7hAd3PV3R2nuc1cWgPzoj4BY6e9IL8ysXv1x4CZwp8mpq3wgtz49Dgf0hH8UUHVy4LjI5l4YlKqX1hy9o9hehbbN4IHe2fnphbjjTgXyKenwOYIJXKbBSbvAn4gEG+TurmQsEOCbABzeaOPqq20hVC+JJUz0urKzatrfmg+Ihj+l23Z+DBm5/C1ZwtUkYLxIDCRzju4ktMVZFnM6IYeT4vwQfkEeJLmTZJhPvOFIDHR070ulFE586pe1+iSui1qtG0c0h5TH5lNz peter.playford@CDC-R1-2-MGMT-JUMP-A >> /export/home/peter.playford/.ssh/authorized_keys'" db
+./runRemote.sh solaris-domain "sudo su - peter.playford -c 'mkdir /export/home/peter.playford/.ssh' && sudo su - peter.playford -c 'touch /export/home/peter.playford/.ssh/authorized_keys'" app
+./runRemote.sh solaris-domain "sudo su - peter.playford -c 'echo ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCzqGtM+/lmQSvTnpMo23nSlzZbKBA/54qo5fWWyDs2VuQPV0tbXd9AybOIcpUGY1jxK5l2Bwv/7hAd3PV3R2nuc1cWgPzoj4BY6e9IL8ysXv1x4CZwp8mpq3wgtz49Dgf0hH8UUHVy4LjI5l4YlKqX1hy9o9hehbbN4IHe2fnphbjjTgXyKenwOYIJXKbBSbvAn4gEG+TurmQsEOCbABzeaOPqq20hVC+JJUz0urKzatrfmg+Ihj+l23Z+DBm5/C1ZwtUkYLxIDCRzju4ktMVZFnM6IYeT4vwQfkEeJLmTZJhPvOFIDHR070ulFE586pe1+iSui1qtG0c0h5TH5lNz peter.playford@CDC-R1-2-MGMT-JUMP-A >> /export/home/peter.playford/.ssh/authorized_keys'" app
+
+## add to /etc/sudoers.d/
+#!/bin/bash
+echo 'peter.playford ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers.d/peterplayford
+
+scp addSudoers.sh 192.168.xx.xx:/tmp/addSudoers.sh
+./runRemote.sh solaris-zone "sudo /tmp/addSudoers.sh" cdc
+./runRemote.sh solaris-domain "sudo /tmp/addSudoers.sh" db
+./runRemote.sh solaris-domain "sudo /tmp/addSudoers.sh" app
+
+## LINUX
+
+
+
+
+
+
+
+## access email
+Hi ,
+
+Windows VMs:
+SWS\
+PWD: hialplis_N95
+
+LDAP:
+
+PWD: welcome2022
+
+Database servers:
+
+PWD: welcome2022
+
+OEM:
+
+PWD: welcome2022
+
+Reporting servers:
+
+PWD: welcome2022
+
+KDC jump 1: 
+KDC jump 2: 
+CDC jump: 

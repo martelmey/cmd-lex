@@ -1,0 +1,134 @@
+exportfs {
+    -arv (re-export)
+    -s (show)
+}
+
+/etc/vfstab
+
+sharectl {
+    # https://docs.oracle.com/cd/E36784_01/html/E36825/gntkq.html
+
+    share
+    cat /etc/dfs/sharetab  
+
+    subcommand [option] [protocol]
+
+    set
+        Defines the properties for a file-sharing protocol. For a list of properties and property values, see the parameters described in the nfs (4) man page.
+
+    get
+        Displays the properties and property values for the specified protocol.
+
+    status
+        Displays whether the specified protocol is enabled or disabled. If no protocol is specified, the status of all file-sharing protocols is displayed.
+}
+
+smbadm {
+    # https://docs.oracle.com/cd/E36784_01/html/E36871/smbadm-1m.html
+
+    add-key [-u username]
+    add-member -m member [[-m member] …] group
+    create-group [-d description] group
+    crypt
+    delete-group group
+    disable-user username
+    enable-user username
+    get-group [[-p property] …] group
+    join -u username [-o organizational-unit] domain
+    join -w workgroup
+    lookup-server //server
+    lookup-user [-u username] name | SID
+    print [-u username] //server/share {print_file|-}
+    remove-key [-u username]
+    remove-member -m member [[-m member] …] group
+    rename-group group new-group
+    set-group -p property=value [[-p property=value] …] group
+    show-connections [-t] [-u username] [-c computername | -s sharename]
+     server
+    show-domains
+    show-files [-t] [-u username] server
+    show-groups [-m] [-p] [group]
+    show-sessions [-t] [-u username] server
+    show-shares [-t] [-A | -u username] server
+
+    examples {
+        smbadm show-shares -u vagrant localhost
+    }
+}
+
+df {
+    -g (print entire statvfs)
+    -h (print allocation)
+    -l (show local only)
+    -n (print only FSType name)
+    -t (full listing w/ totals)
+}
+
+du {
+    /usr/bin/du [-dorx] [-a | -s] [-h | -k | -m] [-H | -L]
+        [file ...]
+
+    -h (human readable)
+    -m (in megabytes)
+    -o (do not count children)
+    -s (print total sum only)
+}
+
+find {
+    / -name 'collectd.log' -print
+    /opt -name 'collectd' -print
+    -prune (Does not examine any directories or files in the directory structure below the pattern just matched.)
+    -mtime (True if the file's data was modified n days ago.)
+    -exec (True  if the executed command returns a zero value as
+            exit status. The end of command must be punctuated by
+            an  escaped  semicolon  (;). A command argument {} is
+            replaced by the current pathname. If the  last  argu-
+            ment to -exec is {} and you specify + rather than the
+            semicolon (;), the command is  invoked  fewer  times,
+            with {} replaced by groups of pathnames. If any invo-
+            cation of the command returns  a  non-zero  value  as
+            exit status, find returns a non-zero exit status.)
+    2>&1	send stderr to (&=file descriptor) stdout
+}
+
+zfs {
+    list [-rH|-d max][-o property[,...]]
+        [-t type[,...]] [-I state,..]
+        [-s property] ... [-S property] ...
+        [filesystem|volume|snapshot|share|path] ..
+        -r rpool/
+
+    examples {
+        zfs get sharesmb rpool/db
+        zfs get share
+    }
+}
+
+format {
+    (list physical drives)
+}
+
+change {
+    chown
+        -R nobody: /export/ops-tools
+            777 /export/ops-tools
+    chmod
+        [who] operator [permissions]
+        who: u=users, g=groups, o=others, a=all (user,group,other)
+        operator: +=adds, -=revoke
+        permissions: r=read, t=sticky, w=write, x=execute
+
+        1000 Turn on sticky bit. See chmod(2).
+        0400 Allow read by owner.
+        0200 Allow write by owner.
+        0100 Allow execute (search in directory) by owner.
+        0700 Allow read, write, and execute (search) by owner.
+        0040 Allow read by group.
+        0020 Allow write by group.
+        0010 Allow execute (search in directory) by group.
+        0070  Allow read, write, and execute (search) by group.
+        0004 Allow read by others.
+        0002 Allow write by others.
+        0001 Allow execute (search in directory) by others.
+        0007 Allow read, write, and execute (search) by others.
+}

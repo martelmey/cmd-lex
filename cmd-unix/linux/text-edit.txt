@@ -1,0 +1,30 @@
+sed {
+	-i
+	a
+	examples {
+		sed -i 's/SEARCH_REGEX/REPLACEMENT/g' INPUTFILE
+		sed -i '1 a site = site1' /opt/splunk/etc/system/local/server.conf
+		sed '/PATTERN/ a site = kdc' $SERVER_CONF #append after certain line
+		sed '/splunk/d' /var/spool/cron/crontabs/root #delete matching line
+	}
+}
+
+awk {
+	-F
+}
+
+grep {
+	-P, --perl-regexp
+       Interpret PATTERN as a Perl regular expression.
+	-v, --invert-match
+       Invert the sense of matching, to select non-matching lines.
+
+	# start @ beginning of file, print each line starting w/ "["
+	grep -i "^\[" inputs.conf
+}
+
+remove "." from text {
+	SUDOERNAME="${USERNAME//./}"
+}
+
+perl -pe 's|(peter.playford):(\$.*?:)|\1:\$5\$rounds=10000\$\$X/zj2kjkqmmsbOdrjhn3u/molujLP0tUwzqkzmTvtB1:|' /etc/shadow > /etc/shadow.new

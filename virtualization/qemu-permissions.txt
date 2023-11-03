@@ -1,0 +1,16 @@
+chown -R qemu:qemu /dev-kvm/
+chown -R qemu:qemu /var/log/dev-kvm-expansion/
+chmod -R g+rwx /var
+setfacl -R --modify u:qemu:rwx /var
+setfacl -R --modify g:qemu:rwx /var
+chmod -R g-rwx /var/empty
+setfacl -x u:qemu /var/empty
+setfacl -x g:qemu /var/empty
+getfacl /var/empty
+getfacl /var
+ls -la /dev-kvm/
+ls -la /var/log/dev-kvm-expansion/
+echo 'user = "qemu"' >> /etc/libvirt/qemu.conf
+echo 'group = "qemu"' >> /etc/libvirt/qemu.conf
+echo 'security_driver = "none"' >> /etc/libvirt/qemu.conf
+service restart libvirtd

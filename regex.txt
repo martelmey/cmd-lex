@@ -1,0 +1,68 @@
+/(?i)\b(?<word>\w*um)\b
+###all words ending in um, case insensitive
+
+/(?i)^(?<sentence>um.*.)
+###if sentence starts with um and ends with a ., extract whole sentence
+
+\]:\s+(?P<test>\w+),
+
+\\+\w+	\\+\w+	\\+		(?P<c>\w+\\+\w+) capture group/field <c>
+(?:\\+\w+){2}	\\+		(?P<c>\w+\\+\w+) 
+###\\+ one or more backslashes in a row {1,}
+###\\(1,5) between one & five blackslashes
+
+\\(?P<c>\w+\.\w+)
+###using a backslash as anchor
+
+\sof (?<user>[A-Za-z0-9_]+)
+of (?<user>[A-Za-z0-9_]+)
+\((?<time_response>[\d\.]+)
+###using ( as anchor, match 0.03
+
+: deposit \((?<deposit_dollars>\d+)\D+(?<deposit_cents>\d+)
+###\d+ for potentially multiple digits
+###\D+ any character that's not a digit
+
+, withdrawal \((?<withdrawal_dollars>\d+)\D+(?<withdrawal_cents>\d+)
+
+\/(?P<file_name>\w+\.\w+)
+###PCRE(php) flavour	anchor's a literal /
+
+(?=\/search\?searchQuery\=\w+)
+###positive lookahead, stay at the match's beginning
+(\/search\?searchQuery\=\w+)\/search
+###will match nothing
+(?=\/search\?searchQuery\=\w+)\/search
+###will match "search" at beginning of match, but not whole match
+(\/search\?searchQuery\=\w+)
+###matches /search?searchQuery=4gmw4
+\/search\?searchQuery\=(\w+)
+###matches 4gmw4
+\/search\?searchQuery\=(\S+)
+\/search\?searchQuery\=(?<search>\S+)
+###matches /search?searchQuery=Snatch+Blocks
+
+\s & \S
+###represents white space & non-white space
+
+(?<=|)(?'hostname'WC\w+)
+###using WC as anchor, all hostnames begin with it
+###positive lookbehind; at start of match, lookbehind for a |
+\|(?'hostname'WC\w+)
+\b(?'hostname'WC\w+)
+###word boundary
+
+\d+\|[a-zA-Z]+\|(?'hostname'\w+)
+(?i)\d+\|[a-z]+\|(?'hostname'\w+\d)
+[a-z]\|\d+\|[a-zA-Z]+\|(?'hostname'\w+)
+(?:Memory|CPU)\|(?'hostname'\w+)
+
+/\b(\w*kdcprd).(db)/g
+###all kdcprd db's
+
+\d{2,}\w{1}
+(?<size>\d{2,}\w{1})
+### get size from:
+30T	/b01/oracle/RMAN/mpdps1
+476G	/b01/oracle/RMAN/soadps1
+407K	/b01/oracle/RMAN/stbdps1/

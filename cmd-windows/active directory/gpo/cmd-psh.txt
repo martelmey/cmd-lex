@@ -1,0 +1,30 @@
+New-GPO {
+    https://docs.microsoft.com/en-us/powershell/module/grouppolicy/new-gpo?view=win10-ps
+    -Name "Enable WinRM"
+    | New-GPLink -Target "dc=sws,dc=health,dc=local"
+}
+
+Set-GPRegistryValue {
+    https://docs.microsoft.com/en-us/powershell/module/grouppolicy/set-gpregistryvalue?view=win10-ps
+    example 1 {
+        -Name "Enable WinRM"
+        -Key "HKLM\SYSTEM\CurrentControlSet\Services\WinRM"
+        -ValueName Type
+        -Type DWORD
+        -Value 32
+    }
+    example 2 {
+        -Name "Enable WinRM"
+        -Key "HKLM\Software\Policies\Microsoft\WindowsFirewall\FirewallRules" `
+        -ValueName WINRM-HTTP-In-TCP
+        -Type SZ `
+        -Value "v2.28|Action=Allow|Active=TRUE|Dir=In|Protocol=6|Profile=Domain|Profile=Private|LPort=5985|App=System|Name=@FirewallAPI.dll,-30253|Desc=@FirewallAPI.dll,-30256|EmbedCtxt=@FirewallAPI.dll,-30267|"
+    }
+    example 3 {
+        -Name "Enable WinRM"
+        -Key "HKLM\Software\Policies\Microsoft\Windows\WinRM\Client"
+        -ValueName TrustedHostsList
+        -Type SZ
+        -Value *
+    }
+}

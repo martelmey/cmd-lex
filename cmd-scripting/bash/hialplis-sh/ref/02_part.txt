@@ -1,0 +1,79 @@
+10.3.10.30
+igf.dev.hial.healthbc.org 6080
+igf.dev.hial.healthbc.org 5080
+igf.dev.hial.healthbc.org 4553
+    /SGFv2
+10.3.10.64
+hial-wls1.dev.hial.healthbc.org
+10.3.10.31
+dev-ems.np.hial.healthbc.org
+
+10.3.10.67
+igf.brd.hial.healthbc.org 6080
+igf.brd.hial.healthbc.org 5080
+igf.brd.hial.healthbc.org 4553
+    /SGFv2
+10.3.10.68
+hial-wls1.brd.hial.healthbc.org
+10.3.10.181
+ems.brd.hial.healthbc.org
+
+10.3.10.74
+igf.brt.hial.healthbc.org 6080
+igf.brt.hial.healthbc.org 5080
+igf.brt.hial.healthbc.org 4553
+    /SGFv2
+10.3.10.75
+hial-wls1.brt.hial.healthbc.org
+10.3.10.77
+ems.brt.hial.healthbc.org
+
+10.3.10.32
+igf.test.hial.healthbc.org 6080
+igf.test.hial.healthbc.org 5080
+igf.test.hial.healthbc.org 4553
+    /SGFv2
+10.3.10.32
+hial-wls1.test.hial.healthbc.org
+10.3.10.33
+ems.test.hial.healthbc.org
+
+10.3.40.78
+igf.int1.hial.healthbc.org 6080
+igf.int1.hial.healthbc.org 5080
+igf.int1.hial.healthbc.org 4553
+    /SGFv2
+10.3.10.11
+hial-soa1.int1.hial.healthbc.org
+10.3.10.113
+ems.int1.hial.healthbc.org
+
+10.3.40.98
+igf.int2.hial.healthbc.org 6080
+igf.int2.hial.healthbc.org 5080
+igf.int2.hial.healthbc.org 4553
+    /SGFv2
+10.3.10.201
+hial-soa1.int2.hial.healthbc.org
+10.3.10.146
+ems.int2.hial.healthbc.org
+
+10.3.10.154
+igf.uat.hial.healthbc.org 6080
+igf.uat.hial.healthbc.org 5080
+igf.uat.hial.healthbc.org 4553
+    /SGFv2
+10.3.10.155
+hial-wls1.uat.hial.healthbc.org
+10.3.10.157
+ems.uat.hial.healthbc.org
+
+10.3.10.150
+igf.sand.hial.healthbc.org 6080
+igf.sand.hial.healthbc.org 5080
+igf.sand.hial.healthbc.org 4553
+    /SGFv2
+10.3.10.151
+hial-wls1.sand.hial.healthbc.org
+10.3.10.153
+ems.sand.hial.healthbc.org

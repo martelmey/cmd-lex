@@ -1,0 +1,210 @@
+get backed up items list of policy {
+	bpplinclude NDMP-Prod-App -L
+}
+
+allow nb ports in iptables {
+	ls -lash /etc/sysconfig/iptables*
+	cp -pv   /etc/sysconfig/iptables{,.$(date "+%F_%T")}
+	iptables -N NBU-IN
+	iptables -A NBU-IN -p tcp -m multiport -s 192.168.160.232,192.168.160.233 --dports 1556,13724 -j ACCEPT
+	iptables -I INPUT -j NBU-IN
+	service iptables save
+}
+
+push exclude list {
+	./runRemote.sh solaris-domain "ls -la /export | grep pkgs" app
+	./runRemote.sh solaris-domain "sudo ls -la /usr/openv/netbackup/" app
+	./runRemote.sh solaris-domain "sudo mount cprd-zs7-p-bkp-stor:/export/utilities-cdcprd/pkgs /export/pkgs" app
+	./runRemote.sh solaris-domain "sudo cp /export/pkgs/NetBackup/exclude_list.GENERIC-SOLARIS /usr/openv/netbackup/exclude_list" app
+	./runRemote.sh solaris-domain "sudo cat /usr/openv/netbackup/exclude_list" app
+}
+
+expire images {
+	media {
+		[root@kutlprdnetm01-mgmt:backup_test]# ls
+		kdcprd-cmu-fam2_1625607622_C1_F1.1625607622.img    kdcprd-cmu-fam2_1625607622_C1_HDR.1625607622.img
+		kdcprd-cmu-fam2_1625607622_C1_F1.1625607622.info   kdcprd-cmu-fam2_1625607622_C1_HDR.1625607622.info
+	}
+	master {
+		bpexpdate -backupid kdcprd-cmu-fam2_1625607379 -d 0
+	}
+		bpdown /f /v
+	}
+}
+
+create NBSU {
+	/usr/openv/netbackup/bin/support/output/nbsu/
+	./nbsu -g NBU -s NBU_jobs
+	./nbsu -g OS
+	./nbsu -g DEV
+	./nbsu -g NET
+	./nbsu -g MM
+}
+
+shutdown & restart domain {
+	# on media
+	init 0
+	# on master
+	init 0
+	# from cdom
+	ldm start cutlprdnetb01
+	ldm start cutlprdnetm01
+}
+reboot server {
+	netbackup stop (media, then master)
+	bpps -a (check for remaining services)
+	bp.kill_all 24531 (any remaining)
+	init 6 (on LDOMs)
+	bring down media, then master; bring up master, then media
+}
+
+check cxn {
+	from master to media {
+		nbdevquery -listdv -stype PureDisk -dp kutlnpnetm01-mgmt -U
+		nbdevquery -listdv -stype PureDisk -dp cutlprdnetm01-mgmt -U
+		nbdevquery -listdv -stype PureDisk -dp kutlprdnetm01-mgmt -U
+	}
+	from master to client {
+		bptestbpcd -client brt-hial-ohs1 -host kutlnpnetm01-mgmt -verbose 
+	}
+	replication targets {
+		nbdevquery -listreptargets -stunit cutlprdnetm01-mgmt-stu -U
+	}
+}
+
+check version / patch level {
+	version {
+		cat /opt/openv/netbackup/bin/version
+	}
+	patch level {
+		cat /opt/openv/pack/pack.summary
+	}
+}
+
+enable x-client restore {
+	# create on master&media:
+	/usr/openv/netbackup/db/altnames/No.Restrictions
+}
+
+set logging verbosity to 5 {
+	1. wait until no backups running
+	2. append date to existing bptm log
+	3. then set verbosity
+	4. edit bp.conf on media
+	5. bptm=5
+	6. do test
+	7. complete test
+	8. reset verbosity
+}
+
+# windows hosts: exclude lists
+host props > clients > windows client > exclude lists
+
+create new storage server + disk pool {
+	credentials > storage servers > new storage server
+	msdp > root pwd > /msdp/cat-test > 192.168.57.222
+	new disk pool > pure disk
+}
+
+list data containers {
+	ls /msdpdata/data/*
+	# container info
+	dcscan --so-data-format 64
+}
+
+figure out when something was done {
+	root@kutlprdnetb01-mgmt:~# bpexpdate -backupid kdcprd-cmu-fam2_1625607622 -d 0
+	Are you SURE you want to delete kdcprd-cmu-fam2_1625607622 y/n (n)? y
+	root@kutlprdnetb01-mgmt:~# bpdbm -ctime 1625607622
+	1625607622 = Tue Jul 06 21:40:22 2021
+}
+
+make changes to bp.conf on client {
+	echo USE_REQUESTED_MASTER = TRUE | nbsetconfig
+}
+
+if test client says host entry not found {
+	bpclntcmd -clear_host_cache
+}
+
+rename policy name {
+	/opt/openv/netbackup/bin/admincmd/bppolicynew <oldname> -renameto <newname>
+}
+
+deploy to client {
+	install_client_files ssh knpapp23
+}
+
+test client connectivity {
+	bptestbpcd -client knapp23 # from master & media
+	# What it should be:
+	127.0.0.1:42894 -> 127.0.0.1:47602 PROXY 192.168.57.221:40970 -> 192.168.57.54:13724
+	127.0.0.1:42894 -> 127.0.0.1:57110 PROXY 192.168.57.221:44520 -> 192.168.57.54:13724
+	127.0.0.1:42894 -> 127.0.0.1:43900 PROXY 192.168.57.221:60131 -> 192.168.57.54:13724
+	/usr/openv/netbackup/bin/./bpps -x # from client
+}
+
+enable pkg add on Solaris clients {
+	pkg install SUNWpkgcmds
+}
+
+find out what fragment it died on {
+	kilobytes / stu-fragment-size = fragment #
+	153600000 ÷ 51200 = 3,000
+}
+
+add other trusted master servers {
+	Host properties > Master servers (trusted) > Servers > Trusted master servers > Add
+	# This is where you config master server's retention period
+	Create new token on NP, copy to clipboard, paste on PRD side when adding trusted host
+}
+
+NDMP setup {
+	create service account on filer
+	on filer, put in what type of dump you want to do (we chose=tar, dd)
+	Media & Device Management > Credentials > NDMP Hosts > knp-zs7-h1-BUR
+	put in filer service account (Use the following credentials for the NDMP host on all media servers)
+	Policy=Test, Policy type=NDMP
+	Backup selections: /export/np-comsrv1/np-comsrv1-test (pick share on filer)
+}
+
+# Add replication (AIR) to other trusted masters
+Media and Device Management > Credentials > Storage Servers > Replication > Add
+
+# Manual backup
+Backup, Archive, and Restore
+Browse to /
+Source client: np-comsrv1
+Destination client: knpapp23
+Select from backup history
+
+# before changing anything on the master server, backup the catalog
+Policies>Catalog_Backup>Manual Backup
+
+# add other GUI viewers
+Netbackup Management > Host Properties > Master Servers > Properties > Servers > Additional Servers +kutlnpops01,cutlmgtops01;
+
+# sanity check after reboot/upgrade
+Activity Monitor, Policies, Media and Device Management>Devices>Media Servers/Disk Pools;
+nbdevquery -listdv -stype PureDisk -dp kutlprdnetm01-mgmt -U # from master
+
+#configure msdp restores directly to a client
+bpsetconfig
+OLD_VNETD_CALLBACK = YES (on client)
+bpclient -client client_name -update -client_direct_restore 2 (on master)
+
+# add ldap domain
+vssat addldapdomain -d nbudomain -s ldap://example.com -u "OU=Users,DC=example,DC=com" 
+-g "OU=Groups,DC=example,DC=com" -m "CN=TestUser,OU=Users,DC=example,DC=com" -t msad
+
+# add ad domain
+vssat addldapdomain -d nbudomain -s ldap://domaincontroller.example.com 
+-u "cn=Users,dc=example,dc=com" -g "cn=Users,dc=example,dc=com" 
+-m "CN=TestUser,OU=Users,DC=example,DC=com" -t msad
+
+# validate domain
+vssat validateprpl -p username -d ldap:DomainName -b localhost:1556:nbatd
+
+# add user to rbac role for web ui
+https://www.veritas.com/content/support/en_US/doc/146133534-146134575-0/v141178395-146134575
+Web UI > RBAC > Roles > Add user

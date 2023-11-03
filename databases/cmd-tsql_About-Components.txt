@@ -1,0 +1,42 @@
+Agent XPs {
+	Do:
+		* Jobs
+		* Schedules
+		* Alerts
+		* Operators
+	Config parameter:
+		0: Disabled
+		1: Enabled
+}
+
+Jobs {
+	Run using sys. stored procedure called sp_start_job
+	* Execute SQL Server integration services packages
+	* Execute the T-SQL Query, Operating system commands (CmdExec), and PowerShell commands
+	* The execute SQL Server analysis service command or the query
+	* Following Replication Jobs:
+		- Replication distributor
+		- Replication Merge
+		- Replication queue reader
+		- Replication Snapshot
+		- Replication Transactional-Log reader
+}
+
+Schedules {
+	Time when SQL job will run.
+	* Recurring schedule (Daily, Weekly, Monthly)
+	* Executes only once at a specific date and time (One Time)
+	* When the CPU becomes idle
+	* Start at the job when the SQL Server agent service started
+}
+
+Alerts {
+	Automated response to specific event occuring during job execution.
+	* SQL Server performance condition
+	* A specific WMI event occurs on the computer where the SQL job is running
+	* Any SQL server condition occurs
+}
+
+Operators {
+	Contact info, no sec. principal.
+}

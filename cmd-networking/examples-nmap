@@ -1,0 +1,22 @@
+https://www.tecmint.com/nmap-command-examples/
+
+root@raspberrypi:~# hostname                                                                                                           raspberrypi                                                                                                                            root@raspberrypi:~# nmap -v raspberrypi                                                                                                   Starting Nmap 7.70 ( https://nmap.org ) at 2020-09-25 22:43 PDT                                                                        Nmap scan report for raspberrypi (127.0.1.1)                                                                                           Host is up (0.000027s latency).                                                                                                        Not shown: 999 closed ports                                                                                                            PORT   STATE SERVICE                                                                                                                   22/tcp open  ssh                                                                       
+
+nmap -sA (detect firewalls, filters)
+	 -O, -osscan-guess (OS detection)
+	 -A (os & version detection, script scanning, traceroute)
+	 -PN (same as -sA)
+	 -sP (check for live hosts)
+	 -F (fast, check only common ports)
+	 --iflist (host interfaces & route info)
+	 -p <port> (scan for specific port)
+	 -p T:<port,port> (scan a TCP port)
+	 -sU <port> (scan a UDP port)
+	 -sV (find versions of services running on hosts)
+	 -PS <host> (scan using TCP ACK(PA) & TCP Syn(PS) for ICMP-filtering firewalls)
+	 -PA -p <port,port> <host> (use TCP ACK)
+	 -PS -p <port,port> <host> (use TCP Syn)
+	 -sS (stealthy scan)
+	 -sT (check common ports with TCP Syn)
+	 -sN (tcp null scan, fool a firewall)
+	 10.0.0.* (subnet)

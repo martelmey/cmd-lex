@@ -1,0 +1,6 @@
+security principal objects:
+    users
+    groups
+have SIDs, SID consists of:
+    domain SID, same for all SIDs of the domain
+    relative ID, unique for each security principal SID of the domain

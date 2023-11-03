@@ -1,0 +1,35 @@
+configuration
+	> net
+		> show
+	> services
+		> dns (svc:\\network-dns-client:default)
+			> show
+			> set servers=192.168.60.20,192.168.60.31,192.168.60.192
+	       	> commit
+	    > ad (svc:\\appliance-kit-adstat:default)
+    		> show
+			> domain
+				> show
+				> set domain=sws.health.local
+				> set user=swssqlsa
+				> set password=hialplis_N95
+				> commit 
+	    > smb (svc:\\network-smb:default)
+	    	> show
+	    	> set pdc=kutlprdops01.sws.health.local
+	    	> set ads_site=sf # =kdc ?
+	        > commit
+
+shares
+	> replication
+		> actions
+			> show
+	> show
+	> select sol-ms_sql
+		> select db01
+
+status
+	> services
+		> list
+		>show
+	> show

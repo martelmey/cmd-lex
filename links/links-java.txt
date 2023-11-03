@@ -1,0 +1,8 @@
+###==
+####===
+--------= mvn
+####===
+###==
+
+	Installing Apache Maven on Solaris
+https://docs.wso2.com/display/DSS263/Installing+Apache+Maven+on+Solaris

@@ -1,0 +1,64 @@
+Find Domain Controller CMD {
+    nslookup
+        set type=all
+        _ldap._tcp.dc._msdcs.sws.health.local
+}
+
+see resultant set of policy (RSoP) info for user or computer {
+    gpresult /r
+}
+
+see logon server {
+	# cmd:
+	set l
+	gpresult /r
+    nltest /dsgetdc:sws.health.local
+	# ps:
+	$env:LOGONSERVER
+}
+
+(client) change logon server {
+    # not permanent - on restart, client may grab a different DC
+    nltest /Server:KUTLNPOPS01 /SC_RESET:sws.health.local\KUTLPRDDC02
+    nltest /Server:KUTLPRDOPS01 /SC_RESET:sws.health.local\KUTLPRDDC02
+    # registry:
+    HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Netlogon\Parameters\
+        SiteName = cutlprddc01.sws.health.local
+        ClientComputerName = kutlnpops01.sws.health.local
+        DomainName = sws.health.local
+        DomainControllerName = cutlprddc01
+}
+
+repladmin /sum err. 8341 {
+    https://learn.microsoft.com/en-US/troubleshoot/windows-server/identity/replication-error-8453
+
+    # first run
+    DCDIAG /TEST:kutlprddc01
+
+    adsiedit.msc
+    # connect to sws.health.local (default naming context)
+    dc=sws,dc=health,dc=local NC > Properties > Security
+    add: SWS\Enterprise Read-Only Domain Controllers (only in the forest-root domain)
+    # check Names, and then select OK
+    # in dialog box: Permissions for Enterprise Read-Only Domain Controllers:
+    # uncheck Allow for the following:
+        Read
+        Read domain password & lockout policies
+        Read Other domain parameters
+    # check Allow box next to Replicating Directory Changes
+}
+
+query SPNs of domain controllers {
+    dsquery * "ou=domain controllers,dc=sws,dc=health,dc=local"
+        -filter "(&(objectcategory=computer)(servicePrincipalName=*))"
+        -attr distinguishedName servicePrincipalName
+}
+
+resolve SPN in DNS {
+    ping -a c0093f61-97f7-4dea-b3a6-df8f4cef7d0c._msdcs.sws.health.local
+    ping -a c10f9d44-f99d-4a30-8795-7c87e8fa460f._msdcs.sws.health.local
+}
+
+see FSMO roles {
+    netdom query fsmo
+}

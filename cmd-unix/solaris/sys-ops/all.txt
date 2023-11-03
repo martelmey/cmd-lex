@@ -1,0 +1,48 @@
+uname {
+    -a
+    cat /etc/release
+}
+
+projects {
+    -l --list
+}
+
+vmstat {
+    vmstat [-ipqsS] [-T u | d] [disks] [interval [count]]
+
+    count
+    Specifies  the  number  of  times  that  the statistics are repeated. count does not apply to the -i and -s options.
+
+    interval
+    Specifies the last number of seconds over which vmstat summarizes activity. This number of seconds  repeats  forever. interval does not apply to the -i and -s options.
+
+}
+
+ntpdate {
+    <DC_hostname>
+    <ntp_server>
+}
+
+prtconf {
+    <dev_path> ...
+    
+    -a (all ancestors up to root of dev tree)
+    -b (fw dev tree props)
+    -d (vendor ID, dev ID for PCI/Express)
+    -D (show drivers)
+    -l (show /dev/chassis location)
+    -F (dev path of console frame buffer)
+    -p (dev tree provided by firmware (PROM) on SPARC)
+    -P (psuedo devices)
+    -V (PROM or booting system version info)
+}
+
+psrinfo {
+    -pv
+    -v | more
+    | wc -l
+}
+
+prtdiag {
+    -v | more
+}

@@ -1,0 +1,31 @@
+shell:startup (startup folder)
+certmgr.msc
+adsiedit.msc (advanced ad editor)
+ncpa.cpl (Network Connections)
+secpol.msc (Local security policy)
+gpedit.msc (Local group policy editor)
+gpmc.msc (Group Policy Management Console)
+ncpa.cpl (Network Connections)
+regedit
+sysdm.cpl (env vars) msconfig msinfo32
+optionalfeatures
+magnify
+charmap
+mrt (malicious software removal tool)
+devmgmt.msc hdwwiz.cpl
+netplwiz (user accounts)
+services.msc
+appwiz.cpl (programs & features)
+control
+. (go to home)
+osk (on screen keyboard)
+snippingtool
+diskpart
+logoff
+lusrmgr.msc (local users & groups)
+mmc /a (ms mgmt console)
+mmc (blank mmc, add snap-ins)
+psr (problem steps recorder)
+ms-settings:troubleshoot
+tsconfig.msc (terminal services)
+rundll32 sysdm.cpl,EditEnvironmentVariables (un-priv user edit env vars)

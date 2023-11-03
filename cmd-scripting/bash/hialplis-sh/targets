@@ -1,0 +1,323 @@
+### LDOMs - DB
+# PRD #
+192.168.61.25:solaris-domain:db
+192.168.61.26:solaris-domain:db
+# PS #
+192.168.62.25:solaris-domain:db
+192.168.62.26:solaris-domain:db
+# NP #
+192.168.63.20:solaris-domain:db
+192.168.63.21:solaris-domain:db
+192.168.63.22:solaris-domain:db
+192.168.63.30:solaris-domain:db
+192.168.63.31:solaris-domain:db
+192.168.63.32:solaris-domain:db
+# CDC #
+192.168.161.25:solaris-domain:db
+192.168.161.26:solaris-domain:db
+#
+### LDOMs - App
+# PRD #
+192.168.61.1:solaris-domain:app
+192.168.61.27:solaris-domain:app
+192.168.61.29:solaris-domain:app
+192.168.61.31:solaris-domain:app
+192.168.61.2:solaris-domain:app
+192.168.61.28:solaris-domain:app
+192.168.61.30:solaris-domain:app
+192.168.61.32:solaris-domain:app
+# PS #
+192.168.62.1:solaris-domain:app
+192.168.62.27:solaris-domain:app
+192.168.62.29:solaris-domain:app
+192.168.62.31:solaris-domain:app
+192.168.62.2:solaris-domain:app
+192.168.62.28:solaris-domain:app
+192.168.62.30:solaris-domain:app
+192.168.62.32:solaris-domain:app
+# NP #
+192.168.63.40:solaris-domain:app
+192.168.63.41:solaris-domain:app
+192.168.63.42:solaris-domain:app
+192.168.63.43:solaris-domain:app
+192.168.63.50:solaris-domain:app
+192.168.63.51:solaris-domain:app
+192.168.63.52:solaris-domain:app
+192.168.63.53:solaris-domain:app
+192.168.63.60:solaris-domain:app
+192.168.63.61:solaris-domain:app
+192.168.63.62:solaris-domain:app
+192.168.63.63:solaris-domain:app
+192.168.63.70:solaris-domain:app
+192.168.63.71:solaris-domain:app
+192.168.63.72:solaris-domain:app
+192.168.63.73:solaris-domain:app
+# CDC #
+192.168.161.1:solaris-domain:app
+192.168.161.2:solaris-domain:app
+192.168.161.27:solaris-domain:app
+192.168.161.28:solaris-domain:app
+192.168.161.29:solaris-domain:app
+192.168.161.30:solaris-domain:app
+192.168.161.31:solaris-domain:app
+192.168.161.32:solaris-domain:app
+#
+### Dev
+192.168.63.23:solaris-zone:dev
+192.168.63.24:solaris-zone:dev
+192.168.63.29:solaris-zone:dev
+192.168.63.33:solaris-zone:dev
+192.168.63.34:solaris-zone:dev
+192.168.63.38:solaris-zone:dev
+192.168.63.39:solaris-zone:dev
+192.168.63.128:solaris-zone:dev
+#
+### Test
+192.168.63.25:solaris-zone:test
+192.168.63.26:solaris-zone:test
+192.168.63.27:solaris-zone:test
+192.168.63.28:solaris-zone:test
+192.168.63.35:solaris-zone:test
+192.168.63.36:solaris-zone:test
+192.168.63.37:solaris-zone:test
+192.168.63.44:solaris-zone:test
+192.168.63.45:solaris-zone:test
+192.168.63.127:solaris-zone:test
+192.168.63.148:solaris-zone:test
+192.168.63.149:solaris-zone:test
+192.168.63.150:solaris-zone:test
+192.168.63.151:solaris-zone:test
+192.168.63.155:solaris-zone:test
+192.168.63.156:solaris-zone:test
+192.168.63.157:solaris-zone:test
+#
+### Int2 zones
+192.168.63.86:solaris-zone:int2
+192.168.63.87:solaris-zone:int2
+192.168.63.88:solaris-zone:int2
+192.168.63.89:solaris-zone:int2
+192.168.63.95:solaris-zone:int2
+192.168.63.96:solaris-zone:int2
+192.168.63.97:solaris-zone:int2
+192.168.63.98:solaris-zone:int2
+192.168.63.99:solaris-zone:int2
+192.168.63.100:solaris-zone:int2
+192.168.63.103:solaris-zone:int2
+192.168.63.104:solaris-zone:int2
+192.168.63.135:solaris-zone:int2
+192.168.63.136:solaris-zone:int2
+192.168.63.144:solaris-zone:int2
+192.168.63.145:solaris-zone:int2
+192.168.63.146:solaris-zone:int2
+192.168.63.147:solaris-zone:int2
+192.168.63.174:solaris-zone:int2
+192.168.63.175:solaris-zone:int2
+192.168.63.176:solaris-zone:int2
+192.168.63.177:solaris-zone:int2
+#
+### UAT zones
+192.168.63.109:solaris-zone:uat
+192.168.63.110:solaris-zone:uat
+192.168.63.111:solaris-zone:uat
+192.168.63.112:solaris-zone:uat
+192.168.63.118:solaris-zone:uat
+192.168.63.119:solaris-zone:uat
+192.168.63.120:solaris-zone:uat
+192.168.63.121:solaris-zone:uat
+192.168.63.122:solaris-zone:uat
+192.168.63.125:solaris-zone:uat
+#
+### SAND zones
+192.168.63.105:solaris-zone:sand
+192.168.63.106:solaris-zone:sand
+192.168.63.107:solaris-zone:sand
+192.168.63.108:solaris-zone:sand
+192.168.63.113:solaris-zone:sand
+192.168.63.114:solaris-zone:sand
+192.168.63.115:solaris-zone:sand
+192.168.63.116:solaris-zone:sand
+192.168.63.117:solaris-zone:sand
+192.168.63.123:solaris-zone:sand
+192.168.63.124:solaris-zone:sand
+#
+### BRD zones
+192.168.63.46:solaris-zone:brd
+192.168.63.47:solaris-zone:brd
+192.168.63.48:solaris-zone:brd
+192.168.63.49:solaris-zone:brd
+192.168.63.58:solaris-zone:brd
+192.168.63.59:solaris-zone:brd
+192.168.63.64:solaris-zone:brd
+192.168.63.65:solaris-zone:brd
+192.168.63.66:solaris-zone:brd
+192.168.63.76:solaris-zone:brd
+192.168.63.77:solaris-zone:brd
+#
+### BRT zones
+192.168.63.54:solaris-zone:brt
+192.168.63.55:solaris-zone:brt
+192.168.63.56:solaris-zone:brt
+192.168.63.57:solaris-zone:brt
+192.168.63.67:solaris-zone:brt
+192.168.63.68:solaris-zone:brt
+192.168.63.69:solaris-zone:brt
+192.168.63.74:solaris-zone:brt
+192.168.63.75:solaris-zone:brt
+192.168.63.78:solaris-zone:brt
+192.168.63.79:solaris-zone:brt
+#
+### INT1 zones
+192.168.63.82:solaris-zone:int1
+192.168.63.83:solaris-zone:int1
+192.168.63.84:solaris-zone:int1
+192.168.63.85:solaris-zone:int1
+192.168.63.90:solaris-zone:int1
+192.168.63.91:solaris-zone:int1
+192.168.63.92:solaris-zone:int1
+192.168.63.93:solaris-zone:int1
+192.168.63.94:solaris-zone:int1
+192.168.63.101:solaris-zone:int1
+192.168.63.102:solaris-zone:int1
+192.168.63.162:solaris-zone:int1
+192.168.63.163:solaris-zone:int1
+192.168.63.164:solaris-zone:int1
+192.168.63.165:solaris-zone:int1
+192.168.63.166:solaris-zone:int1
+192.168.63.167:solaris-zone:int1
+192.168.63.168:solaris-zone:int1
+192.168.63.169:solaris-zone:int1
+192.168.63.170:solaris-zone:int1
+192.168.63.171:solaris-zone:int1
+192.168.63.172:solaris-zone:int1
+#
+### PS
+192.168.62.38:solaris-zone:ps
+192.168.62.39:solaris-zone:ps
+192.168.62.40:solaris-zone:ps
+192.168.62.41:solaris-zone:ps
+192.168.62.42:solaris-zone:ps
+192.168.62.43:solaris-zone:ps
+192.168.62.44:solaris-zone:ps
+192.168.62.45:solaris-zone:ps
+192.168.62.46:solaris-zone:ps
+192.168.62.47:solaris-zone:ps
+192.168.62.48:solaris-zone:ps
+192.168.62.49:solaris-zone:ps
+192.168.62.50:solaris-zone:ps
+192.168.62.51:solaris-zone:ps
+192.168.62.52:solaris-zone:ps
+192.168.62.53:solaris-zone:ps
+192.168.62.54:solaris-zone:ps
+192.168.62.55:solaris-zone:ps
+192.168.62.56:solaris-zone:ps
+192.168.62.57:solaris-zone:ps
+192.168.62.58:solaris-zone:ps
+192.168.62.59:solaris-zone:ps
+#
+### PRD
+192.168.61.38:solaris-zone:prd
+192.168.61.39:solaris-zone:prd
+192.168.61.40:solaris-zone:prd
+192.168.61.41:solaris-zone:prd
+192.168.61.42:solaris-zone:prd
+192.168.61.43:solaris-zone:prd
+192.168.61.44:solaris-zone:prd
+192.168.61.45:solaris-zone:prd
+192.168.61.46:solaris-zone:prd
+192.168.61.48:solaris-zone:prd
+192.168.61.47:solaris-zone:prd
+192.168.61.49:solaris-zone:prd
+192.168.61.50:solaris-zone:prd
+192.168.61.51:solaris-zone:prd
+192.168.61.52:solaris-zone:prd
+192.168.61.53:solaris-zone:prd
+192.168.61.54:solaris-zone:prd
+192.168.61.55:solaris-zone:prd
+192.168.61.56:solaris-zone:prd
+192.168.61.57:solaris-zone:prd
+192.168.61.58:solaris-zone:prd
+192.168.61.59:solaris-zone:prd
+#
+### CDC
+192.168.161.38:solaris-zone:cdc
+192.168.161.39:solaris-zone:cdc
+192.168.161.40:solaris-zone:cdc
+192.168.161.41:solaris-zone:cdc
+192.168.161.42:solaris-zone:cdc
+192.168.161.43:solaris-zone:cdc
+192.168.161.44:solaris-zone:cdc
+192.168.161.45:solaris-zone:cdc
+192.168.161.46:solaris-zone:cdc
+192.168.161.47:solaris-zone:cdc
+192.168.161.48:solaris-zone:cdc
+192.168.161.49:solaris-zone:cdc
+192.168.161.50:solaris-zone:cdc
+192.168.161.51:solaris-zone:cdc
+192.168.161.52:solaris-zone:cdc
+192.168.161.53:solaris-zone:cdc
+192.168.161.54:solaris-zone:cdc
+192.168.161.55:solaris-zone:cdc
+192.168.161.56:solaris-zone:cdc
+192.168.161.57:solaris-zone:cdc
+192.168.161.58:solaris-zone:cdc
+192.168.161.59:solaris-zone:cdc
+#
+### Util - KDC
+192.168.60.30:linux:util    # KDC-UTIL-NP
+192.168.60.31:linux:util    # KUTLLDOMLDAP # ldap 1
+192.168.60.32:linux:util    # KUTLLDOMSVN
+192.168.60.33:linux:util    # KUTLLDOMSEC
+192.168.60.34:linux:util    # dns-test
+192.168.60.35:linux:util    # ldap-test
+192.168.60.36:linux:util    # kutlnpcmdb01
+192.168.60.37:linux:util    # kutlnprad01
+#192.168.60.40 # KDC-UTIL-PSPR
+#192.168.60.105
+#192.168.60.106
+192.168.60.190:linux:util   # kutlprdhwu21
+#192.168.60.191:linux:util  # kutlprdtsc01
+#192.168.60.193:linux:util  # kutlprdtns01
+192.168.63.195:linux:util   # kutlprdhwu22
+#192.168.63.196:linux:util  # nessus
+192.168.60.200:linux:util   # kutlprdhwu04
+192.168.60.208:solaris-domain:util # kprdutiloms
+#192.168.60.209
+192.168.60.210:linux:util   	   # kutlprdhwu06
+192.168.60.211:linux:util   	   # kutlprdsplunk01
+192.168.60.212:linux:util   	   # kutlnpoemsbx01
+192.168.60.213:linux:util   	   # kutlprdsplunkfd01
+192.168.60.214:solaris-domain:util # utilvmengine
+192.168.60.215:linux:util   	   # kprdutiloem-oms1
+#192.168.60.216
+192.168.60.219:linux:util   	   # kprdutiloem-oms2
+192.168.60.220:solaris-domain:util # kutlnpbkup01
+192.168.60.221:solaris-domain:util # kutlnpnetb01
+192.168.60.222:solaris-domain:util # kutlnpnetm01
+192.168.60.223:solaris-domain:util # kutlnpdev-ors01
+192.168.60.224:solaris-domain:util # kutlnptst-ors01
+192.168.60.225:solaris-domain:util # kutilhwoem02
+192.168.60.226:solaris-domain:util # oem-omr1
+192.168.60.227:solaris-domain:util # kutlprd-ors01
+192.168.60.228:solaris-domain:util # kprdutilvmengine
+192.168.60.230:solaris-domain:util # kutlprdbkup01
+192.168.60.231:linux:util   # kutlldomldap # ldap 2
+192.168.60.232:solaris-domain:util # kutlprdnetb01
+192.168.60.233:solaris-domain:util # kutlprdnetm01
+192.168.60.234:linux:util   # kutlprdcmdb01
+#
+### Util - CDC
+192.168.160.190:linux:utilcdc #kvm
+#192.168.160.191:linux:utilcdc #nessus
+192.168.160.195:linux:utilcdc #kvm
+#192.168.160.196:linux:utilcdc #nessus
+#192.168.160.206:?:utilcdc #?
+192.168.160.200:linux:utilcdc #kvm
+192.168.160.212:linux:utilcdc #spk
+#192.168.160.215:?:utilcdc #oem
+192.168.160.225:solaris:utilcdc #cdom
+192.168.160.226:solaris:utilcdc # omr
+192.168.160.227:solaris:utilcdc #oms
+192.168.160.230:solaris:utilcdc #cdom
+192.168.160.231:solaris:utilcdc #ldap
+192.168.160.232:solaris:utilcdc #netb
+192.168.160.233:solaris:utilcdc #netm

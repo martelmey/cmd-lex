@@ -1,0 +1,12 @@
+# SQLPlus commands
+https://docs.oracle.com/cd/B10501_01/server.920/a90842/qstart.htm#970667
+https://docs.oracle.com/cd/B10501_01/server.920/a90842/ch13.htm
+
+# SQL*Plus Quick Start
+	https://docs.oracle.com/en/database/oracle/oracle-database/19/sqpug/SQL-Plus-quick-start.html#GUID-BF1995BD-EF9B-4EA2-9B32-7BFACDEB79DA
+
+# Starting SQL*Plus
+	https://docs.oracle.com/en/database/oracle/oracle-database/19/sqpug/starting-SQL-Plus.html#GUID-9FEB89E9-6392-4C43-95D3-51B72C9EB982
+
+# Oracle InstantClient: TNSNAMES.ORA location
+	https://www.krenger.ch/blog/oracle-instantclient-tnsnames-ora-location/

@@ -1,0 +1,143 @@
+lxc {
+  lxc-stop {
+    -r, --reboot
+    -k, --kill
+    --nokill
+    --nolock
+    -W, --nowait
+  }
+  lxc-start {
+    -P, --lxcpath=PATH # default /container
+    -n, --name=NAME
+  }
+  lxc-ls
+  lxc-config {
+    -l
+  }
+  lxc-console {
+    -n KUTLLDOMSEC
+  }
+  lxc-info {
+    -c, --config <KEY>
+    -s, --state
+    -p, --pid
+    -i, --ips
+    -S, --stats
+    -H, --no-humanize
+    -n, --name=<NAME>
+    examples {
+      lxc-info -pHn kutlnpcmdb01
+    }
+  }
+  lxc-monitor
+  lxc-top {
+    -d, --delay <delay>
+    -s, --sort <sortby>
+    -r, --reverse
+    lxc-attach -n KUTLLDOMSEC 
+    --u, --uid
+    --f, --gid
+  }
+  lxc-usernet # unprivileged user network administration file
+  lxc-user-nic # Manage nics in another network namespace
+  
+  examples {
+    templates: /usr/share/lxc/templates/
+    lxc-info -n KUTLLDOMSEC
+    lxc-info -n kutlnpcmdb01 -c lxc.net.0.veth.pair
+    lxc-top --delay 1 --sort m
+    lxc-stop -n ldap-test --reboot --nokill
+  }
+}
+
+qemu {
+  qemu-img
+    resize /vms/kutlprdsplunk01 +40G
+    create -f raw kutlprdops01-expansion 50G
+    check
+    info
+	qemuinfo
+	snapshot
+		-a applies
+		-c creates
+		-d deletes
+		-l lists
+    examples {
+      # snapshot location
+      /var/lib/libvirt/qemu/snapshot/
+      # take snapshot of halted vm
+      virsh snapshot-create-as --domain kutlprdtsc01 \
+      --name "20210825_kutlprdtsc01_secinc" \
+      --description "2021 Aug 25 Sec. Inc."
+    }
+	check
+	create
+  format & mount, linux {
+
+  }
+}
+
+virsh {
+  capabilities
+  console
+  desc
+  destroy
+  dumpxml
+  dom
+    info
+    stats
+    iflist
+    ifstat
+    control
+    if-getlink
+    ifaddr
+  domdisplay
+  domfsinfo
+  emulatorpin
+    -l, --log=<file>
+    -d, --debug=<NUM>
+  event
+  iface-list
+  list
+    --all
+  net-destroy
+  net-autostart
+    disable
+  net-undefine
+  net-list
+  nwfilter-list
+    -binding-list
+  perf
+  qemu-monitor
+    -command
+    -event
+  snapshot-
+    create
+    delete
+      <domain> [--snapshotname <>]
+    info
+    list
+  ttyconsole
+  uri
+
+  examples {
+    virsh blockresize kutlprdsplunk01 /vms/kutlprdsplunk01 80G
+    virsh vol-info kutlprdsplunk01 --pool vms
+    virsh event --event graphics kutlprdops01
+  }
+}
+
+virt-install {
+  --name <NAME>
+  --memory <MB>
+  --vcpus <VCPUS>
+  --os-variant <DISTRO_VARIANT>
+  --disk
+    size=10 (10GB)
+  --network
+    bridge=br0
+  --graphics
+    vnc 
+}
+
+osinfo-query os (get list of available os-variant for virt-install)

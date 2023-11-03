@@ -1,0 +1,226 @@
+mv {
+
+    examples {
+        # move directories
+        mv source_directory target_directory
+    }
+}
+
+smb {
+    # https://www.linuxtechi.com/install-configure-samba-centos-8/
+    # svc
+    systemctl status {smb,nmb}
+        # apply change
+        systemctl restart {smb,nmb}
+    # fw
+    firewall-cmd --add-service=samba
+    # cfg
+    /etc/samba/smb.conf
+        # allow anon
+        [global]\n map to guest = bad user
+        # new share
+        [sharename]
+        path = /export/a
+        guest only = yes # anon, w/ writeable=no more secure
+        # secure only
+        [sharename]
+        guest ok = no
+    # add usr to db
+    smbpasswd -a sambauser
+}
+
+dd {
+    # wipe drive
+    if=/dev/zero of=/dev/sdc bs=512 count=1
+}
+
+parted {
+    parted [options] [device [command [options...]...]]
+
+    -l, --list
+
+    print (show table)
+    toggle <partition> <flag>
+}
+
+true >| ./thefile.trc
+
+ls {
+    -a, --all don't ignore .
+    --block-size=SIZE (K,M)
+    -h, --human-readable
+    -L, --dereference
+    -R, --recursive
+    -s, --size
+    --sort=WORD (size -S, time -t)
+
+    examples {
+        ls -la --block-size=M /export/pkgs/cmdb-postgres-backups/cmdb
+        # show dirs only (like tree)
+        find / -type d -ls
+    }
+}
+
+gdisk {
+    -l /dev/sda
+}
+
+fdisk {
+    Manipulate disk partition table
+
+    fdisk [-uc] [-b sectorsize] [-C cyls] [-H heads] [-S sects] device
+    fdisk -l [-u] [device...]
+    fdisk -s partition...
+
+    Options:
+        -b, --sector-size sectorsize
+            Specify sector size of disk.
+            512, 1024, 2048, 4096
+        -B, --protect-boot
+            Don't erase the beginning of first disk sector.
+            For GPT and MBR.
+        -c, --compatibility[=mode]
+            dos, default=nondos
+        -l, --list
+            list part tables for specified devices.
+            default=/proc/partitions
+}
+
+symbolic links {
+    ln -s /usr/pgsql-9.5/bin psql95
+    unlink expanions
+}
+
+xfs_growfs {
+    [  -dilnrx  ]  [ -D size ] [ -e rtextsize ] [ -L size ] [ -m maxpct ] [ -t mtab ] [ -R size ] mount-point
+
+    xfs_info [ -t mtab ] mount-point
+    xfs_info -V
+}
+
+lvextend {
+    lvextend option_args position_args
+        [ option_args ]
+        [ position_args ]
+
+Extend an LV by a specified size.
+    lvextend -L|--size [+]Size[m|UNIT] LV
+        [ -l|--extents [+]Number[PERCENT] ]
+        [ -r|--resizefs ]
+        [ -i|--stripes Number ]
+        [ -I|--stripesize Size[k|UNIT] ]
+        [    --poolmetadatasize [+]Size[m|UNIT] ]
+        [ COMMON_OPTIONS ]
+        [ PV ... ]
+}
+
+growpart {
+    [OPTIONS] DISK PARTITION-NUMBER
+    -N, --dry-run
+}
+
+pvs {
+    -a, --all
+    --foreign
+    --units r|R|h|H|b|B|s|S|k|K|m|M|g|G|t|T|p|P|e|E
+}
+
+vgs {
+    -a, --all
+    --foreign
+    --units r|R|h|H|b|B|s|S|k|K|m|M|g|G|t|T|p|P|e|E
+}
+
+pvresize {
+    PV ...
+       [    --setphysicalvolumesize Size[m|UNIT] ]
+       [    --reportformat basic|json ]
+       [ -d|--debug ]
+       [ -q|--quiet ]
+       [ -t|--test ]
+       [ -v|--verbose ]
+       [ -y|--yes ]
+       [    --commandprofile String ]
+       [    --config String ]
+       [    --driverloaded y|n ]
+       [    --lockopt String ]
+       [    --profile String ]
+}
+
+find {
+    <path to files><*>
+    -mtime (days old of file)(+5=files older than 5 days)
+    -exec <command>
+    {} \; (ends command)
+
+    examples {
+        find /path/to/dir/ -printf '%s %p\n'| sort -nr | head -10
+        find . -printf '%s %p\n'| sort -nr | head -10
+        find / -name vssat -print
+
+        # print list of directories in directory (no leading slash)
+        find /opt/splunk/etc/deployment-apps/ -mindepth 1 -maxdepth 1 -type d -printf '%f\n'
+    }
+}
+
+lsblk {
+    -a, --all (list empty)
+    -f, --fs (filesystem info)
+    -i, --ascii (tree formatting)
+    -l, --list
+    -p, --paths (full dev paths)
+}
+
+df {
+    -a, --all
+    --direct (file stats)
+    --total
+    -h, --human-readable
+    -l, --local
+    -t, --type=TYPE
+    -T, --print-type
+    -x, --exclude-type=TYPE
+}
+
+du {
+    -a, --all (count for all files, not just dirs)
+    -c, --total
+    -h, --human-readable
+    -L, --dereference (deref symlinks)
+    -t, --threshold=SIZE (exclude entries smaller if SIZE negative, or greater if SIZE positive)
+    --time (show last modification)
+    --exclude=PATTERN
+    -s, --summarize (display only a total for each argument)
+    -x, --one-file-system (skip directories on different file systems)
+}
+
+format disks {
+    fdisk -l
+        -l /dev/sdb
+    dd if=kali-linux-2020.2-live-amd64.iso of=/dev/sdb bs=4M status=progress
+}
+
+checksums {
+    md5sum
+    sha1sum
+    sha256sum <file>
+}
+
+fstab {
+    /export/ops-tools       192.168.60.192(rw,sync,no_all_squash,root_squash) >> /etc/exports
+    /export/ops-tools       192.168.63.197(rw,sync,no_all_squash,root_squash) >> /etc/exports 
+}
+
+exports {
+    exportfs -s
+             -arv
+    /etc/exports:
+        /export/ops-tools       192.168.160.0/24(rw,sync,no_all_squash,root_squash)
+        /export/ops-tools       192.168.60.0/24(rw,sync,no_all_squash,root_squash)
+        /export/spk-sws-pkgs       192.168.160.0/24(rw,sync,no_all_squash,root_squash)
+        /export/spk-sws-pkgs       192.168.161.0/24(rw,sync,no_all_squash,root_squash)
+}
+
+archives {
+    unzip -d cmdbuild-resources
+}

@@ -1,0 +1,2 @@
+# start remote session
+splunk search 'index=_internal | fields _time | head 1 ' -auth 'splunkadmin:hialplissplunk'

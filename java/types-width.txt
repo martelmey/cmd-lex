@@ -1,0 +1,13 @@
+Byte = 8 bits
+Short = 16 bits
+Int = 32 bits
+Long = 64 bits
+Float = 32 bits (single-precision)
+Double = 64 bits (double-precision)
+
+# Variable
+<type> <name>=<value>;
+
+# Casting
+(type) (expression);
+(byte) (byteValue / 2);

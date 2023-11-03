@@ -1,0 +1,12 @@
+ISACA
+ISC2
+CompTIA
+CISSP
+CCNP-Security
+	https://www.cisco.com/c/en/us/training-events/training-certifications/certifications/professional/ccnp-security-v2.html
+PCNSE7
+Aws Certified Security-Specialty
+GIAC GSEC
+OpenFAIR
+ITIL 4 Managing Pro
+CompTIASec+

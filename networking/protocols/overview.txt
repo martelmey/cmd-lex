@@ -1,0 +1,58 @@
+System of rules allowing 2 or more nodes to transmit data via any kind of variation of a physical quantity. Rules, syntax, semantics & synchronization, possible error recovery methods.
+
+PDU = protocol data unit
+
+##################
+# L.2 LINK
+##################{
+	PDU: Type field describes level 3
+
+	mac = media access control
+	arp = 0x0806
+	ospf =
+	ieee 802.1ae =
+	ieee 802.1aq =
+	ieee 802.2 =
+}
+
+##################
+# L.3. INTERNET
+##################{
+	PDU: PRO field describes level 4
+
+	ipv4 = 0x0800
+	ipv6 = uni/multi/anycasting
+}
+
+##################
+# L.4 TRANSPORT
+##################{
+	PDU: Destination port describes level 5
+
+	tcp = 0x06
+	udp = 0x17
+	arp = address resolution protocol
+}
+
+##################
+# L.5/7 APPLICATION
+##################{
+	dhcp = 
+	dns = 53
+	icmp = 
+	(s)ftp =
+	http(s) = 80(443)
+	imap =
+	ldap =
+	ntp =
+	pop =
+	smtp = 25
+	ssh = 22
+	telnet =
+	tls/ssl =
+}
+
+System ports (0-1023)
+User ports (1024-49151)
+Ephemeral ports (49152-65535)
+	# used as the port assignment for the client end of a client-server communication to a particular port on a server

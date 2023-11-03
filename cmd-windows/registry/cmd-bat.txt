@@ -1,0 +1,16 @@
+reg {
+    delete {
+        * https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/reg-delete
+        reg delete <keyname> [{/v valuename | /ve | /va}] [/f]
+
+        /v <valuename> # deletes a specific entry under the subkey. If none, all entries and subkeys under the subkey are deleted.
+        /ve	# only entries that have no value will be deleted.
+        /va	# Deletes all entries within the specified key. Subkey entries that reside within the specified key are not deleted.
+        /f	# Deletes the existing registry subkey or entry without asking for confirmation.
+
+        examples {
+            # delete reg key "Timeout" & all its subkeys & values:
+            reg delete HKLM\Software\MyCo\MyApp\Timeout
+        }
+    }
+}

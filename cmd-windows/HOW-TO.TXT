@@ -1,0 +1,67 @@
+cp from local drive {
+	copy \\tsclient\C\Users\martel.meyers\Desktop\workspace.txt C:\Users\martel.meyers\Downloads
+}
+
+local profiles {
+	Computer\HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\ProfileList
+	# query SIDs
+	wmic useraccount get domain,name,sid
+}
+
+re-enable stopped WsusPool application pool {
+	IIS > Application Pools > WsusPool (start)
+}
+
+see last reboot {
+	# code 6009 in event viewer
+	systeminfo | find /i “Boot Time”
+}
+
+schedule shutdown {
+	# using scheduler
+	C:\WINDOWS\system32\shutdown.exe -r -f -t 01
+}
+
+updates: fix 0x8024401c: corrupted update components {
+	net stop wuauserv
+	net stop cryptSvc
+	net stop bits
+	net stop msiserver
+	ren C:\Windows\SoftwareDistribution SoftwareDistribution.old
+    ren C:\Windows\System32\catroot2 catroot2.old
+	net start wuauserv
+	net start cryptSvc
+	net start bits
+	net start msiserver
+}
+
+remove IE {
+	dism /online /disable-feature /featurename:Internet-Explorer-Optional-amd64
+}
+
+Fix: Add-WindowsCapability failed. RSAT Error code = 0x800f0954 {
+	On the problem child machine open gpedit.msc
+	Go to Computer Configuration -> Administrative Templates -> System
+	Open Specify settings for optional component installation and component repair
+	With that settings open, select Enabled
+	Check Download repair content and optional features directly from Windows Updates instead of Windows Server Updates Services (WSUS)
+	Go back in your Powershell Window
+	Run a gpupdate /force
+	Rerun the Add-WindowsCapability again to install the feature
+}
+
+find where file is open in other programs {
+	Resource Monitor > CPU > Associated Handles > <file_folder_name>
+}
+
+see cxns {
+    # get current connections
+    netstat -n
+    # live tcp connections w/ resolution
+    netstat -aop tcp 5
+}
+
+determine .net version installed {
+	dotnet --info
+	(Get-ItemPropertyValue -LiteralPath 'HKLM:SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Full' -Name Release) -ge 394802
+}

@@ -1,0 +1,289 @@
+Get-Location {
+    * https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/get-location?view=powershell-7
+
+    [-PSProvider <String[]>]
+    [-PSDrive <String[]>]
+    [<CommonParameters>]
+}
+
+Copy-Item {
+    * https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/copy-item?view=powershell-7.1#examples
+
+    [-Path] <String[]>
+    [[-Destination] <String>]
+    [-Container]
+    [-Force]
+    [-Filter <String>]
+    [-Include <String[]>]
+    [-Exclude <String[]>]
+    [-Recurse]
+    [-PassThru]
+    [-Credential <PSCredential>]
+    [-WhatIf]
+    [-Confirm]
+    [-FromSession <PSSession>]
+    [-ToSession <PSSession>]
+    [<CommonParameters>]
+
+    examples {
+        Copy-Item -Path "C:\Logfiles\*" -Destination "C:\Drawings" -Recurse
+        Copy-Item -Path "\\tsclient\C\Users\martel.meyers\Downloads\cmdb\*" -Destination "\\192.168.56.73\export\windows\pkgs\cmdb" -Recurse
+    }
+}
+
+Remove-Item {
+    * https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/remove-item?view=powershell-7.1#examples
+
+    [-Path] <String[]>
+    [-Filter <String>]
+    [-Include <String[]>]
+    [-Exclude <String[]>]
+    [-Recurse]
+    [-Force]
+    [-Credential <PSCredential>]
+    [-WhatIf]
+    [-Confirm]
+    [-Stream <String[]>]
+    [<CommonParameters>]
+}
+
+Get-FileHash {
+    https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/get-filehash?view=powershell-7
+    <filepath>
+    -Algorithm MD5
+}
+
+Expand-Archive {
+    https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.archive/expand-archive?view=powershell-7
+    -LiteralPath <PathToZipFile>
+    -DestinationPath <PathToDestination>
+}
+
+Compress-Archive {
+    https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.archive/compress-archive?view=powershell-7
+    -Path C:\path\to\file\*
+    -DestinationPath C:\path\to\archive.zip
+}
+
+Mount-DiskImage {
+    https://docs.microsoft.com/en-us/powershell/module/storage/mount-diskimage?view=win10-ps
+
+    -ImagePath <string>
+    -StorageType <StorageType>
+    -Access <Access>
+    -NoDriveLetter
+}
+
+New-PSDrive {
+    https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/new-psdrive?view=powershell-7.1
+
+    [-Name] <String>
+    [-PSProvider] <String>
+    [-Root] <String>
+    [-Description <String>]
+    [-Scope <String>]
+    [-Persist]
+    [-Credential <PSCredential>]
+    [-WhatIf]
+    [-Confirm]
+    [<CommonParameters>]
+
+    examples {
+        -Name "KDCPKGSMSSQL" -PSProvider "FileSystem" -Root "\\192.168.61.132\export\utilities-kdcprd\pkgs\MSSQL-SSO-TESTING"
+        New-PSDrive -Name "Q" -Root "\\192.168.56.73\export\sol-ms_sql\db01" -Persist -Scope Global -PSProvider FileSystem
+    }
+}
+
+Get-PSDrive {
+    * https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/get-psdrive?view=powershell-7.1
+
+    [[-Name] <String[]>]
+    [-Scope <String>]
+    [-PSProvider <String[]>]
+    [<CommonParameters>]
+
+    examples {
+        get-psdrive -name SOLMSSQLDB01
+    } 
+}
+
+Remove-PSDrive {
+    * https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/remove-psdrive?view=powershell-7.1
+
+    [-Name] <String[]>
+    [-PSProvider <String[]>]
+    [-Scope <String>]
+    [-Force]
+    [-WhatIf]
+    [-Confirm]
+    [<CommonParameters>]
+
+    examples {
+        Get-PSDrive X, S | Remove-PSDrive
+
+        Remove-PSDrive -Name SOLMSSQLDB01        
+    }  
+}
+
+New-SmbMapping {
+    * https://docs.microsoft.com/en-us/powershell/module/smbshare/new-smbmapping?view=win10-ps
+
+    [[-LocalPath] <String>]
+    [[-RemotePath] <String>]
+    [-UserName <String>]
+    [-Password <String>]
+    [-Persistent <Boolean>]
+    [-SaveCredentials]
+    [-HomeFolder]
+    [-CimSession <CimSession[]>]
+    [-ThrottleLimit <Int32>]
+    [-AsJob]
+    [-WhatIf]
+    [-Confirm]
+    [<CommonParameters>]
+}
+
+Get-SmbMapping {
+    * https://docs.microsoft.com/en-us/powershell/module/smbshare/get-smbmapping?view=win10-ps
+
+    [[-LocalPath] <String[]>]
+    [[-RemotePath] <String[]>]
+    [-CimSession <CimSession[]>]
+    [-ThrottleLimit <Int32>]
+    [-AsJob]
+    [<CommonParameters>]
+}
+
+Remove-SmbMapping {
+    * https://docs.microsoft.com/en-us/powershell/module/smbshare/remove-smbmapping?view=win10-ps
+
+    [[-LocalPath] <String[]>]
+    [[-RemotePath] <String[]>]
+    [-UpdateProfile]
+    [-Force]
+    [-CimSession <CimSession[]>]
+    [-ThrottleLimit <Int32>]
+    [-AsJob]
+    [-PassThru]
+    [-WhatIf]
+    [-Confirm]
+    [<CommonParameters>]
+}
+
+Get-SmbConnection {
+    * https://docs.microsoft.com/en-us/powershell/module/smbshare/get-smbconnection?view=win10-ps
+
+    [[-ServerName] <String[]>]
+    [[-UserName] <String[]>]
+    [-SmbInstance <SmbInstance>]
+    [-CimSession <CimSession[]>]
+    [-ThrottleLimit <Int32>]
+    [-AsJob]
+    [<CommonParameters>]
+}
+
+Get-ChildItem {
+    * https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/get-childitem?view=powershell-7.1
+
+    [[-Path] <string[]>]
+    [[-Filter] <string>]
+    [-Include <string[]>]
+    [-Exclude <string[]>]
+    [-Recurse]
+    [-Depth <uint32>]
+    [-Force]
+    [-Name]
+    [-Attributes <FlagsExpression[FileAttributes]>]
+    [-FollowSymlink]
+    [-Directory]
+    [-File]
+    [-Hidden]
+    [-ReadOnly]
+    [-System]
+    [<CommonParameters>]
+
+    examples {
+        # get list of file properties
+        get-childitem -path C:\Users\martel.meyers | format-list -property *
+        # sort by creation and last write
+        Get-ChildItem -Path C:\Users\martel.meyers -Hidden | Sort-Object -Property @{Expression = {$_.CreationTime - $_.LastWriteTime}; Descending = $True} | Format-Table CreationTime, LastWriteTime, FullName
+    }
+}
+
+Get-SMBShare {
+    * https://docs.microsoft.com/en-us/powershell/module/smbshare/get-smbshare?view=win10-ps
+
+    [[-Name] <String[]>]
+    [[-ScopeName] <String[]>]
+    [-Scoped <Boolean[]>]
+    [-Special <Boolean[]>]
+    [-ContinuouslyAvailable <Boolean[]>]
+    [-ShareState <ShareState[]>]
+    [-FolderEnumerationMode <FolderEnumerationMode[]>]
+    [-CachingMode <CachingMode[]>]
+    [-ConcurrentUserLimit <UInt32[]>]
+    [-AvailabilityType <AvailabilityType[]>]
+    [-CaTimeout <UInt32[]>]
+    [-EncryptData <Boolean[]>]
+    [-IncludeHidden]
+    [-SmbInstance <SmbInstance>]
+    [-CimSession <CimSession[]>]
+    [-ThrottleLimit <Int32>]
+    [-AsJob]
+    [<CommonParameters>]
+
+    SWSVOL
+}
+
+New-NfsMappedIdentity {
+    * https://docs.microsoft.com/en-us/powershell/module/nfs/new-nfsmappedidentity?view=win10-ps
+
+    [-MappingStore <MappingStoreType>]
+    [-Server <String>]
+    [-LdapNamingContext <String>]
+    -UserName <String>
+    [-Password <SecureString>]
+    -UserIdentifier <Int32>
+    -GroupIdentifier <Int32>
+    [-PrimaryGroup <String>]
+    [-SupplementaryGroups <String>]
+    [-WhatIf]
+    [-Confirm]
+    [<CommonParameters>]
+
+    examples {
+        New-NfsMappedIdentity -MappingStore "Mapfiles" -Server "KUTLPRDSOLSQL01" -UserName "swssqlsa" -UserIdentifier 1216 -GroupIdentifier 1216
+    }
+}
+
+Get-NfsMappedIdentity {
+    * https://docs.microsoft.com/en-us/powershell/module/nfs/get-nfsmappedidentity?view=win10-ps
+
+    [-MappingStore <MappingStoreType>]
+    [-UserIdentifier <Int32>]
+    [-GroupIdentifier <Int32>]
+    [-AccountName <String>]
+    -AccountType <AccountType>
+    [<CommonParameters>]
+
+    examples {
+        get-nfsmappedidentity -accounttype "User"
+    }    
+}
+
+Get-NfsClientConfiguration {
+    * https://docs.microsoft.com/en-us/powershell/module/nfs/get-nfsclientconfiguration?view=win10-ps
+
+    [-CimSession <CimSession[]>]
+    [-ThrottleLimit <Int32>]
+    [-AsJob]
+    [<CommonParameters>]
+}
+
+Get-NfsMappingStore {
+    * https://docs.microsoft.com/en-us/powershell/module/nfs/get-nfsmappingstore?view=win10-ps  
+}
+
+Get-NfsMountedClient {
+    * https://docs.microsoft.com/en-us/powershell/module/nfs/get-nfsmountedclient?view=win10-ps
+}

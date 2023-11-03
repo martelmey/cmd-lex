@@ -1,0 +1,57 @@
+sqlplus {
+	examples {
+		sqlplus CGIDEPLOY/PasswordAT123@LADEV
+
+		sqlplus SPLUNK/PasswordAT123@HLINT2
+
+		sqlplus "SYSTEM/PasswordAT123@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=192.168.63.22)(PORT=1521))(CONNECT_DATA=(SID=MPINT2)))"
+
+		sqlplus CGIDEPLOY/PasswordAT123@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=kdcnp-scan)(PORT=1521))(CONNECT_DATA=(SID=MPINT2)))
+
+		sqlplus SPLUNK/PasswordAT123@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=kdcnp-scan)(PORT=1521))(CONNECT_DATA=(SERVICE_NAME=hlint2)))
+
+		sqlplus CGIDEPLOY/PasswordAT123@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=kdcprd-scan.prod.health.local)(PORT=1521))(CONNECT_DATA=(SERVICE_NAME=hldprdk)))
+	}
+}
+
+rman {
+	
+	examples {
+	1.
+		rman target /
+		configure snapshot controlfile name to '/ora_backups/snap_orcl.cf';
+		configure channel device t
+		backup database plus archivelog;
+	}
+}
+
+# Print DB info
+sqlplus “/ as sysdba”
+spool /home/oracle/db_info.txt create
+select name,dbid from v$database;
+spool off
+
+# Enable archive log
+sqlplus “/ as sysdba”
+shutdown immediate;
+startup mount;
+alter database archivelog;
+select log_mode from v$database;
+alter database open;
+quit
+
+lsnrctl {
+	status
+	start
+}
+
+SELECT table_name FROM dba_tables;
+SELECT table_name FROM all_tables;
+SELECT * FROM ALL_USERS;
+SELECT * FROM DBA_USERS;
+
+# Get $ORACLE_SID:
+select * from global_name;
+
+Listener Parameter File   /u01/app/18.0.0.0/grid/network/admin/listener.ora
+Listener Log File         /u01/app/grid/diag/tnslsnr/knpdb12/listener/alert/log.xml

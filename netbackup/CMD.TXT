@@ -1,0 +1,270 @@
+bpplinclude {
+	
+	examples {
+		# list backed up items of policy
+		bpplinclude NDMP-Prod-App -L
+	}
+}
+
+bppllist {
+	# https://www.veritas.com/content/support/en_US/doc/15263389-132009154-0/v14665087-132009154
+
+	examples {
+		bppllist NDMP-Prod-App -L
+	}
+}
+
+nbstlutil {
+	# generates reports, cancels SLP w/ backup IDs, see backlog
+	# https://www.veritas.com/support/en_US/doc/15263389-138646468-0/v14671124-138646468
+
+	report [-lifecycle name [-version number]] [-client name] [-mediaid value] [-mediaserver name] [-storageserver name]
+}
+
+nbemmcmd {
+	nbemmcmd -updatehost -machinename cutlprdnetm01-mgmt -machinetype media -machinestateop set_disk_active -masterserver cutlprdnetb01-mgmt
+}
+
+nbsu {
+	/usr/openv/netbackup/bin/support
+}
+
+vssat {
+	# https://www.veritas.com/support/en_US/doc/15263389-138646468-0/v132458849-138646468
+	/opt/openv/netbackup/sec/at/bin
+
+	vssat addldapdomain -d DomainName -s server_URL -u user_base_DN -g group_base_DN -t rfc2307 | msad -m admin_user_DN
+	vssat validateprpl --prplname prpl_name --domain type:name --broker host:1556:nbatd
+	vssat validategroup --groupname name --domain type:name --broker host:1556:nbatd
+	vssat listldapdomains
+
+	examples {
+		# add ldap domain
+		vssat addldapdomain -d health.local -s ldap://192.168.60.31 \
+		-u ou=people,dc=health,dc=local -g ou=groups,dc=health,dc=local \
+		-t rfc2307 -m cn=Manager,dc=health,dc=local
+
+		# add ad domain
+		vssat addldapdomain -d nbudomain -s ldap://domaincontroller.example.com \
+		-u "cn=Users,dc=example,dc=com" -g "cn=Users,dc=example,dc=com" \
+		-m "CN=TestUser,OU=Users,DC=example,DC=com" -t msad
+
+		vssat validategroup --groupname cn=splunkAdmin,ou=groups,dc=health,dc=local --domain ldap:health.local
+	}
+}
+
+nboraadm # oracle db {}
+
+nbtar {}
+
+crccontrol {
+	--getmode
+}
+
+nbdevquery {
+	# https://www.veritas.com/support/en_US/doc/123533878-127136857-0/v123549725-127136857
+	# is an msdp storage server configured, and has instance access
+	-liststs -stype PureDisk -storage_server lnxmedia -U
+	# List in user format the configuration information about all servers that host storage in the system.
+	-liststs -stype Network_NTAP -U
+	# List all disk pools of type PureDisk (Media Server Deduplication Pool) in the system.
+	nbdevquery -stype PureDisk -dp disk-pool-1
+}
+
+nbdevconfig {
+	-creatests -storage_sever winmaster.example.com -stype AdvancedDisk_crypt -media_server winmaster.example.com
+}
+
+nbkmsutil {
+	-quiescedb
+	-unquiescedb
+	-createkg -kgname msdp
+	-createkey -keyname test01 -kgname msdp -activate
+}
+
+nbkmscmd {
+	-discoverNBkms
+}
+
+nbkms {
+	-createemptydb (to create key database)
+}
+
+bpkeyutil {
+	[-clients <client1>,<client2>,<client3>]
+	-display
+}
+
+bptestbpcd {
+	# https://www.veritas.com/support/en_US/doc/15263389-127350397-0/v14667804-127350397
+	# test client connectivity from master
+	bptestbpcd -client brt-hial-ohs1 -host kutlnpnetm01-mgmt -verbose 
+	bptestbpcd -host kutlnpnetm01-mgmt -verbose 
+}
+
+nbfindfile {}
+
+bpimagelist {}
+
+vxpbx_exchanged {
+	/opt/VRTSpbx/bin/vxpbx_exchanged start
+}
+
+bp.kill_all {
+	# shutdown
+	kill -9 1184
+}
+
+bp.start_all {
+	# startup
+}
+
+nbperfchk {
+	-i <inputpath> -o <outputpath> -s <filesize> -syncend
+	-i <inputpath> -o <outputpath> -bs <buffersize>
+	First:
+	-i zero: -o e:\data1 -s 64g syncend
+	Then:
+	-i e:\data1 -bs 128k -o NUL
+}
+
+bperror {
+	-all
+	-U -all
+}
+
+bpps {
+	# check processes
+	# shortname: nbpem netbackup-policy-execution-manager
+	-a
+	-x
+}
+
+seedutil {
+	-seed -sclient similar_client -spolicy policy_name -dclient new_client
+	# storage_path/databases/catalog/2/#pdseed (fingerprints for similar client, used to upload cache to new client)
+	-list_clients
+	# temp seed dirs are automatically removed after 1st successful backup of new_client
+	# but can be done manually also:
+	-clear new_client
+	# seeding msdp fingerprint cache from the storage server
+	# location of seedutil:
+	/usr/openv/pdde/pdag/bin
+	C:\Program Files\Veritas\pdde
+}
+
+dcscan {}
+
+bpnbat {
+	-login -LoginType WEB
+}
+
+catdbutil {
+	--list --dbpath /msdpcat/databases/catalog/2/#pdseed/console
+}
+
+bpsetconfig {
+	-e <file>
+	-h <host>
+
+	bpsetconfig -e exclude_list -h knpapp2
+
+	examples {
+		# configure msdp restores directly to a client
+		
+	}
+}
+
+bpgetconfig {
+	-M "master" [-x|X|d|D] ["config_item" ...]
+	[-u|h] [-x|X|d|D] ["config_item" ...]
+	-g "server" [-L|U|l] [-c|t] [-A]
+	-s "server" [-L|U|l] [-c|t] [-A]
+	-i "filename" "server" ["class" ["schedule"]] (UNIX/Linux targets only)
+	-e "filename" "server" ["class" ["schedule"]] (UNIX/Linux targets only)
+	-H [config_item]
+
+	-M show master serv info
+
+}
+
+bpplclients {
+	-allunique
+
+	bpplclients -allunique > /tmp/NB_clients
+	bpplclients policy_name -add hostname os_type
+
+	# trim to just hostnames, to use in for loop, to push out exclude_list
+	cat /tmp/NB_clients | awk '{print $3}' > /tmp/NB_clients
+}
+
+bpclient {
+	examples {
+		bpclient -client client -L
+		bpclient -client client -add -client_direct_restore 1
+		bpclient -client client -L | grep "Client Direct Restore"
+	}
+}
+
+jnbSA &
+
+bpdbjobs {
+	https://www.veritas.com/support/en_US/doc/123533878-127136857-0/v123536850-127136857
+	# what you see in activity monitor
+}
+
+bpdm {
+	# backup plus database manager
+
+	# convert from epoch time
+	bpdbm -ctime 1620328867
+}
+
+nbrepo {
+	-l # patch repo listing
+	-a # patch repo add
+
+	nbrepo -a nbeeb.client_4013394.10_8.3.0.1_solaris_sparc.sja
+}
+
+bpimagelist {
+	-help
+
+	bpimagelist -L -hoursago 4 -client kutlprdnetb01-mgmt | more
+}
+
+bpexpdate {
+	bpexpdate -backupid kutlprdnetb01-mgmt_1620328915 -d 0
+}
+
+nbcertcmd {
+	-listCertDetails
+	-getCAcertificate -server kutlnpnetm01-mgmt
+	-getcertificate -force
+
+	examples {
+		nbcertcmd -getCAcertificate -server kutlprdnetm01-mgmt
+	}
+}
+
+bpclntcmd {
+	-clear_host_cache
+	-clean_whitelist_cache
+	-get_local_server_patch_version
+}
+
+bnpset {}
+
+bppolicynew {
+	examples {
+		# rename policy
+		bppolicynew <oldname> -renameto <newname>
+	}
+}
+
+install_client_files {
+	examples {
+		# deploy to client
+		install_client_files ssh knpapp23
+	}
+}

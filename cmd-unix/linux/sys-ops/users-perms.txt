@@ -1,0 +1,92 @@
+adduser {
+
+    examples {
+        # secure service usr
+        -M sambauser -s /sbin/nologin # -M=no home, +invalid shell
+
+        adduser -g wheel <username>
+    }
+}
+
+userdel {
+    -r, --remove (remove home dir & mail spool)
+}
+
+chown {
+    -R
+
+    examples {
+        chown -R nobody: /export/ops-tools
+    }
+}
+
+id {
+    -u
+    -G
+}
+
+usermod {
+    -G
+    -d
+}
+
+su {}
+
+chmod {
+    -c, --changes (report only changes)
+    -R, --recursive
+
+    examples {
+        chmod -R 777 /export/ops-tools
+        chmod -R u+rw,g-rwx,o-rwx /var/empty
+    }
+}
+
+acls {
+    getfacl -e /home/murlock
+       -e, --all-effective
+           Print all effective rights comments
+       -E, --no-effective
+           Do not print effective rights comments.
+       -s, --skip-base
+           Skip files that only have the base ACL entries (owner, group, others).
+       -R, --recursive
+           List the ACLs of all files and directories recursively.
+       -L, --logical
+           Logical walk, follow symbolic links to directories. Only effective in combination with -R.
+       -P, --physical
+           Physical walk, do not follow symbolic links to directories. Only effective in combination with -R.
+       -t, --tabular
+           Use an alternative tabular output format. 
+       -p, --absolute-names
+           Do not strip leading slash characters (`/')
+       -n, --numeric
+           List numeric user and group IDs
+
+    setfacl -m u:qemu:rx /dev-kvm
+	    The --set and --set-file options set the ACL of a file or a directory. 
+        The -m (--modify) and -M (--modify-file) options modify the ACL of a file or directory.
+
+        The -x (--remove) and -X (--remove-file) options remove ACL entries.
+
+        -b, --remove-all
+            Remove all extended ACL entries. The base ACL entries of the owner, group and others are retained.
+        -k, --remove-default
+            Remove the Default ACL. If no Default ACL exists, no warnings are issued.
+        -n, --no-mask
+            Do not recalculate the effective rights mask. 
+        --mask
+            Do recalculate the effective rights mask, even if an ACL mask entry was explicitly given. (See the -n option.)
+        -d, --default
+            All  operations apply to the Default ACL.
+        --restore=file
+            Restore a permission backup created by `getfacl -R' or similar. 
+        --test
+            Test mode. Instead of changing the ACLs of any files, the resulting ACLs are listed.
+        -R, --recursive
+            Apply operations to all files and directories recursively.
+        -L, --logical
+            Logical walk, follow symbolic links to directories. Only effective in combination with -R. cannot be mixed with `--restore'.
+        -P, --physical
+            Physical walk, do not follow symbolic links to directories. skips symbolic link arguments. Only in combination with -R. cannot be mixed with `--restore'.
+}

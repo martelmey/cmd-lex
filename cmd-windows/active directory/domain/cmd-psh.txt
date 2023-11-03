@@ -1,0 +1,99 @@
+Get-ADDomainController {
+    https://docs.microsoft.com/en-us/powershell/module/activedirectory/get-addomaincontroller?view=winserver2012-ps
+}
+
+Get-ADDomain {
+    https://docs.microsoft.com/en-us/powershell/module/activedirectory/get-addomain?view=winserver2012-ps
+    sws.health.local
+}
+
+Get-ADForest {
+    https://docs.microsoft.com/en-us/powershell/module/activedirectory/get-adforest?view=winserver2012-ps
+    sws.health.local
+}
+
+New-ADOrganizationalUnit {
+    https://docs.microsoft.com/en-us/powershell/module/addsadministration/new-adorganizationalunit?view=win10-ps
+    -Name "WSFC"
+    -Path "OU=WSFC,DC=sws,DC=health,DC=local"
+}
+
+New-ADComputer {
+    https://docs.microsoft.com/en-us/powershell/module/addsadministration/new-adcomputer?view=win10-ps
+    -Name "SQLServer"
+    -SamAccountName "SQLServer"
+    -Path "OU=WSFC,DC=sws,DC=health,DC=local"
+}
+
+New-ADGroup {
+    https://docs.microsoft.com/en-us/powershell/module/addsadministration/new-adgroup?view=win10-ps
+    -Name "ClusterAdmins"
+    -SamAccountName "ClusterAdmins"
+    -GroupCategory Security
+    -GroupScope Global
+    -DisplayName "ClusterAdmins"
+    -Path "OU=WSFC,DC=sws,DC=health,DC=local"
+}
+
+Add-ADGroupMember {
+    https://docs.microsoft.com/en-us/powershell/module/addsadministration/add-adgroupmember?view=win10-ps
+    -Identity
+    -Members
+    
+    examples {
+        Add-ADGroupMember -Identity "ClusterAdmins" -Members "sws.health.local/Users/Administrator","sws.health.local/Computers/KUTLPRDSOLSQL01","sws.health.local/Computers/CUTLPRDSOLSQL01","sws.health.local/WSFC/SWSKDCCDC"
+        Add-ADGroupMember -Identity "Administrators" -Members "sws.health.local/Users/neil.frain"
+        Add-ADGroupMember -Identity "Remote Desktop Users" -Members "sws.health.local/Users/neil.frain"
+        Add-ADGroupMember -Identity "Organization Management" -Members nbu_svc_exch
+    }
+}
+
+Get-ADGroupMember {
+    
+    examples {
+        Get-ADGroupMember -Identity "Organization Management"
+    }
+}
+
+New-ADUser {
+    https://docs.microsoft.com/en-us/powershell/module/addsadministration/new-aduser?view=win10-ps
+    -Name
+    -Path "CN=Users,DC=SWS,DC=HEALTH,DC=LOCAL"
+    -AccountPassword <SecureString>
+    -PasswordNeverExpires
+    
+    examples {
+        $SecurePassword = Read-Host -AsSecureString
+        New-ADUser -Name "neil.frain" -Path "CN=Users,DC=SWS,DC=HEALTH,DC=LOCAL" -AccountPassword $SecurePassword -PasswordNeverExpires $true -Enabled $true
+
+        New-ADUser -Name nbu_svc_exch -AccountPassword $(ConvertTo-SecureString "P@ssw0rd" -AsPlainText -Force) -UserPrincipalName nbu_svc_exch@vrtsedu.lab -Enabled $true -CannotChangePassword $true -ChangePasswordAtLogon $false -PasswordNeverExpires $true
+    }
+}
+
+Enable-ADAccount {
+    https://docs.microsoft.com/en-us/powershell/module/addsadministration/enable-adaccount?view=win10-ps#examples
+    -Identity
+}
+
+Get-ADUser {
+    https://docs.microsoft.com/en-us/powershell/module/addsadministration/Get-ADUser?view=win10-ps
+    
+    examples {
+        Get-ADUser -Filter * -SearchBase "CN=Users,DC=SWS,DC=HEALTH,DC=LOCAL"
+
+        Get-ADUser -Identity nbu_svc_exch
+    }
+}
+
+Get-ADObject {
+    https://docs.microsoft.com/en-us/powershell/module/addsadministration/get-adobject?view=win10-ps
+    
+    examples {
+        -Filter * | Where{($_.ObjectClass -eq “container”) -or ($_.ObjectClass -eq “organizationalunit”) -or ($_.ObjectClass -eq “user”) -or ($_.ObjectClass -eq “group”) -or ($_.ObjectClass -eq “computer”)}
+
+        | Set-ADObject -ProtectedFromAccidentalDeletion $true
+
+        #Get all users:
+        Get-ADObject -Filter * | Where{($_.ObjectClass -eq "user")}
+    }
+}

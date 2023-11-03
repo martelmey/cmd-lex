@@ -1,0 +1,7 @@
+1.) Download public key
+2.) Download signature (.sig, .asc)
+gpg --import {public-key}
+gpg --verify {signature-file-name}
+
+# Check files in tar
+tar --list --file filename

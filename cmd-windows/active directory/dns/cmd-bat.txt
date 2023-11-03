@@ -1,0 +1,4 @@
+dnscmd {
+    https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/dnscmd
+    /resetlistenaddress 192.168.60.192
+}

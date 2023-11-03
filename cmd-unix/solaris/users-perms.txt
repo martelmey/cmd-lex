@@ -1,0 +1,78 @@
+groups {
+    <user>
+}
+
+useradd {
+    -D # see default params
+
+    examples {
+        # create user
+        useradd -G staff -d /export/home/oemoms -m -s /usr/bin/bash oemoms
+    }
+}
+
+userdel {
+    -r # remove home folders too
+}
+
+usermod {
+    -G splunk,root,wheel,oinstall splunk
+    -u <new-uid>
+
+    # change uid of user
+    usermod -u 100016 splunk
+}
+
+su {
+    - oracle -c ''
+}
+
+visduo {
+    -c, --check
+    -f, --file # specify sudoers file location
+
+    examples {
+        # parse for syntax errors
+        visudo -c -f /etc/sudoers
+    }
+}
+
+passwd {
+	-h change home dir
+	-s show for name
+	-d delete pass for name & unlock account
+	-f force user to change pass @ next login
+	-u unlock
+}
+
+ldapclient {
+    list (ldap check)
+}
+
+idmap {
+    # https://docs.oracle.com/cd/E36784_01/html/E36871/idmap-1m.html#scrolltoc
+
+    -f command-file
+    add [-d] name1 name2
+    dump [-n] [-v]
+    export [-f file] format
+    flush [-a]
+    get-namemap name
+    help
+    import [-F] [-f file] format
+    list
+    remove [-t|-f] name
+    remove -a
+    remove [-d] name1 name2
+    set-namemap [-a authenticationMethod] [-D bindDN]
+     [-j passwdfile] name1 name2
+    show [-c] [-v] [-V] identity [target-type]
+    unset-namemap [-a authenticationMethod] [-D bindDN]
+     [-j passwdfile] name [target-type]
+
+    examples {
+        idmap add 'winuser:swssqlsa@sws.health.local' 'unixuser:swssqlsa'
+        svccfg -s idmap setprop debug/dns = 1
+        svccfg -s idmap setprop debug/discovery = 2
+    }
+}

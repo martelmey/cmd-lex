@@ -1,0 +1,79 @@
+lxc: additional interface: {
+    host:
+        /container/KUTLLDOMLDAP/config:
+            lxc.network.type = veth
+            lxc.network.link = br1
+            lxc.network.name = eth1
+            lxc.network.flags = up
+            lxc.network.mtu = 1500
+            lxc-stop --name KUTLLDOMLDAP
+            lxc-start --name KUTLLDOMLDAP
+    guest:
+        touch /etc/sysconfig/network-scripts/ifcfg-eth1
+        (
+            echo "DEVICE=eth1"
+            echo "BOOTPROTO=none"
+            echo "IPADDR=192.168.57.241"
+            echo "PREFIX=23"
+            echo "ONBOOT=yes"
+            echo "HOSTNAME=kutlnpcmdb01"
+            echo "DHCP_HOSTNAME=`hostname`"
+            echo "NM_CONTROLLED=no"
+            echo "TYPE=Ethernet"
+        ) >> /etc/sysconfig/network-scripts/ifcfg-eth1
+        touch /etc/sysconfig/network-scripts/route-eth0
+        echo "192.168.160.0/24 via 192.168.60.254 dev eth0" >> /etc/sysconfig/network-scripts/route-eth0
+        touch /etc/sysconfig/network-scripts/route-eth1
+        echo "192.168.156.0/23 via 192.168.57.254 dev eth1" >> /etc/sysconfig/network-scripts/route-eth1
+    host:
+        lxc-stop --name KUTLLDOMLDAP
+        lxc-start --name KUTLLDOMLDAP
+}
+
+libvirt permit fix {
+    usermod -G qemu,kvm,root qemu
+    chmod --recursive g+rwx /var
+    setfacl --recursive --modify u:qemu:rwx /var
+    chmod --recursive g-rwx /var/empty
+    setfacl --recursive --remove u:qemu:rwx /var/empty
+    #use /var/log/dev-kvm-expansion (true location, no symlinks)
+}
+
+libvirt kernel fix {
+    rmmod kvm_intel
+    rmmod kvm
+    modprobe kvm
+    modprobe kvm_intel
+    #lsmod | grep -i kvm
+}
+
+libvirt binary fix {
+    <emulator>/usr/libexec/qemu-kvm</emulator>
+    <emulator>/usr/bin/qemu-system-x86_64</emulator>
+    ln -s /usr/libexec/qemu-kvm /usr/bin/qemu-system-x86_64
+}
+
+qemu, format & mount: linux {
+    fdisk /dev/vdb (g,n,1,2048,+50G,p,w)
+    mkfs.ext4 -F /dev/vdb1
+    mkdir /disk2
+    mount /dev/vdb1 /disk2
+}
+
+disable virbr0 {
+    systemctl disable libvirtd
+    virsh net-autostart default --disable
+    virsh net-undefine default
+    virsh net-destroy default
+}
+
+update osinfo-query database {
+    yum update osinfo-db
+}
+
+# create vnc tunnel
+# Example:
+# from <dmz-server>:
+ssh martel.meyers@<hypervisor> -L 5900:127.0.0.1:5901
+# from 127.0.0.1:
+ssh martel.meyers@<dmz-server> -L 5900:127.0.0.1:5900

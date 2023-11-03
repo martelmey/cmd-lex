@@ -1,0 +1,20 @@
+input()
+random(){
+	.choice(list)
+	.randint(num1,num2)
+	.sample(range,num)
+}
+zip(){
+	zip(<list_one>,<list_two>) #Is now zip object
+	print(list(<list_name>)) #Convert to list object	
+}
+print()
+type()
+str()
+range(10) #0-9 {
+	range(2,9) #2-8
+	range(2,9,2) #2,4,6,8	
+}
+len(list)
+int(5.9) #5
+sorted(list) # create new list

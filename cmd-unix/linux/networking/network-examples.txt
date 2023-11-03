@@ -1,0 +1,23 @@
+# Create bridged interface
+	# w/ commands or config
+# Modifying interface
+	# w/ commands or config
+# Check connectivity to website
+	curl -I https://www.cisco.com
+
+see listening ports {
+	netstat -tulpn | grep LISTEN
+	lsof -i -P -n | grep LISTEN
+}
+
+dig get hostname only {
+	dig -x 209.132.183.81 +short
+}
+
+dig get ip only {
+	dig redhat.com +short
+}
+
+test remote port {
+	netcat -z -n -v 192.168.60.10 22
+}

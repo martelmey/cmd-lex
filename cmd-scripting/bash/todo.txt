@@ -1,0 +1,4 @@
+() delete local user from servers
+() add local user to servers
+() test connections
+() current highest uidNumber in openLDAP

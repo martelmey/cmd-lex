@@ -1,0 +1,20 @@
+# ifconfig interface flags
+https://docs.oracle.com/cd/E19253-01/816-5166/ifconfig-1m/index.html#INTERFACE%20FLAGS
+
+# Configuring ZFS SMB Sharing
+https://www.oracle.com/technical-resources/articles/it-infrastructure/admin-solaris-zfssmb-sharing.html
+
+# Managing SMB File Sharing and Windows Interoperability in Oracle® Solaris 11.4
+https://docs.oracle.com/cd/E37838_01/html/E61013/index.html
+
+# LDOMs (OVM for SPARC) Command line reference [cheat sheet]
+https://www.thegeekdiary.com/ldoms-ovm-for-sparc-command-line-reference-cheat-sheet/
+
+# Gracefully Shut Down LDoms
+https://docs.oracle.com/cd/E40166_01/html/E40167/z40000061004125660.html
+
+# Oracle pkg-register (cert & key)
+https://pkg-register.oracle.com/register/certificate/
+
+	Correct SSH Directory permissions
+https://linux.uits.uconn.edu/2017/02/27/correct-ssh-directory-permissions/

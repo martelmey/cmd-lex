@@ -1,0 +1,7 @@
+check status of firewall {
+    netsh advfirewall show allprofiles state
+
+    for remote pc {
+        psexec \<PC> -u <domain\username> netsh advfirewall show allprofiles state
+    }
+}

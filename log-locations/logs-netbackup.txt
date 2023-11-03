@@ -1,0 +1,22 @@
+# UNIX
+
+/usr/openv/netbackup/logs/
+	bpVMutil (adding VMWare credentials)
+	bppkar
+	bpbrm
+	bpdrm
+	dbclient
+	bptm
+	vnetd
+	/user_ops/ # user operations
+		nbjlogs (jnbSA logs)
+
+examples {
+	cc /usr/openv/netbackup/logs/bpbkar
+	cat root.072021_00001.log | grep -i empty
+}
+
+# Windows
+C:\Program Files\Veritas\NetBackup\logs
+	\dbclient
+	mklogdir.bat

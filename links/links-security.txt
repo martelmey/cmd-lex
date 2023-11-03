@@ -1,0 +1,17 @@
+## Organizations
+
+CIS
+	https://www.cisecurity.org/
+
+## Threat Intelligence Platforms
+
+MISP
+	https://www.misp-project.org/
+
+STIX/TAXII
+	https://oasis-open.github.io/cti-documentation/
+
+## Exploit DBs
+
+Exploit DB
+	https://www.exploit-db.com/

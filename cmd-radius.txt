@@ -1,0 +1,29 @@
+https://networkradius.com/doc/current/
+
+radattr
+rad_counter
+raddebug
+radiusd {
+    https://freeradius.org/radiusd/man/radiusd.html
+}
+radmin {
+    https://freeradius.org/radiusd/man/radmin.html
+    [-d config_directory] [-e command] [-E] [-f socket_file] [-h] [-i input_file] [-n name] [-q]
+}
+radsqlrelay
+radwho {
+    https://freeradius.org/radiusd/man/radwho.html
+    show online users  
+}
+radclient {
+    https://freeradius.org/radiusd/man/radclient.html
+    send packets to a RADIUS server, show reply
+}
+radcrypt
+radeapclient
+radlast
+radsniff
+radtest {
+    radtest is a frontend to radclient(1)
+}
+radzap

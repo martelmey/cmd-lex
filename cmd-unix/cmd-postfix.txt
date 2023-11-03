@@ -1,0 +1,13 @@
+postfix {
+	check # for bad ownerships, missing files/dirs
+	status
+	start
+	stop
+}
+
+postconf {
+
+	examples {
+		postconf config_directory
+	}
+}

@@ -1,0 +1,46 @@
+performance {
+    less /proc/meminfo
+    free -g -t -o
+    vmstat -s
+    htop
+    atop
+    sudo dmidecode --type memory
+    lscpu -p
+    more /proc/cpuinfo
+    htop
+    echo "Threads/core: $(nproc --all)"
+    getconf _NPROCESSORS_ONLN
+    sudo dmidecode -t 4 | egrep -i 'core (count|enabled)|thread count|Version'
+}
+
+hardware {
+    hwinfo --cpu --short
+        --netcard --short
+    uuidgen eth0
+    file -s /dev/sdb*
+}
+
+processes {
+    iotop -o
+    ps aux | awk '$8 ~ /^D/{print}'
+    iostat -xdm
+    iostat -xdm -p sda
+    sar -P ALL -f /var/log/sa/sa21
+    ps -ef | grep collectdmon | grep -v status | grep -v grep
+}
+
+env {
+    env JAVA_HOME=/.../.../ tomcat.sh --options
+    printenv JAVA_HOME, CATALINA_HOME/BASE (will not show shell vars)
+    setenv
+    set (shows env & shell vars, & shell functions) | less
+    export JAVA_HOME="/.../.../"
+    export -n JAVA_HOME (convert back to shell var from env. var)
+    unset JAVA_HOME (completely unset shell & env vars)
+    
+    /etc/environment (system-wide env. vars)
+    /etc/profile (vars loaded when a bash login shell is entered)
+}
+
+# switch TTY
+ctrl + alt + f<#>

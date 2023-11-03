@@ -1,0 +1,51 @@
+# BIND DNS TSIG
+https://documentation.solarwinds.com/en/Success_Center/orionplatform/Content/HA_Transaction_Signatures.htm
+
+# HA Pool Setup
+https://documentation.solarwinds.com/en/success_center/orionplatform/Content/HA_Set_Up_HA_Pools.htm
+
+# How to Configure a DNS Client in Oracle Solaris
+	https://docs.oracle.com/cd/E37838_01/html/E60988/gnlbt.html
+
+# Full RabbitMQ Reset in Orion Platform products
+	https://support.solarwinds.com/SuccessCenter/s/article/Full-RabbitMQ-Reset-in-Orion-Platform-products?language=en_US
+
+# Management Information Base (MIB) in the Orion Platform
+	https://documentation.solarwinds.com/en/Success_Center/orionplatform/Content/Core-Management-Information-Base--MIB--sw1730.htm
+
+# Management Information Base (MIB) for the Simple Network Management Protocol (SNMP)
+	https://tools.ietf.org/html/rfc3418
+
+# Failed to determine MIBs database state error on Orion Platform
+	https://support.solarwinds.com/SuccessCenter/s/article/MIB-Management-status-shows-as-failed-to?language=en_US
+
+# Update the SolarWinds MIB Database for the Orion Platform
+	https://documentation.solarwinds.com/en/Success_Center/NPM/Content/Core-Downloading-the-SolarWinds-MIB-Database-sw3581.htm
+
+# Disable or delete HA pools, force a failover, or update an HA pool for Orion Platform products
+https://documentation.solarwinds.com/en/success_center/orionplatform/content/ha-manage-pools.htm
+# Disable HA in the command prompt
+https://support.solarwinds.com/SuccessCenter/s/article/Disable-HA-in-the-command-prompt?language=en_US
+
+# How to rebuild SolarWinds High Availability
+https://support.solarwinds.com/SuccessCenter/s/article/How-to-rebuild-SolarWinds-High-Availability?language=en_US
+
+# How to Clear Information Service Subscriptions in Orion Products
+https://support.solarwinds.com/SuccessCenter/s/article/Clear-Information-Service-Subscriptions?language=en_US
+
+# Pool member in High Availability deployment is grey
+https://support.solarwinds.com/SuccessCenter/s/article/Pool-member-in-High-Availability-deployment-is-grey?language=en_US
+
+# Extra entries are present in Engines or OrionServers tables when using Orion Scalability Engines
+https://support.solarwinds.com/SuccessCenter/s/article/Extra-engines-in-Engines-or-OrionServers-tables?language=en_US
+
+# SolarWinds Information Service v3.0 Schema Documentation Index
+http://solarwinds.github.io/OrionSDK/schema/index.html
+# Orion.OrionServers
+http://solarwinds.github.io/OrionSDK/schema/Orion.OrionServers.html
+
+# Trace the user login activity in Orion Web Console using Audit Trails
+https://support.solarwinds.com/SuccessCenter/s/article/Trace-the-user-login-activity-in-Orion-Web-Console-using-Audit-Trails?language=en_US
+
+# Install or configure SNMP for Windows
+https://support.solarwinds.com/SuccessCenter/s/article/Install-or-configure-SNMP-for-Windows?language=en_US

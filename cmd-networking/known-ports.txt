@@ -1,0 +1,20 @@
+active directory {
+    53/tcp/udp = dns
+    88/tcp/udp = kerberos
+    135/tcp = rpc endpoint mapper
+    389/tcp/udp = ldap
+    445/tcp = smb
+    636/tcp = ldap ssl
+}
+
+remote desktop services {
+    135/tcp = RPC for License Server communication and RDSH
+    137/udp = NetBIOS Name resolution
+    138/udp = NetBIOS datagram
+    139/tcp = NetBIOS session service
+    389/tcp/udp = ldap
+    443/tcp = over internet to microsoft clearinghouse
+    445/tcp = smb
+    49152-65535/tcp = Used for RPC For Windows Server
+    5985/tcp = WMI and PowerShell Remoting for administration
+}
