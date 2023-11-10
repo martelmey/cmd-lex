@@ -1,0 +1,19 @@
+Get-Service {
+    https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/get-service?view=powershell-7
+    -Name "WinRM"
+}
+
+Start-Service {
+    https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/start-service?view=powershell-7
+    -Name "sshd"
+}
+
+Set-Service {
+    https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/set-service?view=powershell-7
+    -Name sshd
+    -StartupType 'Automatic'
+}
+
+Restart-Service {
+    https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/restart-service?view=powershell-7
+}

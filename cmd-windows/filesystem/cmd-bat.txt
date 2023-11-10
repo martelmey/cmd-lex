@@ -153,3 +153,19 @@ mount {
         swssqlagt:x:1218:
     }
 }
+
+find {
+    https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/find
+    find [/v] [/c] [/n] [/i] [/off[line]] <"string"> [[<drive>:][<path>]<filename>[...]]
+
+    examples {
+        # To display all lines from <file> that contain <string>
+        find "pencil sharpener" pencil.md
+
+        # find filesnames in a dir containing <string>
+        dir c:\temp /s /b | find "CPU"
+
+        # Check if a service is running:
+        sc query  Winmgmt | find "RUNNING" >nul 2>&1 && (echo service is started) || (echo service is stopped)
+    }
+}

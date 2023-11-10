@@ -29,3 +29,46 @@ Import-Certificate {
         Import-Certificate @params
     }
 }
+
+Get-WindowsUpdateLog {
+	* https://docs.microsoft.com/en-us/powershell/module/windowsupdate/get-windowsupdatelog?view=windowsserver2019-ps#syntax
+}
+
+Get-WinEvent {
+    https://adamtheautomator.com/get-winevent/
+    https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.diagnostics/get-winevent?view=powershell-7.3
+
+    -ListLog *winrm* | % {wevtutil.exe cl $_.LogName} (dump log)
+        *winrm* | % {echo y | wevtutil.exe sl $_.LogName /e:true}
+        *winrm*  | fl *
+        * | where {$_.RecordCount -gt 0}
+
+    examples {
+        # get between certain dates
+        get-winevent -filterhashtable @{logname = 'application'; starttime = '12:45 pm'; endtime = '12:50 pm' }
+        # see all providers
+        Get-WinEvent -ListProvider * | Format-Table -Autosize
+    }
+}
+
+Get-EventLog (deprecated) {
+    https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/get-eventlog?view=powershell-5.1#examples
+
+    -List
+    Application -Newest 1 | Get-Member (filter)
+    Security -Newest 1 | Get-Member
+    System -Newest 1 | Get-Member
+
+    examples {
+        # get application event log events that occur only on Sept. 24, 2015
+        Get-EventLog -LogName application -After "9/24/15" -Before "9/25/15"
+        # get for past 24 hrs
+        Get-EventLog Application -After (Get-Date).AddDays(-1)
+        # between any 2 times of any given day
+        Get-EventLog -LogName System | ?{$_.TimeGenerated -match "04:[0-2][0-9]:[0-5][0-9]"}
+        # between any 2 days
+        Get-EventLog System -Entrytype Error | Where-Object TimeWritten -Like "12/02/2019*"
+        Get-EventLog System -Entrytype Error -Before 12/01/2019 -After 12/03/2019
+
+    }
+}

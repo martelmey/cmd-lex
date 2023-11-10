@@ -1,0 +1,5 @@
+svnadmin {
+    https://svnbook.red-bean.com/en/1.7/svn.ref.svnadmin.html
+
+    svnadmin command /path/to/repos [options] [args]
+}

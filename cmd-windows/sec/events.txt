@@ -1,0 +1,30 @@
+Microsoft-Windows-WinRM/Operational
+
+Windows Logs:
+Security
+	Audit Success
+		Logon
+		Logoff
+		Special Logon
+		System Integrity
+		Other System Events
+		Security Group Management
+		Credential Validation
+
+Applications and Services Logs
+	Microsoft
+		Windows
+			Windows Remote Management
+
+LogModes {
+	Circular – Overwrite the oldest log entry once full.
+	Retain – Keep all events until the log is full and stop logging until freed.
+	AutoBackup – Automatically back up and archive event logs once full.
+}
+
+LogTypes {
+	Administrative – Primarily intended for end-users and administrative users
+	Analytical – Typically, a high volume log, meant to describe program operations
+	Debug – Meant for developers needing a deep-dive into program internals
+	Operational – An event that occurs during operation and is useful to diagnose occurrences and trigger processes
+}

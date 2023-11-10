@@ -86,9 +86,20 @@ fdisk {
             default=/proc/partitions
 }
 
-symbolic links {
-    ln -s /usr/pgsql-9.5/bin psql95
-    unlink expanions
+ln {
+    https://linuxize.com/post/how-to-create-symbolic-links-in-linux-using-the-ln-command/
+
+    ln -s [OPTIONS] FILE LINK
+
+    examples {
+        # create soft link
+        ln -s /usr/pgsql-9.5/bin psql95
+        # unlink
+        unlink expanions
+        # check link
+        ls -l my_link.txt
+    }
+
 }
 
 xfs_growfs {

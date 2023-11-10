@@ -1,0 +1,17 @@
+wevutil {
+	cl clear-log
+	el enum-logs (display names of all logs)
+	gl get-log (display config info)
+	sl set-log (modify log config)
+	qe query-events
+        Application /c:3 /rd:true /f:text
+		/lf:<logfile>
+		/sq:<Structquery>
+		/q:<Query>
+	epl export-log
+
+	/f:<Format>XML/Text
+	/e:<Enabled>
+	/c:<Count> (max evts to read)
+	/rd:<Direction> true=most recent returned first
+}
