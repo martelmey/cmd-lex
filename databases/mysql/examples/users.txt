@@ -1,0 +1,13 @@
+# show all users in server
+mysql -u root -p
+USE mysql;
+DESCRIBE user;
+
+# create user w/ password specified
+CREATE USER 'jeffrey'@'localhost' IDENTIFIED BY 'password';
+
+# change pwd of existing user
+ALTER USER 'jeffrey'@'localhost' IDENTIFIED BY 'password';
+
+# change your own account pwd
+ALTER USER USER() IDENTIFIED BY 'password';

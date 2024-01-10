@@ -6,15 +6,15 @@ ldm {
     -d, --domain
 
     examples {
-            # access ldom console via cdom
-        telnet localhost 5001
-            # see console settings of ldom
-        ldm list -o console ldom01
-            # shut down, start up
-        ldm stop <dom>
-        ldm unbind-domain <dom>
-        ldm start <dom>
-        ldm bind-domain <dom>
+        # access ldom console via cdom
+            telnet localhost 5001
+        # see console settings of ldom
+            ldm list -o console ldom01
+        # shut down, start up
+            ldm stop <dom>
+            ldm unbind-domain <dom>
+            ldm start <dom>
+            ldm bind-domain <dom>
     }
 }
 

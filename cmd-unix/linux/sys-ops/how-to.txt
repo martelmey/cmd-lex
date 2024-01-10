@@ -1,3 +1,7 @@
+see last reboot {
+    last reboot | head -2
+}
+
 performance {
     less /proc/meminfo
     free -g -t -o

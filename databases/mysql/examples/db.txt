@@ -1,0 +1,17 @@
+# show existing databases
+SHOW DATABASES;
+
+# create a new database
+CREATE DATABASE <string>;
+
+# switch active database
+USE <string>;
+
+# create table within active database
+CREATE TABLE <string>;
+
+# show all tables in active database
+SHOW TABLES;
+
+# show all columns of a table
+DESCRIBE <string>;

@@ -1,0 +1,36 @@
+CREATE ROLE [IF NOT EXISTS] role [, role ] ... {
+    CREATE ROLE 'admin', 'developer';
+    CREATE ROLE 'webapp'@'localhost';
+}
+
+DROP ROLE [IF EXISTS] role [, role ] ... {
+    DROP ROLE 'admin', 'developer';
+    DROP ROLE 'webapp'@'localhost';
+}
+
+SHOW GRANTS {
+    [FOR user_or_role
+        [USING role [, role] ...]]
+
+    user_or_role: {
+        user (see Section 6.2.4, “Specifying Account Names”)
+        role (see Section 6.2.5, “Specifying Role Names”.
+    }
+
+    examples {
+        SHOW GRANTS;
+        SHOW GRANTS FOR CURRENT_USER;
+        # see privileges assigned to a user
+        SHOW GRANTS FOR 'root'@'localhost';
+        # see privileges assigned to a role
+        SHOW GRANTS FOR 'user'@'server' USING 'role-name';
+    }
+}
+
+SET ROLE {
+    DEFAULT
+    | NONE
+    | ALL
+    | ALL EXCEPT role [, role ] ...
+    | role [, role ] ...
+}

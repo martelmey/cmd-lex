@@ -1,0 +1,3 @@
+test agent install {
+    sc query CSFalconService
+}

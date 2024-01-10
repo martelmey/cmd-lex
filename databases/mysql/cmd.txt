@@ -1,0 +1,50 @@
+# Getting Started with MySQL
+https://dev.mysql.com/doc/mysql-getting-started/en/
+
+mysql {
+
+    basic examples {
+        # logon to local server as root
+        mysql -u root -p
+
+        # show existing databases
+        SHOW DATABASES;
+
+        # create a new database
+        CREATE DATABASE <string>;
+
+        # switch active database
+        USE <string>;
+
+        # create table within active database
+        CREATE TABLE <string>;
+
+        # show all tables in active database
+        SHOW TABLES;
+
+        # show all columns of a table
+        DESCRIBE <string>;
+    }
+}
+
+mysqlsh {
+    # launch MySQL Shell on windows
+
+    \connect, \c
+    \quit
+    \sql # exec sql statement, or switch to sql mode w/o given statement
+    \status, \s
+}
+
+#####################
+# extended examples #
+#####################
+
+# start mysql shell on windows
+Start, All Programs, MySQL, MySQL 8.0 Command Line Client
+
+# logon to local server as root
+mysql -u root -p
+
+# logon as other user w/ pwd specified
+mysql --user=finley --password <string_db-name>

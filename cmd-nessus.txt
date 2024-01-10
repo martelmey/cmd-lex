@@ -1,3 +1,13 @@
 nessuscli {
+	https://docs.tenable.com/nessus/Content/NessusCLI.htm
+	
 	lsuser # list users
 }
+
+# start & stop
+https://docs.tenable.com/nessus/Content/StartOrStopNessus.htm
+systemctl stop nessusd
+systemctl start nessusd
+
+# extra plugin-code.db and plugins-desc.db files taking up too much space
+https://community.tenable.com/s/article/Extra-plugin-code-db-and-plugins-desc-db-files-are-taking-up-too-much-space?language=en_US

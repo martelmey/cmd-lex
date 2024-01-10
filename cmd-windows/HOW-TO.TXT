@@ -1,3 +1,22 @@
+install imported certificates {
+	https://learn.microsoft.com/en-us/troubleshoot/windows-server/windows-security/install-imported-certificates
+	Run -> mmc
+	add Certificates snapin, select Computer account, select Local computer:
+	double-click Certificates (Local Computer).
+	Right-click Personal, All Tasks, Import.
+	select Place all certificates in the following store
+}
+
+clean up c:\windows\windowssxs folder {
+	https://learn.microsoft.com/en-us/troubleshoot/windows-client/deployment/address-disk-space-issues-caused-by-winsxs?source=recommendations
+	
+	# scheduled task
+	schtasks.exe /Run /TN "\Microsoft\Windows\Servicing\StartComponentCleanup"
+	# dism.exe
+	Dism.exe /online /Cleanup-Image /StartComponentCleanup
+	Dism.exe /online /Cleanup-Image /StartComponentCleanup /ResetBase
+}
+
 cp from local drive {
 	copy \\tsclient\C\Users\martel.meyers\Desktop\workspace.txt C:\Users\martel.meyers\Downloads
 }
