@@ -24,6 +24,9 @@ mysql {
 
         # show all columns of a table
         DESCRIBE <string>;
+
+        # see which database is selected (active):
+        SELECT DATABASE();
     }
 }
 

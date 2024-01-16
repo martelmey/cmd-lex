@@ -1,0 +1,22 @@
+asadmin {
+    [--host <host>]
+    [--port <port>]
+    [--user <admin-user>]
+    [--passwordfile <filename>]
+    [subcommand [options] [operands]]
+}
+
+# list apps on localhost
+asadmin list-applications
+
+# list apps on other server
+asadmin --host <hostname> list-applications
+
+# above but of type 'web'
+adadmin --host <hostname> list-applications --type web
+
+# deply w/ escape chars (windows)
+asadmin deploy --property extras.home='c:\extras\pmdapp' pmdapp.war
+
+# above but for UNIX
+asadmin deploy --property extras.home='c\:\\extras\\pmdapp' pmdapp.war
